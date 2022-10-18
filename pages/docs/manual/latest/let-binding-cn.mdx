@@ -1,0 +1,226 @@
+---
+title: "Let Binding"
+description: "Let binding syntax for binding to values in ReScript"
+canonical: "/docs/manual/latest/let-binding"
+---
+
+# Let Binding | Let绑定
+
+A "let binding", in other languages, might be called a "variable declaration". `let` _binds_ values to names. They can be seen and referenced by code that comes _after_ them.
+
+一个"let绑定"在其他语言可能被称作"变量定义". `let` 将值 _绑定_ 到名字, 绑定的名字在之后的代码可见, 且可以被访问.
+
+<CodeTab labels={["ReScript", "JS Output"]}>
+
+```res example
+let greeting = "hello!"
+let score = 10
+let newScore = 10 + score
+```
+```js
+var greeting = "hello!";
+var score = 10;
+var newScore = 20;
+```
+
+</CodeTab>
+
+## Block Scope | 块作用域
+
+Bindings can be scoped through `{}`.
+
+可以通过`{}`限制绑定的作用域
+
+<CodeTab labels={["ReScript", "JS Output"]}>
+
+```res example
+let message = {
+  let part1 = "hello"
+  let part2 = "world"
+  part1 ++ " " ++ part2
+}
+// `part1` 和 `part2` 无法在此处被访问!
+```
+```js
+var message = "hello world";
+```
+
+</CodeTab>
+
+The value of the last line of a scope is implicitly returned.
+
+块的最后一行的值被隐式的返回作为块的值.
+
+### Design Decisions | 设计决策
+
+ReScript's `if`, `while` and functions all use the same block scoping mechanism. The code below works **not** because of some special "if scope"; but simply because it's the same scope syntax and feature you just saw:
+
+ReScript的`if`、`while`和函数都使用相同的块作用域机制. 以下代码之所以有效, 并不是因为有什么特殊的 "if作用域"; 只是因为其与你刚才所看到的作用域语法和特征相同。
+
+<CodeTab labels={["ReScript", "JS Output"]}>
+
+```res
+if displayGreeting {
+  let message = "Enjoying the docs so far?"
+  Js.log(message)
+}
+// `message` 无法在此处被访问!
+```
+```js
+if (displayGreeting) {
+  console.log("Enjoying the docs so far?");
+}
+```
+
+</CodeTab>
+
+## Bindings Are Immutable | 绑定是不可变的
+
+Let bindings are "immutable", aka "cannot change". This helps our type system deduce and optimize much more than other languages (and in turn, help you more).
+
+Let绑定时"不可变的", 即"无法改变". 这帮助ReScript在类型系统的推导和优化上可以做到比其他语言更进一步(从而更好的帮助你)
+
+## Binding Shadowing | 绑定覆盖
+
+The above restriction might sound unpractical at first. How would you change a value then? Usually, 2 ways:
+
+以上的限制可能听起来不太实用. 你将如何改变一个值呢? 通常有两种方式:
+
+The first is to realize that many times, what you want isn't to mutate a variable's value. For example, this JavaScript pattern:
+
+第一种方法是先认识到, 很多时候你想要的并不是改变一个变量的值. 比如说, 以下是JavaScript的模式:
+
+```js
+var result = 0;
+result = calculate(result);
+result = calculateSomeMore(result);
+```
+
+...is really just to comment on intermediate steps. You didn't need to mutate `result` at all! You could have just written this JS:
+
+...这种写法只是相当于对中间结果进行注释, 你完全不需要修改`result`的值. 你在JS中可以这么写:
+
+
+```js
+var result1 = 0;
+var result2 = calculate(result1);
+var result3 = calculateSomeMore(result2);
+```
+
+In ReScript, this obviously works too:
+
+在ReScript, 这也明显可行:
+
+<CodeTab labels={["ReScript", "JS Output"]}>
+
+```res
+let result1 = 0
+let result2 = calculate(result1)
+let result3 = calculateSomeMore(result2)
+```
+```js
+var result1 = 0;
+var result2 = calculate(0);
+var result3 = calculateSomeMore(result2);
+```
+
+</CodeTab>
+
+Additionally, reusing the same let binding name overshadows the previous bindings with the same name. So you can write this too:
+
+此外, 重用相同的let绑定名字会覆盖之前相同名字的绑定. 所以你也可以这么写:
+
+<CodeTab labels={["ReScript", "JS Output"]}>
+
+```res
+let result = 0
+let result = calculate(result)
+let result = calculateSomeMore(result)
+```
+```js
+var result = calculate(0);
+var result$1 = calculateSomeMore(result);
+```
+
+</CodeTab>
+
+(Though for the sake of clarity, we don't recommend this).
+
+(所以, 为了代码的清晰, 我们不推荐这么些)
+
+As a matter of fact, even this is valid code:
+
+事实上, 即使这也是有效的代码:
+
+<CodeTab labels={["ReScript", "JS Output"]}>
+
+```res example
+let result = "hello"
+Js.log(result) // prints "hello"
+let result = 1
+Js.log(result) // prints 1
+```
+```js
+var result = 1;
+console.log("hello");
+console.log(1);
+```
+
+</CodeTab>
+
+The binding you refer to is whatever's the closest upward. No mutation here!
+If you need _real_ mutation, e.g. passing a value around, have it modified by many pieces of code, we provide a slightly heavier [mutation feature](mutation.md).
+
+你访问的绑定时最近的向上查找的结果. 这里并没有发生值的修改! 如果你需要 _真修改_, (比如说传递一个值作为参数, 让被某些代码修改这个值), 我们提供了一个稍显承重的[mutation特性](mutation.md). 
+
+## Private let bindings
+
+Private let bindings are introduced in the release [7.2](https://rescript-lang.org/blog/bucklescript-release-7-2).
+
+私有let绑定在[7.2](https://rescript-lang.org/blog/bucklescript-release-7-2)版本被引入.
+
+In the module system, everything is public by default,
+the only way to hide some values is by providing a separate signature to
+list public fields and their types:
+
+在模块系统中, 所有东西都默认是公开(public)的, 隐藏某些值的唯一方式是提供一个分离的模块签名, 列出模块中的公共属性和他们的类型
+
+```res
+module A: {
+  let b: int
+} = {
+  let a = 3
+  let b = 4
+}
+```
+`%%private` gives you an option to mark private fields directly
+
+`%%private` 使你可以直接标注某个属性为私有
+
+```res
+module A = {
+  %%private(let a = 3)
+  let b = 4
+}
+```
+
+`%%private` also applies to file level modules, so in some cases,
+users do not need to provide a separate interface file just to hide some particular values.
+
+`%%private`也可以被应用到文件级别的模块, 所以有的时候为了隐藏某些特定的值, 用户可以不用提供一个单独的模块接口文件.
+
+Note interface files are still recommended as a general best practice since they give you better
+separate compilation units and also they're better for documentation.
+
+请注意, 提供一个接口文件仍然是被推荐的通用最佳实践, 因为这可以提供更好的分离的编译单元并且也为编写文档提供了方便.
+
+Still, `%%private` is useful in the following scenarios:
+
+- **Code generators.** Some code generators want to hide some values but it is sometimes very hard or time consuming for code generators to synthesize the types for public fields.
+
+- **Quick prototyping.** During prototyping, we still want to hide some values, but the interface file is not stable yet, `%%private` provide you such convenience.
+
+尽管如此, `%%private`仍然在以下场景是有用的:
+- **代码生成.** 一些代码生成器希望隐藏某些值, 但对代码生成器来说, 合成公共字段的类型有的时候是十分困难或者耗时的.
+
+- **快速原型.** 在原型开发过程中, 我们仍然希望隐藏一些值, 但此时接口文件还不稳定, `%%private`为你提供了将这些值隐藏起来的便利.

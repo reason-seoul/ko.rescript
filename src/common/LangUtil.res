@@ -1,0 +1,5 @@
+type language = 
+    | English
+    | Chinese
+
+

@@ -152,9 +152,9 @@ const createLatestManualToc = () => {
 };
 
 const createLatestManualCnToc = () => {
-  const MD_DIR = path.join(__dirname, "../pages/docs/manual/latest");
+  const MD_DIR = path.join(__dirname, "../pages/docs-cn/manual/latest");
   const SIDEBAR_JSON = path.join(__dirname, "../data/sidebar_manual_latest.json");
-  const TARGET_FILE = path.join(__dirname, "../index_data/manual_latest_toc.json");
+  const TARGET_FILE = path.join(__dirname, "../index_data/manual_latest_toc_cn.json");
 
   const sidebarJson = JSON.parse(fs.readFileSync(SIDEBAR_JSON));
 

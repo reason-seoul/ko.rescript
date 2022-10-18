@@ -98,6 +98,18 @@ let make = (props: props): React.element => {
       | _ => React.null
       }
     }
+  | {base: ["docs-cn", "manual"], pagepath, version} =>
+    switch Belt.Array.get(pagepath, 0) {
+    | _ =>
+      switch version {
+      | Latest =>
+        <ManualDocsLayout.Latest lang=LangUtil.Chinese frontmatter={component->frontmatter}>
+          content
+        </ManualDocsLayout.Latest>
+      | _ => React.null
+      }
+    }
+
   | {base: ["docs", "react"], version: Latest} =>
     <ReactDocsLayout frontmatter={component->frontmatter}> content </ReactDocsLayout>
   | {base: ["docs", "reason-compiler"], version: Latest} =>

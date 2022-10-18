@@ -14,22 +14,30 @@ var LatestLayout = DocsLayout.Make({
       tocData: tocData
     });
 
-var tocData$1 = (require('index_data/manual_v800_toc.json'));
+var tocData$1 = (require('index_data/manual_latest_toc_cn.json'));
 
-var V800Layout = DocsLayout.Make({
+var LatestCnLayout = DocsLayout.Make({
       tocData: tocData$1
     });
 
-var tocData$2 = (require('index_data/manual_v900_toc.json'));
+var tocData$2 = (require('index_data/manual_v800_toc.json'));
 
-var V900Layout = DocsLayout.Make({
+var V800Layout = DocsLayout.Make({
       tocData: tocData$2
     });
 
+var tocData$3 = (require('index_data/manual_v900_toc.json'));
+
+var V900Layout = DocsLayout.Make({
+      tocData: tocData$3
+    });
+
 function ManualDocsLayout$Latest(Props) {
+  var langOpt = Props.lang;
   var frontmatter = Props.frontmatter;
   var componentsOpt = Props.components;
   var children = Props.children;
+  var lang = langOpt !== undefined ? langOpt : /* English */0;
   var components = componentsOpt !== undefined ? Caml_option.valFromOption(componentsOpt) : Markdown.$$default;
   var router = Next.Router.useRouter(undefined);
   var route = router.route;
@@ -51,20 +59,38 @@ function ManualDocsLayout$Latest(Props) {
     hd: breadcrumbs_0,
     tl: breadcrumbs_1
   };
-  var tmp = {
+  var title = "Language Manual";
+  var version$2 = "latest";
+  if (lang) {
+    var tmp = {
+      breadcrumbs: breadcrumbs,
+      title: title,
+      metaTitleCategory: "ReScript Language Manual",
+      version: version$2,
+      availableVersions: Constants.allManualVersions,
+      components: components,
+      theme: "Reason",
+      children: children
+    };
+    if (frontmatter !== undefined) {
+      tmp.frontmatter = Caml_option.valFromOption(frontmatter);
+    }
+    return React.createElement(LatestCnLayout.make, tmp);
+  }
+  var tmp$1 = {
     breadcrumbs: breadcrumbs,
-    title: "Language Manual",
+    title: title,
     metaTitleCategory: "ReScript Language Manual",
-    version: "latest",
+    version: version$2,
     availableVersions: Constants.allManualVersions,
     components: components,
     theme: "Reason",
     children: children
   };
   if (frontmatter !== undefined) {
-    tmp.frontmatter = Caml_option.valFromOption(frontmatter);
+    tmp$1.frontmatter = Caml_option.valFromOption(frontmatter);
   }
-  return React.createElement(LatestLayout.make, tmp);
+  return React.createElement(LatestLayout.make, tmp$1);
 }
 
 var Latest = {
@@ -182,6 +208,7 @@ var V800 = {
 
 export {
   LatestLayout ,
+  LatestCnLayout ,
   V800Layout ,
   V900Layout ,
   Latest ,

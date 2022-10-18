@@ -3,6 +3,11 @@ module LatestLayout = DocsLayout.Make({
   let tocData: SidebarLayout.Toc.raw = %raw("require('index_data/manual_latest_toc.json')")
 })
 
+module LatestCnLayout = DocsLayout.Make({
+  // Structure defined by `scripts/extract-tocs.js`
+  let tocData: SidebarLayout.Toc.raw = %raw("require('index_data/manual_latest_toc_cn.json')")
+})
+
 module V800Layout = DocsLayout.Make({
   // Structure defined by `scripts/extract-tocs.js`
   let tocData: SidebarLayout.Toc.raw = %raw("require('index_data/manual_v800_toc.json')")
@@ -15,7 +20,7 @@ module V900Layout = DocsLayout.Make({
 
 module Latest = {
   @react.component
-  let make = (~frontmatter=?, ~components=Markdown.default, ~children) => {
+  let make = (~lang=LangUtil.English, ~frontmatter=?, ~components=Markdown.default, ~children) => {
     let router = Next.Router.useRouter()
     let route = router.route
 
@@ -44,17 +49,33 @@ module Latest = {
     let title = "Language Manual"
     let version = "latest"
 
-    <LatestLayout
-      theme=#Reason
-      components
-      version
-      title
-      metaTitleCategory="ReScript Language Manual"
-      availableVersions=Constants.allManualVersions
-      ?frontmatter
-      breadcrumbs>
-      children
-    </LatestLayout>
+    open LangUtil
+    switch lang {
+    | English =>
+      <LatestLayout
+        theme=#Reason
+        components
+        version
+        title
+        metaTitleCategory="ReScript Language Manual"
+        availableVersions=Constants.allManualVersions
+        ?frontmatter
+        breadcrumbs>
+        children
+      </LatestLayout>
+    | Chinese =>
+      <LatestCnLayout
+        theme=#Reason
+        components
+        version
+        title
+        metaTitleCategory="ReScript Language Manual"
+        availableVersions=Constants.allManualVersions
+        ?frontmatter
+        breadcrumbs>
+        children
+      </LatestCnLayout>
+    }
   }
 }
 

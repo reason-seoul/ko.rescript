@@ -1,17 +1,24 @@
 ---
-title: "Tuple"
+title: "元组"
 description: "Tuple types and values in ReScript"
 canonical: "/docs/manual/latest/tuple"
 ---
 
-# Tuple
+# Tuple | 元组
 
 Tuples are a ReScript-specific data structure that don't exist in JavaScript. They are:
+
+元组是JavaScript中不存在而ReScript独有的数据结构. 满足以下特征:
 
 - immutable
 - ordered
 - fix-sized at creation time
 - heterogeneous (can contain different types of values)
+
+- 不可变
+- 有序
+- 创建点决定大小
+- 异质性(可以包含不同类型的值)
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -27,6 +34,8 @@ var my3dCoordinates = [20.0, 30.5, 100.0];
 </CodeTab>
 
 Tuples' types can be used in type annotations as well. Tuple types visually resemble tuples values.
+
+元组类型也可以用在类型签名. 元组类型看起来很像元组值.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -44,9 +53,13 @@ var my3dCoordinates = [20.0, 30.5, 100.0];
 
 **Note**: there's no tuple of size 1. You'd just use the value itself.
 
+**注意**: 不存在大小为1的序对, 这种情况可以直接使用值本身来代替.
+
 ## Usage
 
 To get a specific member of a tuple, destructure it:
+
+为了获取元组的某个特定成员, 可以对元组进行解包:
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -61,7 +74,11 @@ var y = 30.5;
 
 The `_` means you're ignoring the indicated members of the tuple.
 
+下划线`_`意味着你可以忽略下划线对应元组成员.
+
 Tuples aren't meant to be updated mutatively. You'd create new ones by destructuring the old ones:
+
+元组无法被修改, 你可以通过解包旧的元组创建一个新的元组:
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -81,6 +98,8 @@ var coordinates2 = [60, 20, 30];
 ## Tips & Tricks
 
 You'd use tuples in handy situations that pass around multiple values without too much ceremony. For example, to return many values:
+
+你可以很方便的使用元组传递多个值而不需要引入太多的语法负担. 比如说, 可以这样返回多个值:
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -102,3 +121,6 @@ function getCenterCoordinates(param) {
 </CodeTab>
 
 Try to keep the usage of tuple **local**. For data structures that are long-living and passed around often, prefer a **record**, which has named fields.
+
+
+尽量在**局部**使用元组. 对于长期存在并经常需要传递的数据结构最好使用**记录(record)**, 其有命名的成员字段.

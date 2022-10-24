@@ -61,6 +61,7 @@ Although **optional**, you can still pre-declare a poly variant type:
 
 ```res
 // Note the surrounding square brackets, and # for constructors
+// 注意下面的方括号和构造器前面的 #
 type color = [#red | #green | #blue]
 ```
 
@@ -179,6 +180,8 @@ type blue = [#Sapphire | #Neon | #Navy]
 
 // Contains all constructors of red and blue.
 // Also adds #Papayawhip
+// 类型color会包含red和blue所有的构造器, 还会加上#Papayawhip
+
 type color = [red | blue | #Papayawhip]
 
 let myColor: color = #Ruby
@@ -198,6 +201,7 @@ There's also some special [pattern matching](./pattern-matching-destructuring) s
 
 ```res
 // Continuing the previous example above...
+// 续前一个例子...
 
 switch myColor {
 | #...blue => Js.log("This blue-ish")
@@ -375,14 +379,18 @@ The previous poly variant type annotations we've looked at are the regular "clos
 
 ```res
 // Only #Red allowed. Closed.
+// 只允许 #Red 构造器, 并且是封闭的
 let basic: [#Red] = #Red
 
 // May contain #Red, or any other value. Open
 // here, foreground will actually be inferred as [> #Red | #Green]
+// 可以包含 #Red, 或者其他值, 并且是开放的.
+// 这里, foreground会被推导为 [> #Red | #Green] 类型
 let foreground: [> #Red] = #Green
 
 // The value must be, at most, one of #Red or #Blue
 // Only #Red and #Blue are valid values
+// 这里, 值只能是 #Red 和 #Blue 之一
 let background: [< #Red | #Blue] = #Red
 ```
 

@@ -1,16 +1,18 @@
 ---
-title: "Mutation"
+title: "可变值"
 description: "Imperative and mutative programming capabilities in ReScript"
 canonical: "/docs/manual/latest/mutation"
 ---
 
-# Mutation
+# Mutation | 可变值
 
 ReScript has great traditional imperative & mutative programming capabilities. You should use these features sparingly, but sometimes they allow your code to be more performant and written in a more familiar pattern.
 
-## Mutate Let-binding
+## Mutate Let-binding | 可变值绑定
 
 Let-bindings are immutable, but you can wrap it with a `ref`, exposed as a record with a single mutable field in the standard library:
+
+Let绑定是不可变的, 但是你可以用`ref`来包裹一个值, 会暴露为一个带有单个可变字段的标准库记录(record).
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -25,9 +27,12 @@ var myValue = {
 
 </CodeTab>
 
-## Usage
+## Usage | 用法
 
 You can get the actual value of a `ref` box through accessing its `contents` field:
+
+你可以通过访问 `content` 字段获得 `ref` 包装的实际值。
+
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -42,6 +47,8 @@ var five = myValue.contents;
 
 Assign a new value to `myValue` like so:
 
+像这样给`myValue`分配一个新值:
+
 <CodeTab labels={["ReScript", "JS Output"]}>
 
 ```res example
@@ -54,6 +61,8 @@ myValue.contents = 6;
 </CodeTab>
 
 We provide a syntax sugar for this:
+
+我们也为其提供了一个语法糖: 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -68,8 +77,14 @@ myValue.contents = 6;
 
 Note that the previous binding `five` stays `5`, since it got the underlying item on the `ref` box, not the `ref` itself.
 
+请注意，前一个绑定`five`的值仍然是 `5`, 因为它得到了 `ref` 包装的元素, 而不是 `ref`本身.
+
 **Note**: you might see in the JS output tabs above that `ref` allocates an object. Worry not; local, non-exported `ref`s allocations are optimized away.
 
-## Tip & Tricks
+**注意**: 你可能在JS输出中看到, `ref`分配了一个对象. 不用担心, 局部的不会导出的`ref`导致的分配会被优化掉.
+
+## Tip & Tricks | 技巧 & 诀窍
 
 Before reaching for `ref`, know that you can achieve lightweight, local "mutations" through [overriding let bindings](let-binding.md#binding-shadowing).
+
+在使用 `ref` 之前, 要知道你可以通过[覆盖let绑定](let-binding.md#binding-shadowing)实现轻量级, 局部的 "变化".

@@ -1,12 +1,14 @@
 ---
-title: "Unboxed"
+title: "拆箱(Unboxed)"
 description: "Unbox a wrapper"
 canonical: "/docs/manual/latest/unboxed"
 ---
 
-# Unboxed
+# 拆箱(Unboxed)
 
 Consider a ReScript variant with a single payload, and a record with a single field:
+
+考虑一个带有单个有效成员(payload)和单个字段的记录的ReScript变体
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -31,7 +33,11 @@ var hi = {
 
 If you check the JavaScript output, you'll see the `studentName` and `hi` JS object, as expected (see the [variant JS output](variant#javascript-output) and [record JS output](record#javascript-output) sections for details).
 
+如果您检查 JavaScript 的编译输出, 您将看到 `studentName` 和 `hi` JS 对象，正如预期的那样(请参阅 [variant JS output](variant#javascript-output) 和 [record JS output](record#javascript-output)部分了解详细信息).
+
 For performance and certain JavaScript interop situations, ReScript offers a way to unwrap (aka unbox) the JS object wrappers from the output for records with a single field and variants with a single constructor and single payload. Annotate their type declaration with the attribute `@unboxed`:
+
+为了性能和某些 JavaScript 互操作情况, ReScript提供了一种从输出中拆箱(也称为解包)JS对象包装器的方法, 用于具有单个字段的记录和具有单个构造函数和单个有效负载的变体. 使用属性 `@unboxed` 注释它们的类型声明: 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -54,11 +60,15 @@ var hi = "hello!";
 
 Check the new output! Clean.
 
-## Usage
+## Usage | 用法
 
 Why would you ever want a variant or a record with a single payload? Why not just... pass the payload? Here's one use-case for variant.
 
+为什么会需要一个变体或具有单个有效负载的记录? 为什么不只是...直接传递有效成员? 这是变体的一个用例:
+
 Suppose you have a game with a local/global coordinate system:
+
+假设您有一个具有局部/全局坐标系的游戏:
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -125,8 +135,10 @@ let toWorldCoordinates = (Local(coordinates)) => {
 let playerLocalCoordinates = Local({x: 20.5, y: 30.5})
 
 // This now errors!
+// 现在这么写会报错!
 // renderDot(playerLocalCoordinates)
 // We're forced to do this instead:
+// 现在只能这么写:
 renderDot(playerLocalCoordinates->toWorldCoordinates)
 ```
 ```js
@@ -153,5 +165,8 @@ renderDot(toWorldCoordinates(playerLocalCoordinates));
 
 Now `renderDot` only takes `worldCoordinates`. Through a nice combination of using distinct variant types + argument destructuring, we've achieved better safety **without compromising on performance**: the `unboxed` attribute compiled to clean, variant-wrapper-less JS code! Check the output.
 
+现在 `renderDot` 只需要 `worldCoordinates`. 通过使用不同的变体类型 + 参数析构的完美结合, 我们获得了更好的安全性**而不影响性能**: `unboxed` 属性编译为干净的且无变体包装的 JS 代码! 看看输出检查拆箱效果.
+
 As for a record with a single field, the use-cases are a bit more edgy. We won't mention them here.
 
+至于具有单个字段的记录, 它们的用法更加前卫. 我们不会在这里提及它们.

@@ -1,21 +1,25 @@
 ---
-title: "Module"
+title: "模块"
 description: "ReScript modules, module signatures and interface files"
 canonical: "/docs/manual/latest/module"
 ---
 
-# Module
+# Module | 模块
 
-## Basics
+## Basics | 基础知识
 
 **Modules are like mini files**! They can contain type definitions, `let`
 bindings, nested modules, etc.
 
-### Creation
+**模块就像迷你文件**!  它们可以包含类型定义, `let`绑定嵌套模块等.
+
+### Creation | 模块创建
 
 To create a module, use the `module` keyword. The module name must start with a
 **capital letter**. Whatever you could place in a `.res` file, you may place
 inside a module definition's `{}` block.
+
+可以使用`module`关键字创建一个模块. 模块名称必须以**大写字母**开头, 所有可以放置在 `.res` 文件中的项目都可以放置在模块定义的块 `{}`中. 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -51,6 +55,8 @@ var School = {
 A module's contents (including types!) can be accessed much like a record's,
 using the `.` notation. This demonstrates modules' utility for namespacing.
 
+可以像访问记录一样使用 `.` 符号访问一个模块的内容 (包括类型!). 这展示了模块用于命名空间的作用. 
+
 <CodeTab labels={["ReScript", "JS Output"]}>
 
 ```res
@@ -65,6 +71,8 @@ console.log("A teacher");
 </CodeTab>
 
 Nested modules work too.
+
+也可以定义嵌套模块.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -91,10 +99,12 @@ var message = MyModule.NestedModule.message;
 
 </CodeTab>
 
-### `open`ing a module
+### `open`ing a module | `打开(open)`一个模块
 
 Constantly referring to a value/type in a module can be tedious. Instead, we can "open" a module and refer to its contents without always prepending them with the
 module's name. Instead of writing:
+
+不断引用模块中的值/类型可能很冗长. 相反, 我们可以"打开(open)"一个模块并引用它的内容, 而不必总是在它们前面加上模块的名称.  除了可以这样写以外:
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -108,6 +118,8 @@ var p = School.getProfession(School.person1);
 </CodeTab>
 
 We can write:
+
+还可以这样写:
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -123,7 +135,11 @@ var p = School.getProfession(School.person1);
 
 The content of `School` module are made visible (**not** copied into the file, but simply made visible!) in scope. `profession`, `getProfession` and `person1` will thus correctly be found.
 
+`School` 模块的内容在范围内可见(**不是**复制到文件中, 仅仅是让其可见!). 因此可以正确找到`profession`, `getProfession` 和 `person1` .
+
 **Use `open` this sparingly, it's convenient, but makes it hard to know where some values come from**. You should usually use `open` in a local scope:
+
+**谨慎使用`open`, 它很方便, 但也让用户很难知道某些值的来源**. 您通常应该在局部范围内使用 `open`: 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -140,9 +156,11 @@ var p = School.getProfession(School.person1);
 
 </CodeTab>
 
-### Use `open!` to ignore shadow warnings
+### Use `open!` to ignore shadow warnings | 使用 `open!`忽略覆盖警告
 
 There are situations where `open` will cause a warning due to existing identifiers (bindings, types) being redefined. Use `open!` to explicitly tell the compiler that this is desired behavior.
+
+在某些情况下, 由于重新定义了现有标识符 (绑定、类型) , `open` 会导致警告.  使用 `open!` 明确告诉编译器这是期望中的行为. 
 
 ```res
 let map = (arr, value) => {
@@ -157,11 +175,17 @@ let arr = map([1,2,3], (a) => { a + 1})
 
 **Note:** Same as with `open`, don't overuse `open!` statements if not necessary. Use (sub)modules to prevent shadowing issues.
 
-### Destructuring modules
+**注意: ** 与 `open` 相同, 如果没有必要, 不要过度使用 `open!` 语句.  使用 (子) 模块来防止覆盖问题.
+
+### Destructuring modules | 解构模块
 
 **Since 9.0.2**
 
+**从9.0.2版本开始**
+
 As an alternative to `open`ing a module, you can also destructure a module's functions and values into separate let bindings (similarly on how we'd destructure an object in JavaScript).
+
+作为`open`一个模块的替代方法, 您还可以将模块的函数和值解构为单独的 let 绑定 (类似于我们如何在 JavaScript 中解构对象) . 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -193,11 +217,16 @@ var User = {
 
 **Note:** You can't extract types with module destructuring — use a type alias instead (`type user = User.myUserType`).
 
-### Extending modules
+### Extending modules | 扩展模块
 
 Using `include` in a module statically "spreads" a module's content into a new one, thus often fulfill the role of "inheritance" or "mixin".
 
+在模块中使用 `include` 会静态地将模块的内容"传播"到新的内容中, 因此通常起到"继承(inheritance)"或"混合(mixin)"的作用. 
+
 **Note**: this is equivalent to a compiler-level copy paste. **We heavily discourage `include`**. Use it as last resort!
+
+**注意**: 这相当于编译器级别的复制粘贴.  **我们强烈反对`include`**.  作为最后的手段使用它! 
+
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -246,23 +275,33 @@ var ActualComponent = {
 
 **Note**: `open` and `include` are very different! The former brings a module's content into your current scope, so that you don't have to refer to a value by prefixing it with the module's name every time. The latter **copies over** the definition of a module statically, then also do an `open`.
 
-### Every `.res` file is a module
+**注意**: `open` 和 `include` 非常不同!  前者将模块的内容带入您当前的范围, 这样您就不必每次都通过在模块名称前加上前缀来引用一个值.  后者**静态复制**模块的定义, 然后也执行“打开”. 
+
+### Every `.res` file is a module | 每个 `.res` 文件都是一个模块
 
 Every ReScript file is itself compiled to a module of the same name as the file name, capitalized. The file `React.res` implicitly forms a module `React`, which can be seen by other source files.
 
+每个 ReScript 文件本身都会编译为与文件名同名且首字母大写的模块.  文件 `React.res` 隐式形成了一个模块 `React`, 可以被其他源文件看到. 
+
 **Note**: ReScript file names should, by convention, be capitalized so that their casing matches their module name. Uncapitalized file names are not invalid, but will be implicitly transformed into a capitalized module name. I.e. `file.res` will be compiled into the module `File`. To simplify and minimize the disconnect here, the convention is therefore to capitalize file names.
 
-## Signatures
+**注意**: 按照惯例, ReScript 文件名应大写, 以便它们的大小写与其模块名称匹配.  未大写的文件名不是无效的, 而是会隐式转换为大写的模块名.  比如说 `file.res` 将被编译到模块 `File` 中.  为了简化和最小化此处的断开连接, 因此约定将文件名大写. 
+
+## Signatures | 签名
 
 A module's type is called a "signature", and can be written explicitly. If a
 module is like a `.res` (implementation) file, then a module's signature is like
 a `.resi` (interface) file.
 
-### Creation
+模块的类型称为“签名”, 可以显式编写.  如果一个模块就是一个`.res` (实现) 文件, 那么一个模块的签名就是一个`.resi` (接口) 文件. 
+
+### Creation | 创建
 
 To create a signature, use the `module type` keyword. The signature name must start with a
 **capital letter**. Whatever you could place in a `.resi` file, you may place
 inside a signature definition's `{}` block.
+
+要创建签名, 请使用“模块类型”关键字.  签名名称必须以**大写字母**开头.  所有你可以放在`.resi` 文件中的东西, 都可以放置在签名定义的 `{}` 块中. 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -282,15 +321,27 @@ module type EstablishmentType = {
 A signature defines the list of requirements that a module must satisfy in order
 for that module to match the signature. Those requirements are of the form:
 
+签名定义了模块必须满足的要求列表, 以便该模块与签名匹配.  这些要求的形式如下: 
+
 - `let x: int` requires a `let` binding named `x`, of type `int`.
 - `type t = someType` requires a type field `t` to be equal to `someType`.
 - `type t` requires a type field `t`, but without imposing any requirements on the actual, concrete type of `t`. We'd use `t` in other entries in the signature to describe relationships, e.g. `let makePair: t => (t, t)` but we cannot, for example, assume that `t` is an `int`. This gives us great, enforced abstraction abilities.
 
+
+- `let x: int` 需要一个名为 `x` 的 `let` 绑定, 类型为 `int`. 
+- `type t = someType` 要求类型字段 `t` 等于 `someType`. 
+- `type t` 需要类型字段 `t`, 但对 `t` 的实际具体类型没有任何要求.  我们会在签名的其他条目中使用 `t` 来描述关系, 例如 `let makePair: t => (t, t)` 但我们不能假设 `t` 是一个 `int`.  这给了我们强大的、强制的抽象能力. 
+
 To illustrate the various kinds of type entries, consider the above signature
 `EstablishmentType` which requires that a module:
 
+为了说明各种类型的条目, 请考虑上面的签名“EstablishmentType”, 它需要一个模块: 
+
 - Declare a type named `profession`.
 - Must include a function that takes in a value of the type `profession` and returns a string.
+
+- 声明一个名为 `professional` 的类型. 
+- 必须包含一个函数, 该函数接受一个`professional`类型的值并返回一个字符串. 
 
 **Note**:
 
@@ -301,10 +352,18 @@ every field). This effectively makes the `person1` field an enforced
 implementation detail! Outsiders can't access it, since it's not present in the
 signature; the signature **constrained** what others can access.
 
+**注意**:
+
+`EstablishmentType` 类型的模块可以包含比签名声明更多的字段, 就像上一节中的`School`模块 (如果我们选择为其分配类型`EstablishmentType`. 否则, `School` 会公开每个字段) .  这有效地使“person1”字段成为强制实施细节!  外人无法访问它, 因为它不存在于签名中； 签名**限制**其他人可以访问的内容. 
+
 The type `EstablishmentType.profession` is **abstract**: it doesn't have a
 concrete type; it's saying "I don't care what the actual type is, but it's used
 as input to `getProfession`". This is useful to fit many modules under the same
 interface:
+
+
+`EstablishmentType.profession` 类型是**抽象**: 它没有具体类型； 它的意思是“我不在乎实际类型是什么, 但它被用作`getProfession`的输入”.  这对于在同一个模块下安装许多模块很有用
+界面: 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -339,9 +398,13 @@ It's also useful to hide the underlying type as an implementation detail others
 can't rely on. If you ask what the type of `Company.profession` is, instead of
 exposing the variant, it'll only tell you "it's `Company.profession`".
 
-### Extending module signatures
+将底层类型隐藏为其他人无法依赖的实现细节也很有用. 如果你问 `Company.profession` 的类型是什么,  只会告诉你 "它是个 `Company.profession`" 而不是暴露变体. 
+
+### Extending module signatures | 扩展模块签名
 
 Like modules themselves, module signatures can also be extended by other module signatures using `include`. Again, **heavily discouraged**:
+
+与模块本身一样, 模块签名也可以通过 `include` 其他模块签名进行扩展. 再次, **我们非常不鼓励使用**:
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -365,10 +428,14 @@ module type ActualComponent = {
 
 **Note**: `BaseComponent` is a module **type**, not an actual module itself!
 
+**注意**: `BaseComponent` 是一个模块**类型**, 而不是一个实际的模块本身! 
+
 If you do not have a defined module type, you can extract it from an actual module
 using `include (module type of ActualModuleName)`. For example, we can extend the
 `List` module from the standard library, which does not define a module
 type.
+
+如果您没有定义的模块类型, 您可以使用`include (module type of ActualModuleName)` 从实际模块中提取它. 例如, 我们可以从标准库中扩展没有定义模块类型的 `List` 模块.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -384,13 +451,15 @@ module type MyList = {
 
 </CodeTab>
 
-### Every `.resi` file is a signature
+### Every `.resi` file is a signature | 每个 `.resi` 文件是一个签名
 
 Similar to how a `React.res` file implicitly defines a module `React`, a file
 `React.resi` implicitly defines a signature for `React`. If `React.resi` isn't
 provided, the signature of `React.res` defaults to exposing all the fields of the
 module. Because they don't contain implementation files, `.resi` files are used
 in the ecosystem to also document the public API of their corresponding modules.
+
+类似于 `React.res` 文件隐式定义模块`React`, 文件`React.resi` 隐式定义`React` 的签名.  如果 `React.resi` 没有提供, `React.res` 的签名默认暴露模块的所有字段.  因为它们不包含实现文件, 所以在生态系统中使用 `.resi` 文件来记录其相应模块的公共 API. 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -413,23 +482,34 @@ type state = int
 let render: string => string
 ```
 
-## Module Functions (functors)
+## Module Functions (functors) | 模块的函数(仿函数)
 
 Modules can be passed to functions! It would be the equivalent of passing a file
 as a first-class item. However, modules are at a different "layer" of the
 language than other common concepts, so we can't pass them to *regular*
 functions. Instead, we pass them to special functions called "functors".
 
+模块可以传递给函数!  这相当于将文件作为一等项传递.  但是, 模块与其他常见概念处于不同的语言“层”, 因此我们不能将它们传递给 *regular* 函数.  相反, 我们将它们传递给称为“仿函数”的特殊函数. 
+
 The syntax for defining and using functors is very much like the syntax
 for defining and using regular functions. The primary differences are:
+
+定义和使用仿函数的语法非常类似于定义和使用常规函数的语法.  主要区别是: 
 
 - Functors use the `module` keyword instead of `let`.
 - Functors take modules as arguments and return a module.
 - Functors *require* annotating arguments.
 - Functors must start with a capital letter (just like modules/signatures).
 
+- 仿函数使用 `module` 关键字而不是 `let`. 
+- 仿函数将模块作为参数并返回一个模块. 
+- 仿函数 *需要* 对参数类型注释.
+- 仿函数必须以大写字母开头 (就像模块/签名一样) . 
+
 Here's an example `MakeSet` functor, that takes in a module of the type
 `Comparable` and returns a new set that can contain such comparable items.
+
+这是一个示例仿函数 `MakeSet`, 它接受一个`Comparable`类型的模块并返回一个可以包含此类可比较项的新集合.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -485,6 +565,8 @@ function MakeSet(Item) {
 Functors can be applied using function application syntax. In this case, we're
 creating a set, whose items are pairs of integers.
 
+仿函数可以使用函数应用语法来应用. 在这种情况下, 我们正在创建一个集合, 其项目是整数对.
+
 <CodeTab labels={["ReScript", "JS Output"]}>
 
 ```res example
@@ -523,7 +605,7 @@ var SetOfIntPairs = {
 
 </CodeTab>
 
-### Module functions types
+### Module functions types | 模块函数的类型
 
 Like with module types, functor types also act to constrain and hide what we may
 assume about functors. The syntax for functor types are consistent with those
@@ -531,6 +613,8 @@ for function types, but with types capitalized to represent the signatures of
 modules the functor accepts as arguments and return values. In the
 previous example, we're exposing the backing type of a set; by giving `MakeSet`
 a functor signature, we can hide the underlying data structure!
+
+与模块类型一样, 仿函数类型也起到约束和隐藏我们对仿函数的假设的作用.  仿函数类型的语法与函数类型的语法是一致的, 但类型需要首字母大写以表示仿函数接受作为参数和返回值的模块的签名.  在前面的例子中, 我们暴露了支持一个集合的类型; 通过给 `MakeSet` 一个仿函数签名, 我们可以隐藏底层数据结构! 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -553,17 +637,23 @@ module MakeSet: MakeSetType = (Item: Comparable) => {
 
 </CodeTab>
 
-## Exotic Module Filenames
+## Exotic Module Filenames | 有毒的模块文件名
 
 **Since 8.3**
 
 It is possible to use non-conventional characters in your filenames (which is sometimes needed for specific JS frameworks). Here are some examples:
+
+可以在文件名中使用非常规字符 (特定 JS 框架有时需要) .  这里有些例子: 
 
 - `src/Button.ios.res`
 - `pages/[id].res`
 
 Please note that modules with an exotic filename will not be accessible from other ReScript modules.
 
-## Tips & Tricks
+请注意, 其他 ReScript 模块无法访问具有外来文件名的模块. 
+
+## Tips & Tricks | 技巧和诀窍
 
 Modules and functors are at a different "layer" of language than the rest (functions, let bindings, data structures, etc.). For example, you can't easily pass them into a tuple or record. Use them judiciously, if ever! Lots of times, just a record or a function is enough.
+
+模块和仿函数位于与其他语言部分位于不同的“层面” (函数、let 绑定、数据结构等) .  例如, 您不能轻易地将它们传递到元组或记录中.  如果要用的话, 谨慎的使用!  很多时候, 一个记录或者一个函数就足够了. 

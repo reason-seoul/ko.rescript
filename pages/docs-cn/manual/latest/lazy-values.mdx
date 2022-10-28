@@ -1,12 +1,14 @@
 ---
-title: "Lazy Value"
+title: "惰性值"
 description: "Data type for deferred computation in ReScript"
 canonical: "/docs/manual/latest/lazy-values"
 ---
 
-# Lazy Value
+# Lazy Value | 惰性值
 
 If you have some expensive computations you'd like to **defer and cache** subsequently, you can wrap it with `lazy`:
+
+如果你有一些昂贵的计算, 你想**延后计算并且缓存结果**, 你可以用`lazy`来包装它. 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -33,9 +35,13 @@ var expensiveFilesRead = {
 
 Check the JS Output tab: that `expensiveFilesRead`'s code isn't executed yet, even though you declared it! You can carry it around without fearing that it'll run the directory read.
 
+检查JS输出标签：那个`expensiveFilesRead`的代码还没有执行, 尽管你已经声明了它! 你可以把它带在身边, 而不用担心它会运行目录读取. 
+
 **Note**: a lazy value is **not** a [shared data type](shared-data-types.md). Don't rely on its runtime representation in your JavaScript code.
 
-## Execute The Lazy Computation
+**注意**：惰性值是**不是**的[共享数据类型](shared-data-types.md). 不要在你的JavaScript代码中依赖它的运行时表示. 
+
+## Execute The Lazy Computation | 执行惰性计算
 
 To actually run the lazy value's computation, use `Lazy.force` from the globally available `Lazy` module:
 
@@ -58,9 +64,15 @@ console.log(CamlinternalLazy.force(expensiveFilesRead));
 
 The first time `Lazy.force` is called, the expensive computation happens and the result is **cached**. The second time, the cached value is directly used.
 
+第一次调用`Lazy.force`时, 昂贵的计算发生了, 结果被**缓存了. 第二次, 直接使用缓存的值. 
+
 **You can't re-trigger the computation after the first `force` call**. Make sure you only use a lazy value with computations whose results don't change (e.g. an expensive server request whose response is always the same).
 
+**在第一次调用 "force "后, 你不能重新触发计算**. 确保你只在计算结果不改变的情况下使用惰性值(例如, 一个昂贵的服务器请求, 其响应总是相同的). 
+
 Instead of using `Lazy.force`, you can also use [pattern matching](pattern-matching-destructuring.md) to trigger the computation:
+
+你也可以使用[模式匹配](pattern-matching-destructuring.md)来触发计算, 而不是使用`Lazy.force`.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

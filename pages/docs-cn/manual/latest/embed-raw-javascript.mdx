@@ -1,14 +1,16 @@
 ---
-title: "Embed Raw JavaScript"
+title: "直接嵌入 JavaScript 代码"
 description: "Utility syntax to for raw JS usage in ReScript"
 canonical: "/docs/manual/latest/embed-raw-javascript"
 ---
 
-# Embed Raw JavaScript
+# Embed Raw JavaScript | 直接嵌入 JavaScript 代码
 
-## Paste Raw JS Code
+## Paste Raw JS Code | 粘贴原始 JS 代码
 
 First thing first. If you're ever stuck learning ReScript, remember that you can always just paste raw JavaScript code into our source file:
+
+请牢记，一旦你发现自己在学习 ReScript 的时候不知如何继续，你几乎总是可以在你的源文件中粘贴原始的 JavaScript 代码：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -33,9 +35,15 @@ function greet(m) {
 
 The `%%raw` special ReScript call takes your code string and pastes it as-is into the output. **You've now technically written your first ReScript file!**
 
+`%%raw` 这个特殊的 ReScript 调用会将你的代码字符串原封不动的显示到输出结果中。**从技术的角度而言，你已经在写你的第一段 ReScript 文件了！**
+
 (The back tick syntax is a multiline string, similar to JavaScript's. Except for us, no escaping is needed inside the string. More on string in a later section.)
 
+（反引号语法表示多行字符串，这个和 JavaScript 中的模板字符串类似。不过对我们而言，在字符串中不需要任何转义。关于字符串，后面的章节中会有更多的内容）
+
 While `%%raw` lets you embed top-level raw JS code, `%raw` lets you embed expression-level JS code:
+
+`%%raw` 既可以允许你嵌入顶级的 JS 原始代码，它也可以允许你嵌入表达式级别的 JS 代码：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -65,11 +73,21 @@ The above code:
 - with the raw JavaScript value of a function declaration,
 - then called that function in ReScript.
 
+
+以上代码：
+- 申明一个 ReScript 变量 `add`，
+- 将其赋值为一段原始的 JavaScript 函数声明，
+- 接着在 ReScript 中调用这个函数。
+
 If your boss is ever worried that your teammates can't adopt ReScript, just let them keep writing JavaScript inside ReScript files =).
 
-## Debugger
+如果你们的老板总是担心你们的团队成员不改用 ReScript 的话，没关系，就让他们继续在 ReScript 文件中书写 JavaScript 吧 =)。
+
+## Debugger | 调试
 
 You can also drop a `%debugger` expression in a body:
+
+在代码中你也可以直接放置一个 `%debugger` 表达式：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -92,7 +110,7 @@ Output:
 
 ```js
 function f(x, y) {
-  debugger; // JavaScript developer tools will set an breakpoint and stop here
+  debugger; // JavaScript 开发者工具会在这里设置一个断点并在这里停止运行
   x + y;
 }
 ```
@@ -101,10 +119,21 @@ function f(x, y) {
 
 Embedding raw JS snippets isn't the best way to experience ReScript, though it's also highly useful if you're just starting out. As a matter of fact, the first few ReScript projects were converted through:
 
+嵌入原始 JS 代码段并不是体验 ReScript 的最佳方式，尽管这种方式在你刚开始的时候非常有用。实际上，最开始的一些 ReScript 项目都是通过下面的方式转换的：
+
 - pasting raw JS snippets inside a file
 - examining the JS output (identical to the old hand-written JS)
 - gradually extract a few values and functions and making sure the output still looks OK
 
+- 将原始 JS 代码段粘贴到文件中
+- 检查 JS 输出结果（是否与原来的手写 JS 输出结果一致）
+- 逐步地抽取出一些值和函数，并且保证输出结果依然正确
+
+
 At the end, we get a fully safe, converted ReScript file whose JS output is clean enough that we can confidently assert that no new bug has been introduced during the conversion process.
 
+最后，我们会获得一个完整而安全的转化后的 ReScript 文件，它的输出结果足够干净，这样我们就可以自信地说转换过程没有引入任何新的 bug。
+
 We have a small guide on this iteration [here](converting-from-js.md). Feel free to peruse it later.
+
+我们在[这里](converting-from-js.md)有一个关于这种逐步转换的小指南。欢迎之后再来随意阅读。

@@ -175,7 +175,7 @@ drawCircle(10, "red");
 
 As a matter of fact, `(~radius)` is just a shorthand for `(~radius as radius)`.
 
-事实上，`(~radius)`只是`(~radius as radius)`的一个缩写.
+事实上, `(~radius)`只是`(~radius as radius)`的一个缩写.
 
 Here's the syntax for typing the arguments:
 
@@ -245,7 +245,7 @@ More on `option` type [here](null-undefined-option.md).
 
 Functions with optional labeled arguments can be confusing when it comes to signature and type annotations. Indeed, the type of an optional labeled argument looks different depending on whether you're calling the function, or working inside the function body. Outside the function, a raw value is either passed in (`int`, for example), or left off entirely. Inside the function, the parameter is always there, but its value is an option (`option<int>`). This means that the type signature is different, depending on whether you're writing out the function type, or the parameter type annotation. The first being a raw value, and the second being an option.
 
-当涉及到签名和类型注释时, 带有可选标记参数的函数可能会令人困惑. 事实上, 一个可选的标记参数的类型看起来是不同的, 这取决于你是在函数的调用点, 还是在函数体内部. 在函数外部, 一个原始值要么被传入(例如，`int`), 要么被完全舍弃不传入值. 在函数内部, 参数总是存在的, 但其值是一个选项(`option<int>`). 这意味着类型签名是不同的, 取决于你是写出函数类型, 还是为参数写类型注释, 前者是一个原始值, 后者是一个`option`.
+当涉及到签名和类型注释时, 带有可选标记参数的函数可能会令人困惑. 事实上, 一个可选的标记参数的类型看起来是不同的, 这取决于你是在函数的调用点, 还是在函数体内部. 在函数外部, 一个原始值要么被传入(例如, `int`), 要么被完全舍弃不传入值. 在函数内部, 参数总是存在的, 但其值是一个选项(`option<int>`). 这意味着类型签名是不同的, 取决于你是写出函数类型, 还是为参数写类型注释, 前者是一个原始值, 后者是一个`option`.
 
 If we get back to our previous example and both add a signature and type annotations to its argument, we get this:
 
@@ -481,7 +481,7 @@ If you write down the uncurried function's type, you'll add a dot there as well.
 
 Occasionally you may want to ignore the return value of a function. ReScript provides an `ignore()` function that discards the value of its argument and returns `()`:
 
-偶尔你可能想忽略一个函数的返回值, ReScript提供了一个`ignore()'函数, 它抛弃了其参数的值，并返回`()`.
+偶尔你可能想忽略一个函数的返回值, ReScript提供了一个`ignore()'函数, 它抛弃了其参数的值, 并返回`()`.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

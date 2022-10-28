@@ -851,7 +851,7 @@ Below is some advice:
 
 Avoid using the wildcard `_` unnecessarily.  Using the wildcard `_` will bypass the compiler's exhaustiveness check.  Consequently, the compiler will not be able to notify you of probable errors when you add a new case to a variant. Try only using `_` against infinite possibilities, e.g. string, int, etc.
 
-避免不必要地使用通配符`_`. 使用通配符`_`将绕过编译器的穷举检查. 因此, 当你在变体中增加一个新的情况时, 编译器将无法通知你可能出现的错误. 试着只在需要应对无限的可能性的时候使用`_`, 例如字符串、int等。
+避免不必要地使用通配符`_`. 使用通配符`_`将绕过编译器的穷举检查. 因此, 当你在变体中增加一个新的情况时, 编译器将无法通知你可能出现的错误. 试着只在需要应对无限的可能性的时候使用`_`, 例如字符串、int等. 
 
 Use the `if` clause sparingly.
 
@@ -993,4 +993,4 @@ function optionBoolToBool(opt) {
 
 Pretty darn hard to make a mistake in this code at this point! Whenever you'd like to use an if-else with many branches, prefer pattern matching instead. It's more concise and [performant](variant#design-decisions) too.
 
-这个时候, 要想在这段代码中犯错是非常困难的! 当你想使用一个有许多分支的if-else时, 最好用模式匹配来代替. 它更简洁，而且[性能更好](variant#design-decisions)。
+这个时候, 要想在这段代码中犯错是非常困难的! 当你想使用一个有许多分支的if-else时, 最好用模式匹配来代替. 它更简洁, 而且[性能更好](variant#design-decisions). 

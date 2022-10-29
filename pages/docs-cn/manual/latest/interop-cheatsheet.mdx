@@ -4,17 +4,20 @@ description: "Cheatsheet for various interop scenarios in ReScript"
 canonical: "/docs/manual/latest/interop-cheatsheet"
 ---
 
-# Interop Cheatsheet
+# Interop Cheatsheet |  互操作方法速查表
 
 This is a glossary with examples. All the features are described by later pages.
+这是一个带有示例的专业词汇表。全部功能都会在接下来的页面中进行描述。
 
-## List of Decorators
+
+## List of Decorators ｜ 装饰器列表
 
 > **Note:** In ReScript <8.3, all our attributes started with the `bs.` prefix. This is no longer needed and our formatter automatically removes them in newer ReScript versions.
+> **注意:** 在ReScript 8.3版本之前, 全部属性（attributes）都是以 `bs.` 作为前缀的. 在新的版本中，则不再需要使用该前缀，格式化工具会自动删除该它。
 
 <!-- Synced from https://github.com/rescript-lang/syntax/blob/123760c5a264da5288eeee5213ddd25eb86d62fe/src/res_printer.ml#L19-L51 -->
 
-### Attributes
+### Attributes ｜ 属性
 
 - `@as`: [here](attribute#usage), [here](bind-to-js-function#fixed-arguments), [here](bind-to-js-function#constrain-arguments-better) and [here](generate-converters-accessors#usage-3)
 - [`@deriving`](generate-converters-accessors#generate-functions--plain-values-for-variants)
@@ -47,7 +50,38 @@ This is a glossary with examples. All the features are described by later pages.
 - [`@warning`](attribute#usage)
 - [`@unboxed`](unboxed)
 
-### Extension Points
+- `@as`: [示例1](attribute#usage), [示例2](bind-to-js-function#fixed-arguments), [示例3](bind-to-js-function#constrain-arguments-better) and [示例4](generate-converters-accessors#usage-3)
+- [`@deriving`](generate-converters-accessors#generate-functions--plain-values-for-variants)
+- [`@get`](bind-to-js-object#bind-using-special-bs-getters--setters)
+- [`@get_index`](bind-to-js-object#bind-using-special-bs-getters--setters)
+<!-- - `@ignore` -->
+- [`@inline`](inlining-constants)
+- [`@int`](bind-to-js-function#constrain-arguments-better)
+<!-- - `@meth` -->
+- [`@module`](import-from-export-to-js#import-a-javascript-modules-content)
+- [`@new`](bind-to-js-object#bind-to-a-js-object-thats-a-class)
+- [`@obj`](generate-converters-accessors#convert-external-into-js-object-creation-function)
+- [`@optional`](generate-converters-accessors#optional-labels)
+- [`@return`](bind-to-js-function#function-nullable-return-value-wrapping)
+- `@send`: [示例1](bind-to-js-function#object-method) and [示例2](pipe#js-method-chaining)
+- [`@scope`](bind-to-global-js-values#global-modules)
+- [`@set`](bind-to-js-object#bind-using-special-bs-getters--setters)
+- [`@set_index`](bind-to-js-object#bind-using-special-bs-getters--setters)
+- [`@variadic`](bind-to-js-function#variadic-function-arguments)
+- [`@string`](bind-to-js-function#constrain-arguments-better)
+- [`@this`](bind-to-js-function#modeling-this-based-callbacks)
+- [`@uncurry`](bind-to-js-function#extra-solution)
+- [`@unwrap`](bind-to-js-function#trick-2-polymorphic-variant--bsunwrap)
+- [`@val`](bind-to-global-js-values#global-modules)
+
+- [`@deprecated`](attribute#usage)
+- [`genType`](https://github.com/reason-association/genType)
+- [`@JSX`](jsx)
+- `@react.component`: [示例1](/docs/react/latest/introduction) and [示例2](https://github.com/reasonml/reason-react)
+- [`@warning`](attribute#usage)
+- [`@unboxed`](unboxed)
+
+### Extension Points ｜ 扩展点
 
 - [`%debugger`](embed-raw-javascript#debugger)
 - [`%external`](bind-to-global-js-values#special-global-values)
@@ -56,7 +90,7 @@ This is a glossary with examples. All the features are described by later pages.
 - [`%raw`](embed-raw-javascript#paste-raw-js-code)
 - [`%re`](primitive-types#regular-expression)
 
-## Raw JS
+## Raw JS ｜ 原生JS代码嵌入
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -71,7 +105,7 @@ const a = 1
 
 </CodeTab>
 
-## Global Value
+## Global Value ｜ 全局值（Global Value）绑定
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -84,7 +118,7 @@ const a = 1
 
 </CodeTab>
 
-## Global Module's Value
+## Global Module's Value ｜ 全局模块的值 （Global Module's Value）绑定
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -103,7 +137,7 @@ var someNumber = Math.random();
 
 </CodeTab>
 
-## Nullable
+## Nullable ｜ 空值绑定
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -119,6 +153,7 @@ var b;
 </CodeTab>
 
 Handling a value that can be `undefined` and `null`, by ditching the `option` type and using `Js.Nullable.t`:
+我们可以通过使用 `Js.Nullable.t` 来处理那些可能会为 `undefined` 和 `null`的值：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -142,15 +177,19 @@ var result3 = Caml_option.nullable_to_opt(10);
 
 </CodeTab>
 
-## JS Object
+## JS Object ｜ JS对象
 
 - [Bind to a JS object as a ReScript record](bind-to-js-object#bind-to-record-like-js-objects).
 - [Bind to a JS object that acts like a hash map](bind-to-js-object#bind-to-hash-map-like-js-object).
 - [Bind to a JS object that's a class](bind-to-js-object#bind-to-a-js-object-thats-a-class).
 
-## Function
+- [绑定JS对象为record](bind-to-js-object#bind-to-record-like-js-objects).
+- [绑定JS的散列表对象](bind-to-js-object#bind-to-hash-map-like-js-object).
+- [绑定JS的类](bind-to-js-object#bind-to-a-js-object-thats-a-class).
 
-### Object Method & Chaining
+## Function ｜ 函数
+
+### Object Method & Chaining ｜ 对象方法与链式调用
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -176,7 +215,7 @@ console.log(
 
 </CodeTab>
 
-### Variadic Arguments
+### Variadic Arguments ｜ 可变参数
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -190,7 +229,7 @@ external join: array<string> => string = "join"
 
 </CodeTab>
 
-### Polymorphic Function
+### Polymorphic Function ｜ 多态函数
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -226,13 +265,15 @@ padLeft("Hello World", "Message from ReScript: ");
 
 </CodeTab>
 
-## JS Module Interop
+## JS Module Interop ｜ JS模块互操作
 
 [See here](import-from-export-to-js.md)
+[查看这里](import-from-export-to-js.md)
 
-## Dangerous Type Cast
+## Dangerous Type Cast | 危险的类型转换
 
 Final escape hatch converter. Do not abuse.
+作为最后的逃生口，请不要滥用它。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

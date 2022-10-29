@@ -4,28 +4,47 @@ description: "Importing / exporting JS module content in ReScript"
 canonical: "/docs/manual/latest/import-from-export-to-js"
 ---
 
-# Import from/Export to JS
+# Import from/Export to JS | 从 JS 中导入/导出到 JS
 
 You've seen how ReScript's idiomatic [Import & Export](import-export.md) works. This section describes how we work with importing stuff from JavaScript and exporting stuff for JavaScript consumption.
 
+你已经见识到 ReScript 惯用的[导入和导出](import-export.md)是如何工作的了。本节描述我们如何从 JavaScript 导入内容并导出内容以供 JavaScript 使用。
+
 **Note**: due to JS ecosystem's module compatibility issues, our advice of keeping your ReScript file's compiled JS output open in a tab applies here **more than ever**, as you don't want to subtly output the wrong JS module import/export code, on top of having to deal with Babel/Webpack/Jest/Node's CommonJS<->ES6 compatibility shims.
+
+
+**注意**: 由于 JS 生态系统的模块兼容性问题，我们建议将 ReScript 文件编译后的 JS 输出打开在一个选项卡中，**这比任何时候都适用**。因为你不想微妙地输出错误的 JS 模块导入/导出代码，除此之外还必须处理 Babel/Webpack/Jest/Node 的 CommonJS <-> ES6 兼容性的 shims。
+
 
 In short: **make sure your bindings below output what you'd have manually written in JS**.
 
-## Output Format
+简而言之: **确保下面的绑定输出了您在 JS 中手动编写的内容**。  
+
+## Output Format ｜ 输出格式
 
 We support 2 JavaScript import/export formats:
 
+我们支持两种 JavaScript 导入/导出格式:
+
 - CommonJS: `require('myFile')` and `module.exports = ...`.
+
+- CommonJS: `require('myFile')` 和 `module.exports = ...`.
+
 - ES6 modules: `import * from 'MyReScriptFile'` and `export let ...`.
+
+- ES6 modules: `import * from 'MyReScriptFile'` 和 `export let ...`.
 
 The format is [configurable in via `bsconfig.json`](build-configuration.md#package-specs).
 
-## Import From JavaScript
+该格式可以 [通过 `bsconfig.json` 进行配置](build-configuration.md#package-specs)。
 
-### Import a JavaScript Module's Named Export
+## Import From JavaScript | 从 JavaScript 中导入
+
+### Import a JavaScript Module's Named Export ｜ 导入 JavaScript 模块的命名导出
 
 Use the `module` [external](external.md):
+
+使用 `module` [external](external.md):
 
 <CodeTab labels={["ReScript", "JS Output (CommonJS)", "JS Output (ES6)"]}>
 
@@ -45,17 +64,26 @@ var root = Path.dirname("/User/github");
 
 </CodeTab>
 
-Here's what the `external` does:
+Here's what the `external` does:  
+这是 `external` 的作用:
 
 - `@module("path")`: pass the name of the JS module; in this case, `"path"`. The string can be anything: `"./src/myJsFile"`, `"@myNpmNamespace/myLib"`, etc.
-- `external`: the general keyword for declaring a value that exists on the JS side.
-- `dirname`: the binding name you'll use on the ReScript side.
+- `external`: the general keyword for declaring a value that exists on the JS side.  
+- `dirname`: the binding name you'll use on the ReScript side.  
 - `string => string`: the type signature of `dirname`. Mandatory for `external`s.
 - `= "dirname"`: the name of the variable inside the `path` JS module. There's repetition in writing the first and second `dirname`, because sometime the binding name you want to use on the ReScript side is different than the variable name the JS module exported.
 
-### Import a JavaScript Module As a Single Value
+- `@module("path")`: 传递 JS 模块的名称; 在本例中, `"path"`. 可以是任何形式的字符串: `"./src/myJsFile"`, `"@myNpmNamespace/myLib"`, 等等。
+- `external`: 用于声明存在于 JS 端的值的通用关键字。
+- `dirname`: 你将在 ReScript 端使用的绑定名称。
+- `string => string`: `dirname` 的类型签名， 强制 `external` 的.
+- `= "dirname"`: JS 模块 `path` 内的变量名称。在写第一个和第二个 `dirname` 的时候会重复，因为有时您想在 ReScript 端使用的绑定名称与 JS 模块导出的变量名称不同。
 
-By omitting the string argument to `module`, you bind to the whole JS module:
+
+### Import a JavaScript Module As a Single Value ｜ 将 JavaScript 模块作为单个值导入
+
+By omitting the string argument to `module`, you bind to the whole JS module:  
+通过省略 `module` 中的字符串参数, 你可以绑定到整个 JS 模块：
 
 <CodeTab labels={["ReScript", "JS Output (CommonJS)", "JS Output (ES6)"]}>
 
@@ -74,11 +102,13 @@ var paddedResult = LeftPad("hi", 5);
 
 </CodeTab>
 
-Depending on whether you're compiling ReScript to CommonJS or ES6 module, **this feature will generate subtly different code**. Please check both output tabs to see the difference. The ES6 output here would be wrong!
+Depending on whether you're compiling ReScript to CommonJS or ES6 module, **this feature will generate subtly different code**. Please check both output tabs to see the difference. The ES6 output here would be wrong!  
+取决于你要将 ReScript 编译到 CommonJS 或 ES6 module， **此特性将生成微妙不同的代码**。请检查两个输出选项卡，看看有什么不同。这里的 ES6输出将是错误的！
 
-### Import an ES6 Default Export
+### Import an ES6 Default Export ｜ 导入 ES6 的默认导出
 
-Use the value `"default"` on the right hand side:
+Use the value `"default"` on the right hand side:  
+使用右侧的 `"default"` 值:
 
 <CodeTab labels={["ReScript", "JS Output (ES6)"]}>
 
@@ -93,15 +123,18 @@ var studentName = Student;
 
 </CodeTab>
 
-## Export To JavaScript
+## Export To JavaScript ｜ 导出到 JavaScript
 
-### Export a Named Value
+### Export a Named Value ｜导出命名值
 
-As mentioned in ReScript's idiomatic [Import & Export](import-export.md), every let binding and module is exported by default to other ReScript modules (unless you use a `.resi` [interface file](module#signatures)). If you open up the compiled JS file, you'll see that these values can also directly be used by a _JavaScript_ file too.
+As mentioned in ReScript's idiomatic [Import & Export](import-export.md), every let binding and module is exported by default to other ReScript modules (unless you use a `.resi` [interface file](module#signatures)). If you open up the compiled JS file, you'll see that these values can also directly be used by a _JavaScript_ file too.  
 
-### Export an ES6 Default Value
+正如 ReScript 惯用的 [导入 & 导出](import-export.md) 中提到的，默认情况下，每个 let 绑定和模块都会导出到其他 ReScript 模块(除非你使用 `.resi` [接口文件](module#signatures))，如果打开已编译的 JS 文件, 你将看到这些值也可以直接由 JavaScript 文件使用。
 
-If your JS project uses ES6 modules, you're likely exporting & importing some default values:
+### Export an ES6 Default Value ｜ 导出 ES6默认值
+
+If your JS project uses ES6 modules, you're likely exporting & importing some default values:  
+如果您的 JS 项目使用 ES6模块，你可能会导出和导入一些默认值:
 
 ```js
 // student.js
@@ -113,7 +146,8 @@ export default name = "Al";
 import studentName from 'student.js';
 ```
 
-A JavaScript default export is really just syntax sugar for a named export implicitly called `default` (now you know!). So to export a default value from ReScript, you can just do:
+A JavaScript default export is really just syntax sugar for a named export implicitly called `default` (now you know!). So to export a default value from ReScript, you can just do:  
+JavaScript 默认导出实际上只是隐式地称为 `default` 的命名导出的语法糖(现在您知道了！)。因此，要从 ReScript 导出默认值，只需执行以下操作:
 
 <CodeTab labels={["ReScript", "JS Output (CommonJS)", "JS Output (ES6)"]}>
 
@@ -140,11 +174,13 @@ export {
 
 </CodeTab>
 
-You can then import this default export as usual on the JS side:
+You can then import this default export as usual on the JS side:  
+然后，您可以像往常一样在 JS 端导入这个默认导出:
 
 ```js
 // teacher2.js
 import studentName from 'ReScriptStudent.js';
 ```
 
-If your JavaScript's ES6 default import is transpiled by Babel/Webpack/Jest into CommonJS `require`s, we've taken care of that too! See the CommonJS output tab for `__esModule`.
+If your JavaScript's ES6 default import is transpiled by Babel/Webpack/Jest into CommonJS `require`s, we've taken care of that too! See the CommonJS output tab for `__esModule`.  
+如果您的 JavaScript 的 ES6默认导入是通过 Babel/Webpack/Jest 编译到 CommonJS `require` 的，我们也已经处理了这个问题！ 请参见 `__esModule` 的 CommonJS 输出选项卡。

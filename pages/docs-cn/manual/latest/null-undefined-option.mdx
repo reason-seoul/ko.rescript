@@ -196,14 +196,14 @@ Unfortunately, lots of times, your JavaScript value might be _both_ `null` or `u
 
 To solve this, we provide access to more elaborate `null` and `undefined` helpers through the [`Js.Nullable`](api/js/nullable) module. This somewhat works like an `option` type, but is different from it.
 
-为了解决这个问题, 我们通过[`Js.Nullable`](api/js/nullable)模块提供对更复杂的`null`和`undefined`的帮助函数. 这有点像`option`类型，但又与之不同。
+为了解决这个问题, 我们通过[`Js.Nullable`](api/js/nullable)模块提供对更复杂的`null`和`undefined`的帮助函数. 这有点像`option`类型, 但又与之不同. 
 
 
 #### Examples | 例子
 
 To create a JS `null`, use the value `Js.Nullable.null`. To create a JS `undefined`, use `Js.Nullable.undefined` (you can naturally use `None` too, but that's not the point here; the `Js.Nullable.*` helpers wouldn't work with it).
 
-要创建一个JS的`null`, 可以使用`Js.Nullable.null`. 要创建一个JS`undefined`, 可以使用`Js.Nullable.undefined` (你自然也可以使用`None`，但这不是这里的重点; `Js.Nullable.*`里的帮助函数不会对它起作用).
+要创建一个JS的`null`, 可以使用`Js.Nullable.null`. 要创建一个JS`undefined`, 可以使用`Js.Nullable.undefined` (你自然也可以使用`None`, 但这不是这里的重点; `Js.Nullable.*`里的帮助函数不会对它起作用).
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

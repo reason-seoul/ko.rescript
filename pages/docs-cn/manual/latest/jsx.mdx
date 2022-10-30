@@ -176,7 +176,7 @@ React.createElement(MyComponent.make, MyComponent.makeProps(myChild, undefined))
 
 This is extra useful in the cases where you are handled `myChild` that is already a list of things, and want to forward that without wrapping it an extra time (which would be a type error) \*. It also allows you to pass arbitrary data structures at `children` position (remember, JSX `children` is really just a totally normal prop):
 
-这在你处理的`myChild`已经是一个列表的情况下是非常有用的, 你可以直接转发而不需要额外包装它(这将产生一个类型错误) /*. 它还允许你在`children`位置传递任意的数据结构(记住，JSX的`children`实际上只是一个常规的prop).
+这在你处理的`myChild`已经是一个列表的情况下是非常有用的, 你可以直接转发而不需要额外包装它(这将产生一个类型错误) /*. 它还允许你在`children`位置传递任意的数据结构(记住, JSX的`children`实际上只是一个常规的prop).
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -247,7 +247,7 @@ React.createElement(
 - Punning!
 
 - 属性和子节点并没有强制要求`{}`, 但为了便于学习我们还是展示了它们. 一旦你格式化了你的文件, 它们中的一些就会消失, 一些变成了括号.
-- 没有对JSX prop展开的支持: `<Comp {...props}}。/>`. 虽然有些关联, 但我们确实有子节点展开, 像上面描述的那样`<Comp> ...children </Comp>`.
+- 没有对JSX prop展开的支持: `<Comp {...props}}. />`. 虽然有些关联, 但我们确实有子节点展开, 像上面描述的那样`<Comp> ...children </Comp>`.
 - Punning
 
 ### Punning | 双关语(Prunning)

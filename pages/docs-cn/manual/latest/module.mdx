@@ -1,12 +1,12 @@
 ---
-title: "Module"
+title: "模块"
 description: "ReScript modules, module signatures and interface files"
 canonical: "/docs/manual/latest/module"
 ---
 
 # Module | 模块
 
-## Basics | 基础
+## Basics | 基础知识
 
 **Modules are like mini files**! They can contain type definitions, `let`
 bindings, nested modules, etc.
@@ -55,7 +55,7 @@ var School = {
 A module's contents (including types!) can be accessed much like a record's,
 using the `.` notation. This demonstrates modules' utility for namespacing.
 
-模块中的内容（包括类型！）可以像记录一样用 `.` 符号访问。下面的代码演示了模块的命名空间的用途。
+模块中的内容（包括类型！）可以像记录一样用 `.` 符号访问。下面的代码演示了模块的命名空间的作用。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -72,7 +72,7 @@ console.log("A teacher");
 
 Nested modules work too.
 
-嵌套模块也支持。
+也可以定义嵌套模块.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -99,12 +99,12 @@ var message = MyModule.NestedModule.message;
 
 </CodeTab>
 
-### `open`ing a module | 打开模块
+### `open`ing a module | `打开(open)`一个模块
 
 Constantly referring to a value/type in a module can be tedious. Instead, we can "open" a module and refer to its contents without always prepending them with the
 module's name. Instead of writing:
 
-经常通过模块来引用值/类型是很繁琐的。相反，我们可以 `open` 一个模块并直接使用它的内容，而不必总是在内容前面加上模块的名称。之前这样写：
+经常通过模块来引用值/类型是很繁琐的。相反，我们可以 `open` 一个模块并直接使用它的内容，而不必总是在内容前面加上模块的名称。除了可以这样写以外：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -119,7 +119,7 @@ var p = School.getProfession(School.person1);
 
 We can write:
 
-现在可以这样写：
+还可以这样写:
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -156,11 +156,11 @@ var p = School.getProfession(School.person1);
 
 </CodeTab>
 
-### Use `open!` to ignore shadow warnings | 使用 `open!` 来忽略警告
+### Use `open!` to ignore shadow warnings | 使用 `open!` 来忽略覆盖警告
 
 There are situations where `open` will cause a warning due to existing identifiers (bindings, types) being redefined. Use `open!` to explicitly tell the compiler that this is desired behavior.
 
-有些情况下，由于重新定义了现有的标识符（绑定、类型），`open` 将会导致警告。使用 `open!` 显式地高速编译器这是所需的行为。
+有些情况下，由于重新定义了现有的标识符（绑定、类型），`open` 将会导致警告。使用 `open!` 明确告诉编译器这是期望中的行为。
 
 ```res
 let map = (arr, value) => {
@@ -175,7 +175,7 @@ let arr = map([1,2,3], (a) => { a + 1})
 
 **Note:** Same as with `open`, don't overuse `open!` statements if not necessary. Use (sub)modules to prevent shadowing issues.
 
-**注意：** 与 `open` 一样，如果没有必要，不要过度使用 `open!` 语句。使用（子）模块来防止 shadowing 问题。
+**注意：** 与 `open` 一样，如果没有必要，不要过度使用 `open!` 语句。使用（子）模块来防止覆盖问题。
 
 ### Destructuring modules | 解构模块
 
@@ -223,7 +223,7 @@ var User = {
 
 Using `include` in a module statically "spreads" a module's content into a new one, thus often fulfill the role of "inheritance" or "mixin".
 
-在模块中使用 `include` 可以静态的”扩展“模块中的内容到新的内容中，因此经常扮演”继承“和“混合”的角色。
+在模块中使用 `include` 可以静态的”扩展“模块中的内容到新的内容中，因此经常扮演”继承(inheritance)“和“混合(mixin)”的角色。
 
 **Note**: this is equivalent to a compiler-level copy paste. **We heavily discourage `include`**. Use it as last resort!
 
@@ -294,7 +294,7 @@ A module's type is called a "signature", and can be written explicitly. If a
 module is like a `.res` (implementation) file, then a module's signature is like
 a `.resi` (interface) file.
 
-模块的类型称为“签名”，可以显式地编写。如果模块类似于 `.res` （实现）文件，则模块的签名类似于 `res` （接口）文件。
+模块的类型称为“签名”，可以显式地编写。如果模块类似于 `.res` （实现）文件，则模块的签名类似于 `.resi` （接口）文件。
 
 ### Creation | 创建签名
 
@@ -302,7 +302,7 @@ To create a signature, use the `module type` keyword. The signature name must st
 **capital letter**. Whatever you could place in a `.resi` file, you may place
 inside a signature definition's `{}` block.
 
-想要创建签名，使用 `module type` 关键字。签名必须以**大写字母** 开头。任何你可以放在 `.res` 文件的东西，你都可以放置在签名定义的 `{}` 块中。
+想要创建签名，使用 `module type` 关键字。签名必须以**大写字母** 开头。任何你可以放在 `.resi` 文件的东西，你都可以放置在签名定义的 `{}` 块中。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -330,7 +330,7 @@ for that module to match the signature. Those requirements are of the form:
 
 - `let x: int` 需要一个名为 `x` 的 `let` 绑定，类型为 `int`。
 - `type t = someType` 要求类型字段 `t` 等于 `someType`。
-- `type t` 需要一个类型字段 `t`，但没实际的、具体的类型要求。我们会在签名的其他条目中使用 `t` 来描述关系。例如，`let makePair: t => (t, t)` 但是我们不能假设 t 是一个 int。这给了我们强大的抽象能力。
+- `type t` 需要一个类型字段 `t`，但没实际的、具体的类型要求。我们会在签名的其他条目中使用 `t` 来描述关系。例如，`let makePair: t => (t, t)` 但是我们不能假设 `t` 是一个 int。这给了我们强大的抽象能力。
 
 To illustrate the various kinds of type entries, consider the above signature
 `EstablishmentType` which requires that a module:
@@ -340,7 +340,7 @@ To illustrate the various kinds of type entries, consider the above signature
 - Declare a type named `profession`.
 - Must include a function that takes in a value of the type `profession` and returns a string.
 
-- 声明了一个类型名 `profession`。
+- 声明了一个名为 `profession` 的类型。
 - 必须包含一个函数，该函数接受一个 `profession` 类型的值并返回字符串。
 
 **Note**:
@@ -362,6 +362,7 @@ as input to `getProfession`". This is useful to fit many modules under the same
 interface:
 
 类型 `EstablishmentType.profession` 是**抽象的：** 它表示“我不关心实际的类型是什么，但是它被用作 `getProfession` 的输入”。这对于在同一接口下实现多个模块很有用：
+接口：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -402,7 +403,7 @@ exposing the variant, it'll only tell you "it's `Company.profession`".
 
 Like modules themselves, module signatures can also be extended by other module signatures using `include`. Again, **heavily discouraged**:
 
-像模块本身一样，模块签名也可以通过使用 `include` 的其他模块签名进行扩展：
+像模块本身一样，模块签名也可以通过使用 `include` 的其他模块签名进行扩展。再次, **我们非常不鼓励使用**:：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -487,7 +488,7 @@ as a first-class item. However, modules are at a different "layer" of the
 language than other common concepts, so we can't pass them to *regular*
 functions. Instead, we pass them to special functions called "functors".
 
-模块可以传递韩素好！它相当于将文件作为第一类子项传递。但是，模块与其他常见概念在语言的“层”上是不同的，因此我们不能将它们传递给常规函数。相反，我们将它们传递给称为“函子”的特殊函数。
+模块可以传递函数！它相当于将文件作为第一类子项传递。但是，模块与其他常见概念在语言的“层”上是不同的，因此我们不能将它们传递给常规函数。相反，我们将它们传递给称为“函子”的特殊函数。
 
 The syntax for defining and using functors is very much like the syntax
 for defining and using regular functions. The primary differences are:
@@ -650,10 +651,10 @@ It is possible to use non-conventional characters in your filenames (which is so
 
 Please note that modules with an exotic filename will not be accessible from other ReScript modules.
 
-请注意，具有异常文件名的模块不能从其他 ReScript 模块访问。
+请注意，其他 ReScript 模块不能访问具有异常文件名的模块。
 
 ## Tips & Tricks | 提示与技巧
 
 Modules and functors are at a different "layer" of language than the rest (functions, let bindings, data structures, etc.). For example, you can't easily pass them into a tuple or record. Use them judiciously, if ever! Lots of times, just a record or a function is enough.
 
-模块和函子与其他语言（函数、let 绑定、数据结构等）处于不同的“层”。例如，你不能轻易的将它们传递到元祖或记录中。如果需要的话，要明智的使用它们！多次使用，只需要一个记录或一个函数就够了。
+模块和函子与其他语言（函数、let 绑定、数据结构等）处于不同的“层”。例如，你不能轻易的将它们传递到元祖或记录中。如果需要的话，要谨慎的使用它们！多次使用，只需要一个记录或一个函数就够了。

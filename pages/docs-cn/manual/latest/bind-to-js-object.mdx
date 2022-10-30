@@ -4,7 +4,7 @@ description: "Interop with JS objects in ReScript"
 canonical: "/docs/manual/latest/bind-to-js-object"
 ---
 
-# Bind to JS Object
+# Bind to JS Object | 绑定至 JS 对象
 
 JavaScript objects are a combination of several use-cases:
 
@@ -13,15 +13,25 @@ JavaScript objects are a combination of several use-cases:
 - As a class.
 - As a module to import/export.
 
+JavaScript 中的对象有以下用途：
+- 和其他语言（比如 Rescript 和 C 语言）一样用于表示“记录”或者“结构”
+- 用于表示哈希表
+- 用于表示类
+- 用于表示输入或输出的模块
+
 ReScript cleanly separates the binding methods for JS object based on these 4 use-cases. This page documents the first three. Binding to JS module objects is described in the [Import from/Export to JS](import-from-export-to-js.md) section.
+
+ReScript 清楚地将这四种不同用途的 JS 对象的绑定方式区分开来了。本页描述其中前三类用途。对 JS 模块对象的绑定会在[JS模块的输入输出](import-from-export-to-js.md)中阐述。
 
 <!-- TODO: mention scope here too? -->
 
-## Bind to Record-like JS Objects
+## Bind to Record-like JS Objects | 绑定至用作“记录”的 JS 对象
 
-### Bind Using ReScript Record
+### Bind Using ReScript Record | 采用 ReScript 记录进行绑定
 
 If your JavaScript object has fixed fields, then it's conceptually like a ReScript record. Since a ReScript record compiles to a clean JavaScript object, you can definitely type a JS object as a ReScript record!
+
+如果你的 JavaScript 对象有固定的字段，那么从概念上来说它和 ReScript 的记录是相似的。既然一个 ReScript 记录可以编译到纯净的 JavaScript 对象，你当然也可以把一个 JS 对象当作一个 ReScript 的记录。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -46,7 +56,11 @@ var johnName = MySchool.john.name;
 
 External is documented [here](external.md). `@module` is documented [here](import-from-export-to-js.md).
 
+External 的相关文档在[这](external.md)。`@module` 的相关文档在[这](import-from-export-to-js.md)。
+
 If you want or need to use different field names on the ReScript and the JavaScript side, you can use the `@as` decorator:
+
+如果你想要或者需要在 ReScript 和 JavaScript 侧采用用不同的字段名，你可以用 `@as` 装饰器。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -67,7 +81,11 @@ var action = {
 
 This is useful to map to JavaScript attribute names that cannot be expressed in ReScript (such as keywords).
 
+这在需要将在 ReScript 中无法使用的字段名（比如 ReScript 的关键字）映射到 JavaScript 的字段名时是十分有用的。
+
 It is also possible to map a ReScript record to a JavaScript array by passing indices to the `@as` decorator:
+
+通过使用 `@as` 装饰器传递索引，将 ReScript 的记录映射为 JavaScript 的数组也是可行的。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -90,9 +108,11 @@ var value = [
 </CodeTab>
 
 
-### Bind Using ReScript Object
+### Bind Using ReScript Object | 采用 ReScript 对象进行绑定
 
 Alternatively, you can use [ReScript object](object.md) to model a JS object too:
+
+除此之外，你也可以使用 [ReScript 对象](object.md) 去对 JS 对象进行建模。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -115,9 +135,11 @@ var johnName = MySchool.john.name;
 
 </CodeTab>
 
-### Bind Using Special Getter and Setter Attributes
+### Bind Using Special Getter and Setter Attributes | 采用特殊的 Getter 和 Setter 属性进行绑定
 
 Alternatively, you can use `get` and `set` to bind to individual fields of a JS object:
+
+除此之外，你还可以使用 `get` 和 `set` 去绑定 JS 对象的独立字段：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -132,6 +154,8 @@ type textarea
 </CodeTab>
 
 You can also use `get_index` and `set_index` to access a dynamic property or an index:
+
+你也可以使用 `get_index` 和 `set_index` 去访问动态的属性或者下标：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -153,18 +177,27 @@ console.log(i32arr[0]);
 
 </CodeTab>
 
-## Bind to Hash Map-like JS Object
+## Bind to Hash Map-like JS Object | 绑定至类似哈希表的 JS 对象
 
 If your JavaScript object:
 
 - might or might not add/remove keys
 - contains only values that are of the same type
 
+如果你的 JavaScript 对象：
+
+- 可能会增加或者删除键
+- 只包含同类型的值
+
 Then it's not really an object, it's a hash map. Use [Js.Dict](api/js/dict), which contains operations like `get`, `set`, etc. and cleanly compiles to a JavaScript object still.
 
-## Bind to a JS Object That's a Class
+那么这其实并不是真正意义上的对象，而是一个哈希表。我们使用包含 `get`,`set` 等操作并仍能编译至 JavaScript 对象的 [Js.Dict](api/js/dict) 实现。
+
+## Bind to a JS Object That's a Class | 绑定至作为类的 JS 对象
 
 Use `new` to emulate e.g. `new Date()`:
+
+我们使用 `new` 语法去模拟，比如 `new Date()`:
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -181,6 +214,8 @@ var date = new Date();
 </CodeTab>
 
 You can chain `new` and `module` if the JS module you're importing is itself a class:
+
+你可以将 `new` 和 `module` 串联使用，如果你引用的对象本身是一个类：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

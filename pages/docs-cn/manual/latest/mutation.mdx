@@ -31,7 +31,7 @@ var myValue = {
 
 You can get the actual value of a `ref` box through accessing its `contents` field:
 
-你可以通过访问 `content` 字段获得 `ref` 包装的实际值。
+你可以通过访问 `content` 字段获得 `ref` 包装的实际值. 
 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
@@ -77,7 +77,7 @@ myValue.contents = 6;
 
 Note that the previous binding `five` stays `5`, since it got the underlying item on the `ref` box, not the `ref` itself.
 
-请注意，前一个绑定`five`的值仍然是 `5`, 因为它得到了 `ref` 包装的元素, 而不是 `ref`本身.
+请注意, 前一个绑定`five`的值仍然是 `5`, 因为它得到了 `ref` 包装的元素, 而不是 `ref`本身.
 
 **Note**: you might see in the JS output tabs above that `ref` allocates an object. Worry not; local, non-exported `ref`s allocations are optimized away.
 

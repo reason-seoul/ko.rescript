@@ -256,18 +256,82 @@ function make(props) {
             case "docs-cn" :
                 var match$7 = base[1];
                 if (match$7 === "manual") {
-                  Belt_Array.get(url.pagepath, 0);
-                  if (url.version === 0) {
-                    return React.createElement(ManualDocsLayout.Latest.make, {
-                                lang: /* Chinese */1,
-                                frontmatter: component.frontmatter,
-                                children: content
-                              });
+                  var pagepath$1 = url.pagepath;
+                  var version$1 = url.version;
+                  var match$8 = Belt_Array.get(pagepath$1, 0);
+                  var exit$4 = 0;
+                  if (match$8 === "api") {
+                    if (version$1 !== 0) {
+                      return content;
+                    }
+                    var match$9 = pagepath$1.length;
+                    var match$10 = Belt_Array.get(pagepath$1, 1);
+                    var exit$5 = 0;
+                    if (match$9 === 1) {
+                      return React.createElement(ApiOverviewLayout.Docs.make, {
+                                  lang: /* Chinese */1,
+                                  children: content
+                                });
+                    }
+                    if (match$9 !== 2) {
+                      exit$5 = 3;
+                    } else {
+                      if (match$10 === undefined) {
+                        return null;
+                      }
+                      switch (match$10) {
+                        case "belt" :
+                            return React.createElement(BeltDocsLayout.Prose.make, {
+                                        children: content
+                                      });
+                        case "js" :
+                            return React.createElement(JsDocsLayout.Prose.make, {
+                                        children: content
+                                      });
+                        default:
+                          exit$5 = 3;
+                      }
+                    }
+                    if (exit$5 === 3) {
+                      if (match$10 === undefined) {
+                        return null;
+                      }
+                      switch (match$10) {
+                        case "belt" :
+                            return React.createElement(BeltDocsLayout.Docs.make, {
+                                        children: content
+                                      });
+                        case "dom" :
+                            return React.createElement(DomDocsLayout.Docs.make, {
+                                        children: content
+                                      });
+                        case "js" :
+                            return React.createElement(JsDocsLayout.Docs.make, {
+                                        children: content
+                                      });
+                        default:
+                          return null;
+                      }
+                    }
+                    
                   } else {
-                    return null;
+                    exit$4 = 2;
                   }
+                  if (exit$4 === 2) {
+                    if (version$1 === 0) {
+                      return React.createElement(ManualDocsLayout.Latest.make, {
+                                  lang: /* Chinese */1,
+                                  frontmatter: component.frontmatter,
+                                  children: content
+                                });
+                    } else {
+                      return null;
+                    }
+                  }
+                  
+                } else {
+                  exit = 1;
                 }
-                exit = 1;
                 break;
             default:
               exit = 1;
@@ -277,10 +341,10 @@ function make(props) {
     }
   }
   if (exit === 1) {
-    var match$8 = Belt_List.fromArray(base);
-    var exit$4 = 0;
-    if (match$8) {
-      switch (match$8.hd) {
+    var match$11 = Belt_List.fromArray(base);
+    var exit$6 = 0;
+    if (match$11) {
+      switch (match$11.hd) {
         case "blog" :
             return content;
         case "community" :
@@ -290,33 +354,33 @@ function make(props) {
                       });
         case "packages" :
         case "try" :
-            if (!match$8.tl) {
+            if (!match$11.tl) {
               return content;
             }
-            exit$4 = 2;
+            exit$6 = 2;
             break;
         default:
-          exit$4 = 2;
+          exit$6 = 2;
       }
     } else {
-      exit$4 = 2;
+      exit$6 = 2;
     }
-    if (exit$4 === 2) {
+    if (exit$6 === 2) {
       var fm = DocFrontmatter.decode(component.frontmatter);
-      var match$9 = url.base;
+      var match$12 = url.base;
       var title;
-      var exit$5 = 0;
-      if (match$9.length !== 1) {
-        exit$5 = 3;
+      var exit$7 = 0;
+      if (match$12.length !== 1) {
+        exit$7 = 3;
       } else {
-        var match$10 = match$9[0];
-        if (match$10 === "docs") {
+        var match$13 = match$12[0];
+        if (match$13 === "docs") {
           title = "Overview | ReScript Documentation";
         } else {
-          exit$5 = 3;
+          exit$7 = 3;
         }
       }
-      if (exit$5 === 3) {
+      if (exit$7 === 3) {
         title = Belt_Option.map(fm, (function (fm) {
                 return fm.title;
               }));

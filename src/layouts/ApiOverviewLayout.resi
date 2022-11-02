@@ -1,4 +1,5 @@
 module Docs: {
   @react.component
-  let make: (~components: Mdx.Components.t=?, ~children: React.element) => React.element
+  let make: (~lang: LangUtil.language=?, ~components: Mdx.Components.t=?, 
+             ~children: React.element) => React.element
 }

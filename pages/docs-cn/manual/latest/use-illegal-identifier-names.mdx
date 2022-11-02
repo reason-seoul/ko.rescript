@@ -1,17 +1,24 @@
 ---
-title: "Use Illegal Identifier Names"
-description: "Handling (JS) naming collisions in ReScript"
+title: "使用不合法的标识符"
+description: "在 ReScript 中处理(JS)命名冲突"
 canonical: "/docs/manual/latest/use-illegal-identifier-names"
 ---
 
-# Use Illegal Identifier Names
+# Use Illegal Identifier Names ｜ 使用不合法的标识符
 
 Sometime, for e.g. a let binding or a record field, you might want to use:
 - A capitalized name.
 - A name that contains illegal characters (e.g. emojis, hyphen, space).
 - A name that's one of ReScript's reserved keywords.
 
+有时对于一个 let 绑定或一个 record 字段，你可能想使用：
+- 大写的名称
+- 包含非法字符的名称（如：表情符号、连字符、空格）
+- 属于 ReScript 保留关键字之一的名称
+
 We provide an escape hatch syntax for these cases:
+
+我们为这些情况提供了一个逃逸语法：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -49,3 +56,5 @@ function calculate(Props) {
 </CodeTab>
 
 See the output. **Use them only when necessary**, for interop with JavaScript. This is a last-resort feature. If you abuse this, many of the compiler guarantees will go away.
+
+请看 JS 输出结果。**仅在必要时使用它们**，以便与 JavaScript 互操作。这是一个不得已而为之的功能。如果你滥用它，许多编译器的保证将消失。

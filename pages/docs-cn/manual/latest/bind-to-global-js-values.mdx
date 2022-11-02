@@ -1,14 +1,18 @@
 ---
-title: "Bind to Global JS Values"
+title: "绑定到全局JS值"
 description: "JS interop with global JS values in ReScript"
 canonical: "/docs/manual/latest/bind-to-global-js-values"
 ---
 
-# Bind to Global JS Values
+# Bind to Global JS Values | 绑定到全局JS值
 
 **First**, make sure the value you'd like to model doesn't already exist in our [provided API](api/js).
 
+**首先**, 确保您要建模的值不存在于[我们提供的 API](api/js) 中。
+
 Some JS values, like `setTimeout`, live in the global scope. You can bind to them like so:
+
+一些JS值，例如`setTimeout`，存在于全局范围内。你可以像这样绑定到它们：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -24,17 +28,29 @@ Some JS values, like `setTimeout`, live in the global scope. You can bind to the
 
 (We already provide `setTimeout`, `clearTimeout` and others in the [Js.Global](api/js/global) module).
 
+（我们已经在[Js.Global](api/js/global)模块中提供了`setTimeout`、`clearTimeout`等值。）
+
 This binds to the JavaScript [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrworkerGlobalScope/setTimeout) methods and the corresponding `clearTimeout`. The `external`'s type annotation specifies that `setTimeout`:
+
+这将绑定到JavaScript [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrworkerGlobalScope/setTimeout)方法和相应的`clearTimeout`。 `external`的类型注释指定`setTimeout`：
 
 - Takes a function that accepts `unit` and returns `unit` (which on the JS side turns into a function that accepts nothing and returns nothing aka `undefined`),
 - and an integer that specifies the duration before calling said function,
 - returns a number that is the timeout's ID. This number might be big, so we're modeling it as a float rather than the 32-bit int.
 
-### Tips & Tricks
+- 接受一个以`unit`为参数并返回`unit`的函数（它在JS端变成了一个不接受任何内容并且不返回任何内容的函数，也就是 `undefined`）
+- 以及一个指定调用该函数之前持续时间的整数，
+- 返回一个数字表示超时ID。这个数字可能很大，所以我们将其建模为浮点数而不是32位整数。
+
+### Tips & Tricks ｜ 提示与技巧
 
 **The above isn't ideal**. See how `setTimeout` returns a `float` and `clearTimeout` accepts one. There's no guarantee that you're passing the float created by `setTimeout` into `clearTimeout`! For all we know, someone might pass it `Math.random()` into the latter.
 
+**以上并不理想**。看看`setTimeout`如何返回一个浮点数，而`clearTimeout`如何接受一个浮点数。无法保证您将`setTimeout`创建的浮点数传递给`clearTimeout`！据我们所知，有人可能会将`Math.random()`传递给后者。
+
 We're in a language with a great type system now! Let's leverage a popular feature to solve this problem: abstract types.
+
+我们现在使用的是具有出色类型系统的语言！让我们利用一个流行特性来解决这个问题：抽象类型。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -58,11 +74,17 @@ clearTimeout(id);
 
 Clearly, `timerId` is a type that can only be created by `setTimeout`! Now we've guaranteed that `clearTimeout` _will_ be passed a valid ID. Whether it's a number under the hood is now a mere implementation detail.
 
+显然，`timerId`是一个只能通过`setTimeout`创建的类型！现在我们已经保证`clearTimeout`_将_被传递一个有效的ID。它是否是一个隐藏的数字现在只是一个实现细节。
+
 Since `external`s are inlined, we end up with JS output as readable as hand-written JS.
 
-## Global Modules
+由于`external`是内联的，我们最终得到的生成的JS与手写JS一样可读。
+
+## Global Modules ｜ 全局模块
 
 If you want to bind to a value inside a global module, e.g. `Math.random`, attach a `scope` to your `val` external:
+
+如果要绑定到全局模块内的值，例如`Math.random`，将`scope`附加到您的`val`外部：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -78,6 +100,8 @@ var someNumber = Math.random();
 
 you can bind to an arbitrarily deep object by passing a tuple to `scope`:
 
+您可以通过传递一个元组到`scope`来实现绑定到一个任意深度的对象：
+
 <CodeTab labels={["ReScript", "JS Output"]}>
 
 ```res example
@@ -92,11 +116,17 @@ external length: int = "length"
 
 This binds to `window.location.ancestorOrigins.length`.
 
-## Special Global Values
+这将绑定到`window.location.ancestorOrigins.length`。
+
+## Special Global Values ｜ 特殊全局值
 
 Global values like `__filename` and `__DEV__` don't always exist; you can't even model them as an `option`, since the mere act of referring to them in ReScript (then compiled into JS) would trigger the usual `Uncaught ReferenceError: __filename is not defined` error in e.g. the browser environment.
 
+像`__filename`和`__DEV__`这样的全局值并不总是存在；您甚至不能将它们建模为`选项(option)`，因为仅在ReScript中引用它们（然后编译为JS）就会触发常见的`Uncaught ReferenceError: __filename is not defined`错误，例如浏览器环境。
+
 For these troublesome global values, ReScript provides a special approach: `%external(a_single_identifier)`.
+
+对于这些麻烦的全局值，ReScript提供了一种特殊的方法：`%external(a_single_identifier)`。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -120,7 +150,11 @@ if (match !== undefined) {
 
 That first line's `typeof` check won't trigger a JS ReferenceError.
 
+第一行的`typeof`检查不会触发JS ReferenceError。
+
 Another example:
+
+另一个例子：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

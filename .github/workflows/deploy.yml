@@ -1,0 +1,62 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["chinese-translation"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+      - name: install packages
+        run: npm install
+      - name: update index
+        run: npm run update-index
+      - name: initial build
+        run: npx rescript
+      - name: update index again
+        run: npm run update-index
+      - name: build
+        run: npm run build
+      - name: Setup Pages
+        run: npx next build && npx next export -o gh-pages
+      - name: Create .nojekyll # make gighub trust _next/* file can
+        run: touch gh-pages/.nojekyll
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          # Upload entire repository
+          path: 'gh-pages'
+      - name: deploy changes to a repo
+        uses: tagus/git-deploy@v0.4.1
+        with:
+          changes: gh-pages
+          repository: git@github.com:rescript-translation-zh/rescript-translation-zh.github.io.git
+          ssh_key: ${{ secrets.SSH_DEPLOY_KEY }}
+          branch: master
+          name: deploy-bot
+          clean_repo: true

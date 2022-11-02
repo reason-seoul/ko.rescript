@@ -18,7 +18,7 @@ Types are the highlight of ReScript! They are:
 - **静态类型**. ReScript 类型在编译后被擦除, 在运行时不存在类型. 所以不必担心你的类型会拖累性能. 你在运行时不需要类型信息: 我们在编译时报告所有你需要的信息(尤其是所有类型错误). 更早地捕获错误!
 - **可靠(sound)**. 这是我们与其他许多编译成JavaScript的静态类型语言的最大区别. 我们的类型系统保证**永远不会**出错. 大多数类型系统对一个值的类型进行猜测, 并在编辑器中显示一个有时并不正确的类型. 我们不这样做. 我们相信, 一个有时不正确的类型系统最终会因为与期望的不匹配而变得危险.
 - **快速**. 许多开发者低估了他们项目的构建过程中用于类型检查的时间. 我们的类型检查器是最快的之一.
-- **类型推导**. 你不必要写出类型! ReScript 可以从其值中推导出它们. 是的, 我们可以推断出你的程序的所有类型, 不会有不正确的地方, 不需要你的手动注释, 而且速度很快, 这似乎很神奇. 欢迎来到 ReScript =)。
+- **类型推导**. 你不必要写出类型! ReScript 可以从其值中推导出它们. 是的, 我们可以推断出你的程序的所有类型, 不会有不正确的地方, 不需要你的手动注释, 而且速度很快, 这似乎很神奇. 欢迎来到 ReScript =). 
 
 
 The following sections explore more of our type system.
@@ -122,7 +122,7 @@ var x = 10;
 
 Types can accept parameters, akin to generics in other languages. The parameters' names **need** to start with `'`.
 
-类型可以接受一个或多个参数, 类似于其他语言中的泛型. 参数的名称**必须**以`'`开头。
+类型可以接受一个或多个参数, 类似于其他语言中的泛型. 参数的名称**必须**以`'`开头. 
 
 The use-case of a parameterized type is to kill duplications. Before:
 
@@ -202,7 +202,7 @@ If types didn't accept parameters, the standard library would need to define the
 
 Types can receive many arguments, and be composable.
 
-类型可以接收多个参数, 并且是可组合的。
+类型可以接收多个参数, 并且是可组合的. 
 
 <!-- TODO: too early for this example -->
 
@@ -246,7 +246,7 @@ var payloadResults = [
 
 Just like a function, a type can reference itself within itself using `rec`:
 
-就像一个函数一样, 一个类型也可以使用`rec`在其内部引用自己。
+就像一个函数一样, 一个类型也可以使用`rec`在其内部引用自己. 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -284,7 +284,7 @@ and teacher = {students: array<student>}
 
 ReScript's type system is robust and does not allow dangerous, unsafe stuff like implicit type casting, randomly guessing a value's type, etc. However, out of pragmatism, we expose a single escape hatch for you to "lie" to the type system:
 
-ReScript 的类型系统非常强大, 不允许出现危险的或不安全的东西, 如隐式类型转换, 随机猜测值的类型等. 然而, 出于实用主义的考虑, 我们为您提供了一个单一的逃生通道, 以便您向类型系统"撒谎"。
+ReScript 的类型系统非常强大, 不允许出现危险的或不安全的东西, 如隐式类型转换, 随机猜测值的类型等. 然而, 出于实用主义的考虑, 我们为您提供了一个单一的逃生通道, 以便您向类型系统"撒谎". 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -299,7 +299,7 @@ external myShadyConversion: myType1 => myType2 = "%identity"
 
 This declaration converts a `myType1` of your choice to `myType2` of your choice. You can use it like so:
 
-这个声明将你声明的`myType1`转换为你声明的`myType2`. 你可以像这样使用它。
+这个声明将你声明的`myType1`转换为你声明的`myType2`. 你可以像这样使用它. 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

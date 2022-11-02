@@ -31,7 +31,7 @@ Although ReScript records compile to clean JavaScript objects, ReScript objects 
 
 **Optional**, unlike for records. The type of an object is inferred from the value, so you never really need to write down its type definition. Nevertheless, here's its type declaration syntax:
 
-**可选的**, 不像记录. 一个对象的类型是由值推断出来的, 所以你从来不需要写下它的类型定义. 尽管如此, 这里是它的类型声明语法。
+**可选的**, 不像记录. 一个对象的类型是由值推断出来的, 所以你从来不需要写下它的类型定义. 尽管如此, 这里是它的类型声明语法. 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -78,7 +78,7 @@ var me = {
 
 **Note**: as said above, unlike for record, this `me` value does **not** try to find a conforming type declaration with the field `"age"` and `"name"`; rather, the type of `me` is inferred as `{"age": int, "name": string}`. This is convenient, but also means this code passes type checking without errors:
 
-**注意**: 如上所述, 与记录不同的是, 这个`me`值并**没有**试图找到一个与字段`"age"`和`"name"`相符的类型声明; 相反, `"me"`的类型被推断为`"{"age": int, "name": string}"`. 这很方便, 但也意味着这段代码没有错误地通过了类型检查。
+**注意**: 如上所述, 与记录不同的是, 这个`me`值并**没有**试图找到一个与字段`"age"`和`"name"`相符的类型声明; 相反, `"me"`的类型被推断为`"{"age": int, "name": string}"`. 这很方便, 但也意味着这段代码没有错误地通过了类型检查. 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

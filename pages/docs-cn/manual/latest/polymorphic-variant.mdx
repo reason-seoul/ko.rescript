@@ -6,25 +6,30 @@ canonical: "/docs/manual/latest/polymorphic-variant"
 
 # Polymorphic Variant | 多态变体
 
+<!-- 
 Polymorphic variants (or poly variant) are a cousin of [variant](variant). With these differences:
-
+-->
 多态变体是[变体](variant)的表亲，主要有以下不同：
-
+<!-- 
 - They start with a `#` and the constructor name doesn't need to be capitalized.
 - They don't require an explicit type definition. The type is inferred from usage.
 - Values of different poly variant types can share the constructors they have in common (aka, poly variants are "structurally" typed, as opposed to ["nominally" typed](variant#variant-types-are-found-by-field-name)).
-
+ -->
 - 多态变体由`#`开头，并且构造器的名字不必要大写。
 - 多态变体不需要一个显式的类型声明，类型通过使用情况推导。
 - 不同的多态变体可以共享它们共有的构造器(换句话来说，多态变体是"结构化"类型，与[名义类型(nominally typed)](variant#variant-types-are-found-by-field-name)相反)
-
+<!-- 
 They're a convenient and useful alternative to regular variants, but should **not** be abused. See the drawbacks at the end of this page.
+ -->
 
 它们是常规变体的一个方便和有用的替代物，但**不应该**被滥用，请在本页末尾的查看它们缺点。
-
-## Creation | 创建多态变体
-
+<!-- 
+## Creation 
+ -->
+## 创建多态变体
+<!-- 
 We provide 3 syntaxes for a poly variant's constructor:
+ -->
 
 ReScript提供了三种语法创建一个多态变体的构造器：
 
@@ -44,19 +49,21 @@ var myNumber = 7;
 
 </CodeTab>
 
+<div class="hidden">
 **Take a look at the output**. Poly variants are _great_ for JavaScript interop. For example, you can use it to model JavaScript string and number enums like TypeScript, but without confusing their accidental usage with regular strings and numbers.
+</div>
 
 **检查一下JS的编译结果**. 多态变体对JavaScript互操作是**很有用的**. 例如，你可以用它来为JavaScript的字符串和数字枚举建模，就像TypeScript一样，但不会意外把它们与普通的字符串和数字搞混。
-
+<!-- 
 `myColor` uses the common syntax. The second and third syntaxes are to support expressing strings and numbers more conveniently. We allow the second one because otherwise it'd be invalid syntax since symbols like `-` and others are usually reserved.
-
+ -->
 `myColor`的定义使用的是普通语法。第二和第三种语法是为了支持更方便地表达字符串和数字。我们允许第二种语法，否则定义同名变体将是无效的语法，因为像`-`和其他符号通常是保留的。
 
 
 ## Type Declaration | 类型声明
-
+<!-- 
 Although **optional**, you can still pre-declare a poly variant type:
-
+ -->
 尽管是**可选的**, 你仍然可以预先定义一个多态变体类型：
 
 ```res
@@ -64,9 +71,9 @@ Although **optional**, you can still pre-declare a poly variant type:
 // 注意下面的方括号和构造器前面的 #
 type color = [#red | #green | #blue]
 ```
-
+<!-- 
 These types can also be inlined, unlike for regular variant:
-
+ -->
 不像一般的变体，这些类型是可以被内联的：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
@@ -92,8 +99,9 @@ function render(myColor) {
 ```
 
 </CodeTab>
-
+<div class="hidden">
 **Note**: because a poly variant value's type definition is **inferred** and not searched in the scope, the following snippet won't error:
+</div>
 
 **注意**: 因为多态变体的值是被**推导**的，并且不需要再作用域中搜索类型定义，所以下列的代码片段并不会报错：
 
@@ -125,14 +133,18 @@ function render(myColor) {
 ```
 
 </CodeTab>
-
+<div class="hidden">
 That `myColor` parameter's type is inferred to be `#red`, `#green` or `#yellow`, and is unrelated to the `color` type. If you intended `myColor` to be of type `color`, annotate it as `myColor: color` in any of the places.
+</div>
 
 经过类型推导后，`myColor`参数的类型会是 `#red`, `#green`或者`#yellow`, 并且与`color`类型无关。如果你执意要用让`myColor`的类型是`color`, 在其出现处给它一个像`myColor: color`这样的类型签名：
-
-## Constructor Arguments | 构造器参数
-
+<!-- 
+## Constructor Arguments 
+ -->
+## 构造器参数
+<!-- 
 This is similar to a regular variant's [constructor arguments](variant#constructor-arguments):
+ -->
 
 这和[常规的变体](variant#constructor-arguments)类似：
 

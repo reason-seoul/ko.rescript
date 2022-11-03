@@ -203,13 +203,13 @@ switch fruitFromJs(100) {
 
 **Note**: by using `@as` here, all subsequent number encoding changes. `Apple` is still `0`, `Orange` is `10`, `Kiwi` is `100` and `Watermelon` is **`101`**!
 
-**注意**: 因为使用`@as`, 这里的数字编号产生了变化. `Apple` 还是 `0`, 但 `Orange` 变为了 `10`, `Kiwi` 变为了 `100` ， 因此 `Watermelon` 变成了 **`101`**!
+**注意**: 因为使用`@as`, 这里的数字编号产生了变化。`Apple` 还是 `0`, 但 `Orange` 变为了 `10`, `Kiwi` 变为了 `100` ， 因此 `Watermelon` 变成了 **`101`**!
 
 ### More Safety ｜ 更好的安全性
 
 Similar to the JS object <-> record deriving, you can hide the fact that the JS enum are ints by using the same `newType` option with `@deriving(jsConverter)`:
 
-与 JS对象 <-> record 类型间的转换类似, 通过使用 `@deriving(jsConverter)` 及其选项 `newType` ， JS的enum是整数的事实会被隐藏：
+与 JS对象 <-> record 类型间的转换类似，通过使用 `@deriving(jsConverter)` 及其选项 `newType` ， JS的enum是整数的事实会被隐藏：
 
 ```res
 @deriving({jsConverter: newType})
@@ -256,7 +256,7 @@ let error = fruitFromJs(100) /* nope, can't take a random int */
 > This feature might still be useful for certain scenarios, but the ergonomics might be worse
 
 > **注意**: 对于v7以上版本的ReScript, 推荐使用[用于编译位JS对象的record](bind-to-js-object#bind-to-record-like-js-objects).
-> 对于特定场景，这个功能可以仍然会非常有用, 但是使用体检比较糟糕。
+> 对于特定场景，这个功能可以仍然会非常有用，但是使用体检比较糟糕。
 
 Use `@deriving(abstract)` on a record type to expand the type into a creation, and a set of getter / setter functions for fields and methods.
 给一个record类型添加 `@deriving(abstract)` ，可以自动为其字段（fields）和方法（methods） 生成getter / setter 函数，并使其本身可以被扩展。
@@ -264,7 +264,7 @@ Use `@deriving(abstract)` on a record type to expand the type into a creation, a
 
 Usually you'd just use ReScript records to compile to JS objects of the same shape. There is still one particular use-case left where the `@deriving(abstract)` convertion is still useful: Whenever you need compile a record with an optional field where the JS object attribute shouldn't show up in the resulting JS when undefined (e.g. `{name: "Carl", age: undefined}` vs `{name: "Carl"}`). Check the [Optional Labels](#optional-labels) section for more infos on this particular scenario.
 
-通常，我们会想将ReScript的record类型编译为具有相同结构的JS对象。这里有一个关于 `@deriving(abstract)` 的特定转换使用场景可能会对此有帮助： 当不想将record中的可选字段作为一个JS对象中undefined字段时（例如：`{name: "Carl", age: undefined}` 与 `{name: "Carl"}`），请查看[可选标签（Optional Labels）](#optional-labels)来了解关于该场景的更多细节.
+通常，我们会想将ReScript的record类型编译为具有相同结构的JS对象。这里有一个关于 `@deriving(abstract)` 的特定转换使用场景可能会对此有帮助： 当不想将record中的可选字段作为一个JS对象中undefined字段时（例如：`{name: "Carl", age: undefined}` 与 `{name: "Carl"}`），请查看[可选标签（Optional Labels）](#optional-labels)来了解关于该场景的更多细节。
 
 ### Usage Example ｜ 使用方法示例
 

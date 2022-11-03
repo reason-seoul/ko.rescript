@@ -76,7 +76,7 @@ var me = {
 <!-- 
  The type is found by looking above the `me` value. **Note**: if the type instead resides in another file or module, you need to explicitly indicate which file or module it is:
 -->
-类型可以通过观察`me`的值推导而来. 如果类型的定义在另一个文件或者模块, 那么你必须要指明在哪个模块:
+类型可以通过观察`me`的值推导而来。如果类型的定义在另一个文件或者模块，那么你必须要指明在哪个模块:
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -115,7 +115,7 @@ var me2 = {
 <!-- 
  Either of the above 3 says "this record's definition is found in the School file". The first one, the regular type annotation, is preferred.
 -->
-上面3个定义在告诉我们“所定义的记录的类型定义在School文件中”。 第一个, 即常规的类型注释是首选。
+上面3个定义在告诉我们“所定义的记录的类型定义在School文件中”。 第一个，即常规的类型注释是首选。
 
 <!-- 
  ## Access 
@@ -290,7 +290,7 @@ var friend = {
 <!-- 
 This has consequences for pattern matching, which we'll expand a bit on soon.
 -->
-这会对模式匹配造成一定的负担, 我们稍后再展开讲这一点.
+这会对模式匹配造成一定的负担，我们稍后再展开讲这一点。
 
 <!-- 
 ## Immutable Update 
@@ -300,7 +300,7 @@ This has consequences for pattern matching, which we'll expand a bit on soon.
 Updating an optional field via an immutable update above lets you set that field value without needing to care whether it's optional or not. 
 -->
 
-通过不可变更新来更新一个可选字段的时候, 你不需要其值是否真的是一个可选值.
+通过不可变更新来更新一个可选字段的时候，你不需要其值是否真的是一个可选值。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -555,7 +555,7 @@ getAge(me) // type error!
 The type system will complain that `me` is a `person`, and that `getAge` only works on `monster`. If you need such capability, use ReScript objects, described [here](object.md). 
 -->
 
-类型系统会抱怨`me`是一个`person`类型, 而且`getAge`只对`monster`有效. 如果你需要这样的能力, 请使用ReScript中的[对象](object.md)描述.
+类型系统会抱怨`me`是一个`person`类型，而且`getAge`只对`monster`有效。如果你需要这样的能力，请使用ReScript中的[对象](object.md)描述。
 
 <span hidden>### Optional Fields in Records Can Be Useful for Bindings 
 </span>
@@ -582,10 +582,10 @@ Optional record fields, introduced in [`v10`](/blog/release-10-0-0#experimental-
 After reading the constraints in the previous sections, and if you're coming from a dynamic language background, you might be wondering why one would bother with record in the first place instead of straight using object, since the former needs explicit typing and doesn't allow different records with the same field name to be passed to the same function, etc. 
 -->
 
-在阅读了前面几节的约束条件后，如果你是动态语言背景的人你可能会想：为什么首先要用记录而不是直接用object？ 因为记录需要明确的类型化，而且不允许将具有相同字段名的不同记录传递给同一个函数，等等. 
+在阅读了前面几节的约束条件后，如果你是动态语言背景的人你可能会想：为什么首先要用记录而不是直接用object？ 因为记录需要明确的类型化，而且不允许将具有相同字段名的不同记录传递给同一个函数，等等。
 <!-- 
 1. The truth is that most of the times in your app, your data's shape is actually fixed, and if it's not, it can potentially be better represented as a combination of variant (introduced next) + record instead.
 2. Since a record type is resolved through finding that single explicit type declaration (we call this "nominal typing"), the type error messages end up better than the counterpart ("structural typing", like for tuples). This makes refactoring easier; changing a record type's fields naturally allows the compiler to know that it's still the same record, just misused in some places. Otherwise, under structural typing, it might get hard to tell whether the definition site or the usage site is wrong.
 -->
 1. 实际情况是，在你的应用程序中，大多数时候你的数据的形状实际上是固定的，如果不是，它有可能可以用变体(接下来将介绍)+记录的组合更好地表达。
-2. 由于记录类型是通过找到那个单一的显式类型声明来解决的(我们称之为 "名义类型(nominal typing)")，类型错误信息最终会比对应的类型("结构化类型(structural typing)"，如元组)更好. 这使得重构更容易; 改变一个记录类型的字段自然允许编译器确认它仍然和之前是同一个记录，只是在某些地方被误用. 否则，在结构化类型下，可能会变得很难区分是定义的地方还是使用的地方出了问题。
+2. 由于记录类型是通过找到那个单一的显式类型声明来解决的(我们称之为 "名义类型(nominal typing)")，类型错误信息最终会比对应的类型("结构化类型(structural typing)"，如元组)更好。这使得重构更容易; 改变一个记录类型的字段自然允许编译器确认它仍然和之前是同一个记录，只是在某些地方被误用。否则，在结构化类型下，可能会变得很难区分是定义的地方还是使用的地方出了问题。

@@ -8,15 +8,15 @@ canonical: "/docs/manual/latest/jsx"
 
 Would you like some HTML syntax in your ReScript? If not, quickly skip over this section and pretend you didn't see anything!
 
-你是否想要在ReScript中使用一些HTML语法? 如果不需要, 可跳过这些假装你什么也没看到!
+你是否想要在ReScript中使用一些HTML语法? 如果不需要，可跳过这些假装你什么也没看到!
 
 ReScript supports the JSX syntax, with some slight differences compared to the one in [ReactJS](https://facebook.github.io/react/docs/introducing-jsx.html). ReScript JSX isn't tied to ReactJS; they translate to normal function calls:
 
-ReScript 支持 JSX 语法, 与 [ReactJS](https://facebook.github.io/react/docs/introducing-jsx.html) 中的语法相比有一些细微的差别. ReScript的JSX并不与ReactJS绑定, 它们会转化为正常的函数调用.
+ReScript 支持 JSX 语法，与 [ReactJS](https://facebook.github.io/react/docs/introducing-jsx.html) 中的语法相比有一些细微的差别。ReScript的JSX并不与ReactJS绑定，它们会转化为正常的函数调用。
 
 **Note** for [ReasonReact](https://reasonml.github.io/reason-react/en/) readers: this isn't what ReasonReact turns JSX into, in the end. See Usage section for more info.
 
-**注意**, 对于使用[ReasonReact](https://reasonml.github.io/reason-react/en/)的读者: 这并不是ReasonReact最终将JSX变成的东西, 更多信息请见用法部分.
+**注意**, 对于使用[ReasonReact](https://reasonml.github.io/reason-react/en/)的读者: 这并不是ReasonReact最终将JSX变成的东西，更多信息请见用法部分。
 
 ## Capitalized Tag | 首字母大写标签
 
@@ -121,7 +121,7 @@ React.createElement(MyComponent.make, MyComponent.makeProps(null, undefined), ch
 
 This is the syntax for passing a list of two items, `child1` and `child2`, to the children position. It desugars to a list containing `child1` and `child2`:
 
-这是传递两个列表项目`child1`和`child2`到children位置的语法. 它解构为一个包含`child1`和`child2`的列表.
+这是传递两个列表项目`child1`和`child2`到children位置的语法。它解构为一个包含`child1`和`child2`的列表。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -136,17 +136,17 @@ React.createElement(MyComponent.make, MyComponent.makeProps(null, undefined), ch
 
 **Note** again that this isn't the transform for ReasonReact; ReasonReact turns the final list into an array. But the idea still applies.
 
-再次**注意**, 这不是ReasonReact的变换; ReasonReact会将最终的列表变成一个数组, 但是这个想法仍然适用.
+再次**注意**, 这不是ReasonReact的变换; ReasonReact会将最终的列表变成一个数组，但是这个想法仍然适用。
 
 So naturally, `<MyComponent> myChild </MyComponent>` desugars to `@JSX MyComponent.createElement(~children=list{myChild}, ())`. I.e. whatever you do, the arguments passed to the children position will be wrapped in a list. What if you don't want that? **What if you want to directly pass `myChild` without an extra wrapping**?
 
-所以很自然地, `<MyComponent> myChild </MyComponent>`被去糖(desugar)为`@JSX MyComponent.createElement(~children=list{myChild}, ())`. 也就是说, 无论你做什么, 传递到children位置的参数都会被包裹在一个列表中. 如果你不希望这样呢? **如果你想直接传递`myChild`而不需要额外的包装**呢?
+所以很自然地，`<MyComponent> myChild </MyComponent>`被去糖(desugar)为`@JSX MyComponent.createElement(~children=list{myChild}, ())`. 也就是说，无论你做什么，传递到children位置的参数都会被包裹在一个列表中。如果你不希望这样呢? **如果你想直接传递`myChild`而不需要额外的包装**呢?
 
 #### Children Spread | 子节点展开
 
 To solve the above problem, we've introduced
 
-为了解决上面的问题, 我们引入这样的用法:
+为了解决上面的问题，我们引入这样的用法:
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -176,7 +176,7 @@ React.createElement(MyComponent.make, MyComponent.makeProps(myChild, undefined))
 
 This is extra useful in the cases where you are handled `myChild` that is already a list of things, and want to forward that without wrapping it an extra time (which would be a type error) \*. It also allows you to pass arbitrary data structures at `children` position (remember, JSX `children` is really just a totally normal prop):
 
-这在你处理的`myChild`已经是一个列表的情况下是非常有用的, 你可以直接转发而不需要额外包装它(这将产生一个类型错误) /*. 它还允许你在`children`位置传递任意的数据结构(记住, JSX的`children`实际上只是一个常规的prop).
+这在你处理的`myChild`已经是一个列表的情况下是非常有用的，你可以直接转发而不需要额外包装它(这将产生一个类型错误) /*. 它还允许你在`children`位置传递任意的数据结构(记住，JSX的`children`实际上只是一个常规的prop).
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -204,11 +204,11 @@ React.createElement(MyForm.make, MyForm.makeProps(["Hello", "Submit"], undefined
 
 See [ReasonReact JSX](https://reasonml.github.io/reason-react/docs/en/jsx) for an example application of JSX, which transforms the above calls into a ReasonReact-specific call.
 
-参见[ReasonReact JSX](https://reasonml.github.io/reason-react/docs/en/jsx), 了解JSX的应用实例, 它将上述调用转化为ReasonReact的特定调用.
+参见[ReasonReact JSX](https://reasonml.github.io/reason-react/docs/en/jsx), 了解JSX的应用实例，它将上述调用转化为ReasonReact的特定调用。
 
 Here's a JSX tag that shows most of the features.
 
-这是一个显示了大部分特性的JSX标签.
+这是一个显示了大部分特性的JSX标签。
 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
@@ -246,20 +246,20 @@ React.createElement(
 - There is no support for JSX prop spread: `<Comp {...props} />`. Though somewhat related,  we do have children spread, described above: `<Comp> ...children </Comp>`.
 - Punning!
 
-- 属性和子节点并没有强制要求`{}`, 但为了便于学习我们还是展示了它们. 一旦你格式化了你的文件, 它们中的一些就会消失, 一些变成了括号.
-- 没有对JSX prop展开的支持: `<Comp {...props}}. />`. 虽然有些关联, 但我们确实有子节点展开, 像上面描述的那样`<Comp> ...children </Comp>`.
+- 属性和子节点并没有强制要求`{}`, 但为了便于学习我们还是展示了它们。一旦你格式化了你的文件，它们中的一些就会消失，一些变成了括号。
+- 没有对JSX prop展开的支持: `<Comp {...props}}. />`. 虽然有些关联，但我们确实有子节点展开，像上面描述的那样`<Comp> ...children </Comp>`.
 - Punning
 
 ### Punning | 双关语(Prunning)
 
 "Punning" refers to the syntax shorthand for when a label and a value are the same. For example, in JavaScript, instead of doing `return {name: name}`, you can do `return {name}`.
 
-"双关语"是指标签和值相同时的语法简写. 例如, 在JavaScript中, 不用写`return {name: name}`, 而是可以用`return {name}`代替. 
+"双关语"是指标签和值相同时的语法简写。例如，在JavaScript中，不用写`return {name: name}`, 而是可以用`return {name}`代替。
 
 
 Reason JSX supports punning. `<input checked />` is just a shorthand for `<input checked=checked />`. The formatter will help you format to the punned syntax whenever possible. This is convenient in the cases where there are lots of props to pass down:
 
-Reason的JSX支持双关语, `<input checked />`只是`<input checked=checked />`的缩写. 格式化工具将帮助你尽可能地按照双关语的语法进行格式化, 这在有很多props需要传递的情况下很方便.
+Reason的JSX支持双关语，`<input checked />`只是`<input checked=checked />`的缩写。格式化工具将帮助你尽可能地按照双关语的语法进行格式化，这在有很多props需要传递的情况下很方便。
 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
@@ -285,20 +285,20 @@ Consequently, a Reason JSX component can cram in a few more props before reachin
 For library authors wanting to take advantage of the JSX: the `@JSX` attribute above is a hook for potential ppx macros to spot a function wanting to format as JSX. Once you spot the function, you can turn it into any other expression.
 
 
-对于想要利用JSX的库作者来说: 上面的`@JSX`属性是潜在的ppx宏的一个钩子, 可以发现想要格式化为JSX的函数. 一旦你发现了这个函数, 你可以把它变成任何其他表达式.
+对于想要利用JSX的库作者来说: 上面的`@JSX`属性是潜在的ppx宏的一个钩子，可以发现想要格式化为JSX的函数。一旦你发现了这个函数，你可以把它变成任何其他表达式。
 
 
 This way, everyone gets to benefit the JSX syntax without needing to opt into a specific library using it, e.g. ReasonReact.
 
-这样, 每个人都能从JSX语法中受益而不需要选择使用它的特定库, 如ReasonReact.
+这样，每个人都能从JSX语法中受益而不需要选择使用它的特定库，如ReasonReact.
 
 
 JSX calls supports the features of [labeled functions](function.md#labeled-arguments): optional, explicitly passed optional and optional with default.
 
-JSX调用支持[标签函数](function.md#labeled-arguments)的特征: 可选参数, 显式传递的可选参数和默认的可选参数.
+JSX调用支持[标签函数](function.md#labeled-arguments)的特征: 可选参数，显式传递的可选参数和默认的可选参数。
 
 ## Design Decisions | 设计决策
 
 \* You might wonder why you never needed such children spread in ReactJS; ReactJS uses some special runtime logic + special syntax transforms + variadic argument detection & marking to avoid most of these cases ([see here](https://github.com/facebook/react/blob/9b36df86c6ccecb73ca44899386e6a72a83ad445/packages/react/src/ReactElement.js#L207)). Such dynamic usage complexifies the type system detection _quite a bit_. Since we control the whole syntax and ReasonReact, we decided to introduce children spread to disambiguate between the case of wrapping vs not wrapping, without compile-time & runtime cost!
 
-\* 你可能会想, 为什么在ReactJS中从来不需要这样的子节点展开呢; ReactJS使用一些特殊的运行时逻辑+特殊的语法转换+变量参数检测和标记来避免大多数的这些情况([见这里](https://github.com/facebook/react/blob/9b36df86c6ccecb73ca44899386e6a72a83ad445/packages/react/src/ReactElement.js#L207)). 这样的动态使用使类型系统复杂化了 _相当多_. 由于我们控制了整个语法和ReasonReact, 我们决定引入子节点展开来区分包装和不包装的情况, 而不需要引入编译时和运行时开销.
+\* 你可能会想，为什么在ReactJS中从来不需要这样的子节点展开呢; ReactJS使用一些特殊的运行时逻辑+特殊的语法转换+变量参数检测和标记来避免大多数的这些情况([见这里](https://github.com/facebook/react/blob/9b36df86c6ccecb73ca44899386e6a72a83ad445/packages/react/src/ReactElement.js#L207)). 这样的动态使用使类型系统复杂化了 _相当多_. 由于我们控制了整个语法和ReasonReact, 我们决定引入子节点展开来区分包装和不包装的情况，而不需要引入编译时和运行时开销。

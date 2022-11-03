@@ -50,7 +50,7 @@ Unlike most compiled-to-js languages, in ReScript, **you don't need to write dat
 
 - Float. ReScript 浮点型 就是 JS 的数字，反之亦然。
 
-- Array. 除了 [JS Array API](api/js/array) 之外, 我们也提供了 [Belt.Array](api/belt/array#set) API。
+- Array. 除了 [JS Array API](api/js/array) 之外，我们也提供了 [Belt.Array](api/belt/array#set) API。
 
 - Tuple. 编译为一个 JS 数组。 你也可以将固定长度的异构 JS 数组视为 ReScript 元组。
 
@@ -66,7 +66,7 @@ Unlike most compiled-to-js languages, in ReScript, **you don't need to write dat
 
 - Polymorphic variants.
 
-- Unit. `unit` 类型, 只有一个单独的值 `()`, 也会编译为 `undefined`。 同样，您也可以处理传入 JS 的 `undefined` 作为 `()`，如果这是它唯一的价值。
+- Unit. `unit` 类型，只有一个单独的值 `()`, 也会编译为 `undefined`。 同样，您也可以处理传入 JS 的 `undefined` 作为 `()`，如果这是它唯一的价值。
 
 
 **Types that are slightly different than JS, but that you can still use from JS**:
@@ -89,7 +89,7 @@ Unlike most compiled-to-js languages, in ReScript, **you don't need to write dat
 
 - Exception.
 
-- Int. **IInt 是 32 位的！**! 小心, 你可以把它们看作 JS 数字，反之亦然，但是如果数字很大，那么您最好将 JS 数字视为浮点数。 例如, 我们绑定 Js.Date 使用了 `float` 。
+- Int. **IInt 是 32 位的！**! 小心，你可以把它们看作 JS 数字，反之亦然，但是如果数字很大，那么您最好将 JS 数字视为浮点数。 例如，我们绑定 Js.Date 使用了 `float` 。
 
 - Variant. 检查变体已编译 JavaScript 输出以查看其形状。 我们不建议为单纯为 JS 使用导出 ReScript 变体，因为它们很难被理解为普通的 JS 代码，但是你可以这么做。
 

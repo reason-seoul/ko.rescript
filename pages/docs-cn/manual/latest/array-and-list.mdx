@@ -10,7 +10,7 @@ canonical: "/docs/manual/latest/array-and-list"
 
 Arrays are our main ordered data structure. They work the same way as JavaScript arrays: they can be randomly accessed, dynamically resized, updated, etc.
 
-数组是ReScript中主要的顺序数据结构. 它们和JavaScript的工作方式一样: 它们可以被随机访问, 动态地调整大小, 更新等.
+数组是ReScript中主要的顺序数据结构。它们和JavaScript的工作方式一样: 它们可以被随机访问，动态地调整大小，更新等。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -25,7 +25,7 @@ var myArray = ["hello", "world", "how are you"];
 
 ReScript arrays' items must have the same type, i.e. homogeneous.
 
-ReScript数组的元素必须具有相同的类型, 即同质性(homogeneous).
+ReScript数组的元素必须具有相同的类型，即同质性(homogeneous).
 
 ### Usage | 用法
 
@@ -64,7 +64,7 @@ var pushedValue = myArray.push("bye");
 
 ReScript provides a singly linked list too. Lists are:
 
-ReScript也提供了一个单链表. 列表是:
+ReScript也提供了一个单链表。列表是:
 
 - immutable
 - fast at prepending items
@@ -98,13 +98,13 @@ var myList = {
 
 Like arrays, lists' items need to be of the same type.
 
-像数组一样, 列表的元素需要是相同的类型.
+像数组一样，列表的元素需要是相同的类型。
 
 ### Usage | 用法
 
 You'd use list for its resizability, its fast prepend (adding at the head), and its fast split, all of which are immutable and relatively efficient.
 
-你可以使用列表来调整它的大小, 它的快速前置(在头部添加), 它的快速拆分, 所有这些都是不可变的和相对高效的.
+你可以使用列表来调整它的大小，它的快速前置(在头部添加), 它的快速拆分，所有这些都是不可变的和相对高效的。
 
 Do **not** use list if you need to randomly access an item or insert at non-head position. Your code would end up obtuse and/or slow.
 
@@ -146,13 +146,13 @@ var anotherList = {
 
 `myList` didn't mutate. `anotherList` is now `list{0, 1, 2, 3}`. This is efficient (constant time, not linear). `anotherList`'s last 3 elements are shared with `myList`!
 
-`myList`是不会变的, `anotherList`现在是 `list{0, 1, 2, 3}`了. 这是十分高效的(常数时间而不是线性时间), 因为`anotherList`的最后3个元素是和`myList`共享的!
+`myList`是不会变的，`anotherList`现在是 `list{0, 1, 2, 3}`了。这是十分高效的(常数时间而不是线性时间), 因为`anotherList`的最后3个元素是和`myList`共享的!
 
 **Note that `list{a, ...b, ...c}` is a syntax error**. We don't support multiple spread for a list. That'd be an accidental linear operation (`O(b)`), since each item of b would be one-by-one added to the head of `c`. You can use `List.concat` for this, but we highly discourage it.
 
 Updating an arbitrary item in the middle of a list is also discouraged, since its performance and allocation overhead would be linear (`O(n)`).
 
-随机的更新列表中间的元素是不被鼓励的, 因为它的性能和分配开销会是线性的复杂度(`O(n)`)
+随机的更新列表中间的元素是不被鼓励的，因为它的性能和分配开销会是线性的复杂度(`O(n)`)
 
 #### Access | 访问
 

@@ -95,7 +95,7 @@ function useHoverTooltip(cmStateRef, cmRef, param) {
   React.useEffect((function () {
           attach(tooltip);
           return (function (param) {
-                    return clear(tooltip);
+                    clear(tooltip);
                   });
         }), []);
   var checkIfTextMarker = (function(el) {
@@ -105,14 +105,13 @@ function useHoverTooltip(cmStateRef, cmRef, param) {
   var onMouseOver = function (evt) {
     var cm = cmRef.current;
     if (cm !== undefined) {
-      var cm$1 = Caml_option.valFromOption(cm);
       var target = evt.target;
       if (!checkIfTextMarker(target) && isSpanToken(target)) {
         var match = cmStateRef.current;
         var hoverHints = match.hoverHints;
         var pageX = evt.pageX;
         var pageY = evt.pageY;
-        var coords = cm$1.coordsChar({
+        var coords = cm.coordsChar({
               top: pageY,
               left: pageX
             });
@@ -151,7 +150,7 @@ function useHoverTooltip(cmStateRef, cmRef, param) {
               clearTimeout(Caml_option.valFromOption(hideTimer));
             }
             match$1.marker.clear();
-            var marker = cm$1.markText(from, to_, markerObj);
+            var marker = cm.markText(from, to_, markerObj);
             stateRef.current = {
               el: match$1.el,
               marker: marker,
@@ -160,7 +159,7 @@ function useHoverTooltip(cmStateRef, cmRef, param) {
               [Symbol.for("name")]: "Shown"
             };
           } else {
-            var marker$1 = cm$1.markText(from, to_, markerObj);
+            var marker$1 = cm.markText(from, to_, markerObj);
             markerRef.current = Caml_option.some(marker$1);
             stateRef.current = {
               el: target,
@@ -190,7 +189,7 @@ function useHoverTooltip(cmStateRef, cmRef, param) {
     marker.clear();
     var timerId = setTimeout((function (param) {
             stateRef.current = /* Hidden */0;
-            return hide(tooltip);
+            hide(tooltip);
           }), 200);
     stateRef.current = {
       el: match.el,
@@ -199,7 +198,6 @@ function useHoverTooltip(cmStateRef, cmRef, param) {
       hideTimer: Caml_option.some(timerId),
       [Symbol.for("name")]: "Shown"
     };
-    
   };
   var onMouseMove = function (evt) {
     var match = stateRef.current;
@@ -209,7 +207,6 @@ function useHoverTooltip(cmStateRef, cmRef, param) {
     var pageX = evt.pageX;
     var pageY = evt.pageY;
     update(tooltip, pageY - 35 | 0, pageX, match.hoverHint.hint);
-    
   };
   return [
           onMouseOver,
@@ -254,7 +251,7 @@ function hash(a) {
   return a;
 }
 
-var eq = Caml_obj.caml_equal;
+var eq = Caml_obj.equal;
 
 var ErrorHash = Belt_Id.MakeHashable({
       hash: hash,
@@ -264,11 +261,10 @@ var ErrorHash = Belt_Id.MakeHashable({
 function updateErrors(state, onMarkerFocus, onMarkerFocusLeave, cm, errors) {
   Belt_Array.forEach(state.marked, (function (mark) {
           mark.clear();
-          
         }));
   var errorsMap = Belt_HashMap.make(errors.length, ErrorHash);
   state.marked = [];
-  cm.clearGutter(errorGutterId);
+  errorGutterId.clearGutter(cm);
   var wrapper = cm.getWrapperElement();
   Belt_Array.forEachWithIndex(errors, (function (idx, e) {
           if (Belt_HashMap.has(errorsMap, e.row)) {
@@ -302,7 +298,6 @@ function updateErrors(state, onMarkerFocus, onMarkerFocusLeave, cm, errors) {
                 }
               });
           state.marked.push(__x);
-          
         }));
   var isMarkerId = function (id) {
     if (id.startsWith("gutter-marker")) {
@@ -320,7 +315,7 @@ function updateErrors(state, onMarkerFocus, onMarkerFocusLeave, cm, errors) {
       var rowCol = extractRowColFromId(id);
       if (rowCol !== undefined) {
         return Belt_Option.forEach(onMarkerFocus, (function (cb) {
-                      return Curry._1(cb, rowCol);
+                      Curry._1(cb, rowCol);
                     }));
       }
       
@@ -334,12 +329,11 @@ function updateErrors(state, onMarkerFocus, onMarkerFocusLeave, cm, errors) {
       var rowCol = extractRowColFromId(id);
       if (rowCol !== undefined) {
         return Belt_Option.forEach(onMarkerFocusLeave, (function (cb) {
-                      return Curry._1(cb, rowCol);
+                      Curry._1(cb, rowCol);
                     }));
       }
       
     });
-  
 }
 
 function CodeMirror(Props) {
@@ -396,48 +390,39 @@ function CodeMirror(Props) {
           var cm = Codemirror.fromTextArea(input, options);
           Belt_Option.forEach(minHeight, (function (minHeight) {
                   cm.getScrollerElement().style.minHeight = minHeight;
-                  
                 }));
           Belt_Option.forEach(maxHeight, (function (maxHeight) {
                   cm.getScrollerElement().style.maxHeight = maxHeight;
-                  
                 }));
           Belt_Option.forEach(onChange, (function (onValueChange) {
                   cm.on("change", (function (instance) {
-                          return Curry._1(onValueChange, instance.getValue());
+                          Curry._1(onValueChange, instance.getValue());
                         }));
-                  
                 }));
           cm.setValue(value);
           var wrapper = cm.getWrapperElement();
           Codemirror.on(wrapper, "mouseover", Curry.__1(onMouseOver));
           Codemirror.on(wrapper, "mouseout", Curry.__1(onMouseOut));
           Codemirror.on(wrapper, "mousemove", Curry.__1(onMouseMove));
-          cmRef.current = Caml_option.some(cm);
+          cmRef.current = cm;
           return (function (param) {
                     Codemirror.off(wrapper, "mouseover", Curry.__1(onMouseOver));
                     Codemirror.off(wrapper, "mouseout", Curry.__1(onMouseOut));
                     Codemirror.off(wrapper, "mousemove", Curry.__1(onMouseMove));
                     cm.toTextArea();
                     cmRef.current = undefined;
-                    
                   });
         }), []);
   React.useEffect((function () {
           cmStateRef.current.hoverHints = hoverHints;
-          
         }), [hoverHints]);
   var cm = cmRef.current;
-  if (cm !== undefined) {
-    var cm$1 = Caml_option.valFromOption(cm);
-    if (cm$1.getValue() !== value) {
-      var state = cmStateRef.current;
-      cm$1.operation(function () {
-            return updateErrors(state, onMarkerFocus, onMarkerFocusLeave, cm$1, errors);
-          });
-      cm$1.setValue(value);
-    }
-    
+  if (cm !== undefined && cm.getValue() !== value) {
+    var state = cmStateRef.current;
+    cm.operation(function () {
+          return updateErrors(state, onMarkerFocus, onMarkerFocusLeave, cm, errors);
+        });
+    cm.setValue(value);
   }
   var errorsFingerprint = Belt_Array.map(errors, (function (e) {
             return "" + e.row + "-" + e.column;
@@ -446,9 +431,8 @@ function CodeMirror(Props) {
           var state = cmStateRef.current;
           var cm = cmRef.current;
           if (cm !== undefined) {
-            var cm$1 = Caml_option.valFromOption(cm);
-            cm$1.operation(function () {
-                  return updateErrors(state, onMarkerFocus, onMarkerFocusLeave, cm$1, errors);
+            cm.operation(function () {
+                  return updateErrors(state, onMarkerFocus, onMarkerFocusLeave, cm, errors);
                 });
           }
           
@@ -456,12 +440,11 @@ function CodeMirror(Props) {
   React.useEffect((function () {
           var cm = Belt_Option.getExn(cmRef.current);
           cm.setOption("mode", mode);
-          
         }), [mode]);
   React.useEffect((function () {
           var cm = cmRef.current;
           if (cm !== undefined) {
-            Caml_option.valFromOption(cm).refresh();
+            cm.refresh();
           }
           
         }), [
@@ -519,6 +502,5 @@ export {
   CM ,
   useWindowWidth ,
   make$2 as make,
-  
 }
 /* tooltip Not a pure module */

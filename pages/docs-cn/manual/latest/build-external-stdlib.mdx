@@ -15,8 +15,8 @@ Your ReScript project depends on the `rescript` package as a [`devDependency`](h
 - To Docker or other low-storage deployment devices.
 - For pure JS/TS consumers who probably won't install `bs-platform` in their own project.
 
-你的ReScript项目依赖于`rescript`包作为一个[`devDependency`](https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file)，其中包括我们的编译器、构建系统和运行时，如`Belt`。然而，如果你发布你的代码，你不得不把它移到`package.json`中的`dependency`。
-- 到Docker或其他低存储量的部署设备。
+你的 ReScript 项目依赖于`rescript`包作为一个[`devDependency`](https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file)，其中包括我们的编译器、构建系统和运行时，如`Belt`。然而，如果你发布你的代码，你不得不把它移到`package.json`中的`dependency`。
+- 到 Docker 或其他低存储量的部署设备。
 - 对于那些可能不会在自己的项目中安装`bs-platform`的纯JS/TS消费者。
 
 In these cases, the size or mere presence of `bs-platform` can be troublesome, since it includes not just our necessary runtime like `Belt`, but also our compiler and build system.
@@ -31,13 +31,13 @@ To solve that, we now publish our runtime as a standalone package at [`@rescript
 
 **This is an advanced feature**. Please only use it in the aforementioned scenarios. If you already use a JS bundler with dead code elimination, you might not need this feature.
 
-**这是一个高级功能**，请只在上述情况下使用它，如果你已经使用了具有消除死代码的JS捆绑器，你可能不需要这个功能。
+**这是一个高级功能**，请只在上述情况下使用它，如果你已经使用了具有消除死代码的 JS 捆绑器，你可能不需要这个功能。
 
 ## Configuration | 配置
 
 Say you want to publish a JS-only ReScript 9.0 library. Install the packages like this:
 
-假设你想发布一个纯JS的ReScript 9.0库，可以像这样安装软件包：
+假设你想发布一个纯 JS 的ReScript 9.0库，可以像这样安装软件包：
 
 
 ```sh
@@ -59,7 +59,7 @@ Then add this to `bsconfig.json`:
 Now the compiled JS code will import using the path defined by `external-stdlib`. Check the JS output tab:
 
 
-现在编译的JS代码将使用`external-stdlib`定义的路径导入。检查JS输出标签。
+现在编译的 JS 代码将使用`external-stdlib`定义的路径导入。检查 JS 输出标签。
 
 <CodeTab labels={["ReScript", "JS output"]}>
 
@@ -80,5 +80,5 @@ Belt_Array.forEach([1, 2, 3], function (num) {
 
 **Make sure the version number of `bs-platform` and `@rescript/std` match in your `package.json`** to avoid running into runtime issues due to mismatching stdlib assumptions.
 
-**确保`bs-platform`和`@rescript/std`的版本号在你的`package.json`中匹配**，以避免由于不匹配的stdlib假设而遇到运行时问题。
+**确保`bs-platform`和`@rescript/std`的版本号在你的`package.json`中匹配**，以避免由于不匹配的 stdlib 假设而遇到运行时问题。
 

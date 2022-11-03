@@ -16,7 +16,7 @@ Types are the highlight of ReScript! They are:
 - **Inferred**. You don't have to write down the types! ReScript can deduce them from their values. Yes, it might seem magical that we can deduce all of your program's types, without incorrectness, without your manual annotation, and do so quickly. Welcome to ReScript =).
 -->
 
-类型是ReScript的亮点之一！在ReScript中，类型是：
+类型是 ReScript 的亮点之一！在 ReScript 中，类型是：
 - **强类型**。一个类型无法被修改成另一个类型。在 JavaScript 中变量的类型可能在执行代码时(即运行时)发生变化。比如类型为 `number` 的变量可能变为 `string` 类型。无论是从可读性还是调试的角度来说这都是个坏特性，会让代码更加难以理解
 - **静态类型**。ReScript 类型在编译后被擦除，在运行时不存在类型。所以不必担心类型会拖累性能。你在运行时不需要类型信息；我们在编译时报告所有你需要的信息(尤其是所有的类型错误)来更早地捕获错误！
 - **可靠(sound)**。这是 Rescript 与其他许多编译到 JavaScript 的带类型语言的最大区别。我们的类型系统保证**永远不会**出错。大多数类型系统对一个值的类型进行猜测，并在编辑器中显示一个有时并不正确的类型。我们不这样做。我们相信一个有时不正确的类型系统最终会因为与期望的不匹配而变得危险

@@ -160,7 +160,7 @@ var me = {
 <div class="hidden">
 This is technically called an "inline record", and only allowed within a variant constructor. You cannot inline a record type declaration anywhere else in ReScript.
 </div>
-这在技术上被称为 "内联记录"，并且只允许在变体构造函数中使用，你不能在ReScript的其他地方内联一个记录类型声明。
+这在技术上被称为 "内联记录"，并且只允许在变体构造函数中使用，你不能在 ReScript 的其他地方内联一个记录类型声明。
 <div class="hidden"> 
 Of course, you can just put a regular record type in a variant too:
 </div>
@@ -190,7 +190,7 @@ var me = {
 <div class="hidden">
 The output is slightly uglier and less performant than the former.
  </div>
-输出的JS代码比之前要稍微"难看一些"，并且性能也不如之前的。
+输出的 JS 代码比之前要稍微"难看一些"，并且性能也不如之前的。
 
 ### 在变体上模式匹配
 <div class="hidden">
@@ -218,7 +218,7 @@ A variant value compiles to 3 possible JavaScript outputs depending on its type 
 <!-- 
 Check the output in these examples:
  -->
-检查这些例子的JS编译结果：
+检查这些例子的 JS 编译结果：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -314,19 +314,19 @@ type account2 =
 <!-- 
 If you come from an untyped language, you might be tempted to try `type myType = int | string`. This isn't possible in ReScript; you'd have to give each branch a constructor: `type myType = Int(int) | String(string)`. The former looks nice, but causes lots of trouble down the line.
  -->
-如果你经常使用无类型语言，你可能会尝试写出这样的定义`type myType = int | string`. 这在ReScript中是不可能的; 你不得不为每一个分支加上一个构造器：`type myType = Int(int) | String(string)`. 前一个初看起来不错，但后患无穷。
+如果你经常使用无类型语言，你可能会尝试写出这样的定义`type myType = int | string`. 这在 ReScript 中是不可能的; 你不得不为每一个分支加上一个构造器：`type myType = Int(int) | String(string)`. 前一个初看起来不错，但后患无穷。
 <!-- 
 ### Interop with JavaScript 
  -->
-### 与JavaScript互操作
+### 与 JavaScript 互操作
 <!-- 
 _This section assumes knowledge about our JavaScript interop. Skip this if you haven't felt the itch to use variants for wrapping JS functions yet_.
  -->
-_这一章假设你知道了我们的JavaScript互操作机制跳过这一章如果如果你还没有感觉到使用变体来包装JS函数的痛点，请跳过这部分_
+_这一章假设你知道了我们的 JavaScript 互操作机制跳过这一章如果如果你还没有感觉到使用变体来包装JS函数的痛点，请跳过这部分_
 <!-- 
 Quite a few JS libraries use functions that can accept many types of arguments. In these cases, it's very tempting to model them as variants. For example, suppose there's a `myLibrary.draw` JS function that takes in either a `number` or a `string`. You might be tempted to bind it like so:
  -->
-相当多的JS库使用可以接受多种类型参数的函数，在这种情况下，将它们建模为变体是非常诱人的。 例如，假设有一个`myLibrary.draw`JS函数，可以接受`数字`或`字符串`, 你可能会尝试这样来绑定它：
+相当多的 JS 库使用可以接受多种类型参数的函数，在这种情况下，将它们建模为变体是非常诱人的。 例如，假设有一个`myLibrary.draw`JS函数，可以接受`数字`或`字符串`, 你可能会尝试这样来绑定它：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -363,7 +363,7 @@ betterDraw({
 <div class="hidden">
 **Try not to do that**, as this generates extra noisy output. Alternatively, define two `external`s that both compile to the same JS call:
 </div> 
-**尽量不要这样做**, 因为这样会产生额外的噪音输出。 或者定义两个`external`都编译为相同的JS调用。
+**尽量不要这样做**, 因为这样会产生额外的噪音输出。 或者定义两个`external`都编译为相同的 JS 调用。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -402,15 +402,15 @@ Please refer to this [record section](record#tips--tricks). Variants are the sam
 Variants, in their many forms (polymorphic variant, open variant, GADT, etc.), are likely _the_ feature of a type system such as ReScript's. The aforementioned `option` variant, for example, obliterates the need for nullable types, a major source of bugs in other languages. Philosophically speaking, a problem is composed of many possible branches/conditions. Mishandling these conditions is the majority of what we call bugs. **A type system doesn't magically eliminate bugs; it points out the unhandled conditions and asks you to cover them**\*. The ability to model "this or that" correctly is crucial.
 </div>
 
-变体经常以很多种形式出现(多态变体，展开变体，通用代数数据类型等), 可能是像ReScript这样的类型系统的最关键的特征。 打个比方，先前提到的`option`变体，完全消除了nullable类型需要，这是很多其他语言bug的来源。 从哲学的角度来讲，一个问题是由许多可能的分支/条件组成的。 大部分情况下，对这些条件的处理的缺失就是我们所说的bug. **类型系统并不能神奇地消除bug; 它指出了未处理的条件并要求你覆盖它们**. 正确建模"这个或那个"的能力是至关重要的。
+变体经常以很多种形式出现(多态变体，展开变体，通用代数数据类型等), 可能是像 ReScript 这样的类型系统的最关键的特征。 打个比方，先前提到的`option`变体，完全消除了 nullable 类型需要，这是很多其他语言 bug 的来源。 从哲学的角度来讲，一个问题是由许多可能的分支/条件组成的。 大部分情况下，对这些条件的处理的缺失就是我们所说的bug. **类型系统并不能神奇地消除bug; 它指出了未处理的条件并要求你覆盖它们**. 正确建模"这个或那个"的能力是至关重要的。
 <!-- 
 For example, some folks wonder how the type system can safely eliminate badly formatted JSON data from propagating into their program. They don't, not by themselves! But if the parser returns the `option` type `None | Some(actualData)`, then you'd have to handle the `None` case explicitly in later call sites. That's all there is.
  -->
-比如说，有些人想知道类型系统如何安全地消除格式不好的JSON数据传播到他们的程序中。 类型系统无法通过自己做到。 但是如果一个parser返回了`option`类型，`None | Some(actualData)`, 那么你就不得不在后续的调用点显式的处理`None`分支。
+比如说，有些人想知道类型系统如何安全地消除格式不好的 JSON 数据传播到他们的程序中。 类型系统无法通过自己做到。 但是如果一个 parser 返回了`option`类型，`None | Some(actualData)`, 那么你就不得不在后续的调用点显式的处理`None`分支。
 <!-- 
 Performance-wise, a variant can potentially tremendously speed up your program's logic. Here's a piece of JavaScript:
 -->
-从性能上讲，变体可以潜在地极大地加快你的程序逻辑。 这里有一段JavaScript的内容：
+从性能上讲，变体可以潜在地极大地加快你的程序逻辑。 这里有一段 JavaScript 的内容：
 
 ```js
 let data = 'dog'
@@ -425,7 +425,7 @@ if (data === 'dog') {
 <!-- 
 There's a linear amount of branch checking here (`O(n)`). Compare this to using a ReScript variant:
 -->
-这里有一个线性复杂度的分支检查(`O(n)`)，与使用ReScript变体的比较：
+这里有一个线性复杂度的分支检查(`O(n)`)，与使用 ReScript 变体的比较：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

@@ -14,7 +14,7 @@ canonical: "/docs/manual/latest/record"
 - have fixed fields (not extensible)
 -->
 
-记录和JavaScript中的object类似，但有如下特点：
+记录和 JavaScript 中的object类似，但有如下特点：
 - 默认是不可变的
 - 成员字段是固定的(无法扩展)
 
@@ -115,7 +115,7 @@ var me2 = {
 <!-- 
  Either of the above 3 says "this record's definition is found in the School file". The first one, the regular type annotation, is preferred.
 -->
-上面3个定义在告诉我们“所定义的记录的类型定义在School文件中”。 第一个，即常规的类型注释是首选。
+上面3个定义在告诉我们“所定义的记录的类型定义在 School 文件中”。 第一个，即常规的类型注释是首选。
 
 <!-- 
  ## Access 
@@ -214,7 +214,7 @@ Fields not marked with `mutable` in the type declaration cannot be mutated.
 <!-- ReScript records compile to straightforward JavaScript objects; see the various JS output tabs above.
 -->
 
-ReScript的记录会直接编译为JavaScript的对象；可以查看上面的JS编译结果。
+ReScript的记录会直接编译为 JavaScript 的对象；可以查看上面的 JS 编译结果。
 
 <!-- 
 ## Optional Record Fields  
@@ -396,11 +396,11 @@ You can unset an optional field's value via that same mechanism by setting it to
 [Pattern matching](pattern-matching-destructuring), one of ReScript's most important features, has two caveats when you deal with optional fields.
 </span>
 
-[模式匹配](pattern-matching-destructuring)是ReScript最重要的特性之一，但当你处理可选字段时，有两点需要注意。
+[模式匹配](pattern-matching-destructuring)是 ReScript 最重要的特性之一，但当你处理可选字段时，有两点需要注意。
 
 <!-- When matching on the value directly, it's an `option`. Example:-->
 
-当直接在值上进行匹配的时候，其被看作是一个option值。例如：
+当直接在值上进行匹配的时候，其被看作是一个 option 值。例如：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -555,7 +555,7 @@ getAge(me) // type error!
 The type system will complain that `me` is a `person`, and that `getAge` only works on `monster`. If you need such capability, use ReScript objects, described [here](object.md). 
 -->
 
-类型系统会抱怨`me`是一个`person`类型，而且`getAge`只对`monster`有效。如果你需要这样的能力，请使用ReScript中的[对象](object.md)描述。
+类型系统会抱怨`me`是一个`person`类型，而且`getAge`只对`monster`有效。如果你需要这样的能力，请使用 ReScript 中的[对象](object.md)描述。
 
 <span hidden>### Optional Fields in Records Can Be Useful for Bindings 
 </span>
@@ -571,7 +571,7 @@ Many JavaScript APIs tend to have large configuration objects that can be a bit 
 Optional record fields, introduced in [`v10`](/blog/release-10-0-0#experimental-optional-record-fields), is intended to help with this. Optional fields will let you avoid having to specify all fields, and let you just specify the one's you care about. A significant improvement in ergonomics for bindings and other APIs with for example large configuration objects. 
 -->
 
-在[`v10`](/blog/release-10-0-0#experimental-optional-record-fields)中引入的多可选记录字段就是为了帮助解决这个问题。 多可选字段将使你不必指定所有字段，而只需指定你所关心的字段。对于绑定和其他具有大型配置对象的API来说，这是对“人体工程学”的重大改进。
+在[`v10`](/blog/release-10-0-0#experimental-optional-record-fields)中引入的多可选记录字段就是为了帮助解决这个问题。 多可选字段将使你不必指定所有字段，而只需指定你所关心的字段。对于绑定和其他具有大型配置对象的 API 来说，这是对“人体工程学”的重大改进。
 
 <!--
 ## Design Decisions  

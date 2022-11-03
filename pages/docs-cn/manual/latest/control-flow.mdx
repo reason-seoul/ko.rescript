@@ -18,7 +18,7 @@ ReScript还支持十分强大的模式匹配，将用一个[专门的章节](pat
 
 Unlike its JavaScript counterpart, ReScript's `if` is an expression; they evaluate to their body's content:
 
-与它的JavaScript对应物不同，ReScript的`if`是一个表达式; 它们的值取决于其body的内容的求值结果。
+与它的 JavaScript 对应物不同，ReScript的`if`是一个表达式; 它们的值取决于其 body 的内容的求值结果。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -106,7 +106,7 @@ var message = isMorning ? "Good morning!" : "Hello!";
 
 **`if-else` and ternary are much less used** in ReScript than in other languages; [Pattern-matching](pattern-matching-destructuring.md) kills a whole category of code that previously required conditionals.
 
-**`if-else`和三目运算符在ReScript中的使用比其他语言少得多**；[模式匹配](pattern-matching-destructuring.md)杀死了一大类以前需要条件表达式的代码。
+**`if-else`和三目运算符在 ReScript 中的使用比其他语言少得多**；[模式匹配](pattern-matching-destructuring.md)杀死了一大类以前需要条件表达式的代码。
 
 ## For Loops | For循环
 
@@ -185,7 +185,7 @@ for(var x = 3; x >= 1; --x){
 
 While loops execute its body code block while its condition is true.
 
-`while`循环在其条件为真时执行其body代码块。
+`while`循环在其条件为真时执行其 body 代码块。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -206,7 +206,7 @@ while (testCondition) {
 
 There's no loop-breaking `break` keyword (nor early `return` from functions, for that matter) in ReScript. However, we can break out of a while loop easily through using a [mutable binding](mutation.md).
 
-在ReScript中没有跳出循环的 `break`关键字(也没有从函数中提前返回的`return`). 然而，我们可以通过使用[绑定可变值](mutation.md)轻松地脱离while循环。
+在 ReScript 中没有跳出循环的 `break`关键字(也没有从函数中提前返回的`return`). 然而，我们可以通过使用[绑定可变值](mutation.md)轻松地脱离 while 循环。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

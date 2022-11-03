@@ -5,20 +5,28 @@ description: "A quick overview on ReScript's syntax"
 canonical: "/docs/manual/latest/overview"
 ---
 
-<!-- # Overview -->
+<!--
+# Overview
+-->
 # 语言特性概览
 
-<!-- ## Comparison to JS -->
+<!--
+## Comparison to JS
+-->
 ## 与 JS 比较
 
-<!-- ### Semicolon -->
+<!--
+### Semicolon
+-->
 ### 分号
 
 | JavaScript                   | ReScript     |
 |------------------------------|--------------|
 | 被 linter/formatter 强制要求 | 不需要分号！ |
 
-<!-- ### Comments -->
+<!--
+### Comments
+-->
 ### 注释
 
 | JavaScript                     | ReScript                   |
@@ -28,7 +36,9 @@ canonical: "/docs/manual/latest/overview"
 | `/** 文档注释(Doc Comment) */` | `/** 类型/值之前的注释 */` |
 |                                | `/*** 独立的文档注释 */`   |
 
-<!-- ### Variable -->
+<!--
+### Variable
+-->
 ### 变量
 
 | JavaScript              | ReScript                              |
@@ -37,7 +47,9 @@ canonical: "/docs/manual/latest/overview"
 | `var x = y;`            | 无对应（谢天谢地）                    |
 | `let x = 5; x = x + 1;` | `let x = ref(5); x := x.contents + 1` |
 
-<!-- ### String & Character -->
+<!--
+### String & Character
+-->
 ### 字符串 & 字符
 
 | JavaScript               | ReScript              |
@@ -47,7 +59,9 @@ canonical: "/docs/manual/latest/overview"
 | `"hello " + "world"`     | `"hello " ++ "world"` |
 | `` `hello ${message}` `` | 相同                  |
 
-<!-- ### Boolean -->
+<!--
+### Boolean
+-->
 ### 布尔值
 
 | JavaScript                                            | ReScript                           |
@@ -59,7 +73,9 @@ canonical: "/docs/manual/latest/overview"
 | 没有深比较（递归比较）                                | `a == b`, `a != b`                 |
 | `a == b`                                              | 相等判断中没有隐式转换（谢天谢地） |
 
-<!-- ### Number -->
+<!--
+### Number
+-->
 ### 数字
 
 | JavaScript  | ReScript     |
@@ -74,7 +90,9 @@ canonical: "/docs/manual/latest/overview"
 
 \* JS 没有区分整数（integer）和浮点数（float）。
 
-<!-- ### Object/Record -->
+<!--
+### Object/Record
+-->
 ### 对象/记录(Record)
 
 | JavaScript          | ReScript                                |
@@ -85,7 +103,9 @@ canonical: "/docs/manual/latest/overview"
 | `point.y = 30;`     | 相同                                    |
 | `{...point, x: 30}` | 相同                                    |
 
-<!-- ### Array -->
+<!--
+### Array
+-->
 ### 数组
 
 | JavaScript         | ReScript              |
@@ -94,22 +114,30 @@ canonical: "/docs/manual/latest/overview"
 | `myArray[1] = 10`  | 相同                  |
 | `[1, "Bob", true]` | `(1, "Bob", true)` \* |
 
-<!-- \* Heterogenous arrays in JS are disallowed for us. Use tuple instead. -->
+<!--
+\* Heterogenous arrays in JS are disallowed for us. Use tuple instead.
+-->
 
 \* ReScript 不允许在数组中存储不同类型的值，请使用元组（tuple）。
 
-<!-- ### Null -->
+<!--
+### Null
+-->
 ### 空值
 
 | JavaScript          | ReScript  |
 | ------------------- | --------- |
 | `null`, `undefined` | `None` \* |
 
-<!-- \* Again, only a spiritual equivalent; we don't have nulls, nor null bugs! But we do have an `option` type for when you actually need nullability. -->
+<!--
+\* Again, only a spiritual equivalent; we don't have nulls, nor null bugs! But we do have an `option` type for when you actually need nullability.
+-->
 
 \* 同样，这里只是精神上的等价物；Rescript 没有 null，也没有 null bug！当你真正需要 null 时可以使用 `option` 类型。
 
-<!-- ### Function -->
+<!--
+### Function
+-->
 ### 函数
 
 | JavaScript                      | ReScript                     |
@@ -119,7 +147,9 @@ canonical: "/docs/manual/latest/overview"
 | `const f = function(arg) {...}` | `let f = (arg) => {...}`     |
 | `add(4, add(5, 6))`             | 相同                         |
 
-<!-- ### Blocks -->
+<!--
+### Blocks
+-->
 ### 代码块
 
 <table>
@@ -149,7 +179,9 @@ canonical: "/docs/manual/latest/overview"
   </tbody>
 </table>
 
-<!-- ### If-else -->
+<!--
+### If-else
+-->
 ### 条件表达式
 
 | JavaScript            | ReScript                                                                |
@@ -158,11 +190,15 @@ canonical: "/docs/manual/latest/overview"
 | `a ? b : c`           | 相同                                                                    |
 | `switch`              | `switch` 但拥有[强大的模式匹配功能!](pattern-matching-destructuring.md) |
 
-<!-- \* Our conditionals are always expressions! You can write `let result = if a {"hello"} else {"bye"}` -->
+<!--
+\* Our conditionals are always expressions! You can write `let result = if a {"hello"} else {"bye"}`
+-->
 
 \* ReScript 的条件语句是表达式！你可以这样做：`let result = if a {"hello"} else {"bye"}`
 
-<!-- ### Destructuring -->
+<!--
+### Destructuring
+-->
 ### 解构
 
 | JavaScript                    | ReScript                          |
@@ -171,11 +207,15 @@ canonical: "/docs/manual/latest/overview"
 | `const [a, b] = data`         | <code>let [a, b] = data</code> \* |
 | `const {a: aa, b: bb} = data` | `let {a: aa, b: bb} = data`       |
 
-<!-- \* Gives good compiler warning that data might not be of length 2. -->
+<!--
+\* Gives good compiler warning that data might not be of length 2.
+-->
 
 \* 编译器无法确定 data 的长度为 2 时会给出警告。
 
-<!-- ### Loop -->
+<!--
+### Loop
+-->
 ### 循环
 
 | JavaScript                            | ReScript                     |
@@ -194,11 +234,15 @@ canonical: "/docs/manual/latest/overview"
 | 没有展开语法                              | `<Comp>...children</Comp>` |
 
 
-<!-- \* Argument punning! -->
+<!--
+\* Argument punning!
+-->
 
 \* 参数双关（punning）！
 
-<!-- ### Exception -->
+<!--
+### Exception
+-->
 ### 异常
 
 | JavaScript                                | ReScript                                         |
@@ -206,14 +250,20 @@ canonical: "/docs/manual/latest/overview"
 | `throw new SomeError(...)`                | `raise(SomeError(...))`                          |
 | `try {a} catch (Err) {...} finally {...}` | <code>try a catch { &#124; Err => ...}</code> \* |
 
-<!-- \* No finally. -->
+<!--
+\* No finally.
+-->
 
 \* 最终会取消掉它。
 
-<!-- ### Blocks -->
+<!--
+### Blocks
+-->
 ### 代码块
 
-<!-- The last expression of a block delimited by `{}` implicitly returns (including function body). In JavaScript, this can only be simulated via an immediately-invoked function expression (since function bodies have their own local scope). -->
+<!--
+The last expression of a block delimited by `{}` implicitly returns (including function body). In JavaScript, this can only be simulated via an immediately-invoked function expression (since function bodies have their own local scope).
+-->
 
 被`{}`包起来的代码块的最后一个表达式隐式作为块的返回值（函数体也是这样）。在 JavaScript 中，这只能通过一个立即调用函数表达式（IIFE, Immediately Invoked Funtion Expression）来模拟（利用函数作用域）。
 
@@ -244,7 +294,9 @@ canonical: "/docs/manual/latest/overview"
   </tbody>
 </table>
 
-<!-- ## Common Features' JS Output -->
+<!--
+## Common Features' JS Output
+-->
 ## 一般特性编译到 JS 的输出
 
 | Feature        | Example                              | JavaScript Output                          |
@@ -270,6 +322,8 @@ canonical: "/docs/manual/latest/overview"
 | 多行注释       | `/* Comment here */`                 | 无输出                                     |
 | 单行注释       | `// Comment here`                    | 无输出                                     |
 
-<!-- _Note that this is a cleaned-up comparison table; a few examples' JavaScript output are slightly different in reality._ -->
+<!--
+_Note that this is a cleaned-up comparison table; a few examples' JavaScript output are slightly different in reality._
+-->
 
 _请注意，这是一个经过清理的对比表；少许例子中的 JavaScript 输出与实际略有不同。_

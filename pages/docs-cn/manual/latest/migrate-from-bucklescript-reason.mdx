@@ -1,42 +1,47 @@
 ---
-title: "迁移到ReScript语法"
+title: "迁移到 ReScript 语法"
 description: "Instructions on upgrading from Reason to ReScript"
 canonical: "/docs/manual/latest/migrate-to-new-syntax"
 ---
 
-# Migrate from BuckleScript/Reason | 从BuckleScript/Reason迁移到ReScript
+<!-- # Migrate from BuckleScript/Reason -->
+# 从 BuckleScript/Reason 迁移到 ReScript
 
-ReScript is a rebranding and cleanup of BuckleScript (since `v8.2.0`) & Reason (`v3.6`) that enables us to ship a tighter compile-to-JS stack with more coherent documentation & tools. If you're an existing user of BuckleScript & Reason, here's the gist:
+<!-- ReScript is a rebranding and cleanup of BuckleScript (since `v8.2.0`) & Reason (`v3.6`) that enables us to ship a tighter compile-to-JS stack with more coherent documentation & tools. If you're an existing user of BuckleScript & Reason, here's the gist: -->
 
 ReScript 是对 BuckleScript（从 `v8.2.0` 起）和 Reason（从 `v3.6` 起）的收尾和重塑，这使我们能使用更连贯的文档和工具提供更紧凑的 compile-to-JS 技术栈。如果你已经是 BuckleScript 或 Reason 的用户，下面是需要注意的东西：
 
+<!--
 - ReScript is mostly just BuckleScript rebranded, with a new syntax that's like the Reason syntax, but catered more toward the JavaScript crowd.
 - All your existing code will keep working even if you don't upgrade.
+-->
 
 - ReScript 几乎就是改了个名字的 BuckleScript，Rescript 提供的新语法很像 Reason 的语法，但更加适合 Javascript 群体
 - 即使你不升级，所有现有代码仍将正常工作
 
 
-## Upgrade Your Codebase | 升级你的代码库
+<!-- ## Upgrade Your Codebase -->
+## 升级你的代码库
 
-There are lots of exciting improvements in the new syntax (features, speed, error messages, etc.). The upgrade is trivial, backward-compatible and can be done on a per-file basis:
+<!-- There are lots of exciting improvements in the new syntax (features, speed, error messages, etc.). The upgrade is trivial, backward-compatible and can be done on a per-file basis: -->
 
 新的语法有很多振奋人心的改进（特性，速度，错误提示等）。升级是后向兼容的，并且可以逐个文件的完成：
 
 ```
-npm install rescript@9 --save-dev
+npm install rescript@9
 
 # Also works with .rei / .ml / .mli / etc
 npx rescript convert src/MyFile.re
 ```
 
-Enjoy the improved experience!
+<!-- Enjoy the improved experience! -->
 
 享受升级后的体验吧！
 
-### Upgrade Individual Folders | 对单个文件夹进行升级
+<!-- ### Upgrade Individual Folders -->
+### 对单个文件夹进行升级
 
-This is useful for per-directory convertions:
+<!-- This is useful for per-directory convertions: -->
 
 以下命令可以进行逐个文件夹的转换：
 
@@ -45,9 +50,10 @@ This is useful for per-directory convertions:
 for f in your-folder/**/*.re; do; node_modules/.bin/rescript convert $f && rm $f; done;
 ```
 
-### Upgrade an Entire Codebase | 升级整个代码库
+<!-- ### Upgrade an Entire Codebase -->
+### 升级整个代码库
 
-In case you are confident in converting your codebase in one step, use the following:
+<!-- In case you are confident in converting your codebase in one step, use the following: -->
 
 如果你确信可以一步转换整个代码库，可以使用下面的做法：
 
@@ -55,8 +61,10 @@ In case you are confident in converting your codebase in one step, use the follo
 npx rescript convert -all
 ```
 
-## Difference With Old Reason | 与 Reason 的不同之处
+<!-- ## Difference With Old Reason -->
+## 与 Reason 的不同之处
 
+<!--
 - Complete removal of semicolon (you can still write them).
 - No need for parentheses around `if`, `switch` and `try`.
 - Type arguments: from `option(int)` to `option<int>`.
@@ -75,7 +83,7 @@ npx rescript convert -all
 - `fun` pattern matching syntax removed.
 - Type declaration is non-recursive by default, consistent with let bindings. To have recursive types, use `type rec myList<'a> = Nil | Cons('a, myList<'a>)`.
 - Use any words, including reserved keywords, as your identifier name: `let \"try" = true`.
-
+-->
 
 - 完全去除了分号（你仍然可以加上）
 - 不再需要给 `if`，`switch` 和 `try`表达式加上括号

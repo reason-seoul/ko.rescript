@@ -25,6 +25,5 @@ function whichLang(url) {
 export {
   langDocBase ,
   whichLang ,
-  
 }
 /* No side effect */

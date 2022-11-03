@@ -309,6 +309,5 @@ var Prose = {
 export {
   Docs ,
   Prose ,
-  
 }
 /* indexData Not a pure module */

@@ -101,7 +101,7 @@ var greeting = "Hello\nWorld\n👋\n" + name + "\n";
 
 <!-- This is just like JavaScript's backtick string interpolation, except without needing to escape special characters. -->
 
-这就像JavaScript的反引号字符串插值，只是不需要转义特殊字符。 
+这就像 JavaScript 的反引号字符串插值，只是不需要转义特殊字符。 
 
 <!-- For interpolation, you'll have to convert the binding (`name` in the example) into a string if it isn't one. If you want the interpolation to implicitly convert a binding into a string, prepend a `j`: -->
 
@@ -125,7 +125,7 @@ var message = "Today I am " + 10 + " years old.";
 See the familiar `Js.String` API in the [API docs](api/js/string). Since a ReScript string maps to a JavaScript string, you can mix & match the string operations in both standard libraries. 
 -->
 
-在[API文档](api/js/string)中查看我们熟悉的 `Js.String` API。 因为一个ReScript字符映射字符串到JavaScript字符串，你可以混用或比较两个标准库中的字符串。
+在[API文档](api/js/string)中查看我们熟悉的 `Js.String` API。 因为一个 ReScript 字符映射字符串到JavaScript字符串，你可以混用或比较两个标准库中的字符串。
 
 ### 技巧 & 诀窍
 
@@ -147,7 +147,7 @@ See the familiar `Js.String` API in the [API docs](api/js/string). Since a ReScr
 - 将标识符放入一个数据结构中：`var BLUE = "blue" var RED = "red" var colors = [BLUE, RED]`
 - 对象的属性：`person["age"] = 24`
 - 作为枚举使用：`if (audio.canPlayType() === 'probably') {...}` [(ಠ_ಠ)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canPlayType#Return_value)
-- 在习惯了ReScript作为替代品之后，你很快就会发现，其他疯狂的模式是多么可怕。
+- 在习惯了 ReScript 作为替代品之后，你很快就会发现，其他疯狂的模式是多么可怕。
 
 <!-- 
 The more you overload the poor string type, the less the type system (or a teammate) can help you! ReScript provides concise, fast and maintainable types & data structures alternatives to the use-cases above (e.g. variants, in a later section). 
@@ -176,7 +176,7 @@ var firstLetterOfAlphabet = /* "a" */97;
 
 <!-- **Note**: Char doesn't support Unicode or UTF-8 and is therefore not recommended. -->
 
-**注意**: Char不支持Unicode或UTF-8，因此不推荐使用
+**注意**: Char不支持 Unicode 或UTF-8，因此不推荐使用
 
 <!-- To convert a String to a Char, use `String.get("a", 0)`. To convert a Char to a String, use `String.make(1, 'a')`. -->
 
@@ -187,7 +187,7 @@ var firstLetterOfAlphabet = /* "a" */97;
 
 <!-- ReScript regular expressions compile cleanly to their JavaScript counterpart: -->
 
-ReScript的正则表达式会简洁的编译到JavaScript的对等物。
+ReScript的正则表达式会简洁的编译到 JavaScript 的对等物。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -202,7 +202,7 @@ var r = /b/g;
 
 <!-- A regular expression like the above has the type `Js.Re.t`. The [Js.Re](api/js/re) module contains the regular expression helpers you have seen in JS. -->
 
-一个像上面一样的正则表达式的类型是 `Js.Re.t`. [Js.Re](api/js/re)模块包括一些正则表达式的辅助函数，你应该已经在JS中见过它们。
+一个像上面一样的正则表达式的类型是 `Js.Re.t`. [Js.Re](api/js/re)模块包括一些正则表达式的辅助函数，你应该已经在 JS 中见过它们。
 
 ## 布尔类型
 
@@ -240,7 +240,7 @@ ReScript的 `true/false` 编译到 JavaScript `true/false`。
 <!-- 
 **Be careful when you bind to JavaScript numbers!** Since ReScript integers have a much smaller range than JavaScript numbers, data might get lost when dealing with large numbers. In those cases it’s much safer to bind the numbers as **float**. Be extra mindful of this when binding to JavaScript Dates and their epoch time.  
 -->
-**当绑定到JavaScript数字时要小心！** 由于ReScript整数的范围比JavaScript数字小得多，在处理大数字时，数据可能会丢失。 在这种情况下，将数字绑定为**float**要安全得多。 当绑定到JavaScript日期和它们的epoch time时要特别注意这一点。
+**当绑定到 JavaScript 数字时要小心！** 由于 ReScript 整数的范围比JavaScript数字小得多，在处理大数字时，数据可能会丢失。 在这种情况下，将数字绑定为**float**要安全得多。 当绑定到 JavaScript 日期和它们的epoch time时要特别注意这一点。
 
 {/*
 To improve readability, you may place underscores in the middle of numeric literals such as `1_000_000`. Note that underscores can be placed anywhere within a number, not just every three digits.  

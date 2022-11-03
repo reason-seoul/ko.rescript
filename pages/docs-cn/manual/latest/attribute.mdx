@@ -26,17 +26,17 @@ var mode2 = "dev";
 
 The `@inline` annotation tells `mode`'s value to be inlined into its usage sites (see output). We call such annotation "attribute" (or "decorator" in JavaScript).
 
-`@inline`注解告诉`mode`的值被内联到它的使用地点(见输出). 我们把这种注解称为"属性"(或JavaScript中的 "装饰器").
+`@inline`注解告诉`mode`的值被内联到它的使用地点(见输出). 我们把这种注解称为"属性"(或 JavaScript 中的 "装饰器").
 
 An attribute starts with `@` and goes before the item it annotates. In the above example, it's hooked onto the let binding.
 
-一个属性以`@`开头，放在它注释的项目之前。在上面的例子中，它被挂在let绑定上。
+一个属性以`@`开头，放在它注释的项目之前。在上面的例子中，它被挂在 let 绑定上。
 
 ## Usage | 用法
 
 > **Note:** In previous versions (< 8.3) all our interop related attributes started with a `bs.` prefix (`bs.module`, `bs.val`). Our formatter will automatically drop them in newer ReScript versions.
 
-> **注意：**在以前的版本 (< 8.3) 中，我们所有的互操作相关属性都以`bs.`前缀开始(`bs.module`, `bs.val`). 我们的格式化器将在较新的ReScript版本中自动删除它们。
+> **注意：**在以前的版本 (< 8.3) 中，我们所有的互操作相关属性都以`bs.`前缀开始(`bs.module`, `bs.val`). 我们的格式化器将在较新的 ReScript 版本中自动删除它们。
 
 You can put an attribute almost anywhere. You can even add extra data to them by using them visually like a function call. Here are a few famous attributes (explained in other sections):
 

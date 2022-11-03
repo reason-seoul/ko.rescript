@@ -21,14 +21,14 @@ ReScript的对象和[记录](record.md)很像，但有以下几点不同：
 
 - 不需要类型声明。
 - 结构化并且更加多态，[而不像记录](record.md#record-types-are-found-by-field-name)。
-- 不支持更新，除非对象是从JS获取的。
+- 不支持更新，除非对象是从 JS 获取的。
 - 不支持[模式匹配](pattern-matching-destructuring)。
 
 <!-- TODO: support update man -->
 <!-- 
 Although ReScript records compile to clean JavaScript objects, ReScript objects are a better candidate for emulating/binding to JS objects, as you'll see.
  -->
-虽然ReScript的记录可以编译成简洁的JavaScript对象，但ReScript对象是模拟/绑定到JS对象的更好的候选，你马上就会看到了。
+虽然 ReScript 的记录可以编译成简洁的JavaScript对象，但 ReScript 对象是模拟/绑定到 JS 对象的更好的候选，你马上就会看到了。
 
 <!-- 
 ## Type Declaration 
@@ -152,7 +152,7 @@ var age = me["age"];
 <!-- 
 Disallowed unless the object is a binding that comes from the JavaScript side. In that case, use `=`
 -->
-更新是不被允许的，除非该对象是一个来自于JavaScript端的绑定。在那种情况下，可以使用`=`更新对象：
+更新是不被允许的，除非该对象是一个来自于 JavaScript 端的绑定。在那种情况下，可以使用`=`更新对象：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -226,7 +226,7 @@ This only works with object types, not object values!
 <!-- 
 Since objects don't require type declarations, and since ReScript infers all the types for you, you get to very quickly and easily (and dangerously) bind to any JavaScript API. Check the JS output tab:
 -->
-由于对象不需要类型声明，而且ReScript为你推断出所有的类型，所以你可以非常快速和容易地(同时也是危险地)绑定到任何JavaScript API。 看看JS的编译结果：
+由于对象不需要类型声明，而且 ReScript 为你推断出所有的类型，所以你可以非常快速和容易地(同时也是危险地)绑定到任何JavaScript API。 看看 JS 的编译结果：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -259,4 +259,4 @@ document.location.href = "rescript-lang.org";
 <div class="hidden"> 
 The `external` feature and the usage of this trick are also documented in the [external](external#tips--tricks) section later. It's an excellent way to start writing some ReScript code without worrying about whether bindings to a particular library exists.
 </div>
-在后面的[external](external#tips--tricks)部分也记录了`external`功能和这个技巧的用法。 这是一个很好的方法，可以让你开始编写一些ReScript代码，而不必担心与某个特定库的绑定关系是否存在。
+在后面的[external](external#tips--tricks)部分也记录了`external`功能和这个技巧的用法。 这是一个很好的方法，可以让你开始编写一些 ReScript 代码，而不必担心与某个特定库的绑定关系是否存在。

@@ -12,7 +12,7 @@ _所有关于函数的语法清单在本章节的最后面_
 
 ReScript functions are declared with an arrow and return an expression, just like JS functions. They compile to clean JS functions too.
 
-ReScript函数用箭头声明，并会返回一个表达式，就像JS中的函数一样。它们也会编译成简洁的的JS函数。
+ReScript函数用箭头声明，并会返回一个表达式，就像 JS 中的函数一样。它们也会编译成简洁的的 JS 函数。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -446,7 +446,7 @@ function callFirst(_param) {
 
 ReScript's functions are curried by default, which is one of the few performance penalties we pay in the compiled JS output. The compiler does a best-effort job at removing those currying whenever possible. However, in certain edge cases, you might want guaranteed uncurrying. In those cases, put a dot in the function's parameter list:
 
-ReScript的函数是默认柯里化的，这是少数的编译到JS会产生的性能开销情况之一。编译器会尽最大可能地去除这些柯里化，然而，有一些边界情况，你可能想要保证柯里化不会发生。这些情况，可以放一个点`.`在函数的参数列表前：
+ReScript的函数是默认柯里化的，这是少数的编译到 JS 会产生的性能开销情况之一。编译器会尽最大可能地去除这些柯里化，然而，有一些边界情况，你可能想要保证柯里化不会发生。这些情况，可以放一个点`.`在函数的参数列表前：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -475,7 +475,7 @@ If you write down the uncurried function's type, you'll add a dot there as well.
 
 **This feature seems trivial**, but is actually one of our most important features, as a primarily functional language. We encourage you to use it if you'd like to remove any mention of `Curry` runtime in the JS output.
 
-**这个特性看起来是trivial的**, 但是这其实是我们作为一门函数式语言最重要的特性之一。如果你想要在JS的编译结果中移除所有运行时的`柯里化`, 我们鼓励你使用它。
+**这个特性看起来是 trivial 的**, 但是这其实是我们作为一门函数式语言最重要的特性之一。如果你想要在 JS 的编译结果中移除所有运行时的`柯里化`, 我们鼓励你使用它。
 
 ## The ignore() Function | ignore() 函数
 

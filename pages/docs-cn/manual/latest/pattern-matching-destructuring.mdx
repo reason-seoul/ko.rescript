@@ -15,7 +15,7 @@ ReScript**最棒**的特性之一就是模式匹配了。模式匹配将3个很�
 - Exhaustiveness check.
 
 - 析构
-- 依据数据的shape进行`switch`
+- 依据数据的 shape 进行`switch`
 - 完全性检查
 
 We'll dive into each aspect below.
@@ -26,7 +26,7 @@ We'll dive into each aspect below.
 
 Even JavaScript has destructuring, which is "opening up" a data structure to extract the parts we want and assign variable names to them:
 
-甚至JavaScript也有析构功能，也就是"打开"一个数据结构，提取我们想要的部分，并为其分配到相应的变量名。
+甚至 JavaScript 也有析构功能，也就是"打开"一个数据结构，提取我们想要的部分，并为其分配到相应的变量名。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -196,7 +196,7 @@ We'd like to handle each of the 3 cases differently. For example, print a succes
 
 In other languages, you'd end up with a series of if-elses that are hard to read and error-prone. In ReScript, you can instead use the supercharged `switch` pattern matching facility to destructure the value while calling the right code based on what you destructured:
 
-在其他语言中，你可能会用一系列`if-else`来实现上述功能，可读性不好并且很容易出错。在ReScrit中，你可以使用强大的`switch`的模式匹配功能析构值，然后基于析构的结果调用需要的代码块。
+在其他语言中，你可能会用一系列`if-else`来实现上述功能，可读性不好并且很容易出错。在 ReScrit 中，你可以使用强大的`switch`的模式匹配功能析构值，然后基于析构的结果调用需要的代码块。
 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
@@ -278,7 +278,7 @@ Imagine this requirement:
 - 如果一个人是一名老师，且它的名字是"Marry"或"Joe"的话，和他/她非正式的打声招呼。
 - 正式的和别的老师打招呼。
 - 如果一个人是个学生，并且他们通过了这个学期，祝贺他/她的分数。
-- 如果该学生的gpa为0, 并且正在休假或公休，则显示一个不同的信息。
+- 如果该学生的 gpa 为0, 并且正在休假或公休，则显示一个不同的信息。
 - 对一个学生显式一条通用的信息。
 
 ReScript can do this easily!
@@ -725,7 +725,7 @@ console.log(10);
 
 A first time ReScript user might accidentally write that code, assuming that it's matching on `coordinates` when the second value is of the same value as `centerY`. In reality, this is interpreted as matching on coordinates and assigning the second value of the tuple to the name `centerY`, which isn't what's intended.
 
-第一次使用ReScript的人可能会不小心写下这段代码，认为当第二个值与`centerY`相同的时候会匹配`coordinates`. 实际上，这会被解释为在`coordinates`上进行匹配，并将元组的第二个值分配给`centerY`, 而这并不是我们想要的结果。
+第一次使用 ReScript 的人可能会不小心写下这段代码，认为当第二个值与`centerY`相同的时候会匹配`coordinates`. 实际上，这会被解释为在`coordinates`上进行匹配，并将元组的第二个值分配给`centerY`, 而这并不是我们想要的结果。
 
 ## Exhaustiveness Check | 穷举检查
 
@@ -797,7 +797,7 @@ if (person1.TAG) {
 
 Did you see what we removed? This time, we've omitted the handling of the case where `person1` is `Teacher({name})` when `name` isn't Mary or Joe.
 
-你看到我们移除的部分了吗? 这一次，我们省略了对`person1`是`Teacher({name})`的情况的处理，当`name`不是Mary或Joe.
+你看到我们移除的部分了吗? 这一次，我们省略了对`person1`是`Teacher({name})`的情况的处理，当`name`不是 Mary 或Joe.
 
 Failing to handle every scenario of a value likely constitutes the majority of program bugs out there. This happens very often when you refactor a piece of code someone else wrote. Fortunately for ReScript, the compiler will tell you so:
 

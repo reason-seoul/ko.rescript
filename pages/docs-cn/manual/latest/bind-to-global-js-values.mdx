@@ -1,10 +1,10 @@
 ---
-title: "绑定到全局JS值"
+title: "绑定到全局 JS 值"
 description: "JS interop with global JS values in ReScript"
 canonical: "/docs/manual/latest/bind-to-global-js-values"
 ---
 
-# Bind to Global JS Values | 绑定到全局JS值
+# Bind to Global JS Values | 绑定到全局 JS 值
 
 **First**, make sure the value you'd like to model doesn't already exist in our [provided API](api/js).
 
@@ -12,7 +12,7 @@ canonical: "/docs/manual/latest/bind-to-global-js-values"
 
 Some JS values, like `setTimeout`, live in the global scope. You can bind to them like so:
 
-一些JS值，例如`setTimeout`，存在于全局范围内。你可以像这样绑定到它们：
+一些 JS 值，例如`setTimeout`，存在于全局范围内。你可以像这样绑定到它们：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -38,7 +38,7 @@ This binds to the JavaScript [`setTimeout`](https://developer.mozilla.org/en-US/
 - and an integer that specifies the duration before calling said function,
 - returns a number that is the timeout's ID. This number might be big, so we're modeling it as a float rather than the 32-bit int.
 
-- 接受一个以`unit`为参数并返回`unit`的函数（它在JS端变成了一个不接受任何内容并且不返回任何内容的函数，也就是 `undefined`）
+- 接受一个以`unit`为参数并返回`unit`的函数（它在 JS 端变成了一个不接受任何内容并且不返回任何内容的函数，也就是 `undefined`）
 - 以及一个指定调用该函数之前持续时间的整数，
 - 返回一个数字表示超时ID。这个数字可能很大，所以我们将其建模为浮点数而不是32位整数。
 
@@ -78,7 +78,7 @@ Clearly, `timerId` is a type that can only be created by `setTimeout`! Now we've
 
 Since `external`s are inlined, we end up with JS output as readable as hand-written JS.
 
-由于`external`是内联的，我们最终得到的生成的JS与手写JS一样可读。
+由于`external`是内联的，我们最终得到的生成的 JS 与手写JS一样可读。
 
 ## Global Modules ｜ 全局模块
 
@@ -122,7 +122,7 @@ This binds to `window.location.ancestorOrigins.length`.
 
 Global values like `__filename` and `__DEV__` don't always exist; you can't even model them as an `option`, since the mere act of referring to them in ReScript (then compiled into JS) would trigger the usual `Uncaught ReferenceError: __filename is not defined` error in e.g. the browser environment.
 
-像`__filename`和`__DEV__`这样的全局值并不总是存在；您甚至不能将它们建模为`选项(option)`，因为仅在ReScript中引用它们（然后编译为JS）就会触发常见的`Uncaught ReferenceError: __filename is not defined`错误，例如浏览器环境。
+像`__filename`和`__DEV__`这样的全局值并不总是存在；您甚至不能将它们建模为`选项(option)`，因为仅在 ReScript 中引用它们（然后编译为JS）就会触发常见的`Uncaught ReferenceError: __filename is not defined`错误，例如浏览器环境。
 
 For these troublesome global values, ReScript provides a special approach: `%external(a_single_identifier)`.
 

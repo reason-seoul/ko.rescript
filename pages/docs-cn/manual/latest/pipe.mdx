@@ -83,7 +83,7 @@ This also works with labeled arguments.
 
 Pipes are used to emulate object-oriented programming. For example, `myStudent.getName` in other languages like Java would be `myStudent->getName` in ReScript (equivalent to `getName(myStudent)`). This allows us to have the readability of OOP without the downside of dragging in a huge class system just to call a function on a piece of data.
 
-管道被用来模拟面向对象的编程。例如，`myStudent.getName`在Java等其他语言中是`myStudent->getName`在ReScript中(相当于`getName(myStudent)`). 这使我们能够拥有OOP的可读性，而没有拖入一个巨大的类系统只是为了在一个数据上调用一个函数。
+管道被用来模拟面向对象的编程。例如，`myStudent.getName`在 Java 等其他语言中是`myStudent->getName`在 ReScript 中(相当于`getName(myStudent)`). 这使我们能够拥有 OOP 的可读性，而没有拖入一个巨大的类系统只是为了在一个数据上调用一个函数。
 
 ## Tips & Tricks | 技巧和诀窍
 
@@ -99,7 +99,7 @@ _阅读这一小节需要先理解[JS绑定API](bind-to-js-function.md#object-me
 
 JavaScript's APIs are often attached to objects, and are often chainable, like so:
 
-JavaScript的API通常关联在对象上，而且通常是可以链式调用的，像这样：
+JavaScript的 API 通常关联在对象上，而且通常是可以链式调用的，像这样：
 
 ```js
 const result = [1, 2, 3].map(a => a + 1).filter(a => a % 2 === 0);
@@ -111,7 +111,7 @@ asyncRequest()
 
 Assuming we don't need the chaining behavior above, we'd bind to each case this using [`@send`](/syntax-lookup#send-decorator) from the aforementioned binding API page:
 
-假设我们不需要上面的连锁行为，我们会用上述绑定API页面中的[`@send`](/syntax-lookup#send-decorator)来绑定：
+假设我们不需要上面的连锁行为，我们会用上述绑定 API 页面中的[`@send`](/syntax-lookup#send-decorator)来绑定：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -155,7 +155,7 @@ asyncRequest().setWaitDuration(4000).send();
 
 This looks much worse than the JS counterpart! Clean it up visually with pipe:
 
-这看起来比对应的JS部分还要糟糕得多! 用管道在视觉上把它清理干净：
+这看起来比对应的 JS 部分还要糟糕得多! 用管道在视觉上把它清理干净：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -218,7 +218,7 @@ var result = preprocess(name);
 
 A placeholder is written as an underscore and it tells ReScript that you want to fill in an argument of a function later. These two have equivalent meaning:
 
-通过下划线来表达一个占位符，它告诉ReScript你想在以后填入一个函数的参数。这两者的意义相当：
+通过下划线来表达一个占位符，它告诉 ReScript 你想在以后填入一个函数的参数。这两者的意义相当：
 
 ```res
 let addTo7 = (x) => add3(3, x, 4)
@@ -231,7 +231,7 @@ Sometimes you don't want to pipe the value you have into the first position. In 
 
 Let's say you have a function `namePerson`, which takes a `person` then a `name` argument. If you are transforming a person then pipe will work as-is:
 
-假设你有一个名为`namePerson`的函数，传入一个`person`和一个`name`参数。如果你想用管道运算符传递一个person可以这样做：
+假设你有一个名为`namePerson`的函数，传入一个`person`和一个`name`参数。如果你想用管道运算符传递一个 person 可以这样做：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

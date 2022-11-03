@@ -139,7 +139,7 @@ function lex(_accOpt, _stateOpt, p) {
           startPos: startPos,
           endPos: loc_endPos
         };
-        var x = /\\[([0-9;]+)([\\x40-\\x7F])/.exec(raw);
+        var x = /\[([0-9;]+)([\x40-\x7F])/.exec(raw);
         var token;
         if (x !== null) {
           var str = Caml_array.get(x, 1);

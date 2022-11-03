@@ -177,7 +177,7 @@ module Lexer = {
 
           let loc = {startPos: startPos, endPos: startPos + Js.String.length(raw) - 1}
 
-          let token = Js.Re.exec_(%re(`/\\[([0-9;]+)([\\x40-\\x7F])/`), raw)->(
+          let token = Js.Re.exec_(%re(`/\[([0-9;]+)([\x40-\x7F])/`), raw)->(
             x =>
               switch x {
               | Some(result) =>

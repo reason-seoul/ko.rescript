@@ -1,24 +1,24 @@
 ---
-title: "基本类型"
+title: "基础类型"
 description: "Primitive Data Types in ReScript"
 canonical: "/docs/manual/latest/primitive-types"
 ---
 
 <!-- # Primitive Types -->
-# 基本类型
+# 基础类型
 
 <!-- ReScript comes with the familiar primitive types like `string`, `int`, `float`, etc. -->
 
-ReScript自带我们所熟悉的基本类型像 `string`，`int`，`float`等。
+ReScript 自带我们所熟悉的基础类型，比如 `string`，`int`，`float` 等。
 
 <!-- TODO: doc unit -->
 
-<!-- 字符串 -->
+<!-- ## String -->
 ## 字符串
 
 <!-- ReScript `string`s are delimited using **double** quotes (single quotes are reserved for the character type below). -->
 
-ReScript 将`string`限制为只可以使用**双引号**(单引号被保留用来表示字符类型)。
+在 ReScript 里字符串写在双引号中（单引号被保留用来表示字符类型）。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -36,7 +36,7 @@ var multilineGreeting = "Hello\n world!";
 
 <!-- To concatenate strings, use `++`: -->
 
-连接两个字符串，用`++`运算符:
+要连接两个字符串，使用`++`运算符：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -49,23 +49,24 @@ var greetings = "Hello world!";
 
 </CodeTab>
 
-
-### 内建字符串
+<!-- ### String Interpolation -->
+### 字符串插值
 
 <!-- There's a special syntax for string that allows -->
 
-有一个特殊的字符串语法, 使得:
+有一个特殊的字符串语法，它允许：
 
-/* - multiline string just like before
+<!--
+- multiline string just like before
 - no special character escaping
 - Interpolation
-- Proper unicode handling */ 
+- Proper unicode handling
+-->
 
-
-- 和先前一样的多行字符串
+- 多行字符串
 - 没有特殊的转义字符
-- 内建
-- 更好的unicode处理
+- 插值
+- 更好的 unicode 处理
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -92,7 +93,7 @@ var greeting = "Hello\nWorld\n👋\n" + name + "\n";
 
 <!-- For interpolation, you'll have to convert the binding (`name` in the example) into a string if it isn't one. If you want the interpolation to implicitly convert a binding into a string, prepend a `j`: -->
 
-对于内建字符串，如果绑定的值不是一个字符串(比如上述例子中的 `name`),你就必须将其转换成字符串。 如果你需要隐式的转换一个绑定到字符串，可以在字符串前加一个 `j`
+对于字符串插值，如果绑定的值不是一个字符串(比如上述例子中的 `name`),你就必须将其转换成字符串。 如果你需要隐式的转换一个绑定到字符串，可以在字符串前加一个 `j`
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -159,7 +160,7 @@ var firstLetterOfAlphabet = /* "a" */97;
 
 可以通过 `String.get("a", 0)` 转换一个字符串到字符，通过`String.make(1, 'a')`转换一个字符到字符串。
 
--- Regular Expression
+<!-- Regular Expression -->
 ## 正则表达式
 
 <!-- ReScript regular expressions compile cleanly to their JavaScript counterpart: -->

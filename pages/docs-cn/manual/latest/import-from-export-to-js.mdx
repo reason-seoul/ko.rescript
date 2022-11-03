@@ -18,13 +18,13 @@ You've seen how ReScript's idiomatic [Import & Export](import-export.md) works. 
 
 In short: **make sure your bindings below output what you'd have manually written in JS**.
 
-简而言之: **确保下面的绑定输出了您在 JS 中手动编写的内容**。  
+简而言之：**确保下面的绑定输出了您在 JS 中手动编写的内容**。  
 
 ## Output Format ｜ 输出格式
 
 We support 2 JavaScript import/export formats:
 
-我们支持两种 JavaScript 导入/导出格式:
+我们支持两种 JavaScript 导入/导出格式：
 
 - CommonJS: `require('myFile')` and `module.exports = ...`.
 
@@ -65,7 +65,7 @@ var root = Path.dirname("/User/github");
 </CodeTab>
 
 Here's what the `external` does:  
-这是 `external` 的作用:
+这是 `external` 的作用：
 
 - `@module("path")`: pass the name of the JS module; in this case, `"path"`. The string can be anything: `"./src/myJsFile"`, `"@myNpmNamespace/myLib"`, etc.
 - `external`: the general keyword for declaring a value that exists on the JS side.  
@@ -73,17 +73,17 @@ Here's what the `external` does:
 - `string => string`: the type signature of `dirname`. Mandatory for `external`s.
 - `= "dirname"`: the name of the variable inside the `path` JS module. There's repetition in writing the first and second `dirname`, because sometime the binding name you want to use on the ReScript side is different than the variable name the JS module exported.
 
-- `@module("path")`: 传递 JS 模块的名称; 在本例中, `"path"`. 可以是任何形式的字符串: `"./src/myJsFile"`, `"@myNpmNamespace/myLib"`, 等等。
+- `@module("path")`: 传递 JS 模块的名称; 在本例中，`"path"`. 可以是任何形式的字符串：`"./src/myJsFile"`, `"@myNpmNamespace/myLib"`, 等等。
 - `external`: 用于声明存在于 JS 端的值的通用关键字。
 - `dirname`: 你将在 ReScript 端使用的绑定名称。
-- `string => string`: `dirname` 的类型签名， 强制 `external` 的.
+- `string => string`: `dirname` 的类型签名， 强制 `external` 的。
 - `= "dirname"`: JS 模块 `path` 内的变量名称。在写第一个和第二个 `dirname` 的时候会重复，因为有时您想在 ReScript 端使用的绑定名称与 JS 模块导出的变量名称不同。
 
 
 ### Import a JavaScript Module As a Single Value ｜ 将 JavaScript 模块作为单个值导入
 
 By omitting the string argument to `module`, you bind to the whole JS module:  
-通过省略 `module` 中的字符串参数, 你可以绑定到整个 JS 模块：
+通过省略 `module` 中的字符串参数，你可以绑定到整个 JS 模块：
 
 <CodeTab labels={["ReScript", "JS Output (CommonJS)", "JS Output (ES6)"]}>
 
@@ -108,7 +108,7 @@ Depending on whether you're compiling ReScript to CommonJS or ES6 module, **this
 ### Import an ES6 Default Export ｜ 导入 ES6 的默认导出
 
 Use the value `"default"` on the right hand side:  
-使用右侧的 `"default"` 值:
+使用右侧的 `"default"` 值：
 
 <CodeTab labels={["ReScript", "JS Output (ES6)"]}>
 
@@ -129,12 +129,12 @@ var studentName = Student;
 
 As mentioned in ReScript's idiomatic [Import & Export](import-export.md), every let binding and module is exported by default to other ReScript modules (unless you use a `.resi` [interface file](module#signatures)). If you open up the compiled JS file, you'll see that these values can also directly be used by a _JavaScript_ file too.  
 
-正如 ReScript 惯用的 [导入 & 导出](import-export.md) 中提到的，默认情况下，每个 let 绑定和模块都会导出到其他 ReScript 模块(除非你使用 `.resi` [接口文件](module#signatures))，如果打开已编译的 JS 文件, 你将看到这些值也可以直接由 JavaScript 文件使用。
+正如 ReScript 惯用的 [导入 & 导出](import-export.md) 中提到的，默认情况下，每个 let 绑定和模块都会导出到其他 ReScript 模块(除非你使用 `.resi` [接口文件](module#signatures))，如果打开已编译的 JS 文件，你将看到这些值也可以直接由 JavaScript 文件使用。
 
 ### Export an ES6 Default Value ｜ 导出 ES6默认值
 
 If your JS project uses ES6 modules, you're likely exporting & importing some default values:  
-如果您的 JS 项目使用 ES6模块，你可能会导出和导入一些默认值:
+如果您的 JS 项目使用 ES6模块，你可能会导出和导入一些默认值：
 
 ```js
 // student.js
@@ -147,7 +147,7 @@ import studentName from 'student.js';
 ```
 
 A JavaScript default export is really just syntax sugar for a named export implicitly called `default` (now you know!). So to export a default value from ReScript, you can just do:  
-JavaScript 默认导出实际上只是隐式地称为 `default` 的命名导出的语法糖(现在您知道了！)。因此，要从 ReScript 导出默认值，只需执行以下操作:
+JavaScript 默认导出实际上只是隐式地称为 `default` 的命名导出的语法糖(现在您知道了！)。因此，要从 ReScript 导出默认值，只需执行以下操作：
 
 <CodeTab labels={["ReScript", "JS Output (CommonJS)", "JS Output (ES6)"]}>
 
@@ -175,7 +175,7 @@ export {
 </CodeTab>
 
 You can then import this default export as usual on the JS side:  
-然后，您可以像往常一样在 JS 端导入这个默认导出:
+然后，您可以像往常一样在 JS 端导入这个默认导出：
 
 ```js
 // teacher2.js

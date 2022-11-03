@@ -24,7 +24,7 @@ In short: **make sure your bindings below output what you'd have manually writte
 
 We support 2 JavaScript import/export formats:
 
-我们支持两种 JavaScript 导入/导出格式:
+我们支持两种 JavaScript 导入/导出格式：
 
 - CommonJS: `require('myFile')` and `module.exports = ...`.
 
@@ -65,7 +65,7 @@ var root = Path.dirname("/User/github");
 </CodeTab>
 
 Here's what the `external` does:  
-这是 `external` 的作用:
+这是 `external` 的作用：
 
 - `@module("path")`: pass the name of the JS module; in this case, `"path"`. The string can be anything: `"./src/myJsFile"`, `"@myNpmNamespace/myLib"`, etc.
 - `external`: the general keyword for declaring a value that exists on the JS side.  
@@ -108,7 +108,7 @@ Depending on whether you're compiling ReScript to CommonJS or ES6 module, **this
 ### Import an ES6 Default Export ｜ 导入 ES6 的默认导出
 
 Use the value `"default"` on the right hand side:  
-使用右侧的 `"default"` 值:
+使用右侧的 `"default"` 值：
 
 <CodeTab labels={["ReScript", "JS Output (ES6)"]}>
 
@@ -134,7 +134,7 @@ As mentioned in ReScript's idiomatic [Import & Export](import-export.md), every 
 ### Export an ES6 Default Value ｜ 导出 ES6默认值
 
 If your JS project uses ES6 modules, you're likely exporting & importing some default values:  
-如果您的 JS 项目使用 ES6模块，你可能会导出和导入一些默认值:
+如果您的 JS 项目使用 ES6模块，你可能会导出和导入一些默认值：
 
 ```js
 // student.js
@@ -147,7 +147,7 @@ import studentName from 'student.js';
 ```
 
 A JavaScript default export is really just syntax sugar for a named export implicitly called `default` (now you know!). So to export a default value from ReScript, you can just do:  
-JavaScript 默认导出实际上只是隐式地称为 `default` 的命名导出的语法糖(现在您知道了！)。因此，要从 ReScript 导出默认值，只需执行以下操作:
+JavaScript 默认导出实际上只是隐式地称为 `default` 的命名导出的语法糖(现在您知道了！)。因此，要从 ReScript 导出默认值，只需执行以下操作：
 
 <CodeTab labels={["ReScript", "JS Output (CommonJS)", "JS Output (ES6)"]}>
 
@@ -175,7 +175,7 @@ export {
 </CodeTab>
 
 You can then import this default export as usual on the JS side:  
-然后，您可以像往常一样在 JS 端导入这个默认导出:
+然后，您可以像往常一样在 JS 端导入这个默认导出：
 
 ```js
 // teacher2.js

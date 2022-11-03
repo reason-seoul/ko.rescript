@@ -16,7 +16,7 @@ However, the **concept** of a potentially nonexistent value is still useful, and
 
 We represent the existence and nonexistence of a value by wrapping it with the `option` type. Here's its definition from the standard library:
 
-我们通过在类型外包裹一层`option`类型来表示可能存在或不存在的值。这是标准库中的定义:
+我们通过在类型外包裹一层`option`类型来表示可能存在或不存在的值。这是标准库中的定义：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -41,7 +41,7 @@ It means "a value of type option is either None (representing nothing) or that a
 
 Here's a normal value:
 
-这是一个普通的值:
+这是一个普通的值：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -56,7 +56,7 @@ var licenseNumber = 5;
 
 To represent the concept of "maybe null", you'd turn this into an `option` type by wrapping it. For the sake of a more illustrative example, we'll put a condition around it:
 
-为了表示"可能为空"的概念，你需要在它外面包裹一层`option`把它变成`option`类型。为了更有效的展示使用方式，我们写一个关于这点的条件表达式:
+为了表示"可能为空"的概念，你需要在它外面包裹一层`option`把它变成`option`类型。为了更有效的展示使用方式，我们写一个关于这点的条件表达式：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -108,7 +108,7 @@ By turning your ordinary number into an `option` type, and by forcing you to han
 
 The `option` type is common enough that we special-case it when compiling to JavaScript:
 
-`option`类型很常见，所以我们在编译成JavaScript时会对其进行特殊处理:
+`option`类型很常见，所以我们在编译成JavaScript时会对其进行特殊处理：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -144,7 +144,7 @@ compiles to `undefined`! If you've got e.g. a string in JavaScript that you know
 
 The option-to-undefined translation isn't perfect, because on our side, `option` values can be composed:
 
-`option`到`undefined`的编译并不完美，因为在ReScript中，`option`值是可以组合的:
+`option`到`undefined`的编译并不完美，因为在ReScript中，`option`值是可以组合的：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -178,7 +178,7 @@ var x = Caml_option.some(undefined);
 
 What's this `Caml_option.some` thing? Why can't this compile to `undefined`? Long story short, when dealing with a polymorphic `option` type (aka `option<'a>`, for any `'a`), many operations become tricky if we don't mark the value with some special annotation. If this doesn't make sense, don't worry; just remember the following rule:
 
-这里的`Caml_option.some`是什么? 为什么不饿能直接编译成`undefined`? 长话短说，当处理多态的`option`类型时(也就是 `option<'a>`, `'a`为任意的类型), 很多操作如果我们不为值加上特殊的签名都会变得棘手。如果这不够有说服力，别担心; 记住下面的规则:
+这里的`Caml_option.some`是什么? 为什么不饿能直接编译成`undefined`? 长话短说，当处理多态的`option`类型时(也就是 `option<'a>`, `'a`为任意的类型), 很多操作如果我们不为值加上特殊的签名都会变得棘手。如果这不够有说服力，别担心; 记住下面的规则：
 
 - **Never, EVER, pass a nested `option` value (e.g. `Some(Some(Some(5)))`) into the JS side.**
 - **Never, EVER, annotate a value coming from JS as `option<'a>`. Always give the concrete, non-polymorphic type.**
@@ -218,7 +218,7 @@ To create a JS `null`, use the value `Js.Nullable.null`. To create a JS `undefin
 
 To create such a nullable string from our side (presumably to pass it to the JS side, for interop purpose), do:
 
-如果要从RsScript这边创建这样一个可空(nullable)的字符串(先假定是为了把它传递给JS那边，以达到互操作的目的)可以这么做:
+如果要从RsScript这边创建这样一个可空(nullable)的字符串(先假定是为了把它传递给JS那边，以达到互操作的目的)可以这么做：
 
 
 <CodeTab labels={["ReScript", "JS Output"]}>

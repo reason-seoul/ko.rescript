@@ -12,7 +12,7 @@ ReScript提供了一个小但很强大的操作符`->`, 称为 "管道(pipe)", �
 
 Why would you use it? Imagine you have the following:
 
-为什么你会用到它呢? 想象一下下面的代码:
+为什么你会用到它呢? 想象一下下面的代码：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -27,7 +27,7 @@ validateAge(getAge(parseData(person)));
 
 This is slightly hard to read, since you need to read the code from the innermost part, to the outer parts. Use pipe to streamline it:
 
-这有点难读，因为你需要从最里面的部分开始读，一直到最外面的部分。可以使用管道来精简(streamline)它:
+这有点难读，因为你需要从最里面的部分开始读，一直到最外面的部分。可以使用管道来精简(streamline)它：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -99,7 +99,7 @@ _阅读这一小节需要先理解[JS绑定API](bind-to-js-function.md#object-me
 
 JavaScript's APIs are often attached to objects, and are often chainable, like so:
 
-JavaScript的API通常关联在对象上，而且通常是可以链式调用的，像这样:
+JavaScript的API通常关联在对象上，而且通常是可以链式调用的，像这样：
 
 ```js
 const result = [1, 2, 3].map(a => a + 1).filter(a => a % 2 === 0);
@@ -111,7 +111,7 @@ asyncRequest()
 
 Assuming we don't need the chaining behavior above, we'd bind to each case this using [`@send`](/syntax-lookup#send-decorator) from the aforementioned binding API page:
 
-假设我们不需要上面的连锁行为，我们会用上述绑定API页面中的[`@send`](/syntax-lookup#send-decorator)来绑定:
+假设我们不需要上面的连锁行为，我们会用上述绑定API页面中的[`@send`](/syntax-lookup#send-decorator)来绑定：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -129,7 +129,7 @@ type request
 
 You'd use them like this:
 
-你可以这样使用它们:
+你可以这样使用它们：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -155,7 +155,7 @@ asyncRequest().setWaitDuration(4000).send();
 
 This looks much worse than the JS counterpart! Clean it up visually with pipe:
 
-这看起来比对应的JS部分还要糟糕得多! 用管道在视觉上把它清理干净:
+这看起来比对应的JS部分还要糟糕得多! 用管道在视觉上把它清理干净：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -182,7 +182,7 @@ asyncRequest().setWaitDuration(4000).send();
 
 You can pipe into a variant's constructor as if it was a function:
 
-你可以把管道引入到一个变体的构造器，就像构造器是函数一样:
+你可以把管道引入到一个变体的构造器，就像构造器是函数一样：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -197,7 +197,7 @@ var result = preprocess(name);
 
 We turn this into:
 
-会把它编译为:
+会把它编译为：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -218,7 +218,7 @@ var result = preprocess(name);
 
 A placeholder is written as an underscore and it tells ReScript that you want to fill in an argument of a function later. These two have equivalent meaning:
 
-通过下划线来表达一个占位符，它告诉ReScript你想在以后填入一个函数的参数。这两者的意义相当:
+通过下划线来表达一个占位符，它告诉ReScript你想在以后填入一个函数的参数。这两者的意义相当：
 
 ```res
 let addTo7 = (x) => add3(3, x, 4)
@@ -231,7 +231,7 @@ Sometimes you don't want to pipe the value you have into the first position. In 
 
 Let's say you have a function `namePerson`, which takes a `person` then a `name` argument. If you are transforming a person then pipe will work as-is:
 
-假设你有一个名为`namePerson`的函数，传入一个`person`和一个`name`参数。如果你想用管道运算符传递一个person可以这样做:
+假设你有一个名为`namePerson`的函数，传入一个`person`和一个`name`参数。如果你想用管道运算符传递一个person可以这样做：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -264,7 +264,7 @@ namePerson(personDetails, __x);
 
 This allows you to pipe into any positional argument. It also works for named arguments:
 
-这让你可以将任何值"管道"进任何位置参数。这种机制同样对命名参数有效:
+这让你可以将任何值"管道"进任何位置参数。这种机制同样对命名参数有效：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

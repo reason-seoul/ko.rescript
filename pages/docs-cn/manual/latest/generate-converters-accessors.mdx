@@ -94,7 +94,7 @@ Variants constructors with payloads generate functions, payload-less constructor
 let s = submit("hello"); /* gives Submit("hello") */
 ```
 
-可以在以下情况中使用:
+可以在以下情况中使用：
 
 - When you're passing the accessor function as a higher-order function (which plain variant constructors aren't).
 - When you'd like the JS side to use these values & functions opaquely and pass you back a variant constructor (since JS has no such thing).
@@ -521,7 +521,7 @@ same scope where the type is defined, you will eventually run into value shadowi
 很多时候，多个抽象类型会拥有类似的属性。由于ReScript会在类型被定义的作用域中展开全部的抽象getter、 setter 和创建函数（creation functions），最终它会导致值遮蔽（value shadowing）问题。
 
 **For example:**
-**例如:**
+**例如：**
 
 ```res
 @deriving(abstract)

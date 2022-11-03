@@ -146,7 +146,7 @@ So naturally, `<MyComponent> myChild </MyComponent>` desugars to `@JSX MyCompone
 
 To solve the above problem, we've introduced
 
-为了解决上面的问题，我们引入这样的用法:
+为了解决上面的问题，我们引入这样的用法：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -161,7 +161,7 @@ React.createElement(MyComponent.make, MyComponent.makeProps(myChild, undefined))
 
 This passes the value `myChild` _without_ wrapping it in a list (or array, in the case of ReasonReact). Aka, this desugars to:
 
-传递的值 `myChild`没有包裹到一个列表中(在ReasonReact的情况下是数组). 也就是去糖为:
+传递的值 `myChild`没有包裹到一个列表中(在ReasonReact的情况下是数组). 也就是去糖为：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

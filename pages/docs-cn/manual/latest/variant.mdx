@@ -131,7 +131,7 @@ var friendAccount = {
 <!-- 
 If a variant payload has multiple fields, you can use a record-like syntax to label them for better readability:
  -->
-一个变体的成员包含多个字段，你可以使用一个类型记录的语法标记它们以提升可读性:
+一个变体的成员包含多个字段，你可以使用一个类型记录的语法标记它们以提升可读性：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -197,7 +197,7 @@ See the [Pattern Matching/Destructuring](pattern-matching-destructuring) section
 <!-- 
 A variant value compiles to 3 possible JavaScript outputs depending on its type declaration:
  -->
-变体值可能会编译为三类不同的输出，取决于其类型声明:
+变体值可能会编译为三类不同的输出，取决于其类型声明：
 <!-- 
 - If the variant value is a constructor with no payload, it compiles to a number.
 - If it's a constructor with a payload, it compiles to an object with the field `TAG` and the field `_0` for the first payload, `_1` for the second payload, etc.
@@ -211,7 +211,7 @@ A variant value compiles to 3 possible JavaScript outputs depending on its type 
 <!-- 
 Check the output in these examples:
  -->
-检查这些例子的JS编译结果:
+检查这些例子的JS编译结果：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -319,7 +319,7 @@ _这一章假设你知道了我们的JavaScript互操作机制跳过这一章如
 <!-- 
 Quite a few JS libraries use functions that can accept many types of arguments. In these cases, it's very tempting to model them as variants. For example, suppose there's a `myLibrary.draw` JS function that takes in either a `number` or a `string`. You might be tempted to bind it like so:
  -->
-相当多的JS库使用可以接受多种类型参数的函数，在这种情况下，将它们建模为变体是非常诱人的。 例如，假设有一个`myLibrary.draw`JS函数，可以接受`数字`或`字符串`, 你可能会尝试这样来绑定它:
+相当多的JS库使用可以接受多种类型参数的函数，在这种情况下，将它们建模为变体是非常诱人的。 例如，假设有一个`myLibrary.draw`JS函数，可以接受`数字`或`字符串`, 你可能会尝试这样来绑定它：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -397,7 +397,7 @@ For example, some folks wonder how the type system can safely eliminate badly fo
 <!-- 
 Performance-wise, a variant can potentially tremendously speed up your program's logic. Here's a piece of JavaScript:
 -->
-从性能上讲，变体可以潜在地极大地加快你的程序逻辑。 这里有一段JavaScript的内容:
+从性能上讲，变体可以潜在地极大地加快你的程序逻辑。 这里有一段JavaScript的内容：
 
 ```js
 let data = 'dog'
@@ -412,7 +412,7 @@ if (data === 'dog') {
 <!-- 
 There's a linear amount of branch checking here (`O(n)`). Compare this to using a ReScript variant:
 -->
-这里有一个线性复杂度的分支检查(`O(n)`). 与使用ReScript变体的比较:
+这里有一个线性复杂度的分支检查(`O(n)`). 与使用ReScript变体的比较：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -439,6 +439,6 @@ The compiler sees the variant, then
 2. compiles `switch` to a constant-time jump table (`O(1)`).
 -->
 
-编译器会看到变体，然后:
+编译器会看到变体，然后：
 1. 从概念上把它们转变为 `type animal = 0 | 1 | 2`
 2. 把`switch`编译成一个拥有常量时间的跳转表(`O(1)`).

@@ -507,7 +507,7 @@ x.onload = function(v) {
 
 Here, `this` would point to `x` (actually, it depends on how `onload` is called, but we digress). It's not correct to declare `x.onload` of type `(. unit) -> unit`. Instead, we introduced a special attribute, `this`, which allows us to type `x` as so:
 
-这里的`this`是指向`x`的（实际上，这取决于`onload`方法是如何被调用的，但是讨论这个我们就偏题了）。将`x.onload`的类型声明为`(. unit) -> unit`是不对的，取而代之的是，我们引入了一个特殊的属性，`this`, 能让我们用下面的方式为 `x` 作类型声明:
+这里的`this`是指向`x`的（实际上，这取决于`onload`方法是如何被调用的，但是讨论这个我们就偏题了）。将`x.onload`的类型声明为`(. unit) -> unit`是不对的，取而代之的是，我们引入了一个特殊的属性，`this`, 能让我们用下面的方式为 `x` 作类型声明：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

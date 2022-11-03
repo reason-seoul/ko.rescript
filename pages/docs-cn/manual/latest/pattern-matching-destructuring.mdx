@@ -8,7 +8,7 @@ canonical: "/docs/manual/latest/pattern-matching-destructuring"
 
 One of ReScript's **best** feature is our pattern matching. Pattern matching combines 3 brilliant features into one:
 
-ReScript**最棒**的特性之一就是模式匹配了。模式匹配将3个很棒的特性整合到了一起:
+ReScript**最棒**的特性之一就是模式匹配了。模式匹配将3个很棒的特性整合到了一起：
 
 - Destructuring.
 - `switch` based on shape of data.
@@ -45,7 +45,7 @@ console.log(10);
 
 Destructuring works with most built-in data structures:
 
-大部分内置数据析构都是可以被析构:
+大部分内置数据析构都是可以被析构：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -105,7 +105,7 @@ var myList = {
 
 You can also use destructuring anywhere you'd usually put a binding:
 
-你可以在任何创建绑定的地方使用析构:
+你可以在任何创建绑定的地方使用析构：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -173,7 +173,7 @@ While the destructuring aspect of pattern matching is nice, it doesn't really ch
 
 Consider a variant:
 
-考虑如下变体:
+考虑如下变体：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -242,7 +242,7 @@ Suddenly, your if-elses that messily checks some structure of the value got turn
 
 Here's a real-world scenario that'd be a headache to code in other languages. Given this data structure:
 
-下面是一段真实场景的代码，在别的语言中表达相同的功能是很头疼的。比如说对于这个数据结构:
+下面是一段真实场景的代码，在别的语言中表达相同的功能是很头疼的。比如说对于这个数据结构：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -274,7 +274,7 @@ Imagine this requirement:
 - If the student has a gpa of 0 and is on vacations or sabbatical, display a different message.
 - A catch-all message for a student.
 
-假如有以下需求:
+假如有以下需求：
 - 如果一个人是一名老师，且它的名字是"Marry"或"Joe"的话，和他/她非正式的打声招呼。
 - 正式的和别的老师打招呼。
 - 如果一个人是个学生，并且他们通过了这个学期，祝贺他/她的分数。
@@ -356,7 +356,7 @@ if (person1.TAG) {
 - while extracting the `daysLeft` number from the latter case
 - and assigned the greeting to the binding `message`.
 
-**注意** 我们是如何:
+**注意** 我们是如何：
 - 简洁的深入检查值的内部
 - 使用**嵌套的模式检查** `"Mary" | "Joe"` 和 `Vacations | Sabbatical`
 - 在后面的分支中把`dayLeft`值抽出来的
@@ -386,7 +386,7 @@ var categoryId = isBig ? (myAnimal + 1) | 0 : myAnimal >= 2 ? 5 : 4;
 
 **Note** how pattern matching on a tuple is equivalent to a 2D table:
 
-**注意** 在元组上的模式匹配等价于二维表的查找:
+**注意** 在元组上的模式匹配等价于二维表的查找：
 
 isBig \ myAnimal | Dog | Cat | Bird
 -----------------|-----|-----|------
@@ -435,7 +435,7 @@ Having multiple cases fall into the same handling can clean up certain types of 
 
 If you have a value like `Teacher(payload)` where you just want to pattern match on the `Teacher` part and ignore the `payload` completely, you can use the `_` wildcard like this:
 
-如果你有个像`Teacher(payload)`的值，你可能只想匹配`Teacher`部分而完全忽略`payload`部分，这种情况你可以使用下划线`_`, 像这样:
+如果你有个像`Teacher(payload)`的值，你可能只想匹配`Teacher`部分而完全忽略`payload`部分，这种情况你可以使用下划线`_`, 像这样：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -457,7 +457,7 @@ if (person1.TAG) {
 
 `_` also works at the top level of the `switch`, serving as a catch-all condition:
 
-下划线也可以`_`用在`switch`的顶层，当作一个默认分支:
+下划线也可以`_`用在`switch`的顶层，当作一个默认分支：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -479,7 +479,7 @@ if (typeof myStatus === "number" || myStatus.TAG) {
 
 **Do not** abuse a top-level catch-all condition. Instead, prefer writing out all the cases:
 
-**不要**过度使用默认分支，最好写下每种情况:
+**不要**过度使用默认分支，最好写下每种情况：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -508,7 +508,7 @@ Slightly more verbose, but a one-time writing effort. This helps when you add a 
 
 Sometime, you want to check more than the shape of a value. You want to also run some arbitrary check on it. You might be tempted to write this:
 
-有的时候你可能会想检查除了值的形状以外的东西，在值上进行各种各样的检查。你可能会尝试这样写:
+有的时候你可能会想检查除了值的形状以外的东西，在值上进行各种各样的检查。你可能会尝试这样写：
 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
@@ -567,7 +567,7 @@ if (person1.TAG) {
 
 **Note:** ReScript versions < 9.0 had a `when` clause, not an `if` clause.  Rescript 9.0 changed `when` to `if`.  (`when` may still work, but is deprecated.)
 
-**注意:** ReScript版本 < 9.0 使用的是`when`子句而不是`if`子句。ReScript在9.0版本从`when`切换到了`if`. (`when`任然可以使用，只是被废弃了。)
+**注意：** ReScript版本 < 9.0 使用的是`when`子句而不是`if`子句。ReScript在9.0版本从`when`切换到了`if`. (`when`任然可以使用，只是被废弃了。)
 
 ### Match on Exceptions | 匹配异常值
 
@@ -735,7 +735,7 @@ As if the above features aren't enough, ReScript also provides arguably the most
 
 Let's revisit one of the above examples:
 
-我们再来重审一下上面的例子:
+我们再来重审一下上面的例子：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -847,7 +847,7 @@ Hopefully you can see how pattern matching is a game changer for writing correct
 
 Below is some advice:
 
-下面是一些建议:
+下面是一些建议：
 
 Avoid using the wildcard `_` unnecessarily.  Using the wildcard `_` will bypass the compiler's exhaustiveness check.  Consequently, the compiler will not be able to notify you of probable errors when you add a new case to a variant. Try only using `_` against infinite possibilities, e.g. string, int, etc.
 
@@ -888,7 +888,7 @@ function optionBoolToBool(opt) {
 
 Now that's just silly =). Let's turn it into pattern-matching:
 
-现在这只是不那么聪明的做法，现在我们将其转为模式匹配:
+现在这只是不那么聪明的做法，现在我们将其转为模式匹配：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -914,7 +914,7 @@ function optionBoolToBool(opt) {
 
 Slightly better, but still nested. Pattern-matching allows you to do this:
 
-看起来没那么傻了，但任然存在嵌套，模式匹配让你可以这么做:
+看起来没那么傻了，但任然存在嵌套，模式匹配让你可以这么做：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -941,7 +941,7 @@ function optionBoolToBool(opt) {
 
 Much more linear-looking! Now, you might be tempted to do this:
 
-看起来更线性化了! 现在，你可能会尝试这么做:
+看起来更线性化了! 现在，你可能会尝试这么做：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -967,7 +967,7 @@ function optionBoolToBool(opt) {
 
 Which is much more concise, but kills the exhaustiveness check mentioned above; refrain from using that. This is the best:
 
-这缺失更简洁了，但会破坏上面提到的穷举检查; 尽量不要使用这个。这是最好的写法:
+这缺失更简洁了，但会破坏上面提到的穷举检查; 尽量不要使用这个。这是最好的写法：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

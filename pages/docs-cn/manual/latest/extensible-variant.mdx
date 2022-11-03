@@ -41,7 +41,7 @@ The `..` in the type declaration above defines an extensible variant `type t`. T
 
 **Note:** Don't forget the leading `type` keyword when using the `+=` operator!
 
-**注意:** 在使用 `+=` 操作符时不要忘记开头的 `type` 关键字。
+**注意：** 在使用 `+=` 操作符时不要忘记开头的 `type` 关键字。
 
 ## Pattern Matching Caveats | 模式匹配警告
 
@@ -79,7 +79,7 @@ function print(v) {
 
 **Fun fact:** In ReScript, [exceptions](./exception) are actually extensible variants under the hood, so `exception UserError(string)` is equivalent to `type exn += UserError(string)`. It's one of the very few use-case where extensible variants make sense.
 
-**一个有趣的事实:** 在 ReScript 中，[异常](./exception) 在底层中实际上是可扩展变体，因此 `exception UserError(string)` 与 `type exn += UserError(string)` 等价。这是极少数可扩展变体的有意义的用例之一。
+**一个有趣的事实：** 在 ReScript 中，[异常](./exception) 在底层中实际上是可扩展变体，因此 `exception UserError(string)` 与 `type exn += UserError(string)` 等价。这是极少数可扩展变体的有意义的用例之一。
 
 We usually recommend sticking with common [variants](./variant) as much as possible to reap the benefits of exhaustive pattern matching.
 

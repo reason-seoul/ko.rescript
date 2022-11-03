@@ -64,11 +64,11 @@ Check the new output! Clean.
 
 Why would you ever want a variant or a record with a single payload? Why not just... pass the payload? Here's one use-case for variant.
 
-为什么会需要一个变体或具有单个有效负载的记录? 为什么不只是。..直接传递有效成员? 这是变体的一个用例:
+为什么会需要一个变体或具有单个有效负载的记录? 为什么不只是。..直接传递有效成员? 这是变体的一个用例：
 
 Suppose you have a game with a local/global coordinate system:
 
-假设您有一个具有局部/全局坐标系的游戏:
+假设您有一个具有局部/全局坐标系的游戏：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -138,7 +138,7 @@ let playerLocalCoordinates = Local({x: 20.5, y: 30.5})
 // 现在这么写会报错!
 // renderDot(playerLocalCoordinates)
 // We're forced to do this instead:
-// 现在只能这么写:
+// 现在只能这么写：
 renderDot(playerLocalCoordinates->toWorldCoordinates)
 ```
 ```js

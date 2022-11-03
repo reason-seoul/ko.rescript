@@ -18,7 +18,7 @@ You've seen how ReScript's idiomatic [Import & Export](import-export.md) works. 
 
 In short: **make sure your bindings below output what you'd have manually written in JS**.
 
-简而言之: **确保下面的绑定输出了您在 JS 中手动编写的内容**。  
+简而言之：**确保下面的绑定输出了您在 JS 中手动编写的内容**。  
 
 ## Output Format ｜ 输出格式
 
@@ -73,7 +73,7 @@ Here's what the `external` does:
 - `string => string`: the type signature of `dirname`. Mandatory for `external`s.
 - `= "dirname"`: the name of the variable inside the `path` JS module. There's repetition in writing the first and second `dirname`, because sometime the binding name you want to use on the ReScript side is different than the variable name the JS module exported.
 
-- `@module("path")`: 传递 JS 模块的名称; 在本例中，`"path"`. 可以是任何形式的字符串: `"./src/myJsFile"`, `"@myNpmNamespace/myLib"`, 等等。
+- `@module("path")`: 传递 JS 模块的名称; 在本例中，`"path"`. 可以是任何形式的字符串：`"./src/myJsFile"`, `"@myNpmNamespace/myLib"`, 等等。
 - `external`: 用于声明存在于 JS 端的值的通用关键字。
 - `dirname`: 你将在 ReScript 端使用的绑定名称。
 - `string => string`: `dirname` 的类型签名， 强制 `external` 的。

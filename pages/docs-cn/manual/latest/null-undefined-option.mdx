@@ -31,7 +31,7 @@ type option<'a> = None | Some('a)
 
 It means "a value of type option is either None (representing nothing) or that actual value wrapped in a Some".
 
-这意味着: "option类型的值可以是None(表示什么也没有)或者被Some包裹的一个真实的值". 
+这意味着："option类型的值可以是None(表示什么也没有)或者被Some包裹的一个真实的值". 
 
 **Note** how the `option` type is just a regular [variant](variant.md).
 
@@ -159,7 +159,7 @@ var x = 5;
 
 This still compiles to `5`, but this gets troublesome:
 
-这仍然会编译为`5`, 但是带来了一些困扰: 
+这仍然会编译为`5`, 但是带来了一些困扰：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -183,7 +183,7 @@ What's this `Caml_option.some` thing? Why can't this compile to `undefined`? Lon
 - **Never, EVER, pass a nested `option` value (e.g. `Some(Some(Some(5)))`) into the JS side.**
 - **Never, EVER, annotate a value coming from JS as `option<'a>`. Always give the concrete, non-polymorphic type.**
 
-- **永远不要传递一个嵌套的`option`值(比如说: `Some(Some(Some(5)))`)到JS**
+- **永远不要传递一个嵌套的`option`值(比如说：`Some(Some(Some(5)))`)到JS**
 - **永远不要标注一个来自于JS的值为`option<'a>`类型。每次都把具体的非多态的类型加上。**
 
 ### Caveat 2 | 警告 2
@@ -192,7 +192,7 @@ Unfortunately, lots of times, your JavaScript value might be _both_ `null` or `u
 
 不幸的是，大部分的时间，你的JavaScript值可能 _同时_ 是`null`或`undefined`. 很不幸，在那种情况下，你不能把那个值当作`option<int>`类型，因为当处理`None`的时候，我们的`option`类型只会检查`undefined`而不是`null`.
 
-#### Solution: More Sophisticated `undefined` & `null` Interop | 解决方法: 更加复杂的`undefined`和`null`互操作
+#### Solution: More Sophisticated `undefined` & `null` Interop | 解决方法：更加复杂的`undefined`和`null`互操作
 
 To solve this, we provide access to more elaborate `null` and `undefined` helpers through the [`Js.Nullable`](api/js/nullable) module. This somewhat works like an `option` type, but is different from it.
 

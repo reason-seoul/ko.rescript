@@ -11,7 +11,7 @@ canonical: "/docs/manual/latest/variant"
 <!-- 
 So far, most of ReScript's data structures might look familiar to you. This section introduces an extremely important, and perhaps unfamiliar, data structure: variant.
  -->
-到目前为止，ReScript的大多数数据结构对你来说可能已经很熟悉了。 本节介绍了一个极其重要的，也许是你之前不熟悉的数据结构: 变体。
+到目前为止，ReScript的大多数数据结构对你来说可能已经很熟悉了。 本节介绍了一个极其重要的，也许是你之前不熟悉的数据结构：变体。
 <!-- 
 Most data structures in most languages are about "this **and** that". A variant allows us to express "this **or** that".
  -->
@@ -102,7 +102,7 @@ type account =
 <!-- 
 Here, `Instagram` holds a `string`, and `Facebook` holds a `string` and an `int`. Usage:
  -->
-这里`Instagram`变体包含一个`string`类型，`Facebook`变体包含`string`和`int`. 比如说: 
+这里`Instagram`变体包含一个`string`类型，`Facebook`变体包含`string`和`int`. 比如说：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -307,7 +307,7 @@ type account2 =
 <!-- 
 If you come from an untyped language, you might be tempted to try `type myType = int | string`. This isn't possible in ReScript; you'd have to give each branch a constructor: `type myType = Int(int) | String(string)`. The former looks nice, but causes lots of trouble down the line.
  -->
-如果你经常使用无类型语言，你可能会尝试写出这样的定义`type myType = int | string`. 这在ReScript中是不可能的; 你不得不为每一个分支加上一个构造器: `type myType = Int(int) | String(string)`. 前一个初看起来不错，但后患无穷。
+如果你经常使用无类型语言，你可能会尝试写出这样的定义`type myType = int | string`. 这在ReScript中是不可能的; 你不得不为每一个分支加上一个构造器：`type myType = Int(int) | String(string)`. 前一个初看起来不错，但后患无穷。
 <!-- 
 ### Interop with JavaScript 
  -->
@@ -381,7 +381,7 @@ ReScript也提供了[一些其他方式](bind-to-js-function.md#modeling-polymor
 <!-- 
 Please refer to this [record section](record#tips--tricks). Variants are the same: a function can't accept an arbitrary constructor shared by two different variants. Again, such feature exists; it's called a polymorphic variant. We'll talk about this in the future =).
 -->
-请看[记录类型的这一节](record#tips--tricks). 变体也是一样的: 一个函数不能随意的接受不同变体的构造器。 再一次声明，这样的特性是存在的，我们会在未来继续提到这个特性。
+请看[记录类型的这一节](record#tips--tricks). 变体也是一样的：一个函数不能随意的接受不同变体的构造器。 再一次声明，这样的特性是存在的，我们会在未来继续提到这个特性。
 <!-- 
 ## Design Decisions 
 -->

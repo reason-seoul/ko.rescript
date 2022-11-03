@@ -144,9 +144,9 @@ See the familiar `Js.String` API in the [API docs](api/js/string). Since a ReScr
 -->
 
 - 一个单独的id: `var BLUE_COLOR = "blue"`
-- 将标识符放入一个数据结构中: `var BLUE = "blue" var RED = "red" var colors = [BLUE, RED]`
-- 对象的属性: `person["age"] = 24`
-- 作为枚举使用: `if (audio.canPlayType() === 'probably') {...}` [(ಠ_ಠ)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canPlayType#Return_value)
+- 将标识符放入一个数据结构中：`var BLUE = "blue" var RED = "red" var colors = [BLUE, RED]`
+- 对象的属性：`person["age"] = 24`
+- 作为枚举使用：`if (audio.canPlayType() === 'probably') {...}` [(ಠ_ಠ)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canPlayType#Return_value)
 - 在习惯了ReScript作为替代品之后，你很快就会发现，其他疯狂的模式是多么可怕。
 
 <!-- 
@@ -223,7 +223,7 @@ ReScript的布尔值的类型是`bool`，可以是`true`或`false`。 一下是�
 - `||`: 逻辑或。
 - `!`: 逻辑非。
 - `<=`, `>=`，`<`, `>`
-- `==`: 结构化相等，深入的比较数据结构: `(1, 2) == (1, 2)` 等于 `true`。 很方便，但用的时候需要注意
+- `==`: 结构化相等，深入的比较数据结构：`(1, 2) == (1, 2)` 等于 `true`。 很方便，但用的时候需要注意
 - `===`: 引用相等，浅层的比较数据结构。 `(1, 2) === (1, 2)` 等于 `false`。 `let myTuple = (1, 2); myTuple === myTuple` is `true`。
 - `!=`: 结构化不相等。
 - `!==`: 引用相等。
@@ -235,7 +235,7 @@ ReScript的 `true/false` 编译到 JavaScript `true/false`。
 
 <!-- 32-bits, truncated when necessary. We provide the usual operations on them: `+`, `-`, `*`, `/`, etc. See [Js.Int](api/js/int) for helper functions. -->
 
-32位整数，可能在需要的时候被裁剪。 我们为它们提供常用的操作: `+`，`-`，`*`，`/`... 。 [Js.Int](api/js/int)模块包含一些整数的辅助函数。
+32位整数，可能在需要的时候被裁剪。 我们为它们提供常用的操作：`+`，`-`，`*`，`/`... 。 [Js.Int](api/js/int)模块包含一些整数的辅助函数。
 
 <!-- 
 **Be careful when you bind to JavaScript numbers!** Since ReScript integers have a much smaller range than JavaScript numbers, data might get lost when dealing with large numbers. In those cases it’s much safer to bind the numbers as **float**. Be extra mindful of this when binding to JavaScript Dates and their epoch time.  

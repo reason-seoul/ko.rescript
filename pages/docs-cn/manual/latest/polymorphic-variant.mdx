@@ -334,7 +334,7 @@ More advanced usage examples for poly variant interop can be found in [Bind to J
 
 Let's assume we have a TypeScript module that expresses following enum export:
 
-假设我们有一个export如下的枚举值的TypeScript模块: 
+假设我们有一个export如下的枚举值的TypeScript模块：
 
 ```js
 // direction.js
@@ -369,7 +369,7 @@ var myDirection = DirectionJs.myDirection;
 
 Again: since we were using poly variants, the JS Output is practically zero-cost and doesn't add any extra code!
 
-再次提醒: 因为我们正在用多态变体，从JS的编译输出的角度来说是零开销的并且不会引入额外代码。
+再次提醒：因为我们正在用多态变体，从JS的编译输出的角度来说是零开销的并且不会引入额外代码。
 
 ## Extra Constraints on Types | 额外的类型约束
 
@@ -445,13 +445,13 @@ Here, the compiler will enforce the user to define `#Blue | #DeepBlue | #LightBl
 
 **Note:** Since we want to define an extensible poly variant, we need to provide a type placeholder `<'a>`, and also add `as 'a` after the poly variant declaration, which essentially means: "Given type `'a` is constraint to the minimum set of constructors (`#Blue | #DeepBlue | #LightBlue`) defined in `basicBlueTone`".
 
-**注意:** 因为我们想要定义可扩展的多态变体，我们需要一个类型占位符`<'a>`, 并且需要一个在类型声明后面加上 `as 'a` , 基本上是在说: "给我的类型`'a`是要满足最小的构造器集合(`#Blue | #DeepBlue | #LightBlue`)的约束，这些约束定义在`basicBlueTone`中".
+**注意:** 因为我们想要定义可扩展的多态变体，我们需要一个类型占位符`<'a>`, 并且需要一个在类型声明后面加上 `as 'a` , 基本上是在说："给我的类型`'a`是要满足最小的构造器集合(`#Blue | #DeepBlue | #LightBlue`)的约束，这些约束定义在`basicBlueTone`中".
 
 ### Upper Bound `[<` | 上界定义 `[<`
 
 The upper bound works in the opposite way than a lower bound: the extending type may only use constructors that are stated in the upper bound constraint.
 
-上界定义的工作方式和下界定义相反: 扩展的类型只能使用上界约束中的构造器。
+上界定义的工作方式和下界定义相反：扩展的类型只能使用上界约束中的构造器。
 
 Here another example, but with red colors:
 

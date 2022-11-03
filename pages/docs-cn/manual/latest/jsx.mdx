@@ -16,7 +16,7 @@ ReScript 支持 JSX 语法，与 [ReactJS](https://facebook.github.io/react/docs
 
 **Note** for [ReasonReact](https://reasonml.github.io/reason-react/en/) readers: this isn't what ReasonReact turns JSX into, in the end. See Usage section for more info.
 
-**注意**, 对于使用[ReasonReact](https://reasonml.github.io/reason-react/en/)的读者: 这并不是ReasonReact最终将JSX变成的东西，更多信息请见用法部分。
+**注意**, 对于使用[ReasonReact](https://reasonml.github.io/reason-react/en/)的读者：这并不是ReasonReact最终将JSX变成的东西，更多信息请见用法部分。
 
 ## Capitalized Tag | 首字母大写标签
 
@@ -247,7 +247,7 @@ React.createElement(
 - Punning!
 
 - 属性和子节点并没有强制要求`{}`, 但为了便于学习我们还是展示了它们。一旦你格式化了你的文件，它们中的一些就会消失，一些变成了括号。
-- 没有对JSX prop展开的支持: `<Comp {...props}}. />`. 虽然有些关联，但我们确实有子节点展开，像上面描述的那样`<Comp> ...children </Comp>`.
+- 没有对JSX prop展开的支持：`<Comp {...props}}. />`. 虽然有些关联，但我们确实有子节点展开，像上面描述的那样`<Comp> ...children </Comp>`.
 - Punning
 
 ### Punning | 双关语(Prunning)
@@ -285,7 +285,7 @@ Consequently, a Reason JSX component can cram in a few more props before reachin
 For library authors wanting to take advantage of the JSX: the `@JSX` attribute above is a hook for potential ppx macros to spot a function wanting to format as JSX. Once you spot the function, you can turn it into any other expression.
 
 
-对于想要利用JSX的库作者来说: 上面的`@JSX`属性是潜在的ppx宏的一个钩子，可以发现想要格式化为JSX的函数。一旦你发现了这个函数，你可以把它变成任何其他表达式。
+对于想要利用JSX的库作者来说：上面的`@JSX`属性是潜在的ppx宏的一个钩子，可以发现想要格式化为JSX的函数。一旦你发现了这个函数，你可以把它变成任何其他表达式。
 
 
 This way, everyone gets to benefit the JSX syntax without needing to opt into a specific library using it, e.g. ReasonReact.
@@ -295,7 +295,7 @@ This way, everyone gets to benefit the JSX syntax without needing to opt into a 
 
 JSX calls supports the features of [labeled functions](function.md#labeled-arguments): optional, explicitly passed optional and optional with default.
 
-JSX调用支持[标签函数](function.md#labeled-arguments)的特征: 可选参数，显式传递的可选参数和默认的可选参数。
+JSX调用支持[标签函数](function.md#labeled-arguments)的特征：可选参数，显式传递的可选参数和默认的可选参数。
 
 ## Design Decisions | 设计决策
 

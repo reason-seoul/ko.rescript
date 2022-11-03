@@ -29,7 +29,7 @@ ReScript看起来像JS，运行起来像JS，并且可以编译到简洁、可�
 
 <!-- - TypeScript's (admittedly noble) goal is to cover the entire JavaScript feature set and more. **ReScript covers only a curated subset of JavaScript**. For example, we emphasize plain data + functions over classes, clean [pattern matching](pattern-matching-destructuring.md) over fragile `if`s and virtual dispatches, [proper data modeling](variant.md) over string abuse, etc. JavaScript supersets will only grow larger over time; ReScript doesn't. \* -->
 
-- TypeScript的目标是在覆盖整个JavaScript语言特性的基础上提供更多的特性。**ReScript只覆盖了一个精心挑选的JavaScript子集**。 比如说: 我们选择 _数据+函数_ 的抽象方式而不是class；使用简洁的模式匹配而不是难以维护的`if`判断和动态分发；使用更好的数据模型而不是字符串区分。
+- TypeScript的目标是在覆盖整个JavaScript语言特性的基础上提供更多的特性。**ReScript只覆盖了一个精心挑选的JavaScript子集**。 比如说：我们选择 _数据+函数_ 的抽象方式而不是class；使用简洁的模式匹配而不是难以维护的`if`判断和动态分发；使用更好的数据模型而不是字符串区分。
 
 <!-- - Consequently, TypeScript's type system is necessarily complex, pitfalls-ridden, potentially requires tweaking, sometimes slow, and requires quite a bit of noisy annotations that often feel like manual bookkeeping rather than clear documentation. In contrast, ReScript's type system:
   - Is deliberately curated to be a simple subset most folks will have an easier time to use.
@@ -47,7 +47,7 @@ ReScript看起来像JS，运行起来像JS，并且可以编译到简洁、可�
 
 <!-- - Migrating to TypeScript is done "breadth-first," whereas migrating to ReScript is done "depth-first." You can convert your codebase to TypeScript by "turning it on" for all files and annotate here and there; but how much type safety did you gain? How do you measure it? Type errors can still slip in and out of the converted pieces. For ReScript, our interop features draw clear boundaries: there's pure ReScript code, and there's JS interop code. Every piece of converted ReScript code is 100% clean. You'd convert file by file and each conversion increases your safety monotonically. -->
 
-- 如果说迁移到TypeScript是一个"广度优先"的过程，而迁移到ReScript就是一个"深度优先"的过程。你可以通过在你的代码库中"开启"TypeScript完成迁移，这里开一点那里开一点。但这样可以带来多大的类型安全收益呢? 如何具体评估? 类型错误任然可能通过已经转换到TS的代码传播。但是对于ReScript，互操作特性划出了明确的界限: 这里是ReScript代码，这里是JS互操作代码。迁移完成的ReScript代码都是100%类型安全的。你可以通过逐个文件的将JS转换到ReScript，每次转换都会提升安全性。
+- 如果说迁移到TypeScript是一个"广度优先"的过程，而迁移到ReScript就是一个"深度优先"的过程。你可以通过在你的代码库中"开启"TypeScript完成迁移，这里开一点那里开一点。但这样可以带来多大的类型安全收益呢? 如何具体评估? 类型错误任然可能通过已经转换到TS的代码传播。但是对于ReScript，互操作特性划出了明确的界限：这里是ReScript代码，这里是JS互操作代码。迁移完成的ReScript代码都是100%类型安全的。你可以通过逐个文件的将JS转换到ReScript，每次转换都会提升安全性。
 
 <!-- \* When you absolutely need to write or interoperate with free-for-all JavaScript, we expose enough escape hatches for you. -->
 
@@ -68,7 +68,7 @@ ReScript看起来像JS，运行起来像JS，并且可以编译到简洁、可�
 
 <!-- A widespread adage to write fast JavaScript code is to write as if there's a type system (in order to trigger JS engines' good optimization heuristics); ReScript gives you a real one and generates code that's friendly to optimizations by default. -->
 
-编写高效的JavaScript代码的一个广为流传的格言是: 写的时候假装它有一个类型系统(为了触发JS引擎的启发式优化); ReScript给你一个真正的类型系统，并在默认设置下生成有利于优化的代码。
+编写高效的JavaScript代码的一个广为流传的格言是：写的时候假装它有一个类型系统(为了触发JS引擎的启发式优化); ReScript给你一个真正的类型系统，并在默认设置下生成有利于优化的代码。
 
 <!-- ### High Quality Dead Code Elimination -->
 ### 高质量的死代码消除

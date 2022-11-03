@@ -37,7 +37,7 @@ If you check the JavaScript output, you'll see the `studentName` and `hi` JS obj
 
 For performance and certain JavaScript interop situations, ReScript offers a way to unwrap (aka unbox) the JS object wrappers from the output for records with a single field and variants with a single constructor and single payload. Annotate their type declaration with the attribute `@unboxed`:
 
-为了性能和某些 JavaScript 互操作情况，ReScript提供了一种从输出中拆箱(也称为解包)JS对象包装器的方法，用于具有单个字段的记录和具有单个构造函数和单个有效负载的变体。使用属性 `@unboxed` 注释它们的类型声明: 
+为了性能和某些 JavaScript 互操作情况，ReScript提供了一种从输出中拆箱(也称为解包)JS对象包装器的方法，用于具有单个字段的记录和具有单个构造函数和单个有效负载的变体。使用属性 `@unboxed` 注释它们的类型声明：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

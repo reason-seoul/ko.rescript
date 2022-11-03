@@ -87,7 +87,7 @@ let result = if showMenu {
 
 It'll give a type error, saying basically that the implicit `else` branch has the type `unit` while the `if` branch has type `int`. Intuitively, this makes sense: what would `result`'s value be, if `showMenu` was `false`?
 
-它会抛出一个类型错误，基本是上说隐含的`else`分支的类型是`unit`, 而`if`分支的类型是`int`. 从直觉上来看这是有道理的: 如果`showMenu`是`false`, 那`result`的值又应该是什么呢?
+它会抛出一个类型错误，基本是上说隐含的`else`分支的类型是`unit`, 而`if`分支的类型是`int`. 从直觉上来看这是有道理的：如果`showMenu`是`false`, 那`result`的值又应该是什么呢?
 
 We also have ternary sugar, but **we encourage you to prefer if-else when possible**.
 
@@ -133,7 +133,7 @@ for(var i = startValueInclusive; i <= endValueInclusive; ++i){
 <CodeTab labels={["ReScript", "JS Output"]}>
 
 ```res example
-// 打印: 1 2 3, 每个占一行
+// 打印：1 2 3, 每个占一行
 for x in 1 to 3 {
   Js.log(x)
 }

@@ -4,7 +4,9 @@ description: "Types and type definitions in ReScript"
 canonical: "/docs/manual/latest/type"
 ---
 
-<!-- # Type -->
+<!--
+# Type
+-->
 # 类型
 
 <!--
@@ -23,14 +25,20 @@ Types are the highlight of ReScript! They are:
 - **快速**。许多开发者低估了他们项目的构建过程中用于类型检查的时间。我们的类型检查器是最快的之一
 - **类型推导**。你不必写出类型！ReScript 可以从其值中推导出它们。是的，我们可以无误地推断出你的程序的所有类型，不需要你的手动注释，而且速度很快，看起来就像魔法一样。欢迎来到 ReScript =)
 
-<!-- The following sections explore more of our type system. -->
+<!--
+The following sections explore more of our type system.
+-->
 
 接下来的小节将会带领你探索 ReScript 类型系统的更多内容。
 
-<!-- ## Inference -->
+<!--
+## Inference
+-->
 ## 类型推导
 
-<!-- This let-binding doesn't contain any written type: -->
+<!--
+This let-binding doesn't contain any written type:
+-->
 
 下面的的 let 绑定不包含任何手写类型：
 
@@ -49,14 +57,20 @@ function add(a, b) {
 
 </CodeTab>
 
-<!-- ReScript knows that `score` is an `int`, judging by the value `10`. This is called **inference**. Likewise, it also knows that the `add` function takes 2 `int`s and returns an `int`, judging from the `+` operator, which works on ints. -->
+<!--
+ReScript knows that `score` is an `int`, judging by the value `10`. This is called **inference**. Likewise, it also knows that the `add` function takes 2 `int`s and returns an `int`, judging from the `+` operator, which works on ints.
+-->
 
 ReScript 通过右侧的值 `10` 知道 `score` 变量是 `int` 类型。这被称作**推导**。同样，它也知道 `add` 函数接受两个 `int` 值并返回了一个 `int` 值，判断的来源是在 `int` 上做加法的 `+` 运算符。
 
-<!-- ## Type Annotation -->
+<!--
+## Type Annotation
+-->
 ## 类型标注
 
-<!-- But you can also optionally write down the type, aka annotate your value: -->
+<!--
+But you can also optionally write down the type, aka annotate your value:
+-->
 
 但你也可以选择写下类型，相当于给你的值添加标注：
 
@@ -71,11 +85,15 @@ var score = 10;
 
 </CodeTab>
 
-<!-- If the type annotation for `score` doesn't correspond to our inferred type for it, we'll show you an error during compilation time. We **won't** silently assume your type annotation is correct, unlike many other languages. -->
+<!--
+If the type annotation for `score` doesn't correspond to our inferred type for it, we'll show you an error during compilation time. We **won't** silently assume your type annotation is correct, unlike many other languages.
+-->
 
 如果 `score` 的类型签名与 ReScript 推断的不一致，ReScript 会在编译期显示一个类型错误。我们**不会**默默地假设你的类型标注是对的，这点与很多其他语言不同。
 
-<!-- You can also wrap any expression in parentheses and annotate it: -->
+<!--
+You can also wrap any expression in parentheses and annotate it:
+-->
 
 你也可以用括号把任何表达式包起来，然后添加类型标注：
 
@@ -100,14 +118,20 @@ function drawCircle(r) {
 
 </CodeTab>
 
-<!-- Note: in the last line, `(~radius as r: int)` is a labeled argument. More on this in the [function](function.md) page. -->
+<!--
+Note: in the last line, `(~radius as r: int)` is a labeled argument. More on this in the [function](function.md) page.
+-->
 
 注意：在最后一行，`(~radius as r: int)` 是一个标签参数。查看[函数](function.md)章节以了解更多。
 
-<!-- ## Type Alias -->
+<!--
+## Type Alias
+-->
 ## 类型别名
 
-<!-- You can refer to a type by a different name. They'll be equivalent: -->
+<!--
+You can refer to a type by a different name. They'll be equivalent:
+-->
 
 你可以通过不同的名字访问同一个类型。它们是等价的：
 
@@ -123,14 +147,20 @@ var x = 10;
 
 </CodeTab>
 
-<!-- ## Type Parameter (Aka Generic) -->
+<!--
+## Type Parameter (Aka Generic)
+-->
 ## 类型参数（泛型）
 
-<!-- Types can accept parameters, akin to generics in other languages. The parameters' names **need** to start with `'`. -->
+<!--
+Types can accept parameters, akin to generics in other languages. The parameters' names **need** to start with `'`.
+-->
 
 类型可以接受一个或多个参数，类似于其他语言中的泛型。参数名**必须**以 `'` 开头。
 
-<!-- The use-case of a parameterized type is to kill duplications. Before: -->
+<!--
+The use-case of a parameterized type is to kill duplications. Before:
+-->
 
 使用带参类型是为了消除重复。使用类型参数前：
 
@@ -151,6 +181,10 @@ var b = [10.5, 20.5, 20.5];
 
 </CodeTab>
 
+<!--
+After:
+-->
+
 增加类型参数后：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
@@ -168,7 +202,9 @@ var b = [10.5, 20.5, 20.5];
 
 </CodeTab>
 
-<!-- Note that the above codes are just contrived examples for illustration purposes. Since the types are inferred, you could have just written: -->
+<!--
+Note that the above codes are just contrived examples for illustration purposes. Since the types are inferred, you could have just written:
+-->
 
 注意，上述代码只是为了说明问题举的例子。因为类型是推断出来的，你可以直接这样做：
 
@@ -183,11 +219,15 @@ var buddy = [10, 20, 20];
 
 </CodeTab>
 
-<!-- The type system infers that it's a `(int, int, int)`. Nothing else needed to be written down. -->
+<!--
+The type system infers that it's a `(int, int, int)`. Nothing else needed to be written down.
+-->
 
 类型系统推断出它是一个 `(int, int, int)`，我们什么也不用做。
 
-<!-- Type arguments appear in many places. Our `array<'a>` type is such a type that requires a type parameter -->
+<!--
+Type arguments appear in many places. Our `array<'a>` type is such a type that requires a type parameter
+-->
 
 类型参数出现在很多地方。`array<'a>`类型就是这样一个需要参数的类型：
 
@@ -204,11 +244,15 @@ var greetings = ["hello", "world", "how are you"];
 
 </CodeTab>
 
-<!-- If types didn't accept parameters, the standard library would need to define the types `arrayOfString`, `arrayOfInt`, `arrayOfTuplesOfInt`, etc. That'd be tedious. -->
+<!--
+If types didn't accept parameters, the standard library would need to define the types `arrayOfString`, `arrayOfInt`, `arrayOfTuplesOfInt`, etc. That'd be tedious.
+-->
 
 如果类型不能接受参数，标准库将需要定义`arrayOfString`，`arrayOfInt`，`arrayOfTuplesOfInt`等类型，这会非常乏味。
 
-<!-- Types can receive many arguments, and be composable. -->
+<!--
+Types can receive many arguments, and be composable.
+-->
 
 类型可以接收多个参数，并且是可组合的。
 
@@ -250,10 +294,14 @@ var payloadResults = [
 
 </CodeTab>
 
-<!-- ## Recursive Types -->
+<!--
+## Recursive Types
+-->
 ## 递归类型
 
-<!-- Just like a function, a type can reference itself within itself using `rec`: -->
+<!--
+Just like a function, a type can reference itself within itself using `rec`:
+-->
 
 就像函数一样，类型也可以使用 `rec` 在其内部引用自己：
 
@@ -271,10 +319,14 @@ type rec person = {
 
 </CodeTab>
 
-<!-- ## Mutually Recursive Types -->
+<!--
+## Mutually Recursive Types
+-->
 ## 互递归类型
 
-<!-- Types can also be _mutually_ recursive through `and`: -->
+<!--
+Types can also be _mutually_ recursive through `and`:
+-->
 
 使用 `and` 可以让类型_互相_递归：
 
@@ -290,10 +342,14 @@ and teacher = {students: array<student>}
 
 </CodeTab>
 
-<!-- ## Type Escape Hatch -->
+<!--
+## Type Escape Hatch
+-->
 ## 类型逃生通道
 
-<!-- ReScript's type system is robust and does not allow dangerous, unsafe stuff like implicit type casting, randomly guessing a value's type, etc. However, out of pragmatism, we expose a single escape hatch for you to "lie" to the type system: -->
+<!--
+ReScript's type system is robust and does not allow dangerous, unsafe stuff like implicit type casting, randomly guessing a value's type, etc. However, out of pragmatism, we expose a single escape hatch for you to "lie" to the type system:
+-->
 
 ReScript 的类型系统非常健壮，它不允许出现危险的或不安全的东西，比如如隐式类型转换，随机猜测值的类型等。不过出于实用主义的考虑，我们为您提供了一个逃生通道，以便您向类型系统“撒谎”：
 
@@ -308,7 +364,9 @@ external myShadyConversion: myType1 => myType2 = "%identity"
 
 </CodeTab>
 
-<!-- This declaration converts a `myType1` of your choice to `myType2` of your choice. You can use it like so: -->
+<!--
+This declaration converts a `myType1` of your choice to `myType2` of your choice. You can use it like so:
+-->
 
 这个声明将你声明的 `myType1` 转换为你声明的 `myType2`。你可以像这样使用它：
 
@@ -326,14 +384,20 @@ var gpa = 2.1 + 10;
 
 </CodeTab>
 
-<!-- Obviously, do **not** abuse this feature. Use it tastefully when you're working with existing, overly dynamic JS code, for example. -->
+<!--
+Obviously, do **not** abuse this feature. Use it tastefully when you're working with existing, overly dynamic JS code, for example.
+-->
 
 显然最好**不要**过度使用这个特性。而是在处理现有的，过于动态的 JS 代码时，有品位地使用它：
 
-<!-- More on externals [here](external.md). -->
+<!--
+More on externals [here](external.md).
+-->
 
 关于 external 的更多细节请参考[这里](external.md)
 
-<!-- **Note**: this particular `external` is the only one that isn't preceded by a `@` [attribute](attribute.md). -->
+<!--
+**Note**: this particular `external` is the only one that isn't preceded by a `@` [attribute](attribute.md).
+-->
 
 **注意**: 上面代码中出现的 `external` 是唯一一个没有前缀 `@` [属性](attribute.md)的。

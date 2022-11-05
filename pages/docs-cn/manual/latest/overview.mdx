@@ -5,103 +5,152 @@ description: "A quick overview on ReScript's syntax"
 canonical: "/docs/manual/latest/overview"
 ---
 
-# Overview | 语言特性概览
+<!--
+# Overview
+-->
+# 语言特性概览
 
-## Comparison to JS | 与JS比较
+<!--
+## Comparison to JS
+-->
+## 与 JS 比较
 
-### Semicolon | 分号
+<!--
+### Semicolon
+-->
+### 分号
 
-| JavaScript                           | ReScript             |
-| ------------------------------------ | -------------------- |
-| 被linter/formatter强制要求   | 不需要分号! |
+| JavaScript                   | ReScript     |
+|------------------------------|--------------|
+| 被 linter/formatter 强制要求 | 不需要分号！ |
 
-### Comments | 注释
+<!--
+### Comments
+-->
+### 注释
 
-| JavaScript           | ReScript                         |
-| -------------------- | -------------------------------- |
-| `// 整行注释`    | 相同                             |
-| `/* 块注释 */`      | 相同                             |
-| `/** 文档注释(Doc Comment) */` | `/** 类型/值之前的注释 */`     |
-|                      | `/*** 独立的文档注释 */` |
+| JavaScript                     | ReScript                   |
+|--------------------------------|----------------------------|
+| `// 行注释`                    | 相同                       |
+| `/* 块注释 */`                 | 相同                       |
+| `/** 文档注释(Doc Comment) */` | `/** 类型/值之前的注释 */` |
+|                                | `/*** 独立的文档注释 */`   |
 
+<!--
 ### Variable
+-->
+### 变量
 
-| JavaScript              | ReScript                       |
-| ----------------------- | ------------------------------ |
-| `const x = 5;`          | `let x = 5`                    |
-| `var x = y;`            | 没有对应物(谢天谢地)     |
+| JavaScript              | ReScript                              |
+|-------------------------|---------------------------------------|
+| `const x = 5;`          | `let x = 5`                           |
+| `var x = y;`            | 无对应（谢天谢地）                    |
 | `let x = 5; x = x + 1;` | `let x = ref(5); x := x.contents + 1` |
 
-### String & Character | 字符串 & 字符
+<!--
+### String & Character
+-->
+### 字符串 & 字符
 
-| JavaScript                | ReScript              |
-| --------------------------| --------------------- |
-| `"Hello world!"`          | 相同                  |
-| `'Hello world!'`          | 字符串必须用双引号 `"`  |
-| `"hello " + "world"`      | `"hello " ++ "world"` |
-| `` `hello ${message}` ``  | 相同                  |
+| JavaScript               | ReScript              |
+|--------------------------|-----------------------|
+| `"Hello world!"`         | 相同                  |
+| `'Hello world!'`         | 字符串必须使用 `"`    |
+| `"hello " + "world"`     | `"hello " ++ "world"` |
+| `` `hello ${message}` `` | 相同                  |
 
+<!--
 ### Boolean
+-->
+### 布尔值
 
-| JavaScript                                            | ReScript                                       |
-| ----------------------------------------------------- | ---------------------------------------------- |
-| `true`, `false`                                       | 相同                                           |
-| `!true`                                               | 相同                                           |
-| <code>&#124;&#124;</code>, `&&`, `<=`, `>=`, `<`, `>` | 相同                                           |
-| `a === b`, `a !== b`                                  | 相同                                           |
-| No deep equality (recursive compare)                  | `a == b`, `a != b`                             |
-| `a == b`                                              | 相等判断中没有隐式转换 (谢天谢地) |
+| JavaScript                                            | ReScript                           |
+|-------------------------------------------------------|------------------------------------|
+| `true`, `false`                                       | 相同                               |
+| `!true`                                               | 相同                               |
+| <code>&#124;&#124;</code>, `&&`, `<=`, `>=`, `<`, `>` | 相同                               |
+| `a === b`, `a !== b`                                  | 相同                               |
+| 没有深比较（递归比较）                                | `a == b`, `a != b`                 |
+| `a == b`                                              | 相等判断中没有隐式转换（谢天谢地） |
 
+<!--
 ### Number
+-->
+### 数字
 
 | JavaScript  | ReScript     |
-| ----------- | ------------ |
+|-------------|--------------|
 | `3`         | 相同 \*      |
 | `3.1415`    | 相同         |
 | `3 + 4`     | 相同         |
 | `3.0 + 4.5` | `3.0 +. 4.5` |
 | `5 % 3`     | `mod(5, 3)`  |
 
-\* JS中没有区分整型(integer)和浮点型(float).
+<!-- \* JS has no distinction between integer and float. -->
 
-### Object/Record | 对象/记录(Record)
+\* JS 没有区分整数（integer）和浮点数（float）。
+
+<!--
+### Object/Record
+-->
+### 对象/记录(Record)
 
 | JavaScript          | ReScript                                |
-| ------------------- | --------------------------------------- |
-| no types            | `type point = {x: int, mutable y: int}` |
+|---------------------|-----------------------------------------|
+| 没有类型            | `type point = {x: int, mutable y: int}` |
 | `{x: 30, y: 20}`    | 相同                                    |
 | `point.x`           | 相同                                    |
 | `point.y = 30;`     | 相同                                    |
 | `{...point, x: 30}` | 相同                                    |
 
+<!--
 ### Array
+-->
+### 数组
 
-| JavaScript            | ReScript                           |
-| --------------------- | ---------------------------------- |
-| `[1, 2, 3]`           | 相同                               |
-| `myArray[1] = 10`     | 相同                               |
-| `[1, "Bob", true]`    | `(1, "Bob", true)` \*              |
+| JavaScript         | ReScript              |
+|--------------------|-----------------------|
+| `[1, 2, 3]`        | 相同                  |
+| `myArray[1] = 10`  | 相同                  |
+| `[1, "Bob", true]` | `(1, "Bob", true)` \* |
 
-\* 在ReScript中, 在数组中存储不同的类型是被禁止的. 请用元组(tuple)替代.
+<!--
+\* Heterogenous arrays in JS are disallowed for us. Use tuple instead.
+-->
 
+\* ReScript 不允许在数组中存储不同类型的值，请使用元组（tuple）。
+
+<!--
 ### Null
+-->
+### 空值
 
 | JavaScript          | ReScript  |
 | ------------------- | --------- |
 | `null`, `undefined` | `None` \* |
 
+<!--
 \* Again, only a spiritual equivalent; we don't have nulls, nor null bugs! But we do have an `option` type for when you actually need nullability.
+-->
 
-### Function | 函数
+\* 同样，这里只是精神上的等价物；Rescript 没有 null，也没有 null bug！当你真正需要 null 时可以使用 `option` 类型。
+
+<!--
+### Function
+-->
+### 函数
 
 | JavaScript                      | ReScript                     |
-| ------------------------------- | ---------------------------- |
+|---------------------------------|------------------------------|
 | `arg => retVal`                 | 相同                         |
 | `function named(arg) {...}`     | `let named = (arg) => {...}` |
 | `const f = function(arg) {...}` | `let f = (arg) => {...}`     |
 | `add(4, add(5, 6))`             | 相同                         |
 
-### Blocks | 代码块
+<!--
+### Blocks
+-->
+### 代码块
 
 <table>
   <thead>
@@ -124,65 +173,99 @@ canonical: "/docs/manual/latest/overview"
   let doubleX = x + x
   let doubleY = y + y
   doubleX + doubleY
-}`}</code></pre>
+} `}</code></pre>
       </td>
     </tr>
   </tbody>
 </table>
 
+<!--
 ### If-else
+-->
+### 条件表达式
 
-| JavaScript            | ReScript                                                            |
-| --------------------- | ------------------------------------------------------------------- |
-| `if (a) {b} else {c}` | `if a {b} else {c}` \*                                              |
-| `a ? b : c`           |  相同                                                                |
+| JavaScript            | ReScript                                                                |
+|-----------------------|-------------------------------------------------------------------------|
+| `if (a) {b} else {c}` | `if a {b} else {c}` \*                                                  |
+| `a ? b : c`           | 相同                                                                    |
 | `switch`              | `switch` 但拥有[强大的模式匹配功能!](pattern-matching-destructuring.md) |
 
-\* ReScript的分支判断始终是一个表达式! 比如说, 你可以写 `let result = if a {"hello"} else {"bye"}`
+<!--
+\* Our conditionals are always expressions! You can write `let result = if a {"hello"} else {"bye"}`
+-->
 
-### Destructuring | 解包
+\* ReScript 的条件语句是表达式！你可以这样做：`let result = if a {"hello"} else {"bye"}`
 
-| JavaScript                    | ReScript                                      |
-| ----------------------------- | --------------------------------------------- |
-| `const {a, b} = data`         | `let {a, b} = data`                           |
-| `const [a, b] = data`         | <code>let [a, b] = data</code> \*             |
-| `const {a: aa, b: bb} = data` | `let {a: aa, b: bb} = data`                   |
+<!--
+### Destructuring
+-->
+### 解构
 
-\* 编译器无法确信data的长度等于2的时候会提示一个警告(Warning).
+| JavaScript                    | ReScript                          |
+|-------------------------------|-----------------------------------|
+| `const {a, b} = data`         | `let {a, b} = data`               |
+| `const [a, b] = data`         | <code>let [a, b] = data</code> \* |
+| `const {a: aa, b: bb} = data` | `let {a: aa, b: bb} = data`       |
 
-### Loop | 循环
+<!--
+\* Gives good compiler warning that data might not be of length 2.
+-->
 
-| JavaScript                            | ReScript                       |
-| ------------------------------------- | ------------------------------ |
-| `for (let i = 0; i <= 10; i++) {...}` | `for i in 0 to 10 {...}`       |
-| `for (let i = 10; i >= 0; i--) {...}` | `for i in 10 downto 0 {...}`   |
-| `while (true) {...}`                  | `while true {...}`             |
+\* 编译器无法确定 data 的长度为 2 时会给出警告。
+
+<!--
+### Loop
+-->
+### 循环
+
+| JavaScript                            | ReScript                     |
+|---------------------------------------|------------------------------|
+| `for (let i = 0; i <= 10; i++) {...}` | `for i in 0 to 10 {...}`     |
+| `for (let i = 10; i >= 0; i--) {...}` | `for i in 10 downto 0 {...}` |
+| `while (true) {...}`                  | `while true {...}`           |
 
 ### JSX
 
 | JavaScript                                | ReScript                   |
-| ----------------------------------------- | -------------------------- |
+|-------------------------------------------|----------------------------|
 | `<Comp message="hi" onClick={handler} />` | 相同                       |
 | `<Comp message={message} />`              | `<Comp message />` \*      |
 | `<input checked />`                       | `<input checked=true />`   |
-| 没有展开语法                               | `<Comp>...children</Comp>` |
+| 没有展开语法                              | `<Comp>...children</Comp>` |
 
+
+<!--
 \* Argument punning!
+-->
 
+\* 参数双关（punning）！
+
+<!--
 ### Exception
+-->
+### 异常
 
-| JavaScript                                      | ReScript                                   |
-| ----------------------------------------------- | ------------------------------------------ |
-| `throw new SomeError(...)`                      | `raise(SomeError(...))`                    |
-| `try {a} catch (Err) {...} finally {...}`       | <code>try a catch { &#124; Err => ...}</code> \* |
+| JavaScript                                | ReScript                                         |
+|-------------------------------------------|--------------------------------------------------|
+| `throw new SomeError(...)`                | `raise(SomeError(...))`                          |
+| `try {a} catch (Err) {...} finally {...}` | <code>try a catch { &#124; Err => ...}</code> \* |
 
+<!--
 \* No finally.
+-->
 
-### Blocks | 代码块
+\* 最终会取消掉它。
 
+<!--
+### Blocks
+-->
+### 代码块
+
+<!--
 The last expression of a block delimited by `{}` implicitly returns (including function body). In JavaScript, this can only be simulated via an immediately-invoked function expression (since function bodies have their own local scope).
+-->
 
-被`{}`包起来的代码块的最后一个表达式隐式的作为块的返回值(包括函数体的代码块). 在JavaScript中, 这只能通过立即调用一个函数表达式来模拟(因为函数体有自己的作用域)
+被`{}`包起来的代码块的最后一个表达式隐式作为块的返回值（函数体也是这样）。在 JavaScript 中，这只能通过一个立即调用函数表达式（IIFE, Immediately Invoked Funtion Expression）来模拟（利用函数作用域）。
 
 <table>
   <thead>
@@ -205,37 +288,42 @@ The last expression of a block delimited by `{}` implicitly returns (including f
   let x = 23
   let y = 34
   x + y
-}`}</code></pre>
+} `}</code></pre>
       </td>
     </tr>
   </tbody>
 </table>
 
-## Common Features' JS Output | 共同特性的编译到JS的输出
+<!--
+## Common Features' JS Output
+-->
+## 一般特性编译到 JS 的输出
 
-Feature                         | Example                              | JavaScript Output
---------------------------------|--------------------------------------|----------------------
-字符串                          | `"Hello"`                            | `"Hello"`
-内插字符串(String Interpolation) | `` `Hello ${message}` ``             | `"Hello " + message`
-字符 (不推荐)                    | `'x'`                                | `120` (char code)
-整数                            | `23`, `-23`                          | `23`, `-23`
-浮点数                           | `23.0`, `-23.0`                      | `23.0`, `-23.0`
-整数加法                         | `23 + 1`                             | `23 + 1`
-浮点加法                         | `23.0 +. 1.0`                        | `23.0 + 1.0`
-整数除法/乘法                    | `2 / 23 * 1`                         | `2 / 23 * 1`
-浮点除法/乘法                    | `2.0 /. 23.0 *. 1.0`                 | `2.0 / 23.0 * 1.0`
-浮点幂运算                       | `2.0 ** 3.0`                         | `Math.pow(2.0, 3.0)`
-字符串拼接                       | `"Hello " ++ "World"`                | `"Hello " + "World"`
-比较                             | `>`, `<`, `>=`, `<=`                 | `>`, `<`, `>=`, `<=`
-布尔运算                         | `!`, `&&`, <code>&#124;&#124;</code> | `!`, `&&`, <code>&#124;&#124;</code>
-浅(Shallow)等价和深(Equality)等价| `===`, `==`                          | `===`, `==`
-列表 (不推荐)                    | `list{1, 2, 3}`                      | `{hd: 1, tl: {hd: 2, tl: {hd: 3, tl: 0}}}`
-在列表头插入                     | `list{a1, a2, ...oldList}`           | `{hd: a1, tl: {hd: a2, tl: theRest}}`
-数组                           | `[1, 2, 3]`                          | `[1, 2, 3]`
-记录                          | `type t = {b: int}; let a = {b: 10}` | `var a = {b: 10}`
-多行注释                       | `/* Comment here */`                 | 无输出
-单行注释                       | `// Comment here`                    | 无输出
+| Feature        | Example                              | JavaScript Output                          |
+|----------------|--------------------------------------|--------------------------------------------|
+| 字符串         | `"Hello"`                            | `"Hello"`                                  |
+| 内插字符串     | `` `Hello ${message}` ``             | `"Hello " + message`                       |
+| 字符 (不推荐)  | `'x'`                                | `120` （字符码）                           |
+| 整数           | `23`, `-23`                          | `23`, `-23`                                |
+| 浮点数         | `23.0`, `-23.0`                      | `23.0`, `-23.0`                            |
+| 整数加法       | `23 + 1`                             | `23 + 1`                                   |
+| 浮点加法       | `23.0 +. 1.0`                        | `23.0 + 1.0`                               |
+| 整数除法/乘法  | `2 / 23 * 1`                         | `2 / 23 * 1`                               |
+| 浮点除法/乘法  | `2.0 /. 23.0 *. 1.0`                 | `2.0 / 23.0 * 1.0`                         |
+| 浮点幂运算     | `2.0 ** 3.0`                         | `Math.pow(2.0, 3.0)`                       |
+| 字符串拼接     | `"Hello " ++ "World"`                | `"Hello " + "World"`                       |
+| 比较           | `>`, `<`, `>=`, `<=`                 | `>`, `<`, `>=`, `<=`                       |
+| 布尔运算       | `!`, `&&`, <code>&#124;&#124;</code> | `!`, `&&`, <code>&#124;&#124;</code>       |
+| 浅等价和深等价 | `===`, `==`                          | `===`, `==`                                |
+| 列表（不推荐） | `list{1, 2, 3}`                      | `{hd: 1, tl: {hd: 2, tl: {hd: 3, tl: 0}}}` |
+| 在列表头插入   | `list{a1, a2, ...oldList}`           | `{hd: a1, tl: {hd: a2, tl: theRest}}`      |
+| 数组           | `[1, 2, 3]`                          | `[1, 2, 3]`                                |
+| 记录           | `type t = {b: int}; let a = {b: 10}` | `var a = {b: 10}`                          |
+| 多行注释       | `/* Comment here */`                 | 无输出                                     |
+| 单行注释       | `// Comment here`                    | 无输出                                     |
 
+<!--
 _Note that this is a cleaned-up comparison table; a few examples' JavaScript output are slightly different in reality._
+-->
 
-_请注意, 这是一个经过清理的对比表；几个例子的JavaScript输出在现实中略有不同_
+_请注意，这是一个经过清理的对比表；少许例子中的 JavaScript 输出与实际略有不同。_

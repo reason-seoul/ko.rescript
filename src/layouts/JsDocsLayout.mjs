@@ -4,6 +4,7 @@ import * as Url from "../common/Url.mjs";
 import * as Next from "../bindings/Next.mjs";
 import * as React from "react";
 import * as Js_dict from "rescript/lib/es6/js_dict.js";
+import * as LangUtil from "../common/LangUtil.mjs";
 import * as ApiLayout from "./ApiLayout.mjs";
 import * as Belt_Array from "rescript/lib/es6/belt_Array.js";
 import * as ApiMarkdown from "../components/ApiMarkdown.mjs";
@@ -12,224 +13,232 @@ import * as Caml_option from "rescript/lib/es6/caml_option.js";
 
 var indexData = (require('index_data/latest_js_api_index.json'));
 
-var overviewNavs = [{
-    name: "JS",
-    href: "/docs/manual/latest/api/js"
-  }];
+function overviewNavs(lang) {
+  var docPath = LangUtil.langDocBase(lang);
+  return [{
+            name: "JS",
+            href: "/" + docPath + "/manual/latest/api/js"
+          }];
+}
 
-var apiNavs = [
-  {
-    name: "Array2",
-    href: "/docs/manual/latest/api/js/array-2"
-  },
-  {
-    name: "Array",
-    href: "/docs/manual/latest/api/js/array"
-  },
-  {
-    name: "Console",
-    href: "/docs/manual/latest/api/js/console"
-  },
-  {
-    name: "Date",
-    href: "/docs/manual/latest/api/js/date"
-  },
-  {
-    name: "Dict",
-    href: "/docs/manual/latest/api/js/dict"
-  },
-  {
-    name: "Exn",
-    href: "/docs/manual/latest/api/js/exn"
-  },
-  {
-    name: "Float",
-    href: "/docs/manual/latest/api/js/float"
-  },
-  {
-    name: "Global",
-    href: "/docs/manual/latest/api/js/global"
-  },
-  {
-    name: "Int",
-    href: "/docs/manual/latest/api/js/int"
-  },
-  {
-    name: "Json",
-    href: "/docs/manual/latest/api/js/json"
-  },
-  {
-    name: "List",
-    href: "/docs/manual/latest/api/js/list"
-  },
-  {
-    name: "Math",
-    href: "/docs/manual/latest/api/js/math"
-  },
-  {
-    name: "NullUndefined",
-    href: "/docs/manual/latest/api/js/null-undefined"
-  },
-  {
-    name: "Null",
-    href: "/docs/manual/latest/api/js/null"
-  },
-  {
-    name: "Nullable",
-    href: "/docs/manual/latest/api/js/nullable"
-  },
-  {
-    name: "Obj",
-    href: "/docs/manual/latest/api/js/obj"
-  },
-  {
-    name: "Option",
-    href: "/docs/manual/latest/api/js/option"
-  },
-  {
-    name: "Promise",
-    href: "/docs/manual/latest/api/js/promise"
-  },
-  {
-    name: "Re",
-    href: "/docs/manual/latest/api/js/re"
-  },
-  {
-    name: "Result",
-    href: "/docs/manual/latest/api/js/result"
-  },
-  {
-    name: "String2",
-    href: "/docs/manual/latest/api/js/string-2"
-  },
-  {
-    name: "String",
-    href: "/docs/manual/latest/api/js/string"
-  },
-  {
-    name: "TypedArrayArrayBuffer",
-    href: "/docs/manual/latest/api/js/typed-array_array-buffer"
-  },
-  {
-    name: "TypedArrayDataView",
-    href: "/docs/manual/latest/api/js/typed-array_data-view"
-  },
-  {
-    name: "TypedArrayFloat32Array",
-    href: "/docs/manual/latest/api/js/typed-array_float-32-array"
-  },
-  {
-    name: "TypedArrayFloat64Array",
-    href: "/docs/manual/latest/api/js/typed-array_float-64-array"
-  },
-  {
-    name: "TypedArrayInt8Array",
-    href: "/docs/manual/latest/api/js/typed-array_int-8-array"
-  },
-  {
-    name: "TypedArrayInt16Array",
-    href: "/docs/manual/latest/api/js/typed-array_int-16-array"
-  },
-  {
-    name: "TypedArrayInt32Array",
-    href: "/docs/manual/latest/api/js/typed-array_int-32-array"
-  },
-  {
-    name: "TypedArrayTypeS",
-    href: "/docs/manual/latest/api/js/typed-array_type-s"
-  },
-  {
-    name: "TypedArrayUint8Array",
-    href: "/docs/manual/latest/api/js/typed-array_uint-8-array"
-  },
-  {
-    name: "TypedArrayUint8ClampedArray",
-    href: "/docs/manual/latest/api/js/typed-array_uint-8-clamped-array"
-  },
-  {
-    name: "TypedArrayUint16Array",
-    href: "/docs/manual/latest/api/js/typed-array_uint-16-array"
-  },
-  {
-    name: "TypedArrayUint32Array",
-    href: "/docs/manual/latest/api/js/typed-array_uint-32-array"
-  },
-  {
-    name: "TypedArray2ArrayBuffer",
-    href: "/docs/manual/latest/api/js/typed-array-2_array-buffer"
-  },
-  {
-    name: "TypedArray2DataView",
-    href: "/docs/manual/latest/api/js/typed-array-2_data-view"
-  },
-  {
-    name: "TypedArray2Float32Array",
-    href: "/docs/manual/latest/api/js/typed-array-2_float-32-array"
-  },
-  {
-    name: "TypedArray2Float64Array",
-    href: "/docs/manual/latest/api/js/typed-array-2_float-64-array"
-  },
-  {
-    name: "TypedArray2Int8Array",
-    href: "/docs/manual/latest/api/js/typed-array-2_int-8-array"
-  },
-  {
-    name: "TypedArray2Int16Array",
-    href: "/docs/manual/latest/api/js/typed-array-2_int-16-array"
-  },
-  {
-    name: "TypedArray2Int32Array",
-    href: "/docs/manual/latest/api/js/typed-array-2_int-32-array"
-  },
-  {
-    name: "TypedArray2Uint8Array",
-    href: "/docs/manual/latest/api/js/typed-array-2_uint-8-array"
-  },
-  {
-    name: "TypedArray2Uint8ClampedArray",
-    href: "/docs/manual/latest/api/js/typed-array-2_uint-8-clamped-array"
-  },
-  {
-    name: "TypedArray2Uint16Array",
-    href: "/docs/manual/latest/api/js/typed-array-2_uint-16-array"
-  },
-  {
-    name: "TypedArray2Uint32Array",
-    href: "/docs/manual/latest/api/js/typed-array-2_uint-32-array"
-  },
-  {
-    name: "TypedArray2",
-    href: "/docs/manual/latest/api/js/typed-array-2"
-  },
-  {
-    name: "TypedArray",
-    href: "/docs/manual/latest/api/js/typed-array"
-  },
-  {
-    name: "Types",
-    href: "/docs/manual/latest/api/js/types"
-  },
-  {
-    name: "Undefined",
-    href: "/docs/manual/latest/api/js/undefined"
-  },
-  {
-    name: "Vector",
-    href: "/docs/manual/latest/api/js/vector"
-  }
-];
+function apiNavs(lang) {
+  var docPath = LangUtil.langDocBase(lang);
+  return [
+          {
+            name: "Array2",
+            href: "/" + docPath + "/manual/latest/api/js/array-2"
+          },
+          {
+            name: "Array",
+            href: "/" + docPath + "/manual/latest/api/js/array"
+          },
+          {
+            name: "Console",
+            href: "/" + docPath + "/manual/latest/api/js/console"
+          },
+          {
+            name: "Date",
+            href: "/" + docPath + "/manual/latest/api/js/date"
+          },
+          {
+            name: "Dict",
+            href: "/" + docPath + "/manual/latest/api/js/dict"
+          },
+          {
+            name: "Exn",
+            href: "/" + docPath + "/manual/latest/api/js/exn"
+          },
+          {
+            name: "Float",
+            href: "/" + docPath + "/manual/latest/api/js/float"
+          },
+          {
+            name: "Global",
+            href: "/" + docPath + "/manual/latest/api/js/global"
+          },
+          {
+            name: "Int",
+            href: "/" + docPath + "/manual/latest/api/js/int"
+          },
+          {
+            name: "Json",
+            href: "/" + docPath + "/manual/latest/api/js/json"
+          },
+          {
+            name: "List",
+            href: "/" + docPath + "/manual/latest/api/js/list"
+          },
+          {
+            name: "Math",
+            href: "/" + docPath + "/manual/latest/api/js/math"
+          },
+          {
+            name: "NullUndefined",
+            href: "/" + docPath + "/manual/latest/api/js/null-undefined"
+          },
+          {
+            name: "Null",
+            href: "/" + docPath + "/manual/latest/api/js/null"
+          },
+          {
+            name: "Nullable",
+            href: "/" + docPath + "/manual/latest/api/js/nullable"
+          },
+          {
+            name: "Obj",
+            href: "/" + docPath + "/manual/latest/api/js/obj"
+          },
+          {
+            name: "Option",
+            href: "/" + docPath + "/manual/latest/api/js/option"
+          },
+          {
+            name: "Promise",
+            href: "/" + docPath + "/manual/latest/api/js/promise"
+          },
+          {
+            name: "Re",
+            href: "/" + docPath + "/manual/latest/api/js/re"
+          },
+          {
+            name: "Result",
+            href: "/" + docPath + "/manual/latest/api/js/result"
+          },
+          {
+            name: "String2",
+            href: "/" + docPath + "/manual/latest/api/js/string-2"
+          },
+          {
+            name: "String",
+            href: "/" + docPath + "/manual/latest/api/js/string"
+          },
+          {
+            name: "TypedArrayArrayBuffer",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array_array-buffer"
+          },
+          {
+            name: "TypedArrayDataView",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array_data-view"
+          },
+          {
+            name: "TypedArrayFloat32Array",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array_float-32-array"
+          },
+          {
+            name: "TypedArrayFloat64Array",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array_float-64-array"
+          },
+          {
+            name: "TypedArrayInt8Array",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array_int-8-array"
+          },
+          {
+            name: "TypedArrayInt16Array",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array_int-16-array"
+          },
+          {
+            name: "TypedArrayInt32Array",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array_int-32-array"
+          },
+          {
+            name: "TypedArrayTypeS",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array_type-s"
+          },
+          {
+            name: "TypedArrayUint8Array",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array_uint-8-array"
+          },
+          {
+            name: "TypedArrayUint8ClampedArray",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array_uint-8-clamped-array"
+          },
+          {
+            name: "TypedArrayUint16Array",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array_uint-16-array"
+          },
+          {
+            name: "TypedArrayUint32Array",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array_uint-32-array"
+          },
+          {
+            name: "TypedArray2ArrayBuffer",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array-2_array-buffer"
+          },
+          {
+            name: "TypedArray2DataView",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array-2_data-view"
+          },
+          {
+            name: "TypedArray2Float32Array",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array-2_float-32-array"
+          },
+          {
+            name: "TypedArray2Float64Array",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array-2_float-64-array"
+          },
+          {
+            name: "TypedArray2Int8Array",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array-2_int-8-array"
+          },
+          {
+            name: "TypedArray2Int16Array",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array-2_int-16-array"
+          },
+          {
+            name: "TypedArray2Int32Array",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array-2_int-32-array"
+          },
+          {
+            name: "TypedArray2Uint8Array",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array-2_uint-8-array"
+          },
+          {
+            name: "TypedArray2Uint8ClampedArray",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array-2_uint-8-clamped-array"
+          },
+          {
+            name: "TypedArray2Uint16Array",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array-2_uint-16-array"
+          },
+          {
+            name: "TypedArray2Uint32Array",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array-2_uint-32-array"
+          },
+          {
+            name: "TypedArray2",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array-2"
+          },
+          {
+            name: "TypedArray",
+            href: "/" + docPath + "/manual/latest/api/js/typed-array"
+          },
+          {
+            name: "Types",
+            href: "/" + docPath + "/manual/latest/api/js/types"
+          },
+          {
+            name: "Undefined",
+            href: "/" + docPath + "/manual/latest/api/js/undefined"
+          },
+          {
+            name: "Vector",
+            href: "/" + docPath + "/manual/latest/api/js/vector"
+          }
+        ];
+}
 
-var categories = [
-  {
-    name: "Overview",
-    items: overviewNavs
-  },
-  {
-    name: "Submodules",
-    items: apiNavs
-  }
-];
+function categoriesOf(lang) {
+  return [
+          {
+            name: "Overview",
+            items: overviewNavs(lang)
+          },
+          {
+            name: "Submodules",
+            items: apiNavs(lang)
+          }
+        ];
+}
 
 function JsDocsLayout$Docs(Props) {
   var componentsOpt = Props.components;
@@ -249,9 +258,11 @@ function JsDocsLayout$Docs(Props) {
               return data.moduleName;
             })), "?");
   var url = Url.parse(route);
+  var lang = LangUtil.whichLang(url);
   var version = url.version;
   var version$1 = typeof version === "number" ? "latest" : version._0;
-  var prefix_href = "/docs/manual/" + (version$1 + "/api");
+  var docPath = LangUtil.langDocBase(lang);
+  var prefix_href = "/" + docPath + "/manual/" + (version$1 + "/api");
   var prefix = {
     name: "API",
     href: prefix_href
@@ -267,6 +278,7 @@ function JsDocsLayout$Docs(Props) {
     title: moduleName,
     entries: activeToc_entries
   };
+  var categories = categoriesOf(lang);
   return React.createElement(ApiLayout.make, {
               breadcrumbs: breadcrumbs,
               categories: categories,
@@ -297,6 +309,5 @@ var Prose = {
 export {
   Docs ,
   Prose ,
-  
 }
 /* indexData Not a pure module */

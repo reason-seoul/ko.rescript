@@ -4,21 +4,28 @@ description: "Tuple types and values in ReScript"
 canonical: "/docs/manual/latest/tuple"
 ---
 
-# Tuple | 元组
+<!--
+# Tuple
+-->
+# 元组
 
+<!--
 Tuples are a ReScript-specific data structure that don't exist in JavaScript. They are:
+-->
 
-元组是JavaScript中不存在而ReScript独有的数据结构. 满足以下特征:
+元组是 ReScript 独有的数据结构，它在 JavaScript 中不存在。它具有以下特征：
 
+<!--
 - immutable
 - ordered
 - fix-sized at creation time
 - heterogeneous (can contain different types of values)
+-->
 
 - 不可变
 - 有序
-- 创建点决定大小
-- 异质性(可以包含不同类型的值)
+- 创建时确定大小
+- 异构（可以包含不同类型的值）
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -33,9 +40,11 @@ var my3dCoordinates = [20.0, 30.5, 100.0];
 
 </CodeTab>
 
+<!--
 Tuples' types can be used in type annotations as well. Tuple types visually resemble tuples values.
+-->
 
-元组类型也可以用在类型签名. 元组类型看起来很像元组值.
+元组的类型也可以用在类型标注上，元组类型看起来和元组值很像。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -51,15 +60,22 @@ var my3dCoordinates = [20.0, 30.5, 100.0];
 ```
 </CodeTab>
 
+<!--
 **Note**: there's no tuple of size 1. You'd just use the value itself.
+-->
 
-**注意**: 不存在大小为1的元组, 这种情况可以直接使用值本身来代替.
+**注意**: 不存在大小为 1 的元组，你可以直接使用值本身。
 
+<!--
 ## Usage
+-->
+## 使用方法
 
+<!--
 To get a specific member of a tuple, destructure it:
+-->
 
-为了获取元组的某个特定成员, 可以对元组进行解包:
+为了获取元组的某个特定成员，可以对元组进行解包（destructure）：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -72,13 +88,17 @@ var y = 30.5;
 
 </CodeTab>
 
+<!--
 The `_` means you're ignoring the indicated members of the tuple.
+-->
 
-下划线`_`意味着你可以忽略下划线对应元组成员.
+下划线 `_` 意味着你忽略了下划线对应元组成员。
 
+<!--
 Tuples aren't meant to be updated mutatively. You'd create new ones by destructuring the old ones:
+-->
 
-元组无法被修改, 你可以通过解包旧的元组创建一个新的元组:
+元组无法被修改，你可以通过解包旧的元组创建一个新的元组：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -95,11 +115,17 @@ var coordinates2 = [60, 20, 30];
 
 </CodeTab>
 
+
+<!--
 ## Tips & Tricks
+-->
+## 技巧 & 诀窍
 
+<!--
 You'd use tuples in handy situations that pass around multiple values without too much ceremony. For example, to return many values:
+-->
 
-你可以很方便的使用元组传递多个值而不需要引入太多的语法负担. 比如说, 可以这样返回多个值:
+你可以在方便的情况下随心使用元组传递多个值。比如说，可以这样返回多个值：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -120,7 +146,8 @@ function getCenterCoordinates(param) {
 
 </CodeTab>
 
+<!--
 Try to keep the usage of tuple **local**. For data structures that are long-living and passed around often, prefer a **record**, which has named fields.
+-->
 
-
-尽量在**局部**使用元组. 对于长期存在并经常需要传递的数据结构最好使用**记录(record)**, 其有命名的成员字段.
+尽量**局部地**使用元组，对于长期存在并经常需要传递的数据结构最好使用**记录（record）**，它具有命名字段。

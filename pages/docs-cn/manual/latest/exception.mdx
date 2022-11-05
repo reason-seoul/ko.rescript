@@ -8,7 +8,7 @@ canonical: "/docs/manual/latest/exception"
 
 Exceptions are just a special kind of variant, thrown in **exceptional** cases (don't abuse them!).
 
-异常只是一种特殊的变体, 在**异常**情况下抛出 (不要滥用它们!).
+异常只是一种特殊的变体，在**异常**情况下抛出 (不要滥用它们!).
 
 ## Usage | 用法
 
@@ -59,7 +59,7 @@ try {
 
 Note that the above is just for demonstration purposes; in reality, you'd return an `option<int>` directly from `getItem` and avoid the `try` altogether.
 
-注意, 以上只是为了演示；在现实中, 你可以直接从`getItem`返回一个`option<int>`, 而完全避免`try`.
+注意，以上只是为了演示；在现实中，你可以直接从`getItem`返回一个`option<int>`, 而完全避免`try`.
 
 You can directly match on exceptions _while_ getting another return value from a function:
 
@@ -123,11 +123,11 @@ throw {
 
 </CodeTab>
 
-## Catching JS Exceptions | 捕获JS异常
+## Catching JS Exceptions | 捕获 JS 异常
 
 To distinguish between JavaScript exceptions and ReScript exceptions, ReScript namespaces JS exceptions under the `Js.Exn.Error(payload)` variant. To catch an exception thrown from the JS side:
 
-为了区分 JavaScript 异常和 ReScript 异常, ReScript 将 JS 异常命名为 `Js.Exn.Error(payload)` 变体. 为了捕捉一个从JS端抛出的异常:
+为了区分 JavaScript 异常和 ReScript 异常，ReScript 将 JS 异常命名为 `Js.Exn.Error(payload)` 变体。为了捕捉一个从 JS 端抛出的异常：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -165,13 +165,13 @@ try {
 
 The `obj` here is of type `Js.Exn.t`, intentionally opaque to disallow illegal operations. To operate on `obj`, do like the code above by using the standard library's [`Js.Exn`](api/js/exn) module's helpers.
 
-这里的`obj`是`Js.Exn.t`类型, 故意让其不透明, 不允许非法操作. 要对`obj`进行操作, 可以像上面的代码一样, 使用标准库的[`Js.Exn`](api/js/exn)模块的帮助函数.
+这里的`obj`是`Js.Exn.t`类型，故意让其不透明，不允许非法操作。要对`obj`进行操作，可以像上面的代码一样，使用标准库的[`Js.Exn`](api/js/exn)模块的帮助函数。
 
-## Raise a JS Exception | 抛出一个JS异常
+## Raise a JS Exception | 抛出一个 JS 异常
 
 `raise(MyException)` raises a ReScript exception. To raise a JavaScript exception (whatever your purpose is), use `Js.Exn.raiseError`:
 
-`raise(MyException)`引发一个ReScript异常. 如果要引发一个JavaScript异常(不管你的目的是什么), 使用`Js.Exn.raiseError`.
+`raise(MyException)`引发一个 ReScript 异常。如果要引发一个 JavaScript 异常(不管你的目的是什么), 使用`Js.Exn.raiseError`.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -201,11 +201,11 @@ try {
 }
 ```
 
-## Catch ReScript Exceptions from JS | 从JS捕获ReScript抛出的异常
+## Catch ReScript Exceptions from JS | 从 JS 捕获ReScript抛出的异常
 
 The previous section is less useful than you think; to let your JS code work with your exception-throwing ReScript code, the latter doesn't actually need to throw a JS exception. ReScript exceptions can be used by JS code!
 
-前面的部分没有你想象的那么有用；为了让你的JS代码与抛出异常的ReScript代码一起工作, 后者实际上不需要抛出一个JS异常. ReScript的异常可以被JS代码所使用!
+前面的部分没有你想象的那么有用；为了让你的 JS 代码与抛出异常的ReScript代码一起工作，后者实际上不需要抛出一个 JS 异常。ReScript的异常可以被 JS 代码所使用!
 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
@@ -247,19 +247,19 @@ try {
 
 > Note: `RE_EXN_ID` is an internal field for bookkeeping purposes. Don't use it on the JS side. Use the other fields.
 
-> 注意: `RE_EXN_ID`是一个用于记账的内部字段. 不要在JS方面使用它. 使用其他的字段. 
+> 注意：`RE_EXN_ID`是一个用于记账的内部字段。不要在 JS 方面使用它。使用其他的字段。
 
 The above `BadArgument` exception takes an inline record type. We special-case compile the exception as `{RE_EXN_ID, myMessage, Error}` for good ergonomics. If the exception instead took ordinary positional arguments, l like the standard library's `Invalid_argument("Oops!")`, which takes a single argument, the argument is compiled to JS as the field `_1` instead. A second positional argument would compile to `_2`, etc.
 
-上面的`BadArgument`异常需要一个内联记录类型. 为了符合人体工程学, 我们将该异常特例编译为`{RE_EXN_ID, myMessage, Error}`. 如果这个异常使用普通的位置参数, 比如标准库的`Invalid_argument("Oops!")`, 它只使用一个参数, 那么这个参数将被编译为JS的字段`_1`. 第二个位置参数将编译为`_2`, 等等. 
+上面的`BadArgument`异常需要一个内联记录类型。为了符合人体工程学，我们将该异常特例编译为`{RE_EXN_ID, myMessage, Error}`. 如果这个异常使用普通的位置参数，比如标准库的`Invalid_argument("Oops!")`, 它只使用一个参数，那么这个参数将被编译为 JS 的字段`_1`. 第二个位置参数将编译为`_2`, 等等。
 
 ## Tips & Tricks | 技巧 & 诀窍
 
 When you have ordinary variants, you often don't **need** exceptions. For example, instead of throwing when `item` can't be found in a collection, try to return an `option<item>` (`None` in this case) instead.
 
-当你有普通的变体时, 你往往**不需要**异常. 例如, 当`item`在一个集合中找不到时, 不要抛出, 而是尝试返回一个`option<item>`(本例中为`None`). 
+当你有普通的变体时，你往往**不需要**异常。例如，当`item`在一个集合中找不到时，不要抛出，而是尝试返回一个`option<item>`(本例中为`None`). 
 
-### Catch Both ReScript and JS Exceptions in the Same `catch` Clause | 在一个 `catch` 子句中同时捕获ReScript和JS的异常
+### Catch Both ReScript and JS Exceptions in the Same `catch` Clause | 在一个 `catch` 子句中同时捕获 ReScript 和JS的异常
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -294,5 +294,5 @@ try {
 
 This technically works, but hopefully you don't ever have to work with such code...
 
-这在技术上是可行的, 但希望你不用处理这样的代码......
+这在技术上是可行的，但希望你不用处理这样的代码。.....
 

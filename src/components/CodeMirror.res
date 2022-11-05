@@ -48,7 +48,7 @@ let useWindowWidth: unit => int = %raw(j` () => {
 
 /* The module for interacting with the imperative CodeMirror API */
 module CM = {
-  type t
+  type t = string
 
   let errorGutterId = "errors"
 
@@ -559,7 +559,7 @@ let updateErrors = (~state: state, ~onMarkerFocus=?, ~onMarkerFocusLeave=?, ~cm:
 
   wrapper->{
     open DomUtil
-    setOnMouseOver(evt => {
+    setOnMouseOver(_, evt => {
       let target = Event.target(evt)
 
       let id = getId(target)
@@ -574,7 +574,7 @@ let updateErrors = (~state: state, ~onMarkerFocus=?, ~onMarkerFocusLeave=?, ~cm:
 
   wrapper->{
     open DomUtil
-    setOnMouseOut(evt => {
+    setOnMouseOut(_, evt => {
       let target = Event.target(evt)
 
       let id = getId(target)

@@ -4,34 +4,47 @@ description: "Interoping with JS objects in ReScript"
 canonical: "/docs/manual/latest/object"
 ---
 
-# Object | 对象
+<!--
+# Object
+-->
+# 对象
 
+<!--
 ReScript objects are like [records](record.md), but:
+-->
 
-ReScript的对象和[记录](record.md)很像, 但有以下几点不同:
+ReScript 的对象和[记录](record.md)很像，但有以下几点不同：
 
+<!--
 - No type declaration needed.
 - Structural and more polymorphic, [unlike records](record.md#record-types-are-found-by-field-name).
 - Doesn't support updates unless the object comes from the JS side.
 - Doesn't support [pattern matching](pattern-matching-destructuring).
+-->
 
 - 不需要类型声明
-- 结构化并且更加多态, [而不像记录](record.md#record-types-are-found-by-field-name).
-- 不支持更新, 除非对象是从JS获取的
-- 不支持[模式匹配](pattern-matching-destructuring).
+- 结构化并且更加多态，[而不像记录](record.md#record-types-are-found-by-field-name)
+- 不支持更新，除非对象是从 JS 获取的
+- 不支持[模式匹配](pattern-matching-destructuring)
 
 <!-- TODO: support update man -->
 
+<!--
 Although ReScript records compile to clean JavaScript objects, ReScript objects are a better candidate for emulating/binding to JS objects, as you'll see.
+-->
 
-虽然ReScript的记录可以编译成简洁的JavaScript对象, 但ReScript对象是模拟/绑定到JS对象的更好的候选, 你马上就会看到了.
+虽然 ReScript 的记录直接编译到干净的 JavaScript 对象，但 ReScript 对象是模拟/绑定到 JS 对象的更好的候选，你马上就会看到了。
 
+<!--
+## Type Declaration
+-->
+## 类型声明
 
-## Type Declaration | 类型声明
-
+<!--
 **Optional**, unlike for records. The type of an object is inferred from the value, so you never really need to write down its type definition. Nevertheless, here's its type declaration syntax:
+-->
 
-**可选的**, 不像记录. 一个对象的类型是由值推断出来的, 所以你从来不需要写下它的类型定义. 尽管如此, 这里是它的类型声明语法. 
+与记录不同，对象的类型声明是**可选的**。对象的类型是由值推断出来的，所以你从来不需要写下它的类型定义。尽管如此，下面是它的类型声明语法：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -47,17 +60,24 @@ type person = {
 
 </CodeTab>
 
+<!--
 Visually similar to record type's syntax, with the field names quoted.
+-->
 
-看起来很像记录的类型声明, 但是字段的名字被双引号围起来了.
+看起来很像记录的类型声明，但是字段的名字在引号中。
 
 <!-- TODO: document {.} and {..} -->
 
+<!--
 ## Creation
+-->
+## 创建对象
 
+<!--
 To create a new object:
+-->
 
-创建一个新对象: 
+可以这样创建一个新对象：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -76,9 +96,11 @@ var me = {
 
 </CodeTab>
 
+<!--
 **Note**: as said above, unlike for record, this `me` value does **not** try to find a conforming type declaration with the field `"age"` and `"name"`; rather, the type of `me` is inferred as `{"age": int, "name": string}`. This is convenient, but also means this code passes type checking without errors:
+-->
 
-**注意**: 如上所述, 与记录不同的是, 这个`me`值并**没有**试图找到一个与字段`"age"`和`"name"`相符的类型声明; 相反, `"me"`的类型被推断为`"{"age": int, "name": string}"`. 这很方便, 但也意味着这段代码没有错误地通过了类型检查. 
+**注意**：如上所述，与记录不同的是，这个 `me` 的值**不会**试图找到一个与字段 `"age"` 和 `"name"` 相符的类型声明；相反，`"me"` 的类型被推断为 `"{"age": int, "name": string}"`。这很方便，但也意味着下面的代码无错通过了类型检查：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -99,9 +121,11 @@ var me = {
 
 </CodeTab>
 
+<!--
 Since the type checker doesn't try to match `me` with the type `person`. If you ever want to force an object value to be of a predeclared object type, just annotate the value:
+-->
 
-因为类型检查器并不试图将`me`与`person`的类型相匹配. 如果你想强制要求一个对象的值属于一个预先声明的对象类型, 只需对该值进行类型注释.
+因为类型检查器不会尝试将 `me` 与 `person` 的类型相匹配，如果你想强制要求一个对象值属于某一预先声明的对象类型，只需对该值进行类型标注：
 
 ```res
 let me: person = {
@@ -109,11 +133,16 @@ let me: person = {
 }
 ```
 
+<!--
 Now the type system will error properly.
+-->
 
-现在类型系统会正常的报错了.
+现在类型系统会正常报错了。
 
-## Access | 访问
+<!--
+## Access
+-->
+## 访问对象
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -126,11 +155,16 @@ var age = me["age"];
 
 </CodeTab>
 
-## Update | 更新
+<!--
+## Update
+-->
+## 更新对象
 
+<!--
 Disallowed unless the object is a binding that comes from the JavaScript side. In that case, use `=`
+-->
 
-更新是不被允许的, 除非该对象是一个来自于JavaScript端的绑定. 在那种情况下, 使用`=`更新
+更新是不被允许的，除非该对象是一个来自于 JavaScript 端的绑定。在这种情况下可以使用 `=` 更新对象：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -150,11 +184,16 @@ MyJSFile.student1.name = "Mary";
 
 </CodeTab>
 
-## Combine Types | 组合类型
+<!--
+## Combine Types
+-->
+## 组合类型
 
+<!--
 You can spread one object type definition into another using `...`:
+-->
 
-你可以使用`...`将一个对象类型定义展开(spread)到另一个对象类型中:
+你可以使用 `...` 将一个对象类型定义展开（spread）到另一个对象类型中：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -184,15 +223,22 @@ var myPoint = {
 
 </CodeTab>
 
+<!--
 This only works with object types, not object values!
+-->
 
-这只适用于对象类型, 而不是对象的值!
+这只适用于对象类型，而不是对象值！
 
-## Tips & Tricks | 技巧 & 诀窍
+<!--
+## Tips & Tricks
+-->
+## 技巧 & 诀窍
 
+<!--
 Since objects don't require type declarations, and since ReScript infers all the types for you, you get to very quickly and easily (and dangerously) bind to any JavaScript API. Check the JS output tab:
+-->
 
-由于对象不需要类型声明, 而且ReScript为你推断出所有的类型, 所以你可以非常快速和容易地(同时也是危险地)绑定到任何JavaScript API. 看看JS的编译结果:
+由于对象不需要类型声明，而且 ReScript 会为你推断出所有的类型，所以你可以非常快速和容易地（同时也是危险地）绑定到任何 JavaScript API。 看看 JS 的编译结果：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -222,6 +268,8 @@ document.location.href = "rescript-lang.org";
 
 </CodeTab>
 
+<!--
 The `external` feature and the usage of this trick are also documented in the [external](external#tips--tricks) section later. It's an excellent way to start writing some ReScript code without worrying about whether bindings to a particular library exists.
+-->
 
-在后面的[external](external#tips--tricks)部分也记录了`external`功能和这个技巧的用法. 这是一个很好的方法, 可以让你开始编写一些ReScript代码, 而不必担心与某个特定库的绑定关系是否存在.
+后面的[external](external#tips--tricks)章节也记录了 `external` 特性和上面的技巧的用法。这是一个很好的方法，可以让你开始编写一些 ReScript 代码而不必担心是否与某个特定库的存在绑定关系。

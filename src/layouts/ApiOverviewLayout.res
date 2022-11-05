@@ -1,27 +1,31 @@
 module Sidebar = SidebarLayout.Sidebar
 
-let categories: array<Sidebar.Category.t> = [
-  {
-    name: "Introduction",
-    items: [{name: "Overview", href: "/docs/manual/latest/api"}],
-  },
-  {
-    name: "Modules",
-    items: [
-      {name: "Js Module", href: "/docs/manual/latest/api/js"},
-      {name: "Belt Stdlib", href: "/docs/manual/latest/api/belt"},
-      {name: "Dom Module", href: "/docs/manual/latest/api/dom"},
-    ],
-  },
-]
+let categoriesOf: (~lang: LangUtil.language) => array<Sidebar.Category.t> = 
+  (~lang: LangUtil.language) => {
+  let docPath = LangUtil.langDocBase(lang)
+  [
+    {
+      name: "Introduction",
+      items: [{name: "Overview", href: `/${docPath}/manual/latest/api`}],
+    },
+    {
+      name: "Modules",
+      items: [
+        {name: "Js Module", href: `/${docPath}/manual/latest/api/js`},
+        {name: "Belt Stdlib", href: `/${docPath}/manual/latest/api/belt`},
+        {name: "Dom Module", href: `/${docPath}/manual/latest/api/dom`},
+      ],
+    },
+  ]
+}
 
 /* Used for API docs (structured data) */
 module Docs = {
   @react.component
-  let make = (~components=ApiMarkdown.default, ~children) => {
+  let make = (~lang=LangUtil.English, ~components=ApiMarkdown.default, ~children) => {
     let title = "API"
     let version = "latest"
-
+    let categories = categoriesOf(~lang)
     <ApiLayout title categories version components> children </ApiLayout>
   }
 }

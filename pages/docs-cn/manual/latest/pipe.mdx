@@ -4,15 +4,23 @@ description: "The Pipe operator (->)"
 canonical: "/docs/manual/latest/pipe"
 ---
 
-# Pipe | 管道
 
+<!--
+# Pipe
+-->
+
+# 管道
+
+<!--
 ReScript provides a tiny but surprisingly useful operator `->`, called the "pipe", that allows you to "flip" your code inside-out. `a(b)` becomes `b->a`. It's a simple piece of syntax that doesn't have any runtime cost.
+-->
 
-ReScript提供了一个小但很强大的操作符`->`, 称为 "管道(pipe)", 它允许你从内向外 "翻转"代码. `a(b)`变成`b->a`. 这是一个简单的语法, 没有任何运行时成本.
+ReScript提供了一个简洁但很强大的操作符 `->`, 称为 "管道(pipe)", 它允许你从内向外 "翻转" 代码的结构。比如说，可以把 `a(b)` 变成 `b->a`。这是一个简单的语法，并且没有任何运行时开销。
 
+<!--
 Why would you use it? Imagine you have the following:
-
-为什么你会用到它呢? 想象一下下面的代码:
+-->
+为什么你会用到它呢? 想象一下下面的代码：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -25,9 +33,11 @@ validateAge(getAge(parseData(person)));
 
 </CodeTab>
 
+<!--
 This is slightly hard to read, since you need to read the code from the innermost part, to the outer parts. Use pipe to streamline it:
+-->
 
-这有点难读, 因为你需要从最里面的部分开始读, 一直到最外面的部分. 可以使用管道来精简(streamline)它:
+这有点难读，因为你需要从最里面的部分开始读，一直到最外面的部分。可以使用管道来精简(streamline)它：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -43,11 +53,15 @@ validateAge(getAge(parseData(person)));
 
 </CodeTab>
 
+<!--
 Basically, `parseData(person)` is transformed into `person->parseData`, and `getAge(person->parseData)` is transformed into `person->parseData->getAge`, etc.
+-->
 
-基本上, `parseData(person)`被转换为`person->parseData`, `getAge(person->parseData)`被转换为`person->parseData->getAge`, 诸如此类.
+基本上，`parseData(person)` 被转换为 `person->parseData`, `getAge(person->parseData)` 被转换为 `person->parseData->getAge`, 诸如此类。
 
+<!--
 **This works when the function takes more than one argument too**.
+-->
 
 **当函数需要一个以上的参数时这也是可行的**.
 <CodeTab labels={["ReScript", "JS Output"]}>
@@ -61,7 +75,9 @@ a(one, two, three);
 
 </CodeTab>
 
+<!--
 is the same as
+-->
 
 和
 <CodeTab labels={["ReScript", "JS Output"]}>
@@ -75,31 +91,48 @@ a(one, two, three);
 
 </CodeTab>
 
-是一样的.
+是一样的。
 
+<!--
 This also works with labeled arguments.
+-->
 
-这也适用于带标签的参数.
+管道也适用于带标签的参数。
 
+<!--
 Pipes are used to emulate object-oriented programming. For example, `myStudent.getName` in other languages like Java would be `myStudent->getName` in ReScript (equivalent to `getName(myStudent)`). This allows us to have the readability of OOP without the downside of dragging in a huge class system just to call a function on a piece of data.
+-->
 
-管道被用来模拟面向对象的编程. 例如, `myStudent.getName`在Java等其他语言中是`myStudent->getName`在ReScript中(相当于`getName(myStudent)`). 这使我们能够拥有OOP的可读性, 而没有拖入一个巨大的类系统只是为了在一个数据上调用一个函数. 
+管道可以用来模拟面向对象编程。例如，在 Java 等其他语言中是 `myStudent.getName`，在 ReScript 中是 `myStudent->getName` （相当于 `getName(myStudent)`）。 这使我们能够拥有 OOP 的可读性，并且没有只是为了在一个数据上调用一个函数而引入一个巨大的类系统。
 
-## Tips & Tricks | 技巧和诀窍
+<!-- 
+## Tips & Tricks 
+ -->
+ 
+## 技巧和诀窍
 
+<!--
 Do **not** abuse pipes; they're a means to an end. Inexperienced engineers sometimes shape a library's API to take advantage of the pipe. This is backwards.
+-->
 
-**不要滥用**管道; 它们是达到目的的一种手段. 没有经验的工程师有时会为了利用管道的优势来塑造一个库的API, 这搞错了方向.
+**不要滥用**管道；它们是达到目的的一种手段。没有经验的工程师有时会为了利用管道的优势来塑造一个库的API，这搞错了方向。
+<!--
+## JS Method Chaining 
+-->
 
-## JS Method Chaining | JS方法链
+## JS方法链
 
+<!--
 _This section requires understanding of [our binding API](bind-to-js-function.md#object-method)_.
+-->
 
 _阅读这一小节需要先理解[JS绑定API](bind-to-js-function.md#object-method)_.
 
+<!--
 JavaScript's APIs are often attached to objects, and are often chainable, like so:
+-->
 
-JavaScript的API通常关联在对象上, 而且通常是可以链式调用的, 像这样:
+JavaScript的 API 通常关联在对象上，而且通常是可以链式调用的，像这样：
 
 ```js
 const result = [1, 2, 3].map(a => a + 1).filter(a => a % 2 === 0);
@@ -109,9 +142,11 @@ asyncRequest()
   .send();
 ```
 
+<!--
 Assuming we don't need the chaining behavior above, we'd bind to each case this using [`@send`](/syntax-lookup#send-decorator) from the aforementioned binding API page:
+-->
 
-假设我们不需要上面的连锁行为, 我们会用上述绑定API页面中的[`@send`](/syntax-lookup#send-decorator)来绑定:
+假设我们不需要上面的连锁行为，我们会用上述绑定 API 页面中的[`@send`](/syntax-lookup#send-decorator)来绑定：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -127,9 +162,11 @@ type request
 
 </CodeTab>
 
+<!--
 You'd use them like this:
+-->
 
-你可以这样使用它们:
+你可以这样使用它们：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -153,9 +190,11 @@ asyncRequest().setWaitDuration(4000).send();
 
 </CodeTab>
 
+<!--
 This looks much worse than the JS counterpart! Clean it up visually with pipe:
+-->
 
-这看起来比对应的JS部分还要糟糕得多! 用管道在视觉上把它清理干净:
+这看起来比对应的 JS 部分还要糟糕得多! 用管道在视觉上把它清理干净：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -178,11 +217,17 @@ asyncRequest().setWaitDuration(4000).send();
 
 </CodeTab>
 
-## Pipe Into Variants | 把管道引入变体
+<!-- 
+## Pipe Into Variants 
+-->
 
+## 把管道引入变体
+
+<!--
 You can pipe into a variant's constructor as if it was a function:
+-->
 
-你可以把管道引入到一个变体的构造器, 就像构造器是函数一样:
+你可以把管道引入到一个变体的构造器，就像构造器是函数一样：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -195,9 +240,11 @@ var result = preprocess(name);
 
 </CodeTab>
 
+<!--
 We turn this into:
+-->
 
-会把它编译为:
+会把它编译为：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -210,28 +257,40 @@ var result = preprocess(name);
 
 </CodeTab>
 
+<!--
 **Note** that using a variant constructor as a function wouldn't work anywhere else beside here.
+-->
 
-**注意**, 将变体构造函数作为函数使用在除了这里之外的任何地方都不会起作用.
+**注意**，将变体构造函数作为函数使用只在这里有效，在其他地方都不会起作用。
 
-## Pipe Placeholders | 管道占位符
+<!--
+## Pipe Placeholders 
+-->
 
+## 管道占位符
+
+<!--
 A placeholder is written as an underscore and it tells ReScript that you want to fill in an argument of a function later. These two have equivalent meaning:
+-->
 
-通过下划线来表达一个占位符, 它告诉ReScript你想在以后填入一个函数的参数. 这两者的意义相当:
+通过下划线来表达一个占位符，它告诉 ReScript 你想在以后填入一个函数的参数。这两者的意义相当：
 
 ```res
 let addTo7 = (x) => add3(3, x, 4)
 let addTo7 = add3(3, _, 4)
 ```
 
+<!--
 Sometimes you don't want to pipe the value you have into the first position. In these cases you can mark a placeholder value to show which argument you would like to pipe into.
+-->
 
-有时你不想把你拥有的值管道到第一个参数, 在这些情况下, 你可以标记一个占位符的值, 以表示你想管道到哪个参数.
+有时你不想把你拥有的值管道到第一个参数，在这些情况下，你可以标记一个占位符的值，以表示你想管道到哪个参数。
 
+<!--
 Let's say you have a function `namePerson`, which takes a `person` then a `name` argument. If you are transforming a person then pipe will work as-is:
+-->
 
-假设你有一个名为`namePerson`的函数, 传入一个`person`和一个`name`参数. 如果你想用管道运算符传递一个person可以这样做:
+假设你有一个名为 `namePerson` 的函数，传入一个 `person` 和一个 `name` 参数。如果你想用管道运算符传递一个 person 可以这样做：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -245,9 +304,11 @@ namePerson(makePerson(47), "Jane");
 
 </CodeTab>
 
+<!--
 If you have a name that you want to apply to a person object, you can use a placeholder:
+-->
 
-如果你有一个name, 并且想通过管道运算符附加到`person`对象上, 你可以使用一个占位符.
+如果你有一个name, 并且想通过管道运算符附加到 `person` 对象上，你可以使用一个占位符。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -262,9 +323,11 @@ namePerson(personDetails, __x);
 
 </CodeTab>
 
+<!--
 This allows you to pipe into any positional argument. It also works for named arguments:
+-->
 
-这让你可以将任何值"管道"进任何位置参数. 这种机制同样对命名参数有效:
+这让你可以将任何值"管道"进任何位置参数。这种机制同样对命名参数有效：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -279,16 +342,26 @@ namePerson(personDetails, __x);
 
 </CodeTab>
 
-## Triangle Pipe (Deprecated) | 三角管道运算符(已废弃)
+<!--
+## Triangle Pipe (Deprecated) 
+-->
 
+## 三角管道运算符(已废弃)
+
+<!--
 You might see usages of another pipe, `|>`, in some codebases. These are deprecated.
+-->
 
-你可能在一些代码库中见过另一种管道, `|>`. 它们已经被废弃了.
+你可能在一些代码库中见过另一种管道，`|>`. 它们已经被废弃了。
 
+<!--
 Unlike `->` pipe, the `|>` pipe puts the subject as the last (not first) argument of the function. `a |> f(b)` turns into `f(b, a)`.
+-->
 
-不像`->`管道, `|>`管道将参数传入最后一个参数(而不是第一个). 比如说, `a |> f(b)`会转变为 `f(b, a)`.
+不像 `->` 管道，`|>` 管道将参数传入最后一个参数(而不是第一个). 比如说，`a |> f(b)` 会转变为 `f(b, a)`.
 
+<!--
 For a more thorough discussion on the rationale and differences between the two operators, please refer to the [Data-first and Data-last comparison by Javier Chávarri](https://www.javierchavarri.com/data-first-and-data-last-a-comparison/)
+-->
 
-关于这两个运算符的原理和区别的更深入讨论, 请参考[Javier Chávarri的前置数据和后置数据比较](https://www.javierchavarri.com/data-first-and-data-last-a-comparison/)
+关于这两个运算符的原理和区别的更深入讨论，请参考[Javier Chávarri的前置数据和后置数据比较](https://www.javierchavarri.com/data-first-and-data-last-a-comparison/)

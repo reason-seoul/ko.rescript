@@ -21,8 +21,12 @@ const pragma = `
 // on github for editing
 let PROJECT_DIR = path.join(__dirname, "..")
 const EDIT_PREFIX = "https://github.com/reason-association/rescript-lang.org/blob/master/"
+const EDIT_PREFIX_CN = "https://github.com/butterunderflow/rescript-lang.org-chinese-translation/tree/chinese-translation/"
 function createEditHref(filepath) {
   let rel = path.relative(PROJECT_DIR, filepath);
+  if (filepath.includes("docs-cn")){
+    return EDIT_PREFIX_CN + rel;
+  }
   return EDIT_PREFIX + rel;
 }
 

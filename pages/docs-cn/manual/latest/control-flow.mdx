@@ -1,24 +1,38 @@
 ---
-title: "If-Else & Loops"
+title: "If-Else & 循环"
 description: "If, else, ternary, for, and while"
 canonical: "/docs/manual/latest/control-flow"
 ---
 
-# If-Else & Loops
+# If-Else & 循环
 
+
+<!--
 ReScript supports `if`, `else`, ternary expression (`a ? b : c`), `for` and `while`.
+-->
 
-ReScript支持`if`, `else`, 三目运算符(`a ? b : c`), , `for`和`while`.
+ReScript支持 `if`, `else`, 三目运算符(`a ? b : c`), , `for` 和 `while`.
 
+
+<!--
 ReScript also supports our famous pattern matching, which will be covered in [its own section](pattern-matching-destructuring.md)
+-->
 
-ReScript还支持十分强大的模式匹配, 将用一个[专门的章节](pattern-matching-destructuring.md)介绍它.
+ReScript还支持十分强大的模式匹配，将用一个[专门的章节](pattern-matching-destructuring.md)介绍它。
 
-## If-Else & Ternary | If-Else & 三目运算符
 
+<!--
+## If-Else & Ternary 
+-->
+
+## If-Else & 三目运算符
+
+
+<!--
 Unlike its JavaScript counterpart, ReScript's `if` is an expression; they evaluate to their body's content:
+-->
 
-与它的JavaScript对应物不同, ReScript的`if`是一个表达式; 它们的值取决于其body的内容的求值结果.
+与它的 JavaScript 对应物不同，ReScript的 `if` 是一个表达式; 它们的值取决于其 body 的内容的求值结果。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -35,9 +49,12 @@ var message = isMorning ? "Good morning!" : "Hello!";
 
 </CodeTab>
 
-**Note:** an `if-else` expression without the final `else` branch implicitly gives `()` (aka the `unit` type). So this:
 
-**注意:** 会为一个没有`else`分支的`if-else`表达式隐式的补充上`()`(也就是`unit`类型). 所以:
+<!--
+**Note:** an `if-else` expression without the final `else` branch implicitly gives `()` (aka the `unit` type). So this:
+-->
+
+**注意：** 会为一个没有 `else` 分支的 `if-else` 表达式隐式的补充上 `()`(也就是 `unit` 类型). 所以：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -54,9 +71,12 @@ if (showMenu) {
 
 </CodeTab>
 
-is basically the same as:
 
-基本上和以下代码相同:
+<!--
+is basically the same as:
+-->
+
+基本上和以下代码相同：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -75,9 +95,12 @@ if (showMenu) {
 
 </CodeTab>
 
-Here's another way to look at it. This is clearly wrong:
 
-可以从另一个角度看这个特性, 如下代码是错误的:
+<!--
+Here's another way to look at it. This is clearly wrong:
+-->
+
+可以从另一个角度看这个特性，如下代码是错误的：
 
 ```res
 let result = if showMenu {
@@ -85,13 +108,17 @@ let result = if showMenu {
 }
 ```
 
+<!--
 It'll give a type error, saying basically that the implicit `else` branch has the type `unit` while the `if` branch has type `int`. Intuitively, this makes sense: what would `result`'s value be, if `showMenu` was `false`?
+-->
 
-它会抛出一个类型错误, 基本是上说隐含的`else`分支的类型是`unit`, 而`if`分支的类型是`int`. 从直觉上来看这是有道理的: 如果`showMenu`是`false`, 那`result`的值又应该是什么呢?
+它会抛出一个类型错误，基本是上说隐含的 `else` 分支的类型是 `unit`, 而 `if` 分支的类型是 `int`。 从直觉上来看这是有道理的：如果 `showMenu` 是 `false`, 那 `result` 的值又应该是什么呢?
 
+<!--
 We also have ternary sugar, but **we encourage you to prefer if-else when possible**.
+-->
 
-我们也有三目运算符的语法糖, 但是**我们鼓励你优先使用`If-Else`表达式**.
+我们也有三目运算符的语法糖，但是**我们鼓励你优先使用 `if-else` 表达式**.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -104,15 +131,23 @@ var message = isMorning ? "Good morning!" : "Hello!";
 
 </CodeTab>
 
+<!--
 **`if-else` and ternary are much less used** in ReScript than in other languages; [Pattern-matching](pattern-matching-destructuring.md) kills a whole category of code that previously required conditionals.
+-->
 
-**`if-else`和三目运算符在ReScript中的使用比其他语言少得多**；[模式匹配](pattern-matching-destructuring.md)杀死了一大类以前需要条件表达式的代码.
+**`if-else` 和三目运算符在 ReScript 中的使用比其他语言少得多**；[模式匹配](pattern-matching-destructuring.md)消灭了一大类以前需要条件表达式的代码。
 
-## For Loops | For循环
+<!-- 
+## For Loops 
+-->
 
+## For循环
+
+<!--
 For loops iterate from a starting value up to (and including) the ending value.
+-->
 
-For循环从一个起始值一直到(包括)终止值进行迭代.
+For循环从一个起始值一直到(包括)终止值进行迭代。
 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
@@ -133,7 +168,7 @@ for(var i = startValueInclusive; i <= endValueInclusive; ++i){
 <CodeTab labels={["ReScript", "JS Output"]}>
 
 ```res example
-// 打印: 1 2 3, 每个占一行
+// 打印：1 2 3, 每个数字各占一行
 for x in 1 to 3 {
   Js.log(x)
 }
@@ -146,9 +181,12 @@ for(var x = 1; x <= 3; ++x){
 
 </CodeTab>
 
-You can make the `for` loop count in the opposite direction by using `downto`.
 
-你可以通过`downto`让`for`从反方向开始循环.
+<!--
+You can make the `for` loop count in the opposite direction by using `downto`.
+-->
+
+你可以通过 `downto` 让 `for` 从反方向开始循环。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -181,11 +219,19 @@ for(var x = 3; x >= 1; --x){
 
 </CodeTab>
 
-## While Loops | While循环
 
+<!--
+## While Loops 
+-->
+
+## While循环
+
+
+<!--
 While loops execute its body code block while its condition is true.
+-->
 
-`while`循环在其条件为真时执行其body代码块.
+`while` 循环在其条件为 `true` 时执行其 body 代码块。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -202,11 +248,19 @@ while (testCondition) {
 
 </CodeTab>
 
-### Tips & Tricks | 技巧 ＆ 诀窍
 
+<!--
+### Tips & Tricks 
+-->
+
+### 技巧 ＆ 诀窍
+
+
+<!--
 There's no loop-breaking `break` keyword (nor early `return` from functions, for that matter) in ReScript. However, we can break out of a while loop easily through using a [mutable binding](mutation.md).
+-->
 
-在ReScript中没有跳出循环的 `break`关键字(也没有从函数中提前返回的`return`). 然而, 我们可以通过使用[绑定可变值](mutation.md)轻松地脱离while循环.
+在 ReScript 中没有用于跳出循环的 `break` 关键字(也没有从函数中提前返回的 `return`)。 然而，我们可以通过使用[绑定一个可变值](mutation.md)轻松地脱离 while 循环。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

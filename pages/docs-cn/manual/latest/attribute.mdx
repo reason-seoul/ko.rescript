@@ -4,11 +4,16 @@ description: "Annotations in ReScript"
 canonical: "/docs/manual/latest/attribute"
 ---
 
-# Attribute (Decorator) | 属性(装饰器)
+<!--
+# Attribute (Decorator)
+-->
+# 属性(装饰器)
 
+<!--
 Like many other languages, ReScript allows annotating a piece of code to express extra functionality. Here's an example:
+-->
 
-像许多其他语言一样，ReScript允许对一段代码进行注解以表达额外的功能。下面是一个例子：
+像许多其他语言一样，ReScript 允许对一段代码进行标注以表达额外的功能。下面是一个例子：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -24,23 +29,34 @@ var mode2 = "dev";
 
 </CodeTab>
 
+<!--
 The `@inline` annotation tells `mode`'s value to be inlined into its usage sites (see output). We call such annotation "attribute" (or "decorator" in JavaScript).
+-->
 
-`@inline`注解告诉`mode`的值被内联到它的使用地点(见输出). 我们把这种注解称为"属性"(或 JavaScript 中的 "装饰器").
+`@inline` 标注 `mode` 的值被内联到它的使用地点（见输出）。我们把这种标注称为“属性”（或 JavaScript 中的“装饰器”）。
 
+<!--
 An attribute starts with `@` and goes before the item it annotates. In the above example, it's hooked onto the let binding.
+-->
 
-一个属性以`@`开头，放在它注释的项目之前。在上面的例子中，它被挂在 let 绑定上。
+属性以 `@` 开头，放在它标注的项之前。在上面的例子中，它被挂在 let 绑定上。
 
-## Usage | 用法
+<!--
+## Usage
+-->
+## 用法
 
+<!--
 > **Note:** In previous versions (< 8.3) all our interop related attributes started with a `bs.` prefix (`bs.module`, `bs.val`). Our formatter will automatically drop them in newer ReScript versions.
+-->
 
-> **注意：**在以前的版本 (< 8.3) 中，我们所有的互操作相关属性都以`bs.`前缀开始(`bs.module`, `bs.val`). 我们的格式化器将在较新的 ReScript 版本中自动删除它们。
+> **注意：**在以前的版本（< 8.3）中，我们所有和互操作相关属性都以 `bs.` 前缀开始（`bs.module`，`bs.val`）。我们的格式化程序将在较新的 ReScript 版本中自动删除它们。
 
+<!--
 You can put an attribute almost anywhere. You can even add extra data to them by using them visually like a function call. Here are a few famous attributes (explained in other sections):
+-->
 
-你几乎可以把属性放在任何地方，你甚至可以通过像函数调用一样直观地使用它们来添加额外的数据，下面是几个著名的属性(在其他部分解释).
+你几乎可以把属性放在任何地方，你甚至可以通过像函数调用一样直观地使用它们来添加额外的数据，下面是几个重要的属性（在其他部分解释作用）：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -62,32 +78,39 @@ type student = {
 let customDouble = foo => foo * 2
 
 @deprecated("Use SomeOther.customTriple instead")
-let customTriple = foo => foo * 3 
+let customTriple = foo => foo * 3
 ```
 ```js
 ```
 
 </CodeTab>
 
+<!--
 1. `@@warning("-27")` is a standalone attribute that annotates the entire file. Those attributes start with `@@`. Here, it carries the data `"-27"`. You can find a full list of all available warnings [here](./warning-numbers).
 2. `@unboxed` annotates the type definition.
 3. `@val` annotates the `external` statement.
 4. `@as("aria-label")` annotates the `ariaLabel` record field.
 5. `@deprecated` annotates the `customDouble` expression. This shows a warning while compiling telling consumers to not rely on this method long-term.
 6. `@deprecated("Use SomeOther.customTriple instead")` annotates the `customTriple` expression with a string to describe the reason for deprecation.
+-->
 
-1. `@@warning("-27")`是一个注释了整个文件的独立属性。这些属性以`@@`开头，这里它携带的数据是`"-27"`. 你可以在[这里](./warning-numbers)找到所有可用警告的完整列表。
-2. `@unboxed`注释了类型定义。
-3. `@val`注释了`外部'语句。
-4. `@as("aria-label")`注释了`ariaLabel`记录字段。
-5. `@deprecated`注释了`customDouble`表达式。这在编译时显示一个警告，告诉用户不要长期依赖这个方法。
-6. `@deprecated("Use SomeOther.customTriple instead")`注释了`customTriple`表达式，并用一个字符串来描述废弃的原因。
+1. `@@warning("-27")`是一个注释了整个文件的独立属性。这些属性以`@@`开头，这里它携带的数据是 `"-27"`。你可以在[这里](./warning-numbers)找到所有可用警告的完整列表
+2. `@unboxed`标注了类型定义
+3. `@val`标注了 `external` 语句
+4. `@as("aria-label")` 标注了 `ariaLabel` 记录字段
+5. `@deprecated` 标注了 `customDouble` 表达式。这会在编译时显示一个警告，告诉用户不要长期依赖这个方法
+6. `@deprecated("Use SomeOther.customTriple instead")` 标注了 `customTriple` 表达式，并用一个字符串来描述废弃的原因
 
-## Extension Point | 扩展点
+<!--
+## Extension Point
+-->
+## 扩展点
 
+<!--
 There's a second category of attributes, called "extension points" (a remnant term of our early systems):
+-->
 
-还有第二类属性，叫做 "扩展点"(我们早期系统的一个残余术语).
+还有第二类属性，叫做“扩展点”（我们早期系统的一个残余术语）：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -100,11 +123,14 @@ var a = 1
 
 </CodeTab>
 
+<!--
 Extension points are attributes that don't _annotate_ an item; they _are_ the item. Usually they serve as placeholders for the compiler to implicitly substitute them with another item.
+-->
 
-扩展点是一种属性，它不是对某个项目的 _注释_, 他们就是注释 _本身_. 通常，它们作为占位符，让编译器隐含地用另一个项目来替代它们。
+扩展点是一种不会对项进行_标注_的属性，他们_本身_就是注释。通常，它们作为占位符，让编译器暗自用另一个项目来替代它们。
 
+<!--
 Extension points start with `%`. A standalone extension point (akin to a standalone regular attribute) starts with `%%`.
+-->
 
-扩展点以`%`开头。一个独立的扩展点(类似于一个独立的常规属性)以`%`开头。
-
+扩展点以 `%` 开头。独立的扩展点（类似于独立的常规属性）以 `%%`开头。

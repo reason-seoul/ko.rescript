@@ -5,30 +5,29 @@ description: "Documentation about the ReScript build system and its toolchain"
 canonical: "/docs/manual/latest/build-overview"
 ---
 
-<!-- 
-# Build System Overview 
+<!--
+# Build System Overview
 -->
-
 # 构建系统概览
-<!-- 
+
+<!--
 ReScript comes with a build system, [`rescript`](https://www.npmjs.com/package/rescript), that's fast, lean and used as the authoritative build system of the community.
 -->
 
-ReScript 自带一个快速且简洁的构建系统[`rescript`](https://www.npmjs.com/package/rescript)，并被用作社区的权威构建系统。
+ReScript 自带一个快速且简洁的构建系统 [`rescript`](https://www.npmjs.com/package/rescript)，它被用作社区的权威构建系统。
 
-<!-- 
+<!--
 Every ReScript project needs a build description file, `bsconfig.json`.
 -->
 
 每个 ReScript 项目都需要一个构建描述文件 `bsconfig.json`。
 
-<!-- 
-## Options 
+<!--
+## Options
 -->
-
 ## 构建选项
 
-<!-- 
+<!--
 See `rescript -help`:
 -->
 
@@ -52,29 +51,28 @@ For example:
 The default `rescript` is equivalent to `rescript build` subcommand
 ```
 
-<!-- 
+<!--
 ## Build Project
 -->
-
 ## 构建项目
 
-<!-- 
+<!--
 Each build will create build artifacts from your project's source files.
 -->
 
 每次构建都将从项目的源文件创建所构建的软件制品（artifact）。
 
-<!-- 
+<!--
 **To build a project (including its dependencies / pinned-dependencies)**, run:
 -->
 
-**如果要构建一个项目（包括其依赖/固定的依赖）**，运行：
+使用以下命令来**构建一个项目（包括其依赖/锁定版本的依赖）**：
 
 ```sh
 rescript
 ```
 
-<!-- 
+<!--
 Which is an alias for `rescript build`.
 -->
 
@@ -84,7 +82,7 @@ Which is an alias for `rescript build`.
 To keep a build watcher, run:
 -->
 
-要保留一个构建监听（watcher），请运行：
+使用以下命令启动构建监听器（watcher）：
 
 ```sh
 rescript build -w
@@ -96,29 +94,28 @@ Any new file change will be picked up and the build will re-run.
 
 这样任何新的文件变化都会被捕捉到，并会重新开始构建。
 
-<!-- 
+<!--
 **Note**: third-party libraries (in `node_modules`, or via `pinned-dependencies`) aren't watched, as doing so may exceed the node.js watcher count limit.
 -->
 
-**注意**：第三方库（指在 `node_modules` 中，或通过 `pinned-dependencies` 声明）不会被监听，因为这样做可能超过node.js的监听数量限制。
+**注意**：第三方库（指在 `node_modules` 中的库或 `pinned-dependencies` 引入的库）不会被监听，因为这样做可能超过 node.js 的监听数量限制。
 
 <!--
 **Note 2**: In case you want to set up a project in a JS-monorepo-esque approach (`npm` and `yarn` workspaces) where changes in your sub packages should be noticed by the build, you will need to define pinned dependencies in your main project's `bsconfig.json`. More details [here](./build-pinned-dependencies).
 -->
 
-**注意2**: 如果你想以JS-monorepo-esque的方式（`npm`和`yarn`工作区）建立一个项目，你的子包的变化应该被构建注意到，你将需要在主项目的`bsconfig.json`中定义钉住的依赖(pinned dependencies)。更多细节[这里](./build-pinned-dependencies)。
+**注意2**: 如果你想以 JS-monorepo-esque 的方式（`npm` 和 `yarn` 工作区）建立一个项目，你的子包的变化应该被构建工具注意到，你将需要在主项目的 `bsconfig.json` 中定义锁定版本的依赖。更多细节参见[这里](./build-pinned-dependencies)。
 
 <!--
-## Clean Project 
+## Clean Project
 -->
-
-## 清空项目的构建
+## 清理项目
 
 <!--
 If you ever get into a stale build for edge-case reasons, use:
 -->
 
-如果你有一天偶然进入了一个陈旧的构建，可以使用：
+如果你有一天偶然陷入了一个陈旧的构建，可以使用：
 
 ```sh
 rescript clean
@@ -128,8 +125,7 @@ rescript clean
 This will clean your own project's build artifacts. To also clean the dependencies' artifacts:
 -->
 
-这将清空你自己项目的构建制品，也会清理依赖的构建制品：
-
+这将清空你的项目的构建结果，想要清理依赖的构建结果可以使用：
 
 ```sh
 rescript clean -with-deps

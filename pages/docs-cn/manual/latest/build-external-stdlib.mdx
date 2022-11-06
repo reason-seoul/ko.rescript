@@ -6,51 +6,48 @@ canonical: "/docs/manual/latest/build-external-stdlib"
 ---
 
 <!--
-# External Stdlib 
+# External Stdlib
 -->
-
 # 外部标准库
 
-<!-- 
+<!--
 **Since 9.0**
 -->
 
 **从 9.0 版本开始**
 
-<!-- 
+<!--
 Your ReScript project depends on the `rescript` package as a [`devDependency`](https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file), which includes our compiler, build system and runtime like `Belt`. However, you had to move it to `dependency` in `package.json` if you publish your code:
 - To Docker or other low-storage deployment devices.
 - For pure JS/TS consumers who probably won't install `bs-platform` in their own project.
 -->
 
-你的 ReScript 项目依赖于 `rescript` 包作为一个[`devDependency`](https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file)，其中包括我们的编译器、构建系统和运行时，如`Belt`。然而，如果你发布你的代码，你不得不把它添加到 `package.json` 中的 `dependency`：
-- 到 Docker 或其他低存储量的部署设备。
-- 对于那些可能不会在自己的项目中安装 `bs-platform` 的纯 JS/TS 用户。
+你的 ReScript 项目依赖于 `rescript` 包 [`devDependency`](https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file)，其中包括我们的编译器、构建系统和运行时，如 `Belt`。然而，如果你准备以如下方式发布你的代码，你就不得不把它添加到 `package.json` 中的 `dependency` 中：
+- 发布到 Docker 或其他低存储容量的部署设备
+- 对于那些可能不会在自己的项目中安装 `bs-platform` 的纯 JS/TS 用户
 
 <!--
 In these cases, the size or mere presence of `bs-platform` can be troublesome, since it includes not just our necessary runtime like `Belt`, but also our compiler and build system.
 -->
 
-在这些情况下，`bs-platform` 的大小或仅仅是存在就会让人觉得麻烦，因为它不仅包括我们必要的运行时如`Belt'，还包括我们的编译器和构建系统。
+在这些情况下，`bs-platform` 的大小或仅仅是存在就会让人觉得麻烦，因为它不仅包括我们必要的运行时如 `Belt`，还包括我们的编译器和构建系统。
 
-
-<!-- 
+<!--
 To solve that, we now publish our runtime as a standalone package at [`@rescript/std`](https://www.npmjs.com/package/@rescript/std), whose versions mirror `bs-platform`'s. Now you can keep `bs-platform` as a `devDependency` and have only `@rescript/std` as your runtime `dependency`.
 -->
 
-为了解决这个问题，我们现在将我们的运行时作为一个独立的包发布在[`@rescript/std`](https://www.npmjs.com/package/@rescript/std)，其版本与 `bs-platform` 的版本一致。现在你可以把 `bs-platform` 作为一个 `devDependency` 而只把 `@rescript/std` 作为你的运行时 `dependency` 。
+为了解决这个问题，我们现在将我们的运行时作为一个独立的包发布在 [`@rescript/std`](https://www.npmjs.com/package/@rescript/std)，其版本与 `bs-platform` 一致。现在你可以把 `bs-platform` 作为一个 `devDependency` 而只把 `@rescript/std` 作为你的运行时 `dependency`。
 
 
-<!-- 
+<!--
 **This is an advanced feature**. Please only use it in the aforementioned scenarios. If you already use a JS bundler with dead code elimination, you might not need this feature.
 -->
 
-**这是一个高级功能**，请只在上述情况下使用它，如果你已经使用了具有消除死代码的 JS 打包器，你可能不需要这个功能。
+**这是一个高级特性**，请只在上述情况下使用它，如果你已经使用了具有消除死代码功能的 JS 打包器，你可能不需要这个特性。
 
-<!-- 
-## Configuration 
+<!--
+## Configuration
 -->
-
 ## 配置
 
 <!--
@@ -69,7 +66,7 @@ npm install @rescript/std@9.0.0 --save
 Then add this to `bsconfig.json`:
 -->
 
-然后把下面的字段加到 `bsconfig.json` 中：
+然后把下面的东西添加到 `bsconfig.json` 中：
 
 ```json
 {
@@ -78,7 +75,7 @@ Then add this to `bsconfig.json`:
 }
 ```
 
-<!-- 
+<!--
 Now the compiled JS code will import using the path defined by `external-stdlib`. Check the JS output tab:
 -->
 
@@ -101,9 +98,8 @@ Belt_Array.forEach([1, 2, 3], function (num) {
 
 </CodeTab>
 
-<!-- 
+<!--
 **Make sure the version number of `bs-platform` and `@rescript/std` match in your `package.json`** to avoid running into runtime issues due to mismatching stdlib assumptions.
 -->
 
 **请确保 `bs-platform` 和 `@rescript/std` 的版本号在你的 `package.json` 中匹配**，以避免由于不匹配的 stdlib 假设而遇到运行时问题。
-

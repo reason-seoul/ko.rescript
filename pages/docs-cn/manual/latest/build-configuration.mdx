@@ -140,7 +140,7 @@ Note that only sources marked with `"type":"dev"` will be able to resolve module
 **Since 8.4**: List of pinned dependencies. A pinned dependency will always be rebuilt whenever you build a toplevel package (e.g. your main app) with `rescript`.
 -->
 
-**从8.4开始**。被钉住的依赖列表（pinned dependencies）。每当你用 `rescript` 构建一个顶级包（例如你的主程序）时，被钉住的依赖关系总是被重新构建。
+**从8.4开始**。固定的依赖列表（pinned dependencies）。每当你用 `rescript` 构建一个顶级包（例如你的主程序）时，被固定的依赖关系总是被重新构建。
 
 <!--
 This is useful for working on multiple independent ReScript packages simultaneously. More usage details can be found in our dedicated [pinned dependencies](./build-pinned-dependencies) page.
@@ -353,9 +353,11 @@ Extra flags to pass to the compiler. For advanced usages.
 
 ## 环境变量
 
+<!--
 We heavily disrecommend the usage of environment variables, but for certain cases, they're justified.
+-->
 
-我们非常不建议使用环境变量，但在某些情况下它们是合理的。
+我们非常不建议使用环境变量，但在某些使用情况下它们是合理的。
 
 <!--
 ### Error Output Coloring: `NINJA_ANSI_FORCED` 

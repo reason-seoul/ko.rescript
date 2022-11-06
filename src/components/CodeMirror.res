@@ -503,10 +503,7 @@ let updateErrors = (~state: state, ~onMarkerFocus=?, ~onMarkerFocusLeave=?, ~cm:
 
   let errorsMap = Belt.HashMap.make(~hintSize=Belt.Array.length(errors), ~id=module(ErrorHash))
   state.marked = []
-  cm->{
-    open CM
-    clearGutter(errorGutterId)
-  }
+  cm-> CM.clearGutter(CM.errorGutterId)
 
   let wrapper = cm->CM.getWrapperElement
 

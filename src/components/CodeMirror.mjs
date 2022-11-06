@@ -264,7 +264,7 @@ function updateErrors(state, onMarkerFocus, onMarkerFocusLeave, cm, errors) {
         }));
   var errorsMap = Belt_HashMap.make(errors.length, ErrorHash);
   state.marked = [];
-  errorGutterId.clearGutter(cm);
+  cm.clearGutter(errorGutterId);
   var wrapper = cm.getWrapperElement();
   Belt_Array.forEachWithIndex(errors, (function (idx, e) {
           if (Belt_HashMap.has(errorsMap, e.row)) {

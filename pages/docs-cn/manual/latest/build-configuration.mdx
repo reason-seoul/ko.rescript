@@ -75,7 +75,7 @@ We don't do folder-level namespacing for your own project; all your own file nam
 Your source files need to be specified explicitly (we don't want to accidentally drill down into some unrelated directories). Examples:
 -->
 
-你需要明确指定你的源文件（我们不希望不小心钻到一些不相关的目录）。举例来说：
+你需要明确指定你的源文件路径（我们不希望不小心钻到一些不相关的目录）。举例来说：
 
 
 ```json
@@ -108,7 +108,7 @@ Your source files need to be specified explicitly (we don't want to accidentally
 You can mark your directories as dev-only (for e.g. tests). These won't be built and exposed to third-parties, or even to other "dev" directories in the same project:
 -->
 
-你可以把你的目录标记为 `dev-only`（例如测试文件）。这些文件不会被构建然后暴露给第三方，或者是同一项目中的其他“开发”目录。
+你可以把你的目录标记为仅用于开发（例如测试文件）。这些文件不会被构建然后暴露给第三方，或者是同一项目中的其他“开发”目录。
 
 
 ```json
@@ -132,7 +132,7 @@ List of ReScript dependencies. Just like `package.json`'s dependencies, they'll 
 Note that only sources marked with `"type":"dev"` will be able to resolve modules from `bs-dev-dependencies`.
 -->
 
-注意，只有标有 `"type": "dev"` 的源才能够解析到 `bs-dev-dependencies` 中的模块。
+注意，只有标有 `"type": "dev"` 的源代码才能够解析到 `bs-dev-dependencies` 中的模块。
 
 ## pinned-dependencies
 
@@ -154,7 +154,7 @@ This is useful for working on multiple independent ReScript packages simultaneou
 **Since 9.0**: This setting allows depending on an externally built stdlib package (instead of a locally built stdlib runtime). Useful for shipping packages that are only consumed in JS or TS without any dependencies to the ReScript development toolchain.
 -->
 
-**从9.0开始**：此设置允许依赖外部构建的 stdlib 包（而不是本地构建的 stdlib 运行时）。这对转移只在 JS 或TS中使用的包很有用，而对 ReScript 开发工具链没有任何依赖性。
+**从9.0开始**：此设置允许依赖外部构建的 stdlib 包（而不是本地构建的 stdlib 运行时）。这对转移只在 JS 或 TS 中使用的包很有用，这样对 ReScript 开发工具链没有任何依赖性。
 
 <!--
 More details can be found on our [external stdlib](./build-external-stdlib) page.
@@ -255,7 +255,7 @@ Output to either CommonJS (the default) or ES6 modules. Example:
 - `"in-source": true` generates output alongside source files. If you omit it, it'll generate the artifacts into `lib/js`. The output directory is not configurable otherwise.
 -->
 
-- `"模块": "es6-global"` 使用相对路径解析 `node_modules`。这有利于ES6在开发过程中与 Safari 和Firefox等目前支持ES6模块的浏览器结合使用。**没有和开发捆绑**!
+- `"module": "es6-global"` 使用相对路径解析 `node_modules`。这有利于ES6在开发过程中与 Safari 和Firefox等目前支持ES6模块的浏览器结合使用。**没有和开发捆绑**!
 - `"in-source": true` 代表与源文件一起生成输出。如果你省略它，它将生成制品到 `lib/js`。否则输出目录是不可配置的。
 
 <!--

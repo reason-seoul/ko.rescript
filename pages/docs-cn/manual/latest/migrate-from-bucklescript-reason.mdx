@@ -1,5 +1,5 @@
 ---
-title: "迁移到 ReScript 语法"
+title: "从 BuckleScript/Reason 迁移"
 description: "Instructions on upgrading from Reason to ReScript"
 canonical: "/docs/manual/latest/migrate-to-new-syntax"
 ---
@@ -7,21 +7,21 @@ canonical: "/docs/manual/latest/migrate-to-new-syntax"
 <!--
 # Migrate from BuckleScript/Reason
 -->
-# 从 BuckleScript/Reason 迁移到 ReScript
+# 从 BuckleScript/Reason 迁移
 
 <!--
 ReScript is a rebranding and cleanup of BuckleScript (since `v8.2.0`) & Reason (`v3.6`) that enables us to ship a tighter compile-to-JS stack with more coherent documentation & tools. If you're an existing user of BuckleScript & Reason, here's the gist:
 -->
 
-ReScript 是对 BuckleScript（从 `v8.2.0` 起）和 Reason（从 `v3.6` 起）的收尾和重塑，这使我们能使用更连贯的文档和工具提供更紧凑的 compile-to-JS 技术栈。如果你已经是 BuckleScript 或 Reason 的用户，下面是需要注意的东西：
+ReScript 是对 BuckleScript（自 `v8.2.0` 起）和 Reason（`v3.6`）的重塑和清理，它使我们能以更连贯的文档和工具提供更紧凑的 compile-to-JS 技术栈。如果你是 BuckleScript 或 Reason 的现有用户，下面是要注意的点：
 
 <!--
 - ReScript is mostly just BuckleScript rebranded, with a new syntax that's like the Reason syntax, but catered more toward the JavaScript crowd.
 - All your existing code will keep working even if you don't upgrade.
 -->
 
-- ReScript 几乎就是改了个名字的 BuckleScript，Rescript 提供的新语法很像 Reason 的语法，但更加适合 Javascript 群体
-- 即使你不升级，所有现有代码仍将正常工作
+- ReScript 主要是 BuckleScript 的改版，它的新语法和 Reason 的语法类似，但更加适合 Javascript 人群
+- 即使你不升级，你所有的现有代码也会继续工作
 
 
 <!--
@@ -33,7 +33,7 @@ ReScript 是对 BuckleScript（从 `v8.2.0` 起）和 Reason（从 `v3.6` 起）
 There are lots of exciting improvements in the new syntax (features, speed, error messages, etc.). The upgrade is trivial, backward-compatible and can be done on a per-file basis:
 -->
 
-新的语法有很多振奋人心的改进（特性，速度，错误提示等）。升级是后向兼容的，并且可以逐个文件的完成：
+新的语法有很多令人兴奋的改进（特性，速度，错误提示等）。升级是轻松的，向后兼容的，并且可以在每个文件的基础上完成：
 
 ```
 npm install rescript@9
@@ -46,7 +46,7 @@ npx rescript convert src/MyFile.re
 Enjoy the improved experience!
 -->
 
-享受升级后的体验吧！
+享受改进后的体验吧！
 
 <!--
 ### Upgrade Individual Folders
@@ -57,7 +57,7 @@ Enjoy the improved experience!
 This is useful for per-directory convertions:
 -->
 
-以下命令可以进行逐个文件夹的转换：
+这对逐目录的转换很有用：
 
 ```console
 # *.rei, *.ml, *.mli,....
@@ -67,13 +67,13 @@ for f in your-folder/**/*.re; do; node_modules/.bin/rescript convert $f && rm $f
 <!--
 ### Upgrade an Entire Codebase
 -->
-### 升级整个代码库
+### 升级一整个代码库
 
 <!--
 In case you are confident in converting your codebase in one step, use the following:
 -->
 
-如果你确信可以一步转换整个代码库，可以使用下面的做法：
+如果你对一步到位地转换你的代码库有信心，可以使用以下方法：
 
 ```
 npx rescript convert -all
@@ -105,21 +105,21 @@ npx rescript convert -all
 - Use any words, including reserved keywords, as your identifier name: `let \"try" = true`.
 -->
 
-- 完全去除了分号（你仍然可以加上）
-- 不再需要给 `if`，`switch` 和 `try`表达式加上括号
+- 完全去除了分号（你仍然可以写分号）
+- 不再需要在 `if`、`switch` 和 `try` 周围加上括号
 - 类型参数：`option(int)` 变为 `option<int>`
-- 旧字符串插值：`{j|hello ${name}|j}` 变为 `` j`hello ${name}` ``。现在有了更好的 unicode 支持！
-- 新字符串插值：`` `hello world` ``，同样支持多行和 unicode。`"hello world"` 现在仅支持单行字符串
+- 旧字符串插值：`{j|hello ${name}|j}` 变为 `` j`hello ${name}` ``。现在有了适当的 unicode 支持！
+- 新字符串插值：`` `hello world` ``，同样支持多行和 unicode。`"hello world"` 现在是单行的
 - 多态变体（Polymorphic variants）：`` `red`` 变为 `#red`
 - 数组：`[|1,2,3|]` 变为 `[1,2,3]`。后者是 JS 中的写法
-- 列表：`[1,2,3]` 变为 `list[1,2,3]`（_8.1.1 版本更新_：现在是 `list{1, 2, 3}`）。这与即将到来的以统一方式访问容器的计划有关，比如 `set[...]` and `map[...]`。也许只是暂时修改
+- 列表：`[1,2,3]` 变为 `list[1,2,3]`（_8.1.1 版本更新_：现在是 `list{1, 2, 3}`）。这与即将到来的以统一方式访问容器的计划有关，比如 `set[...]` 和 `map[...]`。也许只是暂时修改
 - 异常：`try (compute()) { | Not_found => Js.log("oops")}` 变为 `try compute() catch { | Not_found => Js.log("oops")}`
-- 一等公民（first class）模块：`(module S: Student)` 变为 `module(S: Student)`
-- 目前没有支持自定义中缀运算符（包括 `mod`）
+- 一等公民模块：`(module S: Student)` 变为 `module(S: Student)`
+- 目前没有自定义的中缀运算符（包括 `mod`）
 - 访问对象：`settings##visible #= true` 变为 `settings["visible"] = true`。欢呼吧！
 - 创建对象：`Js.t({"age": int})` 变成了 `{"age": int}`，不再需要 `Js.t`
-- Attribute（装饰器）：`[@myAttribute "hello"]` 变为 `@myAttribute("hello")`。`[%re bla]` 变为 `%re(bla)`
-- 解引用语法 `result^` 被移除了，使用 `result.contents`
-- `fun` 的模式匹配语法被移除了
-- 类型声明现在是默认非递归的，这与 let 绑定一致。如果要使用递归类型，可以这样定义 `type rec myList<'a> = Nil | Cons('a, myList<'a>)`
-- 可以使用任意的单词(包括保留关键字)作为标识符： `let \"try" = true`
+- 属性（装饰器）：`[@myAttribute "hello"]` 变为 `@myAttribute("hello")`。`[%re bla]` 变为 `%re(bla)`
+- 解引用语法 `result^` 被移除了，只需使用 `result.contents`
+- `fun` 模式匹配语法被移除了
+- 类型声明默认为非递归，与 let 绑定一致。要有递归类型，请使用 `type rec myList<'a> = Nil | Cons('a, myList<'a>)`
+- 可以使用任意的单词（包括保留关键字）作为标识符：`let \"try" = true`

@@ -29,12 +29,12 @@ canonical: "/docs/manual/latest/overview"
 -->
 ### 注释
 
-| JavaScript                     | ReScript                   |
-|--------------------------------|----------------------------|
-| `// 行注释`                    | 相同                       |
-| `/* 块注释 */`                 | 相同                       |
-| `/** 文档注释(Doc Comment) */` | `/** 类型/值之前的注释 */` |
-|                                | `/*** 独立的文档注释 */`   |
+| JavaScript        | ReScript                   |
+|-------------------|----------------------------|
+| `// 行注释`       | 相同                       |
+| `/* 块注释 */`    | 相同                       |
+| `/** 文档注释 */` | `/** 类型/值之前的注释 */` |
+|                   | `/*** 独立的文档注释 */`   |
 
 <!--
 ### Variable
@@ -50,7 +50,7 @@ canonical: "/docs/manual/latest/overview"
 <!--
 ### String & Character
 -->
-### 字符串 & 字符
+### 字符串和字符
 
 | JavaScript               | ReScript              |
 |--------------------------|-----------------------|
@@ -64,14 +64,14 @@ canonical: "/docs/manual/latest/overview"
 -->
 ### 布尔值
 
-| JavaScript                                            | ReScript                           |
-|-------------------------------------------------------|------------------------------------|
-| `true`, `false`                                       | 相同                               |
-| `!true`                                               | 相同                               |
-| <code>&#124;&#124;</code>, `&&`, `<=`, `>=`, `<`, `>` | 相同                               |
-| `a === b`, `a !== b`                                  | 相同                               |
-| 没有深比较（递归比较）                                | `a == b`, `a != b`                 |
-| `a == b`                                              | 相等判断中没有隐式转换（谢天谢地） |
+| JavaScript                                            | ReScript                         |
+|-------------------------------------------------------|----------------------------------|
+| `true`, `false`                                       | 相同                             |
+| `!true`                                               | 相同                             |
+| <code>&#124;&#124;</code>, `&&`, `<=`, `>=`, `<`, `>` | 相同                             |
+| `a === b`, `a !== b`                                  | 相同                             |
+| 没有深比较（递归比较）                                | `a == b`, `a != b`               |
+| `a == b`                                              | 相等判断没有隐式转换（谢天谢地） |
 
 <!--
 ### Number
@@ -88,12 +88,12 @@ canonical: "/docs/manual/latest/overview"
 
 <!-- \* JS has no distinction between integer and float. -->
 
-\* JS 没有区分整数（integer）和浮点数（float）。
+\* JS 没有区分整数和浮点数。
 
 <!--
 ### Object/Record
 -->
-### 对象/记录(Record)
+### 对象/记录（Record）
 
 | JavaScript          | ReScript                                |
 |---------------------|-----------------------------------------|
@@ -118,7 +118,7 @@ canonical: "/docs/manual/latest/overview"
 \* Heterogenous arrays in JS are disallowed for us. Use tuple instead.
 -->
 
-\* ReScript 不允许在数组中存储不同类型的值，请使用元组（tuple）。
+\* JS 中的异构（heterogenous）数组对我们来说是不允许的，使用元组（tuple）代替。
 
 <!--
 ### Null
@@ -133,7 +133,7 @@ canonical: "/docs/manual/latest/overview"
 \* Again, only a spiritual equivalent; we don't have nulls, nor null bugs! But we do have an `option` type for when you actually need nullability.
 -->
 
-\* 同样，这里只是精神上的等价物；Rescript 没有 null，也没有 null bug！当你真正需要 null 时可以使用 `option` 类型。
+\* 同样，这里只是精神上的等价物；我们没有 null，也没有 null bug！但我们确实有一个 `option` 类型，当你真正需要 null 时可以使用这个类型。
 
 <!--
 ### Function
@@ -188,18 +188,18 @@ canonical: "/docs/manual/latest/overview"
 |-----------------------|-------------------------------------------------------------------------|
 | `if (a) {b} else {c}` | `if a {b} else {c}` \*                                                  |
 | `a ? b : c`           | 相同                                                                    |
-| `switch`              | `switch` 但拥有[强大的模式匹配功能!](pattern-matching-destructuring.md) |
+| `switch`              | 拥有[强大模式匹配功能！](pattern-matching-destructuring.md)的 `switch` |
 
 <!--
 \* Our conditionals are always expressions! You can write `let result = if a {"hello"} else {"bye"}`
 -->
 
-\* ReScript 的条件语句是表达式！你可以这样做：`let result = if a {"hello"} else {"bye"}`
+\* 我们的条件式总是表达式！你可以这样写：`let result = if a {"hello"} else {"bye"}`
 
 <!--
 ### Destructuring
 -->
-### 解构
+### 析构
 
 | JavaScript                    | ReScript                          |
 |-------------------------------|-----------------------------------|
@@ -211,7 +211,7 @@ canonical: "/docs/manual/latest/overview"
 \* Gives good compiler warning that data might not be of length 2.
 -->
 
-\* 编译器无法确定 data 的长度为 2 时会给出警告。
+\* 给出良好的编译器警告，数据长度可能不为 2。
 
 <!--
 ### Loop
@@ -231,7 +231,7 @@ canonical: "/docs/manual/latest/overview"
 | `<Comp message="hi" onClick={handler} />` | 相同                       |
 | `<Comp message={message} />`              | `<Comp message />` \*      |
 | `<input checked />`                       | `<input checked=true />`   |
-| 没有展开语法                              | `<Comp>...children</Comp>` |
+| 没有子节点平展                            | `<Comp>...children</Comp>` |
 
 
 <!--
@@ -254,7 +254,7 @@ canonical: "/docs/manual/latest/overview"
 \* No finally.
 -->
 
-\* 最终会取消掉它。
+\* 最后会没有。
 
 <!--
 ### Blocks
@@ -265,7 +265,7 @@ canonical: "/docs/manual/latest/overview"
 The last expression of a block delimited by `{}` implicitly returns (including function body). In JavaScript, this can only be simulated via an immediately-invoked function expression (since function bodies have their own local scope).
 -->
 
-被`{}`包起来的代码块的最后一个表达式隐式作为块的返回值（函数体也是这样）。在 JavaScript 中，这只能通过一个立即调用函数表达式（IIFE, Immediately Invoked Funtion Expression）来模拟（利用函数作用域）。
+由 `{}` 限定的块的最后一个表达式隐含地返回（函数体也是这样）。在 JavaScript 中，这只能通过一个立即调用函数表达式（IIFE, Immediately Invoked Funtion Expression）来模拟（利用函数作用域）。
 
 <table>
   <thead>
@@ -297,13 +297,13 @@ The last expression of a block delimited by `{}` implicitly returns (including f
 <!--
 ## Common Features' JS Output
 -->
-## 一般特性编译到 JS 的输出
+## 普通特性的 JS 输出
 
 | Feature        | Example                              | JavaScript Output                          |
 |----------------|--------------------------------------|--------------------------------------------|
 | 字符串         | `"Hello"`                            | `"Hello"`                                  |
-| 内插字符串     | `` `Hello ${message}` ``             | `"Hello " + message`                       |
-| 字符 (不推荐)  | `'x'`                                | `120` （字符码）                           |
+| 字符串插值     | `` `Hello ${message}` ``             | `"Hello " + message`                       |
+| 字符（不推荐） | `'x'`                                | `120` （字符码）                           |
 | 整数           | `23`, `-23`                          | `23`, `-23`                                |
 | 浮点数         | `23.0`, `-23.0`                      | `23.0`, `-23.0`                            |
 | 整数加法       | `23 + 1`                             | `23 + 1`                                   |
@@ -316,7 +316,7 @@ The last expression of a block delimited by `{}` implicitly returns (including f
 | 布尔运算       | `!`, `&&`, <code>&#124;&#124;</code> | `!`, `&&`, <code>&#124;&#124;</code>       |
 | 浅等价和深等价 | `===`, `==`                          | `===`, `==`                                |
 | 列表（不推荐） | `list{1, 2, 3}`                      | `{hd: 1, tl: {hd: 2, tl: {hd: 3, tl: 0}}}` |
-| 在列表头插入   | `list{a1, a2, ...oldList}`           | `{hd: a1, tl: {hd: a2, tl: theRest}}`      |
+| 列表头插       | `list{a1, a2, ...oldList}`           | `{hd: a1, tl: {hd: a2, tl: theRest}}`      |
 | 数组           | `[1, 2, 3]`                          | `[1, 2, 3]`                                |
 | 记录           | `type t = {b: int}; let a = {b: 10}` | `var a = {b: 10}`                          |
 | 多行注释       | `/* Comment here */`                 | 无输出                                     |
@@ -326,4 +326,4 @@ The last expression of a block delimited by `{}` implicitly returns (including f
 _Note that this is a cleaned-up comparison table; a few examples' JavaScript output are slightly different in reality._
 -->
 
-_请注意，这是一个经过清理的对比表；少许例子中的 JavaScript 输出与实际略有不同。_
+_请注意，这是一个经过清理的对比表；几个例子的 JavaScript 输出与实际略有不同。_

@@ -13,7 +13,7 @@ canonical: "/docs/manual/latest/lazy-values"
 If you have some expensive computations you'd like to **defer and cache** subsequently, you can wrap it with `lazy`:
 -->
 
-如果你有一些昂贵的计算，你想**延后计算并且缓存结果**, 你可以用 `lazy` 来包装它：
+如果你有一些昂贵的计算，你想**延后计算并且缓存结果**, 你可以使用 `lazy` 包装它：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -48,7 +48,7 @@ Check the JS Output tab: that `expensiveFilesRead`'s code isn't executed yet, ev
 **Note**: a lazy value is **not** a [shared data type](shared-data-types.md). Don't rely on its runtime representation in your JavaScript code.
 -->
 
-**注意**：惰性值是**不是**[共享数据类型](shared-data-types.md). 不要在你的 JavaScript 代码中依赖它的运行时表示。
+**注意**：惰性值是**不是**一个[共有数据类型](shared-data-types.md)。不要在你的 JavaScript 代码中依赖它的运行时表示。
 
 <!--
 ## Execute The Lazy Computation
@@ -58,6 +58,8 @@ Check the JS Output tab: that `expensiveFilesRead`'s code isn't executed yet, ev
 <!--
 To actually run the lazy value's computation, use `Lazy.force` from the globally available `Lazy` module:
 -->
+
+要实际运行懒惰值的计算，请使用全局模块`Lazy` 的 `Lazy.force`：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -92,7 +94,7 @@ The first time `Lazy.force` is called, the expensive computation happens and the
 Instead of using `Lazy.force`, you can also use [pattern matching](pattern-matching-destructuring.md) to trigger the computation:
 -->
 
-你也可以使用[模式匹配](pattern-matching-destructuring.md)来触发计算：
+除了使用 `Lazy.force`，你也可以使用[模式匹配](pattern-matching-destructuring.md)来触发计算：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -135,7 +137,7 @@ console.log(result);
 For completeness' sake, our files read example might raise an exception because of `readdirSync`. Here's how you'd handle it:
 -->
 
-我们的文件读取例子可能因为 `readdirSync` 触发异常。下面是处理方式：
+为了完整起见，我们的文件读取例子可能因为 `readdirSync` 而引发一个异常。下面是处理方式：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -167,4 +169,4 @@ try {
 Though you should probably handle the exception inside the lazy computation itself.
 -->
 
-不过你应该在惰性计算内部处理这个异常。
+不过你应该在惰性计算中处理这个异常。

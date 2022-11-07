@@ -13,7 +13,7 @@ canonical: "/docs/manual/latest/pattern-matching-destructuring"
 One of ReScript's **best** feature is our pattern matching. Pattern matching combines 3 brilliant features into one:
 -->
 
-ReScript **最棒**的特性之一就是模式匹配了。模式匹配将 3 个极佳的特性整合到了一起：
+ReScript **最棒**的特性之一就是模式匹配了。模式匹配将 3 个极佳的特性融为一体：
 
 <!--
 - Destructuring.
@@ -22,14 +22,14 @@ ReScript **最棒**的特性之一就是模式匹配了。模式匹配将 3 个�
 -->
 
 - 析构
-- 基于数据结构的 `switch`
+- 基于数据形状的 `switch`
 - 穷举检查
 
 <!--
 We'll dive into each aspect below.
 -->
 
-我们接下来深入学习一下这三个特性。
+我们将在下面深入探讨各个方面。
 
 <!--
 ## Destructuring
@@ -40,7 +40,7 @@ We'll dive into each aspect below.
 Even JavaScript has destructuring, which is "opening up" a data structure to extract the parts we want and assign variable names to them:
 -->
 
-甚至 JavaScript 也有析构功能，也就是"打开"一个数据结构，提取我们想要的部分，然后将它赋值到一个变量：
+甚至 JavaScript 也有析构功能，也就是“打开”一个数据结构，提取我们想要的部分，并为其分配变量名：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -61,7 +61,7 @@ console.log(10);
 Destructuring works with most built-in data structures:
 -->
 
-大部分内置数据析构都是可以析构的：
+大部分内置数据都是可以析构的：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -123,7 +123,7 @@ var myList = {
 You can also use destructuring anywhere you'd usually put a binding:
 -->
 
-你可以在任何创建绑定的地方使用析构：
+你也可以在通常放置绑定的地方使用析构：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -170,7 +170,7 @@ var n = "John";
 You _can_ in theory destructure array and list at the top level too:
 -->
 
-理论上你也 _可以_ 在顶层析构数组和列表：
+理论上，你也_可以_在顶层析构数组和列表：
 
 ```res
 let myArray = [1, 2, 3]
@@ -186,18 +186,18 @@ let list{head, ...tail} = myList
 But the array example is **highly disrecommended** (use tuple instead) and the list example will error on you. They're only there for completeness' sake. As you'll see below, the proper way of using destructuring array and list is using `switch`.
 -->
 
-但是我们**非常不推荐**析构数组（这种情况最好用元组代替）。上面的例子会报错，它们在这里只是为了做补充说明。你即将在后面看到，析构数组和列表的正确方法是使用 `switch`。
+但是我们**非常不推荐**析构数组（这种情况最好用元组代替）。上面的例子会报错，它们在这里只是为了做补充说明。正如你将在下面看到的，析构数组和列表的正确方法是使用 `switch`。
 
 <!--
 ## `switch` Based on Shape of Data
 -->
-## 基于数据结构的 `switch`
+## 基于数据形状的 `switch`
 
 <!--
 While the destructuring aspect of pattern matching is nice, it doesn't really change the way you think about structuring your code. One paradigm-changing way of thinking about your code is to execute some code based on the shape of the data.
 -->
 
-虽然析构的模式匹配很好，但它并没有真正改变你理解代码结构的方式。使用基于数据形状的条件执行可以让你对代码的理解发生范式转换。
+虽然模式匹配的析构挺不错，但它并没有真正改变你思考结构化代码的方式。一个改变你的代码思维模式的方法是，根据数据形状来执行一些代码。
 
 <!--
 Consider a variant:
@@ -223,13 +223,13 @@ type payload =
 We'd like to handle each of the 3 cases differently. For example, print a success message if the value is `GoodResult(...)`, do something else when the value is `NoResult`, etc.
 -->
 
-我们想要处理三种不同的情况。比如说，如果值是 `GoodResult(...)`，那就打印一条成功消息，如果值是 `NoResult` 那就做一些其他事情，等等。
+我们想要以不同的方式处理这三种情况。例如，如果值是 `GoodResult(...)`，那就打印一条成功消息；如果值是 `NoResult` 那就做其他事情，等等。
 
 <!--
 In other languages, you'd end up with a series of if-elses that are hard to read and error-prone. In ReScript, you can instead use the supercharged `switch` pattern matching facility to destructure the value while calling the right code based on what you destructured:
 -->
 
-在其他语言中，你可能会用一系列的 if-else 来实现上述功能，这样做成可读性不好而且很容易出错。在 ReScrit 中你可以使用强大的 `switch` 模式匹配来对值进行析构，然后基于析构的结果调用需要的代码块：
+在其他语言中，你最终会得到一系列难以阅读和容易出错的 if-else。在 ReScript 中，你可以使用强大的 `switch` 模式匹配来对值进行析构，然后根据析构的结果调用正确的代码：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -265,13 +265,13 @@ if (typeof data === "number") {
 In this case, `message` will have the value `"Success! Product shipped!"`.
 -->
 
-这种情况 `message`的值会是 `"Success! Product shipped!"`。
+这种情况 `message` 的值会是 `"Success! Product shipped!"`。
 
 <!--
 Suddenly, your if-elses that messily checks some structure of the value got turned into a clean, compiler-verified, linear list of code to execute based on exactly the shape of the value.
 -->
 
-转眼之间，混乱的 if-else 判断转变为了线性代码列表，它非常干净而且会被编译器检验，它会根据值的形状执行相关的代码片段。
+转眼之间，乱七八糟的 if-else 变成了一个干净的、经过编译器验证的、线性的代码列表。它可以准确地根据值的形状来执行。
 
 <!--
 ### Complex Examples
@@ -282,7 +282,7 @@ Suddenly, your if-elses that messily checks some structure of the value got turn
 Here's a real-world scenario that'd be a headache to code in other languages. Given this data structure:
 -->
 
-下面是一段真实场景的代码，在别的语言中表达相同的功能是很头疼的。比如对于这个数据结构：
+下面是一段真实场景的代码，在别的语言中表达相同的功能是很头疼的。考虑这个数据结构：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -329,7 +329,7 @@ Imagine this requirement:
 ReScript can do this easily!
 -->
 
-ReScript 可以很轻易地完成上面的任务！
+ReScript 可以轻松完成任务！
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -405,10 +405,10 @@ if (person1.TAG) {
 -->
 
 **注意** 我们是如何：
-- 简洁的深入检查内部值
-- 使用**嵌套的模式检查** `"Mary" | "Joe"` 和 `Vacations | Sabbatical`
-- 在后面的分支中提取 `dayLeft` 成员
-- 最后把打招呼的信息赋给 `message` 绑定
+- 简洁的深入到内部值
+- 使用**嵌套模式检查**，即 `"Mary" | "Joe"` 和 `Vacations | Sabbatical`
+- 从后一种情况中提取 `dayLeft` 数字
+- 将问候语绑定给 `message`
 
 <!--
 Here's another example of pattern matching, this time on an inline tuple.
@@ -438,7 +438,7 @@ var categoryId = isBig ? (myAnimal + 1) | 0 : myAnimal >= 2 ? 5 : 4;
 **Note** how pattern matching on a tuple is equivalent to a 2D table:
 -->
 
-**注意** 在元组上的模式匹配等价于二维表的查找：
+**注意**元组上的模式匹配是如何等价于二维查找表的：
 
 | isBig \ myAnimal | Dog | Cat | Bird |
 |------------------|-----|-----|------|
@@ -451,7 +451,7 @@ var categoryId = isBig ? (myAnimal + 1) | 0 : myAnimal >= 2 ? 5 : 4;
 The nested pattern check, demonstrated in the earlier `person` example, also works at the top level of a `switch`:
 -->
 
-在前面的 `person` 的例子中展示的嵌套模式检查也可以 `switch` 的顶层：
+在前面的 `person` 的例子中展示的嵌套模式检查，也可以用在 `switch` 的顶层：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -484,19 +484,18 @@ if (typeof myStatus === "number") {
 Having multiple cases fall into the same handling can clean up certain types of logic.
 -->
 
-让多个分支下落到同一处理分支可以让某些类型的逻辑更加清晰。
-
+让多种情况落入同一处理可以清理一些逻辑。
 
 <!--
 ### Ignore Part of a Value
 -->
-### 忽略某部分的值
+### 忽略值的一部分
 
 <!--
 If you have a value like `Teacher(payload)` where you just want to pattern match on the `Teacher` part and ignore the `payload` completely, you can use the `_` wildcard like this:
 -->
 
-如果你有个像 `Teacher(payload)` 的值，你可能只想匹配 `Teacher` 部分而完全忽略 `payload` 部分，这种情况你可以使用下划线 `_`，就像这样：
+如果你有个像 `Teacher(payload)` 这样的值，你可能只想匹配 `Teacher` 部分而完全忽略 `payload`，你可以像这样使用 `_` 通配符：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -520,7 +519,7 @@ if (person1.TAG) {
 `_` also works at the top level of the `switch`, serving as a catch-all condition:
 -->
 
-`_` 也用在 `switch` 的顶层，它被当作一个默认分支：
+`_` 也可用在 `switch` 的顶层，它被当作默认情况：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -544,7 +543,7 @@ if (typeof myStatus === "number" || myStatus.TAG) {
 **Do not** abuse a top-level catch-all condition. Instead, prefer writing out all the cases:
 -->
 
-**不要**过度使用默认分支，最好写出所有的选项：
+**不要**滥用顶层 `_`，相反，最好写出所有的情况：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -568,7 +567,7 @@ if (typeof myStatus === "number" || myStatus.TAG) {
 Slightly more verbose, but a one-time writing effort. This helps when you add a new variant case e.g. `Quarantined` to the `status` type and need to update the places that pattern match on it. A top-level wildcard here would have accidentally and silently continued working, potentially causing bugs.
 -->
 
-这稍微有些啰嗦，但只是一次性的编写工作。当你为 `status` 类型添加了一个新的变体（比如 `Quarantined`）并需要更新模式匹配的地方时，这样做将有所帮助。顶层通配符会默默地继续工作，可能会产生意外的 bug。
+这稍微有些啰嗦，但只是一次性的编写工作。当你为 `status` 类型添加了一个新的变体（例如 `Quarantined`）并需要更新模式匹配的地方时，这将有所帮助。顶层通配符会意外地默默继续工作，可能会造成 bug。
 
 <!--
 ### If Clause
@@ -579,8 +578,7 @@ Slightly more verbose, but a one-time writing effort. This helps when you add a 
 Sometime, you want to check more than the shape of a value. You want to also run some arbitrary check on it. You might be tempted to write this:
 -->
 
-有时你可能想对值做更多的检查，在值上进行一些任意的检查。你可能会尝试这样写：
-
+有时，你想检查的不仅仅是一个值的形状，你还想对它进行一些任意的检查。你可能很想这样写：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -611,7 +609,7 @@ if (person1.TAG) {
 `switch` patterns support a shortcut for the arbitrary `if` check, to keep your pattern linear-looking:
 -->
 
-`switch`模式支持简写的任意 `if` 检查，以保持模式匹配的线性外观：
+`switch` 模式支持简写的任意 `if` 检查，以保持模式匹配的线性外观：
 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
@@ -642,7 +640,7 @@ if (person1.TAG) {
 **Note:** ReScript versions < 9.0 had a `when` clause, not an `if` clause.  Rescript 9.0 changed `when` to `if`.  (`when` may still work, but is deprecated.)
 -->
 
-**注意：**ReScript 9.0 版本之前使用的是 `when` 子句而不是 `if` 子句。ReScript 在 9.0 版本从`when`切换到了 `if`。（`when` 仍然可以使用，只是被废弃了）
+**注意：**ReScript 9.0 版本之前使用的是 `when` 子句而不是 `if` 子句。ReScript 在 9.0 版本将 `when` 改为 `if`。（`when` 可能仍然可用，但已被废弃）
 
 <!--
 ### Match on Exceptions
@@ -653,7 +651,7 @@ if (person1.TAG) {
 If the function throws an exception (covered later), you can also match on _that_, in addition to the function's normally returned values.
 -->
 
-如果函数可能会抛出一个异常（稍后会介绍），除了可以匹配正常的返回值之外你还可以对_异常_进行模式匹配。
+如果函数抛出了一个异常（稍后会介绍），除了匹配函数的正常返回值外，你还可以对_异常_进行匹配。
 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
@@ -796,7 +794,7 @@ printStudents({
 **Note**: you can only pass literals (i.e. concrete values) as a pattern, not let-binding names or other things. The following doesn't work as expected:
 -->
 
-**注意**: 你只能传递字面值（即具体的值）作为模式，而不能传递绑定的名字或其他东西，下面的做法不能像预期的那样工作：
+**注意**: 你只能传递字面值（即具体的值）作为模式，而不能传递绑定名字或其他东西，下面的做法不能像预期的那样工作：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -820,7 +818,7 @@ console.log(10);
 A first time ReScript user might accidentally write that code, assuming that it's matching on `coordinates` when the second value is of the same value as `centerY`. In reality, this is interpreted as matching on coordinates and assigning the second value of the tuple to the name `centerY`, which isn't what's intended.
 -->
 
-第一次使用 ReScript 的人可能会不小心写下这段代码，认为 `coordinates` 的第二个值与 `centerY` 相同的时候会匹配 `coordinates`。 但实际上这会被解释为在 `coordinates` 上进行匹配，并将元组的第二个值赋给 `centerY`，这不是我们想要的结果。
+第一次使用 ReScript 的人可能会不小心写下这段代码，认为 `coordinates` 的第二个值与 `centerY` 相同的时候会匹配 `coordinates`。但实际上这会被解释为在 `coordinates` 上进行匹配，并将元组的第二个值赋给 `centerY`，这不是我们想要的结果。
 
 <!--
 ## Exhaustiveness Check
@@ -831,13 +829,13 @@ A first time ReScript user might accidentally write that code, assuming that it'
 As if the above features aren't enough, ReScript also provides arguably the most important pattern matching feature: **compile-time check of missing patterns**.
 -->
 
-如果上述特性还不够，ReScript 还提供了可以说是最重要的模式匹配特性：**编译期缺失模式检查**。
+如果上述特性还不够，ReScript 还提供了可以说是最重要的模式匹配特性：**编译时缺失模式检查**。
 
 <!--
 Let's revisit one of the above examples:
 -->
 
-我们再来重审一下上面的例子：
+让我们重新审视一下上面的例子：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -901,13 +899,13 @@ if (person1.TAG) {
 Did you see what we removed? This time, we've omitted the handling of the case where `person1` is `Teacher({name})` when `name` isn't Mary or Joe.
 -->
 
-你看到我们移除的部分了吗？这一次，我们省略了对当 `name` 不是 Mary 或 Joe 时对 `person1` 是 `Teacher({name})` 的情况的处理。
+你看到我们删除了什么吗？这一次，我们省略了对 `person1` 是 `Teacher({name})` 而名字不是 Mary 或 Joe 的情况的处理。
 
 <!--
 Failing to handle every scenario of a value likely constitutes the majority of program bugs out there. This happens very often when you refactor a piece of code someone else wrote. Fortunately for ReScript, the compiler will tell you so:
 -->
 
-未能对值的每一种情况都进行处理是大多数的 bug 的来源，当你重构别人编写的代码时这种事经常发生。幸运的是在 ReScript 中遇到这种情况时编译器会告诉你：
+未能处理一个值的每一种情况可能是 bug 主要来源。当你重构别人编写的代码时，这种事经常发生。幸运的是，在 ReScript 中遇到这种情况时，编译器会告诉你：
 
 ```
 Warning 8: this pattern-matching is not exhaustive.
@@ -919,7 +917,7 @@ Some({name: ""})
 **BAM**! You've just erased an entire category of important bugs before you even ran the code. In fact, this is how most of nullable values is handled:
 -->
 
-**BAM**！在你运行代码之前，你就已经抹去了一整类的 bug。事实上，大部分的空值都是这样处理的：
+**砰**！在你运行代码之前，你就已经抹去了一整类的 bug。事实上，这就是大多数可空值的处理方式：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -947,18 +945,18 @@ if (myNullableValue !== undefined) {
 If you don't handle the `None` case, the compiler warns. No more `undefined` bugs in your code!
 -->
 
-如果你不处理 `None` 的情况，编译器会发出警告。你的代码中不会再有 `undefined` 之类的错误了！
+如果你不处理 `None` 的情况，编译器会发出警告。你的代码中不会再有 `undefined` 之类的 bug 了！
 
 <!--
 ## Conclusion & Tips & Tricks
 -->
-## 结论 & 技巧 & 诀窍
+## 结论 & 技巧与诀窍
 
 <!--
 Hopefully you can see how pattern matching is a game changer for writing correct code, through the concise destructuring syntax, the proper conditions handling of `switch`, and the static exhaustiveness check.
 -->
 
-希望你能了解到模式匹配是如何通过简洁的析构语法、`switch` 中适当的条件处理和静态穷举检查来改变编写正确代码的游戏规则的。
+希望你能看到模式匹配是如何改变编写正确代码的游戏规则的，通过简明的析构语法，`switch` 中恰当的条件处理，以及静态的穷举检查。
 
 <!--
 Below is some advice:
@@ -970,13 +968,13 @@ Below is some advice:
 Avoid using the wildcard `_` unnecessarily.  Using the wildcard `_` will bypass the compiler's exhaustiveness check.  Consequently, the compiler will not be able to notify you of probable errors when you add a new case to a variant. Try only using `_` against infinite possibilities, e.g. string, int, etc.
 -->
 
-避免不必要地使用通配符 `_`，使用 `_` 将绕过编译器的穷举检查。因此，当你在变体中增加一个新的情况时，编译器将无法通知你可能出现的错误。只在需要应对无限的可能性的时候使用 `_`，例如 string，int，等等。
+避免不必要地使用通配符 `_`，使用 `_` 将绕过编译器的穷举检查。因此，当你在变体中增加一个新的情况时，编译器将无法通知你可能出现的错误。试着只用 `_` 应对无限可能性的情况，例如字符串，整数，等等。
 
 <!--
 Use the `if` clause sparingly.
 -->
 
-尽量稀疏地使用`if`子句。
+谨慎地使用 `if` 子句。
 
 <!--
 **Flatten your pattern-match whenever you can**. This is a real bug remover. Here's a series of examples, from worst to best:
@@ -1013,7 +1011,7 @@ function optionBoolToBool(opt) {
 Now that's just silly =). Let's turn it into pattern-matching:
 -->
 
-这样做有点蠢，现在我们将其转为模式匹配：
+这样做有点蠢，让我们把它变成模式匹配：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -1041,7 +1039,7 @@ function optionBoolToBool(opt) {
 Slightly better, but still nested. Pattern-matching allows you to do this:
 -->
 
-看起来没那么傻了，但仍然存在嵌套，模式匹配让你可以这么做：
+稍微好一点了，但仍然存在嵌套，模式匹配允许你这样做：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -1070,7 +1068,7 @@ function optionBoolToBool(opt) {
 Much more linear-looking! Now, you might be tempted to do this:
 -->
 
-看起来更线性化了！现在，你可能会尝试这么做：
+看起来更有线条感了！现在，你可能很想这样做：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -1126,4 +1124,4 @@ function optionBoolToBool(opt) {
 Pretty darn hard to make a mistake in this code at this point! Whenever you'd like to use an if-else with many branches, prefer pattern matching instead. It's more concise and [performant](variant#design-decisions) too.
 -->
 
-现在要想在这段代码中犯错是非常困难的！当你想需要一个有许多分支的 if-else 时，最好用模式匹配来代替。它更简洁而且[性能也更好](variant#design-decisions)。
+现在要想在这段代码中犯错是非常困难的！当你想使用一个有许多分支的 if-else 时，最好用模式匹配来代替。它更简明，而且[性能也更好](variant#design-decisions)。

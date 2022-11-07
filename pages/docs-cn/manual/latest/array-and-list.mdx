@@ -18,7 +18,7 @@ canonical: "/docs/manual/latest/array-and-list"
 Arrays are our main ordered data structure. They work the same way as JavaScript arrays: they can be randomly accessed, dynamically resized, updated, etc.
 -->
 
-数组是 ReScript 中主要的顺序数据结构。它们和 JavaScript 数组的工作方式一样：它们可以被随机访问，动态地调整大小，更新等。
+数组是我们主要的有序数据结构。它们的工作方式和 JavaScript 数组相同：它们可以被随机访问，动态地调整大小，更新等。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -35,7 +35,7 @@ var myArray = ["hello", "world", "how are you"];
 ReScript arrays' items must have the same type, i.e. homogeneous.
 -->
 
-ReScript数组的元素必须具有相同的类型，即同质性（homogeneous）。
+ReScript 数组的元素必须具有相同的类型，即同质性（homogeneous）。
 
 <!--
 ### Usage
@@ -52,7 +52,7 @@ See the [Js.Array](api/js/array) API.
 Access & update an array item like so:
 -->
 
-访问 & 更新一个数组元素可以这样做：
+像这样访问和更新一个数组项：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -86,7 +86,7 @@ var pushedValue = myArray.push("bye");
 ReScript provides a singly linked list too. Lists are:
 -->
 
-ReScript 也提供了一个单链表。列表具有以下特性：
+ReScript 也提供了一个单链表。列表：
 
 <!--
 - immutable
@@ -96,9 +96,9 @@ ReScript 也提供了一个单链表。列表具有以下特性：
 -->
 
 - 不可变
-- 头插操作很快
-- 获取头部元素很快
-- 其他操作都很慢
+- 头插速度快
+- 获取头部元素快
+- 其他都很慢
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -135,13 +135,13 @@ Like arrays, lists' items need to be of the same type.
 You'd use list for its resizability, its fast prepend (adding at the head), and its fast split, all of which are immutable and relatively efficient.
 -->
 
-你可以使用列表来利用它的可变长度特性、它的快速头插，和它的快速拆分，所有这些都是不可变的和相对高效的操作。
+你可以使用列表来利用它的可变长度，它的快速头插，以及它的快速拆分，所有这些都是无副作用的，而且相对高效。
 
 <!--
 Do **not** use list if you need to randomly access an item or insert at non-head position. Your code would end up obtuse and/or slow.
 -->
 
-如果你要进行随机访问或非头插操作，请**不要**使用列表。你的代码最后会变得又钝又慢。
+如果你要进行随机访问或非头插操作，请**不要**使用列表。你的代码最后会变得又丑又慢。
 
 <!--
 The standard lib provides a [List module](api/belt/list).
@@ -152,13 +152,13 @@ The standard lib provides a [List module](api/belt/list).
 <!--
 #### Immutable Prepend
 -->
-#### 不可变头插
+#### 无副作用头插
 
 <!--
 Use the spread syntax:
 -->
 
-使用展开（spread）语法：
+使用平展（spread）语法：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -190,19 +190,19 @@ var anotherList = {
 `myList` didn't mutate. `anotherList` is now `list{0, 1, 2, 3}`. This is efficient (constant time, not linear). `anotherList`'s last 3 elements are shared with `myList`!
 -->
 
-`myList` 不会改变，`anotherList` 现在是 `list{0, 1, 2, 3}` 了。这是十分高效的（常数时间而不是线性时间），因为 `anotherList` 的最后 3 个元素是和 `myList` 共享的！
+`myList` 不会改变，`anotherList` 现在是 `list{0, 1, 2, 3}` 。这是十分高效的（常数而不是线性时间），`anotherList` 的最后 3 个元素是与 `myList` 共享的！
 
 <!--
 **Note that `list{a, ...b, ...c}` is a syntax error**. We don't support multiple spread for a list. That'd be an accidental linear operation (`O(b)`), since each item of b would be one-by-one added to the head of `c`. You can use `List.concat` for this, but we highly discourage it.
 -->
 
-**注意 `list{a, ...b, ...c}` 是语法错误**。我们不会支持列表的多展开。这是一个线性操作（`O(b)`），因为 b 中的每一元素都要一个接一个添加到 c 的头部。你可以使用 `List.concat` 完成这个操作，不过我们非常不建议这样做。
+**注意 `list{a, ...b, ...c}` 是一个语法错误**。我们不会支持列表的多次平展。这是一个线性操作（`O(b)`），因为 b 中的每一项都要被逐一添加到 c 的头部。你可以使用 `List.concat` 完成这个操作，但我们非常不建议这样做。
 
 <!--
 Updating an arbitrary item in the middle of a list is also discouraged, since its performance and allocation overhead would be linear (`O(n)`).
 -->
 
-任意对列表中间的元素进行更新是不被鼓励的，因为它的性能和分配开销是线性复杂度（`O(n)`）。
+更新列表中间的任意项也是不可取的，因为它的性能和分配开销将是线性的（`O(n)`）。
 
 <!--
 #### Access
@@ -213,7 +213,7 @@ Updating an arbitrary item in the middle of a list is also discouraged, since it
 `switch` (described in the [pattern matching section](pattern-matching-destructuring.md)) is usually used to access list items:
 -->
 
-通常使用 `switch` 表达式（详见[模式匹配](pattern-matching-destructuring.md)）来访问列表元素：
+`switch`（详见[模式匹配](pattern-matching-destructuring.md)）通常用于访问列表项：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

@@ -13,13 +13,13 @@ canonical: "/docs/manual/latest/variant"
 So far, most of ReScript's data structures might look familiar to you. This section introduces an extremely important, and perhaps unfamiliar, data structure: variant.
 -->
 
-到目前为止，ReScript 的大多数数据结构对你来说可能已经很熟悉了。本节介绍了一个极其重要的，也许是你之前不熟悉的数据结构：变体。
+到目前为止，ReScript 的大多数数据结构对你来说可能很熟悉。本节介绍了一个极其重要的、也许是你不熟悉的数据结构：变体。
 
 <!--
 Most data structures in most languages are about "this **and** that". A variant allows us to express "this **or** that".
 -->
 
-大部分的编程语言中的数据结构都是“这样**且**那样”，变体的让我们可以表达“这样**或**那样”。
+大部分的编程语言中的数据结构都是“这个**和**那个”，变体允许我们表达“这个**或**那个”。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -41,13 +41,13 @@ var areYouCrushingIt = /* Yes */0;
 `myResponse` is a variant type with the cases `Yes`, `No` and `PrettyMuch`, which are called "variant constructors" (or "variant tag"). The `|` bar separates each constructor.
 -->
 
-`myResponse`是一个变体类型，有 `Yes`，`No` 和 `PrettyMutch` 三个选项，它们被称为“变体构造器”（或者叫做"变体标签"），各构造器通过竖线 `|` 分隔。
+`myResponse` 是一个具有 `Yes`，`No` 和 `PrettyMutch` 三种情况的变体类型，它们被称为“变体构造器”（或“变体标签”）。各构造器通过 `|` 分隔。
 
 <!--
 **Note**: a variant's constructors need to be capitalized.
 -->
 
-**注意**：变体构造器的首字母必须大写。
+**注意**：变体构造器名首字母必须大写。
 
 <!--
 ## Variant Needs an Explicit Definition
@@ -58,7 +58,7 @@ var areYouCrushingIt = /* Yes */0;
 If the variant you're using is in a different file, bring it into scope like you'd do [for a record](record.md#record-needs-an-explicit-definition):
 -->
 
-如果你使用的变体类型在不同的文件中，那就需要像[记录类型](record.md#record-needs-an-explicit-definition)一样将其引入到你当前的作用域：
+如果你使用的变体类型在一个不同的文件中，需要像你在[记录类型](record.md#record-needs-an-explicit-definition)做的那样将把它引入作用域：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -96,7 +96,7 @@ var pet2 = /* Dog */0;
 A variant's constructors can hold extra data separated by comma.
 -->
 
-变体构造器可以接受额外的的数据，这些数据通过逗号分隔。
+变体构造器可以持有由逗号分隔的额外数据。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -116,7 +116,7 @@ type account =
 Here, `Instagram` holds a `string`, and `Facebook` holds a `string` and an `int`. Usage:
 -->
 
-这里 `Instagram` 包含一个 `string`，`Facebook` 包含 `string` 和 `int`。用法如下：
+这里 `Instagram` 持有一个 `string`，`Facebook` 持有 `string` 和 `int`。用法：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -147,7 +147,7 @@ var friendAccount = {
 If a variant payload has multiple fields, you can use a record-like syntax to label them for better readability:
 -->
 
-如果变体的一个载荷（payload，指某一构造器中的所有参数）包含多个字段，你可以使用类似记录的语法进行标记以提升可读性：
+如果一个变体载荷（payload，指变体构造器持有的额外数据）有多个字段，你可以使用类似记录的语法来标记它们，以提高可读性：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -172,13 +172,13 @@ var me = {
 This is technically called an "inline record", and only allowed within a variant constructor. You cannot inline a record type declaration anywhere else in ReScript.
 -->
 
-这在技术上被称为“内联记录”，并且只允许在变体构造器中使用，在 ReScript 的任何其他地方你都不能内联一个记录类型声明。
+这在技术上被称为“内联记录”，并且只允许在变体构造器中使用，你不能在 ReScript 的其他地方内联一个记录类型声明。
 
 <!--
 Of course, you can just put a regular record type in a variant too:
 -->
 
-当然，你也可以把一个记录类型放入变体中：
+当然，你也可以直接把一个普通的记录类型放到一个变体中：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -206,7 +206,7 @@ var me = {
 The output is slightly uglier and less performant than the former.
 -->
 
-输出的 JS 代码比之前要稍微“难看一些”，并且性能也不如之前的。
+输出结果比之前要稍微难看一些，并且性能也较差。
 
 <!--
 ### Pattern Matching On Variant
@@ -217,7 +217,7 @@ The output is slightly uglier and less performant than the former.
 See the [Pattern Matching/Destructuring](pattern-matching-destructuring) section later.
 -->
 
-请阅读后面的[模式匹配/解构](pattern-matching-destructuring)章节。
+请阅读后面的[模式匹配/析构](pattern-matching-destructuring)章节。
 
 <!--
 ## JavaScript Output
@@ -228,7 +228,7 @@ See the [Pattern Matching/Destructuring](pattern-matching-destructuring) section
 A variant value compiles to 3 possible JavaScript outputs depending on its type declaration:
 -->
 
-变体值可能会编译为三种不同的输出，这取决于它的类型声明：
+一个变体值根据其类型声明，可以编译成 3 种可能的 JavaScript 输出：
 
 <!--
 - If the variant value is a constructor with no payload, it compiles to a number.
@@ -237,16 +237,16 @@ A variant value compiles to 3 possible JavaScript outputs depending on its type 
 - Labeled variant payloads (the inline record trick earlier) compile to an object with the label names instead of `_0`, `_1`, etc. The object might or might not have the `TAG` field as per previous rule.
 -->
 
-- 若变体值是没有载荷的构造器，那么其会被编译成一个数字
-- 若变体值是带载荷的构造器，它会被编译成带有 `TAG` 字段的对象，对象的字段 `_0` 保存第一个载荷，字段 `_1` 保存第二个载荷，依此类推
-- 上述情况的一个例外是类型声明只包含一个带载荷变体构造器。在这种情况下，构造器会编译成一个没有 `TAG` 字段的对象
-- 带标签的变体载荷（使用前面提到的的内联记录）会编译成有标签名称的对象，而不是 `_0`，`_1`，等等。和之前的规则一样，该对象可能有也可能没有 `TAG` 字段
+- 若变体值是没有载荷的构造器，它编译成一个数字
+- 若变体值是带载荷的构造器，它会被编译成一个带有 `TAG` 字段的对象，对象的字段 `_0` 为第一个载荷，字段 `_1` 为第二个载荷，依此类推
+- 上述情况的一个例外是类型声明只包含单个带载荷变体构造器的变体。在这种情况下，构造器会编译成一个没有 `TAG` 字段的对象
+- 带标签的变体载荷（使用前面的的内联记录技巧）会编译为带有标签名称的对象，而不是 `_0`，`_1` 等。和之前的规则一样，该对象可能有也可能没有 `TAG` 字段
 
 <!--
 Check the output in these examples:
 -->
 
-检查这些例子的 JS 编译结果：
+检查这些例子中的输出：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -315,13 +315,13 @@ var a2 = {
 <!--
 ## Tips & Tricks
 -->
-## 技巧 & 诀窍
+## 技巧和诀窍
 
 <!--
 **Be careful** not to confuse a constructor carrying 2 arguments with a constructor carrying a single tuple argument:
 -->
 
-**请小心**不要搞混了有两个参数的构造器和有一个元组参数的构造器：
+**请小心**不要把有两个参数和有一个元组参数的构造器搞混了：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -340,13 +340,13 @@ type account2 =
 <!--
 ### Variants Must Have Constructors
 -->
-### 变体必须要有构造器
+### 变体必须有构造器
 
 <!--
 If you come from an untyped language, you might be tempted to try `type myType = int | string`. This isn't possible in ReScript; you'd have to give each branch a constructor: `type myType = Int(int) | String(string)`. The former looks nice, but causes lots of trouble down the line.
  -->
 
-如果你经常使用无类型语言，你可能会尝试写出这样的定义 `type myType = int | string`。这在 ReScript 中是不可能的；你必须为每一个选项加上一个构造器：`type myType = Int(int) | String(string)`。前一个 `myType` 初看不错，但后患无穷。
+如果你来自无类型语言，你可能会这样尝试：`type myType = int | string`。这在 ReScript 中是不可能的；你必须给每个分支一个构造器：`type myType = Int(int) | String(string)`。前者看起来不错，但会给后续工作带来很多麻烦。
 
 <!--
 ### Interop with JavaScript
@@ -357,13 +357,13 @@ If you come from an untyped language, you might be tempted to try `type myType =
 _This section assumes knowledge about our JavaScript interop. Skip this if you haven't felt the itch to use variants for wrapping JS functions yet_.
 -->
 
-_这一章假设你对 ReScript 的 JavaScript 互操作机制有所了解。如果如果你还没有感受过使用变体来包装 JS 函数的痛点，请跳过这部分。_
+_本节假设你对我们的 JavaScript 互操作有所了解。如果如果你还没有使用变体来包装 JS 函数的欲望，请跳过这部分。_
 
 <!--
 Quite a few JS libraries use functions that can accept many types of arguments. In these cases, it's very tempting to model them as variants. For example, suppose there's a `myLibrary.draw` JS function that takes in either a `number` or a `string`. You might be tempted to bind it like so:
 -->
 
-很少有 JS 库使用接受多种类型参数的函数。在这种情况下，将它们建模为变体是非常诱人的。例如，假设有一个 `myLibrary.draw` JS 函数，可以接受 `number` 或 `string`，你可能会尝试这样来绑定它：
+相当多的 JS 库使用可以接受多种类型参数的函数。在这种情况下，将它们建模为变体是非常诱人的。例如，假设有一个 `myLibrary.draw` JS 函数，它可以接受 `number` 或 `string`，你可能很想这样绑定它：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -402,7 +402,7 @@ betterDraw({
 **Try not to do that**, as this generates extra noisy output. Alternatively, define two `external`s that both compile to the same JS call:
 -->
 
-**尽量不要这样做**, 因为这样会产生额外的噪音输出。你可以定义两个编译为相同 JS 调用的 `external`。
+**尽量不要这样做**，因为这样会产生额外的噪音输出。你可以定义两个编译为相同 JS 调用的 `external`：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -420,7 +420,7 @@ betterDraw({
 ReScript also provides [a few other ways](bind-to-js-function.md#modeling-polymorphic-function) to do this.
 -->
 
-ReScript 也提供了[一些其他方式](bind-to-js-function.md#modeling-polymorphic-function)来做这件事。
+ReScript 还提供了[一些其他方式](bind-to-js-function.md#modeling-polymorphic-function)来做这件事。
 
 <!--
 ### Variant Types Are Found By Field Name
@@ -431,7 +431,7 @@ ReScript 也提供了[一些其他方式](bind-to-js-function.md#modeling-polymo
 Please refer to this [record section](record#tips--tricks). Variants are the same: a function can't accept an arbitrary constructor shared by two different variants. Again, such feature exists; it's called a polymorphic variant. We'll talk about this in the future =).
 -->
 
-请阅读记录中的[这一节](record#tips--tricks)。变体也是一样的：一个函数不能随意的接受不同变体的构造器。再一次声明，这样的特性是存在的，它叫做多态变体（polymorphic variant），我们会在未来介绍这个特性。
+请阅读记录中的[这一节](record#tips--tricks)。变体也是一样的：一个函数不能接受两个不同变体共有的任意构造器。同样，这样的特性是存在的，它被称为多态变体（polymorphic variant）。我们会在未来介绍这个特性。
 
 <!--
 ## Design Decisions
@@ -442,13 +442,13 @@ Please refer to this [record section](record#tips--tricks). Variants are the sam
 Variants, in their many forms (polymorphic variant, open variant, GADT, etc.), are likely _the_ feature of a type system such as ReScript's. The aforementioned `option` variant, for example, obliterates the need for nullable types, a major source of bugs in other languages. Philosophically speaking, a problem is composed of many possible branches/conditions. Mishandling these conditions is the majority of what we call bugs. **A type system doesn't magically eliminate bugs; it points out the unhandled conditions and asks you to cover them**\*. The ability to model "this or that" correctly is crucial.
 -->
 
-变体经常以很多种形式出现(多态变体，展开变体，通用代数数据类型等)，可能是像 ReScript 这样的类型系统的最关键的特征。打个比方，先前提到的 `option` 变体完全消除了对 nullable 类型的需要， null 是很多其他语言中 bug 的主要来源。从哲学的角度来讲，一个问题是由许多可能的分支/条件组成的。大部分情况下，对这些条件处理的缺失就是我们所说的 bug。**类型系统并不能神奇地消除 bug；它指出了未处理的条件并要求你覆盖它们**。正确地对“这个或那个”建模的能力是至关重要的。
+变体，以其多种形式（多态变体，开放变体，广义代数数据类型等），可能是像 ReScript 这样的类型系统的_关键_特性。例如，前面提到的 `option` 变体完全消除了可空类型的需要，这是其他语言中 bug 的主要来源。从哲学上讲，一个问题是由许多可能的分支/条件组成的。对这些条件的错误处理就是我们所说的 bug 的主要组成。**类型系统并不能神奇地消除 bug；它指出了未处理的条件并要求你覆盖它们**。正确建模“这个或那个”的能力是至关重要的。
 
 <!--
 For example, some folks wonder how the type system can safely eliminate badly formatted JSON data from propagating into their program. They don't, not by themselves! But if the parser returns the `option` type `None | Some(actualData)`, then you'd have to handle the `None` case explicitly in later call sites. That's all there is.
 -->
 
-比如说，有些人想知道类型系统如何安全地阻止格式不好的 JSON 数据传播到他们的程序中。类型系统自己没法做到，但是如果一个 parser 返回了 `option` 类型 `None | Some(actualData)`，那么你就不得不在后续的调用点显式处理 `None` 分支。这就是类型系统能做到的。
+比如说，有些人想知道类型系统如何安全地消除格式不好的 JSON 数据传播到他们的程序中。类型系统自己没法做到！但是如果 parser 返回的 `option` 类型是 `None | Some(actualData)`，那么你就必须在后续的调用点明确处理 `None` 的情况。这就是类型系统能做到的。
 
 <!--
 Performance-wise, a variant can potentially tremendously speed up your program's logic. Here's a piece of JavaScript:
@@ -471,7 +471,7 @@ if (data === 'dog') {
 There's a linear amount of branch checking here (`O(n)`). Compare this to using a ReScript variant:
 -->
 
-这里有一个线性复杂度的分支检查（`O(n)`），将它与下面使用 ReScript 变体的代码比较：
+这里有一个线性的分支检查（`O(n)`），将它与使用 ReScript 变体进行比较：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -498,6 +498,6 @@ The compiler sees the variant, then
 2. compiles `switch` to a constant-time jump table (`O(1)`).
 -->
 
-编译器看到变体，然后：
-1. 把它们转变为 `type animal = 0 | 1 | 2`，概念上是这样
-2. 把 `switch` 编译成一个常数时间的跳表（`O(1)`）
+编译器看到了这个变体，然后：
+1. 在概念上把它们变成 `type animal = 0 | 1 | 2`
+2. 编译 `switch` 到一个常数时间的跳表（`O(1)`）

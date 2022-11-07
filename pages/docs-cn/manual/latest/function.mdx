@@ -13,13 +13,13 @@ canonical: "/docs/manual/latest/function"
 _Cheat sheet for the full function syntax at the end_.
 -->
 
-_所有关于函数的语法清单在本章节的最后面。_
+_完整的函数语法清单在最后。_
 
 <!--
 ReScript functions are declared with an arrow and return an expression, just like JS functions. They compile to clean JS functions too.
 -->
 
-ReScript 函数用箭头声明，并会返回一个表达式，就像 JS 中的函数一样。它们也会编译成简洁的的 JS 函数。
+ReScript 函数用箭头声明，并返回一个表达式，就像 JS 函数一样。它们也可以编译成干净的 JS 函数。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -38,8 +38,7 @@ function greet(name) {
 This declares a function and assigns to it the name `greet`, which you can call like so:
 -->
 
-这会声明一个函数并将它
-赋给名字 `greet`，你可以这样调用它：
+这声明了一个函数并给它指定了 `greet` 这个名字，你可以这样调用它：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -56,7 +55,7 @@ greet("world!");
 Multi-arguments functions have arguments separated by comma:
 -->
 
-多参数函数的参数由逗号分隔：
+多参函数的参数由逗号分隔：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -76,7 +75,7 @@ function add(x, y, z) {
 For longer functions, you'd surround the body with a block:
 -->
 
-对于较长的函数，你可以把函数体用大括号包裹起来：
+对于较长的函数，你可以用 `{}` 将函数体围起来：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -134,7 +133,7 @@ addCoordinates(5, 6);
 You can attach labels to an argument by prefixing the name with the `~` symbol:
 -->
 
-你可以为参数附加标签，方式是为参数名加上 `~` 前缀符号：
+你可以为参数附加标签，方法是在名字前面加上 `~` 符号：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -159,7 +158,7 @@ addCoordinates(5, 6);
 You can provide the arguments in **any order**:
 -->
 
-你可以按**任意顺序**传入标签参数：
+你可以按**任意顺序**传入这些参数：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -176,7 +175,7 @@ addCoordinates(5, 6);
 The `~x` part in the declaration means the function accepts an argument labeled `x` and can refer to it in the function body by the same name. You can also refer to the arguments inside the function body by a different name for conciseness:
 -->
 
-声明中的 `~x` 部分意味着该函数接受一个标签为 `x` 的参数，并且可以在函数体中用相同的名称来使用它。你也可以在函数体中用不同的名字来引用参数以提升简洁性：
+声明中的 `~x` 部分意味着该函数接受一个标签为 `x` 的参数，并且可以在函数体中用相同的名称来指代它。为了简洁起见，你也可以在函数体中用不同的名字指代参数：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -236,7 +235,7 @@ function drawCircle(r, c) {
 Labeled function arguments can be made optional during declaration. You can then omit them when calling the function.
 -->
 
-带标记的函数参数可以在声明时设置可选的，你就可以在调用函数时省略它们了。
+带标签的函数参数可以在声明时设置成可选项。然后你可以在调用函数时省略它们。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -269,19 +268,19 @@ function drawCircle(color, radius, param) {
 When given in this syntax, `radius` is **wrapped** in the standard library's `option` type, defaulting to `None`. If provided, it'll be wrapped with a `Some`. So `radius`'s type value is `None | Some(int)` here.
 -->
 
-当使用这种语法的时候，`radius` 是被**包裹**在标准库的 `option` 类型中的，默认值为 `None`。如果函数调用提供了这个参数，那么会被包裹到 `Some` 中。所以，这里 `radius` 的类型是 `None| Some(int)`。
+当使用这种语法的时候，`radius` 被**包装**在标准库的 `option` 类型中，默认值为 `None`。如果函数调用提供了这个参数，那么它会被包装到 `Some` 中。所以这里 `radius` 的类型是 `None| Some(int)`。
 
 <!--
 More on `option` type [here](null-undefined-option.md).
 -->
 
-在[这里](null-undefined-option.md)查看关于 `option` 类型的更多信息。
+[这里](null-undefined-option.md)有更多关于 `option` 类型的信息。
 
 <!--
 **Note** for the sake of the type system, whenever you have an optional argument, you need to ensure that there's also at least one positional argument (aka non-labeled, non-optional argument) after it. If there's none, provide a dummy `unit` (aka `()`) argument.
 -->
 
-**注意**，因为类型系统的缘故，只要你有一个可选参数，你就需要确保在它后面至少有一个位置参数（positional argument，又称非标记的，非可选的参数）。如果没有，可以提供一个哑的 `unit`（也就是 `()`）参数。
+**注意**，因为类型系统的缘故，只要你有一个可选参数，你就需要确保在它后面至少有一个位置参数（positional argument，又称非标记的，非可选的参数）。如果没有，可以提供一个哑的 `unit`（`()`）参数。
 
 <!--
 ### Signatures and Type Annotations
@@ -292,13 +291,13 @@ More on `option` type [here](null-undefined-option.md).
 Functions with optional labeled arguments can be confusing when it comes to signature and type annotations. Indeed, the type of an optional labeled argument looks different depending on whether you're calling the function, or working inside the function body. Outside the function, a raw value is either passed in (`int`, for example), or left off entirely. Inside the function, the parameter is always there, but its value is an option (`option<int>`). This means that the type signature is different, depending on whether you're writing out the function type, or the parameter type annotation. The first being a raw value, and the second being an option.
 -->
 
-当涉及到签名和类型标注时，带有可选标记参数的函数可能会令人困惑。事实上，一个可选标记参数的类型在不同地方看起来是不同的，这取决于你是在函数的调用处还是在函数体内部。在函数外部，一个原始值要么被传入（比如 `int`）要么被舍弃不传入。在函数内部，参数总是存在的，但其值是一个 option（`option<int>`）。这意味着类型签名是不同的，这取决于你写的是函数类型还是参数类型标注，前者是一个原始值，后者是一个 `option`。
+当涉及到签名和类型标注时，带有可选标记参数的函数可能会令人困惑。事实上，一个可选标记参数的类型在不同地方看起来是不同的，这取决于你是在函数的调用处，还是在函数体内部。在函数外部，一个原始值要么被传入（比如 `int`）要么被舍弃不传入。在函数内部，参数总是存在的，但其值是一个 `option` 值（`option<int>`）。这意味着类型签名是不同的，这取决于你写的是函数类型还是参数类型的标注，前者是一个原始值，而后者是一个 `option`。
 
 <!--
 If we get back to our previous example and both add a signature and type annotations to its argument, we get this:
 -->
 
-如果我们回到之前的例子，同时给它添加一个签名和参数类型标注，我们会得到这样的结果：
+如果我们回到之前的例子，同时给它的参数添加一个签名和类型标注，我们会得到这样的结果：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -329,7 +328,7 @@ function drawCircle(color, radius, param) {
 The first line is the function's signature, we would define it like that in an interface file (see [Signatures](module.md#signatures)). The function's signature describes the types that the **outside world** interacts with, hence the type `int` for `radius` because it indeed expects an `int` when called.
 -->
 
-第一行是函数的签名，我们会在接口文件中这样定义它（阅读[签名](module.md#signatures)章节）。函数的签名描述了**外部世界**与函数交互的类型，因此 `radius` 的类型是 `int`，因为它在调用时期望的输入是 `int`。
+第一行是函数的签名，我们会在一个接口文件中这样定义它（见[签名](module.md#signatures)章节）。函数的签名描述了**外部世界**与函数交互的类型，因此 `radius` 的类型是 `int`，因为它在调用时确实期望得到一个 `int`。
 
 <!--
 In the second line, we annotate the arguments to help us remember the types of the arguments when we use them **inside** the function's body, here indeed `radius` will be an `option<int>` inside the function.
@@ -341,12 +340,12 @@ In the second line, we annotate the arguments to help us remember the types of t
 So if you happen to struggle when writing the signature of a function with optional labeled arguments, try to remember this!
 -->
 
-因此如果你在编写带有可选标记参数的函数签名时碰巧遇到了困难，请记住这一点!
+因此如果你在编写带有可选标记参数的函数的签名时碰巧遇到了困难，请记住参数类型内外有别这一点！
 
 <!--
 ### Explicitly Passed Optional
 -->
-### 显式传入可选值
+### 显式传入的 `option` 值
 
 <!--
 Sometimes, you might want to forward a value to a function without knowing whether the value is `None` or `Some(a)`. Naively, you'd do:
@@ -377,7 +376,7 @@ var result = r !== undefined
 This quickly gets tedious. We provide a shortcut:
 -->
 
-这很快就会让代码变得冗长。我们提供了一个简短写法：
+这很快就会变得乏味。我们提供了一个简短写法：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -394,18 +393,18 @@ var result = drawCircle(1, undefined, undefined);
 This means "I understand `radius` is optional, and that when I pass it a value it needs to be an `int`, but I don't know whether the value I'm passing is `None` or `Some(val)`, so I'll pass you the whole `option` wrapper".
 -->
 
-这样做的意思是“我知道 `radius` 是可选值，当我给它传递一个值时，它需要是一个 `int`，但我不确定我传递的值是 `None` 还是 `Some(val)`，所以我给你传递整个 `option` 的包装”。
+这样做的意思是“我知道 `radius` 是可选值，当我给它传递一个值时，它需要是一个 `int`，但我不确定我传递的值是 `None` 还是 `Some(val)`，所以我给你传递整个 `option` 包装”。
 
 <!--
 ### Optional with Default Value
 -->
-### 可选参数与默认值
+### 有默认值的可选参数
 
 <!--
 Optional labeled arguments can also be provided a default value. In this case, they aren't wrapped in an `option` type.
 -->
 
-可选的标签参数也可以提供一个默认值，这种情况下，它们不会被包裹在 `option` 类型中。
+可选的标签参数也可以提供一个默认值，这种情况下，它们不会被包装在 `option` 类型中。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -456,7 +455,7 @@ function neverTerminate(_param) {
 A simple recursive function may look like this:
 -->
 
-一个简单的递归函数可以这样定义：
+一个简单的递归函数可能看起来像这样：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -487,9 +486,11 @@ function listHas(_list, item) {
 
 </CodeTab>
 
+<!--
 Recursively calling a function is bad for performance and the call stack. However, ReScript intelligently compiles [tail recursion](https://stackoverflow.com/questions/33923/what-is-tail-recursion) into a fast JavaScript loop. Try checking the JS output of the above code!
+-->
 
-对函数的递归调用不利于性能和调用栈。不过 ReScript 会将[尾递归](https://stackoverflow.com/questions/33923/what-is-tail-recursion) 聪明地编译为快速的 JS 循环。试试检查上面代码的 JS 输出！
+递归调用一个函数对性能和调用栈不利。不过 ReScript 会智能地将[尾递归](https://stackoverflow.com/questions/33923/what-is-tail-recursion)编译为快速的 JS 循环。试着检查一下上面代码的 JS 输出！
 
 <!--
 ### Mutually Recursive Functions
@@ -501,7 +502,7 @@ Mutually recursive functions start like a single recursive function using the
 `rec` keyword, and then are chained together with `and`:
 -->
 
-互递归函数像单个递归函数一样使用 `rec` 关键字开头，随后通过 `and` 关键字串在一起：
+互递归函数像递归函数一样使用 `rec` 关键字开头，然后用 `and` 关键字串在一起：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -536,7 +537,7 @@ function callFirst(_param) {
 ReScript's functions are curried by default, which is one of the few performance penalties we pay in the compiled JS output. The compiler does a best-effort job at removing those currying whenever possible. However, in certain edge cases, you might want guaranteed uncurrying. In those cases, put a dot in the function's parameter list:
 -->
 
-ReScript的函数是默认柯里化的，这是少数的编译到 JS 会导致性能倒退的情况之一。编译器会尽最大可能地去除这些柯里化。然而，在一些边界情况你可能想要保证柯里化不会发生。这时可以在函数的参数列表前放一个点 `.`：
+ReScript 的函数是默认柯里化的，这是少数的编译到 JS 可能会付出性能代价的情况之一。编译器会尽最大可能地去除这些柯里化。然而，在一些边缘情况下，你可能希望保证没有柯里化。这时可以在函数的参数列表前放一个点：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -559,19 +560,107 @@ add(1, 2);
 If you write down the uncurried function's type, you'll add a dot there as well.
 -->
 
-如果你写下非柯里化函数的参数，你也要在那加一个点。
+如果你写了去柯里化函数的类型，你也要在那加一个点。
 
 <!--
 **Note**: both the declaration site and the call site need to have the uncurry annotation. That's part of the guarantee/requirement.
 -->
 
-**注意**：声明的位置和调用点都要加上禁止柯里化的标记，这样是保证函数不会被柯里化的条件。
+**注意**：声明和调用位置都要加上去柯里化的标记。
 
 <!--
 **This feature seems trivial**, but is actually one of our most important features, as a primarily functional language. We encourage you to use it if you'd like to remove any mention of `Curry` runtime in the JS output.
 -->
 
-**这个特性看起来似乎微不足道**，但是这其实是 ReScript 作为一门函数式语言最重要的特性之一。如果你想要在 JS 的编译结果中移除所有运行时的 `柯里化`，我们鼓励你使用它。
+**这个特性看起来似乎微不足道**，但实际上是 ReScript 作为一门函数式语言最重要的特性之一。如果你想要在 JS 输出中移除所有运行时`柯里化`，我们鼓励你使用它。
+
+<!--
+## Async/Await(from v10.1)
+-->
+## Async/Await（自 v10.1 起）
+
+<!--
+Just as in JS, an async function can be declared by adding `async` before the definition, and `await` can be used in the body of such functions.
+The output looks like idiomatic JS:
+-->
+
+就像在 JS 中一样，可以通过在定义前添加 `async` 来声明一个异步函数，可以在这类函数中使用 `await`。输出结果看上去和 JS 没多少区别：
+
+<CodeTab labels={["ReScript", "JS Output"]}>
+
+```res example
+let getUserName = async (userId) => userId
+
+let greetUser = async (userId) => {
+  let name = await getUserName(userId)
+  "Hello " ++ name ++ "!"
+}
+```
+```js
+async function greetUser(userId) {
+  var name = await getUserName(userId);
+  return "Hello " + name + "!";
+}
+```
+</CodeTab>
+
+<!--
+The return type of `getUser` is inferred to be `promise<string>`.
+Similarly, `await getUserName(userId)` returns a `string` when the function returns `promise<string>`.
+Using `await` outside of an `async` function (including in a non-async callback to an async function) is an error.
+-->
+
+`getUser` 的返回类型被推断为 `promise<string>`。类似地，`await getUserName(userID)` 在函数返回 `promise<string>` 时返回一个 `string`。在 `async` 函数之外使用 `await`（包括在异步函数的非异步回调中）是一个错误。
+
+<!--
+### Ergonomic error handling
+-->
+### 人性化的错误处理
+
+<!--
+Error handling is done by simply using `try`/`catch`, or a switch with an `exception` case, just as in functions that are not async.
+Both JS exceptions and exceptions defined in ReScript can be caught. The compiler takes care of packaging JS exceptions into the builtin `JsError` exception:
+-->
+
+错误处理是通过简单地使用 `try/catch` 或者带 `exception` 情况的 switch 来完成的，就像在非异步的函数中一样。JS 异常和 ReScript 中定义的异常都可被捕获。编译器负责将 JS 异常打包成内置的 `JsError` 异常：
+
+<CodeTab labels={["ReScript", "JS Output"]}>
+
+```res example
+exception SomeReScriptException
+
+let somethingThatMightThrow = async () => raise(SomeReScriptException)
+
+let someAsyncFn = async () => {
+  switch await somethingThatMightThrow() {
+  | data => Some(data)
+  | exception JsError(_) => None
+  | exception SomeReScriptException => None
+  }
+}
+```
+```js
+var SomeReScriptException = /* @__PURE__ */Caml_exceptions.create("Example.SomeReScriptException");
+
+async function someAsyncFn(param) {
+  var data;
+  try {
+    data = await somethingThatMightThrow(undefined);
+  }
+  catch (raw_exn){
+    var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+    if (exn.RE_EXN_ID === "JsError") {
+      return ;
+    }
+    if (exn.RE_EXN_ID === SomeReScriptException) {
+      return ;
+    }
+    throw exn;
+  }
+  return data;
+}
+```
+</CodeTab>
 
 <!--
 ## The ignore() Function
@@ -582,7 +671,7 @@ If you write down the uncurried function's type, you'll add a dot there as well.
 Occasionally you may want to ignore the return value of a function. ReScript provides an `ignore()` function that discards the value of its argument and returns `()`:
 -->
 
-偶尔你可能想忽略一个函数的返回值，ReScript提供了一个 `ignore()` 函数，它抛弃参数的值并返回`()`：
+偶尔你可能想忽略一个函数的返回值，ReScript 提供了一个 `ignore()` 函数，它抛弃参数的值并返回 `()`：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -607,7 +696,7 @@ setTimeout(function (prim) {
 <!--
 ## Tips & Tricks
 -->
-## 技巧 & 诀窍
+## 技巧和诀窍
 
 <!--
 Cheat sheet for the function syntaxes:
@@ -736,7 +825,7 @@ type add = (~first: int=?, ~second: int=?, unit) => int
 To annotate a function from the implementation file (`.res`) in your interface file (`.resi`):
 -->
 
-要在你的接口文件（`.resi`）中为一个来自实现文件（`.res`）的函数加上类型注解：
+在你的接口文件（`.resi`）中为一个来自实现文件（`.res`）的函数加上类型注解：
 
 ```res sig
 let add: (int, int) => int
@@ -746,10 +835,10 @@ let add: (int, int) => int
 The type annotation part is the same as the previous section on With Type Annotation.
 -->
 
-类型签名的部分和之前是一样的。
+类型标注部分和上面的是一样的。
 
 <!--
 **Don't** confuse `let add: myType` with `type add = myType`. When used in `.resi` interface files, the former exports the binding `add` while annotating it as type `myType`. The latter exports the type `add`, whose value is the type `myType`.
 -->
 
-**不要搞混** `let add: myType` 和 `type add = myType`。当在 `.resi` 接口文件中使用时，前者会导出绑定 `add`, 并将其类型标注为 `myType` 类型；后者会导出类型 `add`，并声明该类型和 `myType` 相同。
+**不要混淆** `let add: myType` 和 `type add = myType`。在 `.resi` 接口文件中使用时，前者导出绑定 `add`，并将其类型标注为 `myType`；后者导出类型 `add`，其值为 `myType` 类型。

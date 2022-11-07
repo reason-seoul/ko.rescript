@@ -55,7 +55,7 @@ jobs:
         uses: tagus/git-deploy@v0.4.1
         with:
           changes: gh-pages
-          repository: git@github.com:rescript-translation-zh/rescript-translation-zh.github.io.git
+          repository: git@github.com:rescript-idea/rescript-lang-zh-static.git
           ssh_key: ${{ secrets.SSH_DEPLOY_KEY }}
           branch: master
           name: deploy-bot

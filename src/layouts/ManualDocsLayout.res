@@ -70,7 +70,6 @@ module Latest = {
         version
         title
         metaTitleCategory="ReScript Language Manual"
-        availableVersions=Constants.allManualVersions
         ?frontmatter
         breadcrumbs>
         children

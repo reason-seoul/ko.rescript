@@ -332,20 +332,20 @@ module DocsSection = {
 
     <div
       className="relative w-full bg-white pb-32 min-h-full sm:pb-0 text-gray-60 text-14 rounded-bl-xl rounded-br-xl">
-      <div className={"flex justify-center w-full py-2 border-b border-gray-10"}>
-        <div className="px-4 w-full space-x-2 max-w-1280 ">
-          <VersionSelect
-            availableVersions=Constants.allManualVersions onChange=onVersionChange version
-          />
-          {switch version {
-          | "latest" =>
-            <span className="text-gray-40 text-12">
-              {React.string("This is the latest docs version")}
-            </span>
-          | _ => React.null
-          }}
-        </div>
-      </div>
+      // <div className={"flex justify-center w-full py-2 border-b border-gray-10"}>
+      //   <div className="px-4 w-full space-x-2 max-w-1280 ">
+      //     <VersionSelect
+      //       availableVersions=Constants.allManualVersions onChange=onVersionChange version
+      //     />
+      //     {switch version {
+      //     | "latest" =>
+      //       <span className="text-gray-40 text-12">
+      //         {React.string("This is the latest docs version")}
+      //       </span>
+      //     | _ => React.null
+      //     }}
+      //   </div>
+      // </div>
       <div className="flex justify-center">
         <div className="w-full sm:grid sm:grid-cols-3 max-w-1280">
           languageManualColumn ecosystemColumn quickReferenceColumn
@@ -545,17 +545,17 @@ let make = (~fixed=true, ~overlayState: (bool, (bool => bool) => unit)) => {
                 {React.string("Playground")}
               </a>
             </Link>
-            <Link href="/blog">
-              <a
-                className={"hidden xs:block " ++ linkOrActiveLinkSubroute(~target="/blog", ~route)}>
-                {React.string("Blog")}
-              </a>
-            </Link>
-            <Link href="/community">
-              <a className={"hidden xs:block " ++ linkOrActiveLink(~target="/community", ~route)}>
-                {React.string("Community")}
-              </a>
-            </Link>
+            // <Link href="/blog">
+            //   <a
+            //     className={"hidden xs:block " ++ linkOrActiveLinkSubroute(~target="/blog", ~route)}>
+            //     {React.string("Blog")}
+            //   </a>
+            // </Link>
+            // <Link href="/community">
+            //   <a className={"hidden xs:block " ++ linkOrActiveLink(~target="/community", ~route)}>
+            //     {React.string("Community")}
+            //   </a>
+            // </Link>
           </div>
           <div className="hidden md:flex items-center">
             <div className="hidden sm:block mr-6"> <DocSearch /> </div>

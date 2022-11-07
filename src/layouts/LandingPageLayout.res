@@ -715,7 +715,7 @@ let make = (~components=Markdown.default, ~children) => {
               </Mdx.Provider>
             </main>
           </div>
-          <Footer />
+          // <Footer />
         </div>
       </div>
     </div>

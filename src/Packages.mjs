@@ -8,7 +8,6 @@ import * as Next from "./bindings/Next.mjs";
 import * as Path from "path";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
-import * as Footer from "./components/Footer.mjs";
 import * as Js_dict from "rescript/lib/es6/js_dict.js";
 import * as Js_null from "rescript/lib/es6/js_null.js";
 import FuseJs from "fuse.js";
@@ -497,7 +496,7 @@ function $$default(props) {
                                     }, React.createElement(Packages$InfoSidebar, {
                                           setFilter: match$1[1],
                                           filter: filter
-                                        }))))), React.createElement(Footer.make, {}))));
+                                        }))))))));
 }
 
 function getStaticProps(_ctx) {

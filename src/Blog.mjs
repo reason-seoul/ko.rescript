@@ -7,7 +7,6 @@ import * as Util from "./common/Util.mjs";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as Button from "./components/Button.mjs";
-import * as Footer from "./components/Footer.mjs";
 import * as BlogApi from "./common/BlogApi.mjs";
 import * as DateStr from "./common/DateStr.mjs";
 import * as Markdown from "./components/Markdown.mjs";
@@ -278,7 +277,7 @@ function $$default(props) {
                                               maxWidth: "66.625rem"
                                             }
                                           }, content))
-                                }))), React.createElement(Footer.make, {}))));
+                                }))))));
 }
 
 function getStaticProps(_ctx) {

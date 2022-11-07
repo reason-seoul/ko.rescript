@@ -2,7 +2,6 @@
 
 import * as Mdx from "../common/Mdx.mjs";
 import * as React from "react";
-import * as Footer from "../components/Footer.mjs";
 import * as Markdown from "../components/Markdown.mjs";
 import * as Navigation from "../components/Navigation.mjs";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
@@ -27,7 +26,7 @@ function MainLayout(Props) {
                             }, React.createElement(Mdx.Provider.make, {
                                   components: components,
                                   children: children
-                                }))), React.createElement(Footer.make, {}))));
+                                }))))));
 }
 
 var make = MainLayout;

@@ -290,7 +290,7 @@ let make = (
           </div>
         </div>
       </div>
-      <Footer />
+      // <Footer />
     </div>
   </>
 }

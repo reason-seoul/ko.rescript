@@ -7,7 +7,6 @@ import * as Next from "../bindings/Next.mjs";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as Button from "../components/Button.mjs";
-import * as Footer from "../components/Footer.mjs";
 import * as Markdown from "../components/Markdown.mjs";
 import * as OurUsers from "../common/OurUsers.mjs";
 import * as LzString from "lz-string";
@@ -552,7 +551,7 @@ function LandingPageLayout(Props) {
                                               }, React.createElement("div", {
                                                     className: "mt-16 md:mt-32 lg:mt-40 mb-12"
                                                   }, React.createElement(LandingPageLayout$Intro, {})), React.createElement(LandingPageLayout$PlaygroundHero, {}), React.createElement(LandingPageLayout$QuickInstall, {}), React.createElement(LandingPageLayout$MainUSP, {}), React.createElement(LandingPageLayout$OtherSellingPoints, {}), React.createElement(LandingPageLayout$TrustedBy, {}), React.createElement(LandingPageLayout$CuratedResources, {}), children))
-                                    }))), React.createElement(Footer.make, {})))));
+                                    })))))));
 }
 
 var make = LandingPageLayout;

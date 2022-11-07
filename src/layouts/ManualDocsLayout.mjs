@@ -67,7 +67,6 @@ function ManualDocsLayout$Latest(Props) {
       title: title,
       metaTitleCategory: "ReScript Language Manual",
       version: version$2,
-      availableVersions: Constants.allManualVersions,
       components: components,
       theme: "Reason",
       children: children

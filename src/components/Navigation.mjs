@@ -12,7 +12,6 @@ import * as DocSearch from "./DocSearch.mjs";
 import * as Belt_Array from "rescript/lib/es6/belt_Array.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as ReactDOMStyle from "@rescript/react/src/ReactDOMStyle.mjs";
-import * as VersionSelect from "./VersionSelect.mjs";
 
 var link = "no-underline block text-inherit hover:cursor-pointer hover:text-fire-30 text-gray-40 mb-px";
 
@@ -144,7 +143,6 @@ function Navigation$DocsSection(Props) {
           return version._0;
         }
       });
-  var setVersion = match[1];
   var version = match[0];
   var languageManual = Constants.languageManual(version);
   var documentation = [
@@ -327,40 +325,9 @@ function Navigation$DocsSection(Props) {
               }, "Exploration"), React.createElement("div", {
                 className: "mt-6"
               }, React.createElement(React.Fragment, undefined, packageLink, syntaxLookupLink))));
-  var onVersionChange = function (evt) {
-    evt.preventDefault();
-    var version = evt.target.value;
-    var match = url.base;
-    if (match.length === 2) {
-      var match$1 = match[0];
-      if (match$1 === "docs") {
-        var match$2 = match[1];
-        if (match$2 === "manual") {
-          var targetUrl = "/" + (url.base.join("/") + ("/" + (version + ("/" + url.pagepath.join("/")))));
-          Next.Router.push(router, targetUrl);
-        }
-        
-      }
-      
-    }
-    Curry._1(setVersion, (function (param) {
-            return version;
-          }));
-  };
-  var tmp = version === "latest" ? React.createElement("span", {
-          className: "text-gray-40 text-12"
-        }, "This is the latest docs version") : null;
   return React.createElement("div", {
               className: "relative w-full bg-white pb-32 min-h-full sm:pb-0 text-gray-60 text-14 rounded-bl-xl rounded-br-xl"
             }, React.createElement("div", {
-                  className: "flex justify-center w-full py-2 border-b border-gray-10"
-                }, React.createElement("div", {
-                      className: "px-4 w-full space-x-2 max-w-1280 "
-                    }, React.createElement(VersionSelect.make, {
-                          onChange: onVersionChange,
-                          version: version,
-                          availableVersions: Constants.allManualVersions
-                        }), tmp)), React.createElement("div", {
                   className: "flex justify-center"
                 }, React.createElement("div", {
                       className: "w-full sm:grid sm:grid-cols-3 max-w-1280"
@@ -587,16 +554,6 @@ function Navigation(Props) {
                                   children: React.createElement("a", {
                                         className: "hidden xs:block " + linkOrActiveLink("/try", route)
                                       }, "Playground")
-                                }), React.createElement(Next.Link.make, {
-                                  href: "/blog",
-                                  children: React.createElement("a", {
-                                        className: "hidden xs:block " + linkOrActiveLinkSubroute("/blog", route)
-                                      }, "Blog")
-                                }), React.createElement(Next.Link.make, {
-                                  href: "/community",
-                                  children: React.createElement("a", {
-                                        className: "hidden xs:block " + linkOrActiveLink("/community", route)
-                                      }, "Community")
                                 })), React.createElement("div", {
                               className: "hidden md:flex items-center"
                             }, React.createElement("div", {

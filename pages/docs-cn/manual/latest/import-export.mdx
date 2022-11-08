@@ -7,7 +7,7 @@ canonical: "/docs/manual/latest/import-export"
 <!--
 # Import & Export
 -->
-# 导入 & 导出
+# 导入和导出
 
 <!--
 ## Import a Module/File
@@ -37,7 +37,7 @@ var studentMessage = Student.message
 The above code refers to the `message` binding in the file `Student.res`. Every ReScript file is also a module, so accessing another file's content is the same as accessing another module's content!
 -->
 
-上面的代码中引入了 `Student.res` 中的 `message` 绑定。每个 ReScript 文件同时也是一个模块，所以获取其他文件的内容和获取其他模块的内容是一样的！
+上面的代码中引用了 `Student.res` 中的 `message` 绑定。每个 ReScript 文件同时也是一个模块，所以访问一个文件的内容和访问一个模块的内容是一样的！
 
 <!--
 A ReScript project's file names need to be unique.
@@ -54,21 +54,21 @@ ReScript 项目中的文件名必须是唯一的。
 By default, every file's type declaration, binding and module is exported, aka publicly usable by another file. **This also means those values, once compiled into JS, are immediately usable by your JS code**.
 -->
 
-默认情况下，文件中的类型声明，绑定和模块都会导出，也就是可以由另一个文件直接使用。**这也就意味着这些值一旦被编译到 JS 就可以直接被 JS 代码使用**。
+默认情况下，文件中的类型声明、绑定和模块都是导出的，也就是可以被其他文件公开使用。**这也就意味着这些值，一旦被编译为 JS，就可以立即被 JS 代码使用**。
 
 <!--
 To only export a few selected things, use a `.resi` [interface file](module.md#signatures).
 -->
 
-如果只想导出一些指定的内容，可以使用 `.resi` [interface file](module.md#signatures)。
+如果只想导出一些指定的内容，可以使用 `.resi`[接口文件](module.md#signatures)。
 
 <!--
 ## Work with JavaScript Import & Export
 -->
-## 和 JavaScript 的导入 & 导出一起使用
+## 和 JavaScript 的 import & export 一起使用
 
 <!--
 To see how to import JS modules and export stuff for JS consumption, see the JavaScript Interop section's [Import from/Export to JS](import-from-export-to-js.md).
 -->
 
-如果想要了解如何导入 JS 模块以及如何导出内容给JS使用，可以参考 JavaScript 互操作部分的 [Import from/Export to JS](import-from-export-to-js.md)。
+要了解如何导入 JS 模块和导出东西给 JS 使用，可以参考 JavaScript Interop 中的[从 JS 导入/导出到 JS](import-from-export-to-js.md) 章节。

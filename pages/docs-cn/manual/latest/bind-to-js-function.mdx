@@ -13,7 +13,7 @@ canonical: "/docs/manual/latest/bind-to-js-function"
 Binding a JS function is like binding any other value:
 -->
 
-绑定一个 JS 函数和绑定其他值类型一样：
+绑定 JS 函数就像绑定任何其他值一样：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -44,7 +44,7 @@ We also expose a few special features, described below.
 ReScript has [labeled arguments](function.md#labeled-arguments) (that can also be optional). These work on an `external` too! You'd use them to _fix_ a JS function's unclear usage. Assuming we're modeling this:
 -->
 
-Rescript 拥有[标签参数](function.md#labeled-arguments)（它也是可选的）。标签参数同样可以作用于 `external`！你可以使用标签参数来 _避免_ 函数参数不明确的传递。假设我们有下面的使用场景：
+Rescript 拥有[标签参数](function.md#labeled-arguments)（它也是可选的）。标签参数在 `external` 中也可以使用！你可以使用它来_修复_函数不明确的用法。假设我们在做这个模型：
 
 ```js
 // MyGame.js
@@ -60,7 +60,7 @@ draw(20, 20, true)
 It'd be nice if on ReScript's side, we can bind & call `draw` while labeling things a bit:
 -->
 
-在 Rescript 中，我们稍微加点标签，就可以轻易地绑定和调用 `draw` 函数：
+在 Rescript 这边，我们稍微加上标签，就可以轻易地绑定和调用 `draw` 函数：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -84,19 +84,19 @@ MyGame.draw(10, 20, undefined);
 We've compiled to the same function, but now the usage is much clearer on the ReScript side thanks to labels!
 -->
 
-编译之后我们会得到和 JS 侧一样的函数，但有了标签语法的支持，在 ReScript 侧给函数传参时清晰的多！
+我们编译得到相同的函数，但现在由于有了标签，在 ReScript 端的用法更加清晰了！
 
 <!--
 **Note**: in this particular case, you need a unit, `()` after `border`, since `border` is an [optional argument at the last position](function.md#optional-labeled-arguments). Not having a unit to indicate you've finished applying the function would generate a warning.
 -->
 
-**注意**：在这种特殊情况下，你需要一个 unit 类型 `()` 并放在 `border` 之后，因为 `border` 是[最后一个可选的参数](function.md#optional-labeled-arguments)。如果没有一个 unit 类型的参数去标识传参终止，那么将会得到一个警告。
+**注意**：在这种特殊情况下，你需要在 `border` 后面加上 `()`，因为 `border` 是[最后一个可选的参数](function.md#optional-labeled-arguments)。如果没有 `()` 去标识传参终止，那将会产生一个警告。
 
 <!--
 Note that you can freely reorder the labels on the ReScript side; they'll always correctly appear in their declaration order in the JavaScript output:
 -->
 
-注意，你可以自由地在 ReScript 将标签参数重新排序；它们会正确地按照参数声明的顺序编译成 JavaScrpt：
+请注意，你可以自由地重新排列 ReScript 端的标签；它们总是正确地以声明的顺序出现在 JavaScript 输出中：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -125,7 +125,7 @@ MyGame.draw(10, 20, undefined);
 Functions attached to a JS objects (other than JS modules) require a special way of binding to them, using `send`:
 -->
 
-将函数添加到 JS 的对象中（JS 模块除外）需要使用一种特殊的方式 `send`：
+附加在 JS 对象上的函数（JS 模块除外）需要用一种特殊的方式进行绑定，使用 `send`：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -146,7 +146,7 @@ var el = document.getElementById("myId");
 In a `send`, the object is always the first argument. Actual arguments of the method follow (this is a bit what modern OOP objects are really).
 -->
 
-在 `send` 声明中，对象总是作为第一个参数，而真正的函数参数放在对象的后面（这有点像现代 OOP 的对象）。
+在 `send` 声明中，对象总是第一个参数，方法的实际参数紧随其后（这有点像现代 OOP 的对象）。
 
 <!--
 ### Chaining
@@ -168,7 +168,7 @@ Ever used `foo().bar().baz()` chaining ("fluent api") in JS OOP? We can model th
 You might have JS functions that take an arbitrary amount of arguments. ReScript supports modeling those, under the condition that the arbitrary arguments part is homogenous (aka of the same type). If so, add `variadic` to your `external`.
 -->
 
-你或许有那种可以传递任意数量参数的 JS 函数。在这些不定数量参数类型相同的情况下，Rescript 也支持传递可变参数。如果需要，你可以添加 `variadic` 到你的 `external`。
+你或许有接受任意数量参数的 JS 函数。ReScript 支持对这些函数进行建模，条件是任意参数部分是同质的（也就是类型相同）。如果需要，你可以添加 `variadic` 到你的 `external`。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -189,7 +189,7 @@ var v = Path.join("a", "b");
 `module` will be explained in [Import from/Export to JS](import-from-export-to-js.md).
 -->
 
-`module` 将会在 [Import from/Export to JS](import-from-export-to-js.md) 章节中进行解释。
+`module` 将会在 [从 JS 导入/导出到 JS](import-from-export-to-js.md) 章节中进行解释。
 
 <!--
 ## Modeling Polymorphic Function
@@ -200,7 +200,7 @@ var v = Path.join("a", "b");
 Apart from the above special-case, JS function in general are often arbitrary overloaded in terms of argument types and number. How would you bind to those?
 -->
 
-除了上面所说的情况，JS 函数通常在参数类型和数量方面是可以任意重载的。你该怎样为绑定这样的函数呢？
+除了上面的特殊情况，一般的 JS 函数在参数类型和数量上是可以任意重载的。你该怎样绑定这样的函数呢？
 
 <!--
 ### Trick 1: Multiple `external`s
@@ -211,7 +211,7 @@ Apart from the above special-case, JS function in general are often arbitrary ov
 If you can exhaustively enumerate the many forms an overloaded JS function can take, simply bind to each differently:
 -->
 
-如果您可以穷举一个重载 JS 函数的可能形式，只需进行分别绑定：
+如果你可以穷举一个重载 JS 函数的可能形式，那就只需对每一种不同的形式进行绑定：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -235,13 +235,13 @@ Note how all three externals bind to the same JS function, `draw`.
 <!--
 ### Trick 2: Polymorphic Variant + `unwrap`
 -->
-### 技巧 2：多态变量 + `unwrap`
+### 技巧 2：多态变体 + `unwrap`
 
 <!--
 If you have the irresistible urge of saying "if only this JS function argument was a variant instead of informally being either `string` or `int`", then good news: we do provide such `external` features through annotating a parameter as a polymorphic variant! Assuming you have the following JS function you'd like to bind to:
 -->
 
-如果你对“要是这个 JS 函数的参数是变体而不是 `string` 或 `int` 就好了”这个想法心痒难耐，那么好消息是：我们确实通过将参数标注为多态变体来提供这样的 `external` 特性！假设你希望绑定以下 JS 函数：
+如果你对“要是这个 JS 函数的参数是变体，而不是 `string` 或 `int` 就好了”这个想法心痒难耐，那么好消息是：我们确实通过将参数标注为多态变体来提供这样的 `external` 特性！假设你希望绑定以下 JS 函数：
 
 ```js
 function padLeft(value, padding) {
@@ -286,18 +286,18 @@ padLeft("Hello World", "Message from ReScript: ");
 Obviously, the JS side couldn't have an argument that's a polymorphic variant! But here, we're just piggy backing on poly variants' type checking and syntax. The secret is the `@unwrap` annotation on the type. It strips the variant constructors and compile to just the payload's value. See the output.
 -->
 
-显然，JS 侧没有多态变体的概念！但在这里，我们只是使用了多态变体的类型检查和语法。类型的 `@unwrap` 标注会导致编译时去掉变体构造器并仅仅留下载荷中的值。请参考编译输出。
+显然，JS 端不可能有多态变体参数！但在这里，我们只是借用了多态变体的类型检查和语法。类型的 `@unwrap` 标注会导致编译时去掉变体构造器，而仅留下载荷值。请看输出。
 
 <!--
 ## Constrain Arguments Better
 -->
-## 更佳的参数约束
+## 更好的参数约束
 
 <!--
 Consider the Node `fs.readFileSync`'s second argument. It can take a string, but really only a defined set: `"ascii"`, `"utf8"`, etc. You can still bind it as a string, but we can use poly variants + `string` to ensure that our usage's more correct:
 -->
 
-考虑 Node.js `fs.readFileSync` 函数的第二个参数，它可以接受一个字符串，但是只能从一个字符串集合中选取：`"ascii"`，`"utf8"`，等等。你当然可以字符串类型进行绑定，但是，我们能够使用多态变体 + `string` 去进一步提高调用者的传参正确性：
+考虑一下 Node.js `fs.readFileSync` 函数的第二个参数，它可以接受一个字符串，但是只能从一个字符串集合中选取：`"ascii"`，`"utf8"`，等等。你当然可以字符串类型进行绑定，但是我们可以使用多态变体 + `string` 去进一步提高调用者的传参正确性：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -325,7 +325,7 @@ Fs.readFileSync("xx.txt", "ascii");
 - Attaching a `@as("bla")` to a constructor lets you customize the final string.
 -->
 
-- 将 `@string` 添加到整个多态变体类型可以使其构造器编译为同名字符串
+- 将 `@string` 添加到整个多态变体类型，使其构造器编译为同名字符串
 
 - 将 `@as("bla")` 添加到构造器可以让你自定义最终的字符串
 
@@ -333,13 +333,13 @@ Fs.readFileSync("xx.txt", "ascii");
 And now, passing something like `"myOwnUnicode"` or other variant constructor names to `readFileSync` would correctly error.
 -->
 
-现在，传递类似 `"myOwnUnicode"` 或者其他变量构造器给 `readFileSync` 函数就会报错。
+现在，传递类似 `"myOwnUnicode"` 或者其他变量构造器给 `readFileSync` 函数就会正确报错。
 
 <!--
 Aside from string, you can also compile an argument to an int, using `int` instead of `string` in a similar way:
 -->
 
-除了字符串，你也可以把参数编译成整型，用相似的代码，把 `int` 替换成 `string` 即可：
+除了字符串，你也可以把参数编译为整数，方法类似，把 `int` 替换成 `string` 即可：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -375,7 +375,7 @@ testIntType(21);
 One last trick with polymorphic variants:
 -->
 
-这是最后一个使用多态变体的技巧：
+多态变体的最后一招：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -420,7 +420,7 @@ function register(rl) {
 Sometimes it's convenient to bind to a function using an `external`, while passing predetermined argument values to the JS function:
 -->
 
-将预定好的的参数值传递给 JS 函数时，使用 `external` 绑定函数有时很方便：
+当传递预先确定的参数值到 JS 函数时，使用 `external` 绑定一个函数有时是很方便的：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -447,7 +447,7 @@ process.on("exit", function (exitCode) {
 The `@as("exit")` and the placeholder `_` argument together indicates that you want the first argument to compile to the string `"exit"`. You can also use any JSON literal with `as`: `` @as(json`true`) ``, `` @as(json`{"name": "John"}`) ``, etc.
 -->
 
-`@as("exit")` 和占位符 `_` 参数一起使用意味着你想让第一个参数编译为字符串 `"exit"`。你还可以将任何 JSON 字面量与 `as` 一起用：`` @as(JSON`true`) ``，`` @as(JSON`{"name":"John"}`) ``，等等。
+`@as("exit")` 和占位符 `_` 参数一起使用表示你想让第一个参数编译为字符串 `"exit"`。你也可以把任何 JSON 字面量与 `as` 一起用：`` @as(JSON`true`) ``，`` @as(JSON`{"name":"John"}`) ``，等等。
 
 <!--
 ## Ignore arguments
@@ -458,7 +458,7 @@ The `@as("exit")` and the placeholder `_` argument together indicates that you w
 You can also explicitly "hide" `external` function parameters in the JS output, which may be useful if you want to add type constraints to other parameters without impacting the JS side:
 -->
 
-你还可以在 JS 输出中显式地“隐藏” `external` 声明的函数的某个参数，如果你想在不影响 JS 端的情况下向其他参数添加类型约束，这个特性就很实用：
+你还可以在 JS 输出中明确地“隐藏” `external` 函数参数，如果你想在不影响 JS 端的情况下向其他参数添加类型约束，这个特性就很实用：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -478,7 +478,7 @@ doSomething("test");
 **Note:** It's a pretty niche feature, mostly used to map to polymorphic JS APIs.
 -->
 
-**注意**：这是一个非常小众的特性，主要用于映射到多态的 JS API。
+**注意**：这是一个非常小众的特性，主要用于映射多态的 JS API。
 
 <!--
 ## Curry & Uncurry
@@ -489,13 +489,13 @@ doSomething("test");
 Curry is a delicious Indian dish. More importantly, in the context of ReScript (and functional programming in general), currying means that function taking multiple arguments can be applied a few arguments at time, until all the arguments are applied.
 -->
 
-咖喱是一道美味的印度菜。更重要的是，在 ReScript（通常在函数式编程方面）的上下文中，柯里化意味着多参数函数可以一次传递部分参数，直到传递了所有参数才完成调用。
+咖喱是一道美味的印度菜。更重要的是，在 ReScript（以及一般的函数式编程）的上下文中，柯里化意味着多参数函数可以每次应用几个参数，直到所有参数都被应用。
 
 <!--
 See the `addFive` intermediate function? `add` takes in 3 arguments but received only 1. It's interpreted as "currying" the argument `5` and waiting for the next 2 arguments to be applied later on. Type signatures:
 -->
 
-看到 `addFive` 中间函数了吗？`add` 接受 3 个参数，但只接收到 1 个。这种行为被解释为柯里化了参数 `5`，并等待后面 2 个参数的传递。函数类型签名如下：
+看到 `addFive` 这个中间函数了吗？`add` 有 3 个参数，但只收到了 1 个。它被解释为柯里化了参数 `5`，并等待后面 2 个参数的被应用。函数类型签名如下：
 
 ```res sig
 let add: (int, int, int) => int
@@ -507,7 +507,7 @@ let twelve: int
 (In a dynamic language such as JS, currying would be dangerous, since accidentally forgetting to pass an argument doesn't error at compile time).
 -->
 
-（在像 JS 这样的动态语言中，柯里化操作是有风险的，因为在编译时如果忘了传递参数并不会报错）。
+（在 JS 这样的动态语言中，柯里化操作是有风险的，因为如果忘了传递参数，在编译时并不会报错）。
 
 <!--
 ### Drawback
@@ -524,13 +524,13 @@ Unfortunately, due to JS not having currying because of the aforementioned reaso
 3. Some JS APIs like `throttle`, `debounce` and `promise` might mess with context, aka use the function `bind` mechanism, carry around `this`, etc. Such implementation clashes with the previous currying logic.
 -->
 
-不幸的是，由于 JS 因为上述原因没有柯里化，ReScript 多参数函数很难 100% 清晰地映射到 JS 函数：
+不幸的是，由于上述原因，JS 没有柯里化，ReScript 多参数函数很难 100% 干净地映射到 JS 函数：
 
-1. 当函数的所有参数都被传递（也就是没有柯里化）时，ReScript 会尽最大努力用最佳的方式进行编译，例如拥有 3 个参数的函数调用编译成一个传递 3 个变量的普通 JS 函数调用
+1. 当函数的所有参数都被提供（也就是没有柯里化）时，ReScript 会尽力以用最佳的方式进行编译，例如将有 3 个参数的函数调用编译成 3 个参数的普通 JS 调用
 
-2. 如果很难检测函数应用是否完成 \*，ReScript 会使用运行时机制（“Curry”模块）来尽可能多地处理参数，并检查结果是否完成了应用
+2. 如果很难检测函数应用是否完成 \*，ReScript 会使用运行时机制（“Curry”模块），来尽可能多地处理参数，并检查结果是否完成了应用
 
-3. 一些 JS API（如 `throttle`、`debounce` 和 `promise`）可能会与上下文混杂，也就是会使用函数 `bind` 机制、使用 `this` 等。这种实现方式会与柯里化的逻辑发生冲突
+3. 一些 JS API（如 `throttle`、`debounce` 和 `promise`）可能会搞乱上下文，也就是会使用函数 `bind` 机制、使用 `this` 等。这种实现方式与柯里化的逻辑有冲突
 
 <!--
 \* If the call site is typed as having 3 arguments, we sometimes don't know whether it's a function that's being curried, or if the original one indeed has only 3 arguments.
@@ -542,13 +542,13 @@ Unfortunately, due to JS not having currying because of the aforementioned reaso
 ReScript tries to do #1 as much as it can. Even when it bails and uses #2's currying mechanism, it's usually harmless.
 -->
 
-ReScript 尝试尽可能多地执行步骤 #1。即使当 #1 跳过并使用 #2 的柯里化机制时，通常也是没有负面影响的。
+ReScript 尝试尽可能多地执行 #1。即使它放弃 #1 并使用 #2 的柯里化机制时，这通常也是无害的。
 
 <!--
 **However**, if you encounter #3, heuristics are not good enough: you need a guaranteed way of fully applying a function, without intermediate currying steps. We provide such guarantee through the use of the ["uncurrying" syntax](./function#uncurried-function) on a function declaration & call site.
 -->
 
-**然而**，如果你遇到 #3，试探法不是最好的方法：需要一种有保障机制来完整地调用函数，而不需要中间的 curring 步骤。我们通过在函数声明和调用点上使用[“去柯里化”语法](./function#uncurred function)来提供这种保障机制。
+**然而**，如果你遇到了 #3，启发式不是最好的方法：你需要一种有保障的方法来完整地调用函数，而不需要中间的柯里化步骤。我们通过在函数声明和调用处使用[“去柯里化”语法](./function#uncurred function)来提供这种保证。
 
 <!--
 ### Solution: Use Guaranteed Uncurrying
@@ -559,7 +559,7 @@ ReScript 尝试尽可能多地执行步骤 #1。即使当 #1 跳过并使用 #2 
 [Uncurried function](function.md#uncurried-function) annotation also works on `external`:
 -->
 
-[Uncurried function](function.md#uncurried-function) 标注同样可用于 `external`：
+[去柯里化](function.md#uncurried-function)标注同样可用于 `external`：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -590,8 +590,8 @@ The above solution is safe, guaranteed, and performant, but sometimes visually a
 - you want the user **not** to need to annotate the call sites with the dot
 -->
 
-上面的解决方案是安全的、有保证的、性能良好的，但有时在阅读上有点心智负担。如果：
-- 你正在使用`external`
+上面的解决方案是安全的、有保证的、性能良好的，但有时看上去有些累赘。我们提供了一个替代解决方案，如果：
+- 你正在使用 `external`
 - `external` 函数接受另一个函数作为参数
 - 您希望用户**不需要**用 `.` 标注调用点
 
@@ -619,18 +619,18 @@ map([1, 2, 3], x => x + 1)
 In general, `uncurry` is recommended; the compiler will do lots of optimizations to resolve the currying to uncurrying at compile time. However, there are some cases the compiler can't optimize it. In these cases, it will be converted to a runtime check.
 -->
 
-一般来说，推荐使用 `uncurry`；编译器在编译时将进行大量优化，来将柯里化变为去柯里化。然而，在某些情况下，编译器无法对其进行优化。在这些情况下，它将被转换为运行时的检查。
+一般来说，推荐使用 `uncurry`；编译器会在编译时做很多优化来将柯里化函数去柯里化。然而，在某些情况下，编译器无法对其进行优化。在这些情况下，它会被转换为运行时的检查。
 
 <!--
 ## Modeling `this`-based Callbacks
 -->
-## 对基于 this 的 callback 建模
+## 对基于 this 的回调函数建模
 
 <!--
 Many JS libraries have callbacks which rely on this (the source), for example:
 -->
 
-有很多 JS 库的回调函数依赖于 this（问题的来源），例如：
+有很多 JS 库的回调函数依赖于 this（这是问题的来源），例如：
 
 ```js
 x.onload = function(v) {
@@ -642,7 +642,7 @@ x.onload = function(v) {
 Here, `this` would point to `x` (actually, it depends on how `onload` is called, but we digress). It's not correct to declare `x.onload` of type `(. unit) -> unit`. Instead, we introduced a special attribute, `this`, which allows us to type `x` as so:
 -->
 
-这里的 `this` 是指向 `x` 的（实际上，这取决于 `onload` 方法是如何被调用的，但是讨论这个我们就偏题了）。将 `x.onload` 的类型声明为 `(. unit) -> unit` 是不对的，取而代之的是，我们引入了一个特殊的属性，`this`，它能让我们用下面的方式为 `x` 作类型声明：
+这里的 `this` 是指向 `x` 的（实际上，这取决于 `onload` 方法是如何被调用的，但是讨论这个我们就偏题了）。将 `x.onload` 的类型声明为 `(. unit) -> unit` 是不对的。相反，我们引入了一个特殊的属性，`this`，它允许我们用下面的方式为 `x` 作类型声明：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -666,18 +666,18 @@ x.onload = function (v) {
 `this` has its first parameter is reserved for `this` and for arity of 0, there is no need for a redundant `unit` type.
 -->
 
-`this` 属性将它的第一个参数为 JS 的 `this` 保留，对于无参函数，声明时不需要冗余的 unit 类型。
+`this` 将它的第一个参数为 JS 的 `this` 保留。对于无参函数，声明时不需要冗余的 `unit` 类型。
 
 <!--
 ## Function Nullable Return Value Wrapping
 -->
-## 对可返回 Null 值的函数进行包裹
+## 对返回可空值的函数进行包装
 
 <!--
 For JS functions that return a value that can also be `undefined` or `null`, we provide `@return(...)`. To automatically convert that value to an `option` type (recall that ReScript `option` type's `None` value only compiles to `undefined` and not `null`).
 -->
 
-对于返回值可以是 `undefined` 或 `null` 的 JS 函数，我们提供 `@return(...)` 语法，可以自动将该值转换为 `option` 类型（请记住，ReScript `option` 的 `None` 值仅编译为 `undefined` 而不是 `null`）。
+对于返回值可以是 `undefined` 或 `null` 的 JS 函数，我们提供了 `@return(...)` 来自动将该值转换为 `option` 类型（回忆一下，ReScript `option` 的 `None` 值只会编译为 `undefined` 而不是 `null`）。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -721,7 +721,7 @@ function test(dom) {
 Currently 4 directives are supported: `null_to_opt`, `undefined_to_opt`, `nullable` and `identity`.
 -->
 
-当前支持 4 个指令：`null_to_opt`、`undefined_to_opt_`、`nullable` 和 `identity`。
+目前支持 4 个指令：`null_to_opt`、`undefined_to_opt_`、`nullable` 和 `identity`。
 
 
 
@@ -731,4 +731,4 @@ Currently 4 directives are supported: `null_to_opt`, `undefined_to_opt`, `nullab
 `identity` will make sure that compiler will do nothing about the returned value. It is rarely used, but introduced here for debugging purpose.
 -->
 
-`identity` 将确保编译器不会对返回的值进行任何操作。这一般用的很少，但在这里作介绍是为了调试。
+`identity` 将确保编译器对返回值不做任何处理。这一般用的很少，但为了调试的目的在此介绍。

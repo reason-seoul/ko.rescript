@@ -16,10 +16,10 @@ ReScript offers a unique project conversion methodology which:
 - Doesn't force you to search for pre-made binding libraries made by others. **ReScript doesn't need the equivalent of TypeScript's `DefinitelyTyped`**.
 -->
 
-ReScript 提供了独特的项目转换方式，这种转换方式：
-- 确保对队友的干扰最小（非常重要！）
+ReScript 提供了一种独特的项目转换方式，这种转换方式：
+- 确保对您的团队成员造成最小的干扰（非常重要！）
 - 消除了验证转换正确性与保证性能的典型摩擦
-- 不强制你搜索他人预制的绑定库。**ReScript 不需要 TypeScript 的 `DefinitelyTyped` 之类的东西**
+- 不强制你寻找别人制作的预制绑定库。**ReScript 不需要相当于 TypeScript 的 `DefinitelyTyped` 东西**
 
 <!--
 ## Step 1: Install ReScript
@@ -29,16 +29,18 @@ ReScript 提供了独特的项目转换方式，这种转换方式：
 <!--
 Run `npm install rescript --save-dev` on your project, then imitate our [New Project](installation#new-project) workflow by adding a `bsconfig.json` at the root. Then start `npx rescript build -w`.
 -->
-在你的项目中运行 `npm install rescript --save-dev`，然后像我们在[新项目](installation#new-project)中的工作流程一样，将 `bsconfig.json` 添加到项目根目录。接着，开始执行 `npx rescript build -w`。
+在你的项目中运行 `npm install rescript --save-dev`，然后像我们在[新项目](installation#new-project)中的工作流程一样，将 `bsconfig.json` 添加到项目根目录。接着执行 `npx rescript build -w`。
 
 <!--
 ## Step 2: Copy Paste the Entire JS File
 -->
+
 ## 步骤 2：复制粘贴整个 JS 文件
 
 <!--
 Let's work on converting a file called `src/main.js`.
 -->
+
 让我们转换 `src/main.js` 这个文件。
 
 ```js
@@ -59,7 +61,7 @@ function queryResult(usePayload, payload) {
 First, copy the entire file content over to a new file called `src/Main.res` by using our [`%%raw` JS embedding trick](embed-raw-javascript):
 -->
 
-首先，使用 [`%%raw` JS 嵌入技巧](embed-raw-javascript)，将整个文件的内容复制到一个新文件 `src/Main.res` 中：
+首先，使用 [`%%raw` JS 嵌入技巧](embed-raw-javascript)，将整个文件的内容复制到新文件 `src/Main.res` 中：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -116,13 +118,13 @@ Add this file to `bsconfig.json`:
 Open an editor tab for `src/Main.bs.js`. Do a command-line `diff -u src/main.js src/Main.bs.js`. Aside from whitespaces, you should see only minimal, trivial differences. You're already a third of the way done!
 -->
 
-在编辑器中打开一个选项卡来查看 `src/Main.bs.js`。执行命令 `diff -u src/main.js src/Main.bs.js`。除了空格以外，你应该只能看到一些极小的、微不足道的差别。你已经完成了三分之一！
+在编辑器中打开一个选项卡来查看 `src/Main.bs.js`。执行命令 `diff -u src/main.js src/Main.bs.js`。除了空格以外，你应该只能看到一些极小的、微不足道的差别。你已经完成了三分之一的工作！
 
 <!--
 **Always make sure** that at each step, you keep the ReScript output `.bs.js` file open to compare against the existing JavaScript file. Our compilation output is very close to your hand-written JavaScript; you can simply eye the difference to catch conversion bugs!
 -->
 
-**始终确保**在每个步骤中都保持打开 ReScript 输出的 `.bs.js` 文件，以便与现有的 JavaScript 文件进行比较。我们的编译输出与你手写的 JavaScript 非常接近；你可以通过简单的观察来捕捉转换的 Bug！
+**始终确保**在每个步骤中都保持打开 ReScript 输出的 `.bs.js` 文件，以便与现有的 JavaScript 文件进行比较。我们的编译输出与你手写的 JavaScript 非常接近；你可以通过简单的观察差异来发现转换 bug！
 
 <!--
 ## Step 3: Extract Parts into Idiomatic ReScript
@@ -133,7 +135,7 @@ Open an editor tab for `src/Main.bs.js`. Do a command-line `diff -u src/main.js 
 Let's turn the `defaultId` variable into a ReScript let-binding:
 -->
 
-让我们将变量 `defaultId` 转为 ReScript 的 let 绑定：
+让我们将变量 `defaultId` 变成 ReScript 的 let 绑定：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -179,7 +181,7 @@ exports.defaultId = defaultId;
 Check the output. Diff it. Code still works. Moving on! Extract the function:
 -->
 
-检查输出。比较差异。代码仍然工作。继续前进！提取函数：
+检查输出。比较差异。代码仍然工作。那就继续前进！提取函数：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -224,7 +226,7 @@ We have a type error: "The record field student can't be found". That's fine! **
 The previous type error is caused by `payload`'s record declaration (which supposedly contains the field `student`) not being found. Since we're trying to convert as quickly as possible, let's use our [object](object) feature to avoid needing type declaration ceremonies:
 -->
 
-前面的类型错误是因为没有找到 `payload` 的记录声明（它应该包含 `student` 字段）。因为我们想更快的完成转换，所以先让我们用[对象](object)特性来避免类型声明的仪式：
+前面的类型错误是因为没有找到 `payload` 的记录声明（它应该包含 `student` 字段）造成的。因为我们想尽快地完成转换，让我们使用[对象](object)特性来避免类型声明的仪式：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -296,19 +298,19 @@ exports.queryResult = queryResult;
 We hurrily typed `school` as a polymorphic `'whatever` and let its type be inferred by its usage below. The inference is technically correct, but within the context of bringing it a value from JavaScript, slightly dangerous. This is just the interop trick we've shown in the [`external`](external) page.
 -->
 
-我们匆忙地将 `school` 的类型注释为一个多态的 `'whatever`，并通过下面的用法推断其类型。这个推断在技术上是正确的，但是在 `school` 的值来自于 JavaScript 的情况下，这有些危险。这只是我们在 [`external`](external) 页面中展示的互操作技巧。
+我们匆忙地将 `school` 的类型变成了一个多态的 `'whatever`，并通过下面的用法推断其类型。这个推断在技术上是正确的，但是在 `school` 的值来自 JavaScript 的背景下，这有些危险。这只是我们在 [`external`](external) 页面中展示的互操作技巧。
 
 <!--
 Anyway, the file passes the type checker again. Check the `.bs.js` output, diff with the original `.js`; we've now converted a file over to ReScript!
 -->
 
-不管怎样，这个文件再次通过了类型检查器。检查 `.bs.js` 的输出，比较和原始 `.js` 文件的差异；我们现在将文件转为了 ReScript！
+总之，这个文件再次通过了类型检查器。检查 `.bs.js` 的输出，和原始的 `.js` 文件进行比较；我们现在将文件转换为了 ReScript！
 
 <!--
 Now, you can delete the original, hand-written `main.js` file, and grep the files importing `main.js` and change them to importing `Main.bs.js`.
 -->
 
-现在，你可以删除原来的、手写的 `main.js` 文件，然后搜索导入了 `main.js` 的文件，并改为从 `Main.bs.js` 导入。
+现在，你可以删除原始的、手写的 `main.js` 文件，然后 grep 导入了 `main.js` 的文件，将它们修改为导入 `Main.bs.js`。
 
 <!--
 ## (Optional) Step 5: Cleanup
@@ -374,32 +376,32 @@ We've:
 -->
 
 我们已经：
-- 为 `school` 和 `student` 引入了一种不透明的类型以防止滥用它们的值
-- 将 payload 声明为一个仅有 `student` 字段的记录
+- 为 `school` 和 `student` 引入了一种不透明的类型，以防止误用它们的值
+- 将载荷声明为一个仅有 `student` 字段的记录
 - 将 `getStudentById` 声明为 `student` 的唯一方法
 
 <!--
 Check that the `.bs.js` output didn't change. How rigidly to type your JavaScript code is up to you; we recommend not typing them too elaborately; it's sometime an endless chase, and produces diminishing returns, especially considering that the elaborate-ness might turn off your potential teammates.
 -->
 
-检查 `.bs.js`，输出没有改变。JavaScript 代码类型的严格程度取决于你；我们建议不要将它们的类型写的太详细；有时这就像是一个无底洞，带来的收益也会越来越少，特别是要考虑到过于精细设计可能会让你的一些队友很反感。
+检查 `.bs.js` 的输出是否有变化。JavaScript 代码类型的严格程度取决于你；我们建议不要将它们的类型写的太详细；有时这就像是一个无底洞，产生的回报也会越来越少，特别是要考虑到过于精细设计可能会让你的一些潜在的队友不爽。
 
 <!--
 ## Tips & Tricks
 -->
-## 提示 & 技巧
+### 技巧和诀窍
 
 <!--
 In the same vein of idea, **resist the urge to write your own wrapper functions for the JS code you're converting**. Use [`external`s](external), which are guaranteed to be erased in the output. And avoid trying to take the occasion to convert JS data structures into ReScript-specific data structures like variant or list. **This isn't the time for that**.
 -->
 
-本着同样的想法，**抑制为要转换的 JS 代码编写包装函数的冲动**。使用 [`external`](external)，它可以保证不会出现在输出中。并且避免尝试将 JS 的数据结构转换为 ReScript 特定的数据结构，像是变体（variant）或列表（list）。**这不是做这个的时候**。
+本着同样的想法，**抑制为要转换的 JS 代码编写包装函数的冲动**。使用 [`external`](external)，它可以保证不会出现在输出中。并且避免尝试将 JS 的数据结构转换为 ReScript 特定的数据结构，像是变体（variant）或列表（list）。**现在不是做这个的时候**。
 
 <!--
 The moment you produce extra conversion code in the output, your skeptical teammate's mental model might switch from "I recognize this output" to "this conversion might be introducing more problems than it solves. Why are we testing ReScript again?". Then you've lost.
 -->
 
-一旦你在输出中产生了额外的代码，你持怀疑态度的队友的心智模型可能会从“我认识这个输出”变为“这个转换可能引入的问题比它解决了的要更多，我们为什么要再次测试 ReScript？”。然后你就失败了。
+一旦你在输出中产生了额外的代码，你持怀疑态度的队友的心智模型可能会从“我认识这个输出”变为“这个转换可能引入的问题比它解决了的要更多，我们为什么要再次测试 ReScript？”。那么你就输了。
 
 <!--
 ## Conclusion
@@ -417,11 +419,11 @@ The moment you produce extra conversion code in the output, your skeptical teamm
 - Get promoted for introducing a new technology the safer, mature way.
 -->
 
-- 将 JS 代码以直接嵌入原始 JS 代码的形式粘贴到一个新的 ReScript 文件中
-- 编译并保持打开输出的文件。检查并比较和原始 JS 文件的差异。这是免费的回归测试
-- 总是确保你的文件的语法是有效的。在此之前不要为修复类型而忧虑
-- （滥）用[对象](object.md)访问以快速的完成转换
+- 将 JS 代码作为嵌入的原生 JS 代码粘贴到一个新的 ReScript 文件中
+- 编译并保持输出文件打开。检查并与原始 JS 文件的比较差异。这是免费的回归测试
+- 始终确保你的文件在语法上是有效的。在此之前不要担心修复类型的问题
+- （滥）用[对象](object.md)访问来快速地完成转换
 - 清理类型（可选的）以提高稳健性
 - 不要做的太过火而使你的老板与队友反感
-- 给你的队友展示异常熟悉的输出，自豪地表明你在转换中保留了语义与性能
-- 因为以一种更安全、成熟的方式推广新技术而获得升职加薪
+- 给你的队友展示异常熟悉的输出，自豪地表明你在转换中保留了语义与性能特征
+- 以更安全、更成熟引入一项新技术，从而获得晋升

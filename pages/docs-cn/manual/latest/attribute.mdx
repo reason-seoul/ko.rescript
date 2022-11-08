@@ -39,7 +39,7 @@ The `@inline` annotation tells `mode`'s value to be inlined into its usage sites
 An attribute starts with `@` and goes before the item it annotates. In the above example, it's hooked onto the let binding.
 -->
 
-属性以 `@` 开头，放在它标注的项之前。在上面的例子中，它被挂在 let 绑定上。
+一个属性以 `@` 开头，放在它标注的项之前。在上面的例子中，它被挂在 let 绑定上。
 
 <!--
 ## Usage
@@ -50,13 +50,13 @@ An attribute starts with `@` and goes before the item it annotates. In the above
 > **Note:** In previous versions (< 8.3) all our interop related attributes started with a `bs.` prefix (`bs.module`, `bs.val`). Our formatter will automatically drop them in newer ReScript versions.
 -->
 
-> **注意：**在以前的版本（< 8.3）中，我们所有和互操作相关属性都以 `bs.` 前缀开始（`bs.module`，`bs.val`）。我们的格式化程序将在较新的 ReScript 版本中自动删除它们。
+> **注意：**在以前的版本（< 8.3）中，我们所有的和互操作的相关属性都以 `bs.` 前缀开始（`bs.module`，`bs.val`）。我们的格式化程序将在较新的 ReScript 版本中自动删除它们。
 
 <!--
 You can put an attribute almost anywhere. You can even add extra data to them by using them visually like a function call. Here are a few famous attributes (explained in other sections):
 -->
 
-你几乎可以把属性放在任何地方，你甚至可以通过像函数调用一样直观地使用它们来添加额外的数据，下面是几个重要的属性（在其他部分解释作用）：
+你几乎可以把属性放在任何地方，你甚至可以通过像函数调用一样直观地使用它们来添加额外的数据，下面是几个著名的属性（在其他部分解释作用）：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -94,12 +94,12 @@ let customTriple = foo => foo * 3
 6. `@deprecated("Use SomeOther.customTriple instead")` annotates the `customTriple` expression with a string to describe the reason for deprecation.
 -->
 
-1. `@@warning("-27")`是一个注释了整个文件的独立属性。这些属性以`@@`开头，这里它携带的数据是 `"-27"`。你可以在[这里](./warning-numbers)找到所有可用警告的完整列表
-2. `@unboxed`标注了类型定义
-3. `@val`标注了 `external` 语句
+1. `@@warning("-27")` 是一个注释了整个文件的独立属性。这些属性以 `@@` 开头，这里它携带的数据是 `"-27"`。你可以在[这里](./warning-numbers)找到所有可用警告的完整列表
+2. `@unboxed` 标注了类型定义
+3. `@val` 标注了 `external` 语句
 4. `@as("aria-label")` 标注了 `ariaLabel` 记录字段
 5. `@deprecated` 标注了 `customDouble` 表达式。这会在编译时显示一个警告，告诉用户不要长期依赖这个方法
-6. `@deprecated("Use SomeOther.customTriple instead")` 标注了 `customTriple` 表达式，并用一个字符串来描述废弃的原因
+6. `@deprecated("Use SomeOther.customTriple instead")` 标注了 `customTriple` 表达式，用一个字符串来描述废弃的原因
 
 <!--
 ## Extension Point
@@ -127,10 +127,10 @@ var a = 1
 Extension points are attributes that don't _annotate_ an item; they _are_ the item. Usually they serve as placeholders for the compiler to implicitly substitute them with another item.
 -->
 
-扩展点是一种不会对项进行_标注_的属性，他们_本身_就是注释。通常，它们作为占位符，让编译器暗自用另一个项目来替代它们。
+扩展点是不会对项进行_标注_的属性，他们_本身_就是项。通常，它们作为占位符，让编译器隐含地用另一个项来替代它们。
 
 <!--
 Extension points start with `%`. A standalone extension point (akin to a standalone regular attribute) starts with `%%`.
 -->
 
-扩展点以 `%` 开头。独立的扩展点（类似于独立的常规属性）以 `%%`开头。
+扩展点以 `%` 开头。一个独立的扩展点（类似于独立的普通属性）以 `%%` 开头。

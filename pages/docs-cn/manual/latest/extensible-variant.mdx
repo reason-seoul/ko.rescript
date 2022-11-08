@@ -13,7 +13,7 @@ canonical: "/docs/manual/latest/extensible-variant"
 Variant types are usually constrained to a fixed set of constructors. There may be very rare cases where you still want to be able to add constructors to a variant type even after its initial type declaration. For this, we offer extensible variant types.
 -->
 
-变体类型常受限于一组固定的构造器。在极少数情况下您仍然希望能够在初始化声明类型后继续给变体类型添加构造函数。为此，我们提供了可扩展变体（Extensible Variant）。
+变体类型通常限制于一组固定的构造器。在极少数情况下，您可能仍然希望能够在初始化声明类型后给变体类型添加构造器。为此，我们提供了可扩展变体（Extensible Variant）类型。
 
 <!--
 ## Definition and Usage
@@ -47,13 +47,13 @@ var Line = Caml_exceptions.create("Playground.Line");
 The `..` in the type declaration above defines an extensible variant `type t`. The `+=` operator is then used to add constructors to the given type.
 -->
 
-在上面的类型声明中我们用 `..` 定义了一个可扩展变体 `type t`。随后使用 `+=` 操作符为这个类型添加构造器。
+在上面的类型声明中我们用 `..` 定义了一个可扩展变体 `type t`。然后用 `+=` 操作符为类型添加构造器。
 
 <!--
 **Note:** Don't forget the leading `type` keyword when using the `+=` operator!
 -->
 
-**注意：**使用 `+=` 操作符时不要忘记开头的 `type` 关键字。
+**注意：**在使用 `+=` 操作符时，不要忘记开头的 `type` 关键字。
 
 <!--
 ## Pattern Matching Caveats
@@ -64,7 +64,7 @@ The `..` in the type declaration above defines an extensible variant `type t`. T
 Extensible variants are open-ended, so the compiler will not be able to exhaustively pattern match all available cases. You will always need to provide a default `_` case for every `switch` expression.
 -->
 
-可扩展变体是可扩充的，所以编译器无法穷尽所有可能的模式匹配的情况。你总是需要为 `switch` 表达式提供一个默认的 `_` 去匹配所有情况。
+可扩展变体是可开放式的，所以编译器无法穷尽所有可能的模式匹配情况。你总是需要为 `switch` 表达式提供一个默认的 `_`。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -94,16 +94,16 @@ function print(v) {
 <!--
 ## Tips & Tricks
 -->
-## 秘诀 & 技巧
+### 技巧和诀窍
 
 <!--
 **Fun fact:** In ReScript, [exceptions](./exception) are actually extensible variants under the hood, so `exception UserError(string)` is equivalent to `type exn += UserError(string)`. It's one of the very few use-case where extensible variants make sense.
 -->
 
-**一个有趣的事实：**在 ReScript 中，[异常](./exception) 在底层实际上是可扩展变体实现的，因此 `exception UserError(string)` 与 `type exn += UserError(string)` 等价。这是极少数可扩展变体的有意义的用例之一。
+**有趣的是：**在 ReScript 中，[异常](./exception) 实际上是可扩展变体实现的，因此 `exception UserError(string)` 与 `type exn += UserError(string)` 等价。这是极少数可扩展变体的有意义的用例之一。
 
 <!--
 We usually recommend sticking with common [variants](./variant) as much as possible to reap the benefits of exhaustive pattern matching.
 -->
 
-我们建议通常尽可能坚持地使用[普通变体](./variant)以获得穷尽模式匹配的好处。
+我们通常建议尽可能坚持使用[普通变体](./variant)，以获得穷尽模式匹配的好处。

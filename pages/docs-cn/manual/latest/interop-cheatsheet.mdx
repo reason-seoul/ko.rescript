@@ -13,7 +13,7 @@ canonical: "/docs/manual/latest/interop-cheatsheet"
 This is a glossary with examples. All the features are described by later pages.
 -->
 
-这是一个带有示例的专业词汇表。所有的功能都会在接下来的页面中进行描述。
+这是一个带有示例的专业词汇表。所有的功能都会在后面的页面描述。
 
 <!--
 ## List of Decorators
@@ -24,7 +24,7 @@ This is a glossary with examples. All the features are described by later pages.
 > **Note:** In ReScript <8.3, all our attributes started with the `bs.` prefix. This is no longer needed and our formatter automatically removes them in newer ReScript versions.
 -->
 
-> **注意：**在 ReScript 8.3 版本之前，全部属性（attributes）都是以 `bs.` 作为前缀的。在新的版本中不再需要使用该前缀，格式化工具会自动删除它。
+> **注意：**在 ReScript 8.3 版本之前，全部属性（attributes）都是以 `bs.` 作为前缀的。在新版本中不再需要使用该前缀，格式化工具会自动删除它。
 
 <!-- Synced from https://github.com/rescript-lang/syntax/blob/123760c5a264da5288eeee5213ddd25eb86d62fe/src/res_printer.ml#L19-L51 -->
 
@@ -33,7 +33,7 @@ This is a glossary with examples. All the features are described by later pages.
 -->
 ### 属性
 
-- `@as`： [这里](attribute#usage)，[这里](bind-to-js-function#fixed-arguments)，[这里](bind-to-js-function#constrain-arguments-better) 和 [这里](generate-converters-accessors#usage-3)
+- `@as`: [here](attribute#usage), [here](bind-to-js-function#fixed-arguments), [here](bind-to-js-function#constrain-arguments-better) and [here](generate-converters-accessors#usage-3)
 - [`@deriving`](generate-converters-accessors#generate-functions--plain-values-for-variants)
 - [`@get`](bind-to-js-object#bind-using-special-bs-getters--setters)
 - [`@get_index`](bind-to-js-object#bind-using-special-bs-getters--setters)
@@ -46,7 +46,7 @@ This is a glossary with examples. All the features are described by later pages.
 - [`@obj`](generate-converters-accessors#convert-external-into-js-object-creation-function)
 - [`@optional`](generate-converters-accessors#optional-labels)
 - [`@return`](bind-to-js-function#function-nullable-return-value-wrapping)
-- `@send`: [here](bind-to-js-function#object-method) 和 [here](pipe#js-method-chaining)
+- `@send`: [here](bind-to-js-function#object-method) and [here](pipe#js-method-chaining)
 - [`@scope`](bind-to-global-js-values#global-modules)
 - [`@set`](bind-to-js-object#bind-using-special-bs-getters--setters)
 - [`@set_index`](bind-to-js-object#bind-using-special-bs-getters--setters)
@@ -59,7 +59,7 @@ This is a glossary with examples. All the features are described by later pages.
 - [`@deprecated`](attribute#usage)
 - [`genType`](https://github.com/reason-association/genType)
 - [`@JSX`](jsx)
-- `@react.component`：[这里](/docs/react/latest/introduction) 和 [这里](https://github.com/reasonml/reason-react)
+- `@react.component`: [here](/docs/react/latest/introduction) and [here](https://github.com/reasonml/reason-react)
 - [`@warning`](attribute#usage)
 - [`@unboxed`](unboxed)
 
@@ -78,7 +78,7 @@ This is a glossary with examples. All the features are described by later pages.
 <!--
 ## Raw JS
 -->
-## 原生 JS 代码嵌入
+## 原生 JS
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -96,7 +96,7 @@ const a = 1
 <!--
 ## Global Value
 -->
-## 全局值（Global Value）绑定
+## 全局值
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -112,7 +112,7 @@ const a = 1
 <!--
 ## Global Module's Value
 -->
-## 全局模块值（Global Module's Value）绑定
+## 全局模块值
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -134,7 +134,7 @@ var someNumber = Math.random();
 <!--
 ## Nullable
 -->
-## 空值
+## 可空值
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -153,7 +153,7 @@ var b;
 Handling a value that can be `undefined` and `null`, by ditching the `option` type and using `Js.Nullable.t`:
 -->
 
-我们可以放弃 `option` 类型，转而使用 `Js.Nullable.t` 来处理那些可能是 `undefined` 和 `null` 的值：
+可以抛弃 `option` 类型，使用 `Js.Nullable.t` 来处理一个可以是 `undefined` 和 `null` 的值：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -302,7 +302,7 @@ padLeft("Hello World", "Message from ReScript: ");
 Final escape hatch converter. Do not abuse.
 -->
 
-作为最后的逃生口，请不要滥用它。
+最后的逃生口。请勿滥用。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

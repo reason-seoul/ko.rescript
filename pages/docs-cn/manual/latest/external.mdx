@@ -1,5 +1,5 @@
 ---
-title: "External (绑定任意 JS 库）"
+title: "external (绑定任意 JS 库）"
 description: "The external keyword"
 canonical: "/docs/manual/latest/external"
 ---
@@ -7,13 +7,13 @@ canonical: "/docs/manual/latest/external"
 <!--
 # External (Bind to Any JS Library)
 -->
-# External (绑定任意 JS 库）
+# external (绑定任意 JS 库）
 
 <!--
 `external` is the primary ReScript features for bringing in and using JavaScript values.
 -->
 
-`external` 是用于引入和使用 JavaScript 值的 ReScript 基础特性。
+`external` 是用于引入和使用 JavaScript 值的 ReScript 主要特性。
 
 <!--
 `external` is like a let binding, but:
@@ -23,8 +23,8 @@ canonical: "/docs/manual/latest/external"
 -->
 
 `external` 和 let 绑定很像，但是：
-- `=` 的右侧并不是值；它是你想要引用的 JS 值
-- 强制性要求绑定类型，因为我们需要知道 JS 值的类型
+- `=` 的右侧并不是一个值；它是你引用的 JS 值的名字
+- 绑定的类型是强制要求的，因为我们需要知道 JS 值的类型是什么
 - 只能存在于文件或模块的顶层
 
 <CodeTab labels={["ReScript", "JS Output"]}>
@@ -46,7 +46,7 @@ There are several kinds of `external`s, differentiated and/or augmented through 
 - `@send`: [bind to JS methods](bind-to-js-function).
 -->
 
-ReScript 中有多种 `external`，它们在附加的[属性](attribute.md)上存在不同。本文只介绍所有 `external` 的共通机制。它们的不同之处记录在随后的文档中。下面是一些显眼的属性：
+ReScript 中有多种 `external`，通过它们携带的[属性](attribute.md)加以区别，以及进行增强。本页只介绍所有 `external` 的共通机制。不同的属性将在后面的页面中记录。下面是一些显眼的属性：
 
 - `@val`，`@scope`：[绑定到全局 JS 值](bind-to-global-js-values)
 - `@module`：[从 JS 导入或导出到 JS](import-from-export-to-js)
@@ -67,13 +67,13 @@ Related: see also our [list of external decorators](interop-cheatsheet#list-of-d
 <!--
 ## Usage
 -->
-## 使用
+## 用法
 
 <!--
 Once declared, you can use an `external` as a normal value, just like a let binding.
 -->
 
-经过声明后你就可以将 `external` 当作普通值来使用，就像 let 绑定一样。
+一旦声明，你可以把 `external` 作为普通值来使用，就像 let 绑定一样。
 
 <!--
 ## Tips & Tricks
@@ -84,7 +84,7 @@ Once declared, you can use an `external` as a normal value, just like a let bind
 `external` + ReScript objects are a wonderful combination for quick prototyping. Check the JS output tab:
 -->
 
-`external` 加上 ReScript 对象的组合非常适合快速原型开发。检查下面的 JS 输出：
+`external` + ReScript 对象的组合非常适合快速原型开发。检查下面的 JS 输出：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -120,36 +120,36 @@ document.location.href = "rescript-lang.org";
 We've specified `document`'s type as `'a`, aka a placeholder type that's polymorphic. Any value can be passed there, so you're not getting much type safety (except the inferences at various call sites). However, this is excellent for quickly getting started using a JavaScript library in ReScript **without needing the equivalent of a repository of typed bindings** like TypeScript's `DefinitelyTyped` repo.
 -->
 
-我们将 `document` 的类型指定为 `'a`，也就是多态占位类型。它可以接受任意类型的值，所以我们没有获得多少类型安全（除了保证各调用点使用的类型一致）。但是这样可以快速的开始在 ReScript 中使用 JavaScript 库，这不需要像 TypeScript 的 `DefinitelyTyped` 仓库**那样的等价类型绑定代码库**
+我们将 `document` 的类型指定为 `'a`，它又称占位符类型，是多态的。它可以接受任意值，所以你没有获得多少类型安全（除了在不同调用点的推断）。然而，这对于在 ReScript 中快速开始使用一个 JavaScript 库是非常好的，这不需要像 TypeScript 的 `DefinitelyTyped` 仓库**那样的类型绑定库**。
 
 <!--
 However, if you want to more rigidly bind to the JavaScript library you want, keep reading the next few interop pages.
 -->
 
-如果你想要更快速地建立 JavaScript 库绑定，你可以阅读随后的几篇互操作文档。
+然而，如果你想要更严格地建立 JavaScript 库绑定，你可以阅读随后的几个互操作文档。
 
 <!--
 ## Performance & Output Readability
 -->
-## 性能 & 输出可读性
+## 性能与输出可读性
 
 <!--
 `external`s declarations are inlined into their callers during compilation, **and completely disappear from the JS output**. This means any time you use one, you can be sure that you're not incurring extra JavaScript <-> ReScript conversion cost.
 -->
 
-`external` 的声明会在编译时内联到调用者那里，**而且会在 JS 输出中完全消失掉**。这也就意味着你在任何时候都不用担心有额外的 JavaScript <-> ReScript 转换开销。
+在编译过程中，`external` 的声明会内联到调用者那里，**而且会在 JS 输出中完全消失**。这意味着当你使用 `external` 时，你可以确定不会有额外的 JavaScript <-> ReScript 转换开销。
 
 <!--
 Additionally, no extra ReScript-specific runtime is better for output readability.
 -->
 
-另外，输出中没有额外的 ReScript 特定运行时也更有利于输出的可读性。
+另外，输出中没有额外的 ReScript 特定运行时，对输出的可读性更好。
 
 <!--
 > **Note:** do also use `external`s and the `@blabla` attributes in the interface files. Otherwise the inlining won't happen.
 -->
 
-> **注意**要在接口文件中对 `external` 使用 `@blabla` 属性。否则不会进行内联。
+> **注意**：在接口文件中也要使用 `external` 和 `@blabla` 属性。否则不会进行内联。
 
 <!--
 ## Design Decisions
@@ -160,10 +160,10 @@ Additionally, no extra ReScript-specific runtime is better for output readabilit
 ReScript takes interoperating with existing code very seriously. Our type system has very strong guarantees. However, such strong feature also means that, without a great interop system, it'd be very hard to gradually convert a codebase over to ReScript. Fortunately, our interop are comprehensive and cooperate very well with most existing JavaScript code.
 -->
 
-ReScript 非常重视与现有代码的互操作。我们的类型系统能提供非常强的保证。但这同时也意味着，如果没有一个足够好的互操作系统，将一个代码库逐步转换到 ReScript 是非常困难的。幸运的是，我们的互操作功能和绝大多数现有的 JavaScript 代码配合的非常好。
+ReScript 非常重视与现有代码的互操作。我们的类型系统能提供非常强的保证。但这同时也意味着，如果没有一个足够好的互操作系统，将一个代码库逐步转换到 ReScript 会很困难。幸运的是，我们的互操作功能非常全面，与大多数现有的 JavaScript 代码配合的非常好。
 
 <!--
 The combination of a sound type system + great interop means that we get the benefits of a traditional gradual type system regarding incremental codebase coverage & conversion, without the downside of such gradual type system: complex features to support existing patterns, slow analysis, diminishing return in terms of type coverage, etc.
 -->
 
-可靠的类型系统加上好用的互操作就意味着我们在增量代码库的覆盖和转换上获得了传统的渐进类型系统的好处，而且还没有渐进系统这样那样的缺点，比如支持现存模式的带来的复杂特性，缓慢的分析速度，递减的类型覆盖收益，等等。
+健全的类型系统 + 好用的互操作就意味着，我们在增量代码库的覆盖和转换上获得了传统的渐进类型系统的好处，而且还没有渐进系统这样那样的缺点：支持现有模式的复杂功能，缓慢的分析速度，递减的类型覆盖收益，等等。

@@ -30,7 +30,7 @@ Capitalized file names (aka first letter upper-cased).
 **Justification**: Module names can only be capitalized. Newcomers often ask how a file maps to a module, and why `draw.res` maps to the module `Draw`, and sometimes try to refer to a module through uncapitalized identifiers. Using `Draw.res` makes this mapping more straightforward. It also helps certain file names that'd be awkward in uncapitalized form: `uRI.res`.
 -->
 
-**原因**：模块名称只能以大写字母开头。新人经常会问：文件和模块的对应关系是什么、为什么 `draw.res` 文件对应的是 `Draw` 模块。而且新手有时候会尝试用小写字母开头的标识符来表示模块。使用 `Draw.res` 让对应关系更加直接，也不会让一些文件名在用小写字母开头的时候显得很奇怪，例如 `uRI.res`。
+**原因**：模块名称只能以大写字母开头。新人经常会问：文件和模块的对应关系是什么、为什么 `draw.res` 文件对应的是 `Draw` 模块。而且新手有时候会尝试用小写字母开头的标识符来表示模块。使用 `Draw.res` 让对应关系更加直接，这也有助于某些文件名在不加大写的情况下显得很别扭，例如 `uRI.res`。
 
 <!--
 ## Ignore `.merlin` File
@@ -64,8 +64,7 @@ Try not to have too many nested folders. Keep your project flat, and have fewer 
 **Justification**: The file system is a _tree_, but your code's dependencies are a _graph_. Because of that, any file & folder organization is usually imperfect. While it's still valuable to group related files together in a folder, the time wasted debating & getting decision paralysis over these far outweight their benefits. We'll always recommend you to Get Work Done instead of debating about these issues.
 -->
 
-**原因**：文件系统是一棵**树**，但是代码之间的依赖关系组成了一幅**图**。因此，一般不存在完美的文件与目录结构。不过把相关的文件放在一起还是有价值的。我们建议你别把时间浪费在纠结
-这些低性价比的问题上，要把精力放在完成工作上。
+**原因**：文件系统是一棵**树**，但是代码的依赖关系是一个**图**。正因如此，一般不存在完美的文件与目录组织。虽然把相关的文件放在一个文件夹里还是有价值的。我们建议你不要把时间浪费在纠结这些低性价比的问题上，要把精力放在完成工作上。
 
 <!--
 ## Third-party Dependencies
@@ -82,7 +81,7 @@ Keep them to a minimum.
 **Justification**: A compiled, statically typed language cannot model its dependencies easily by muddling along like in a dynamic language, especially when we're still piggy-backing on NPM/Yarn (to reduce learning overhead in the medium-term). Keeping dependencies simple & lean helps reduce possibility of conflicts (e.g. two diamond dependencies, or clashing interfaces).
 -->
 
-**原因**：一门需要编译的静态类型语言不能把自己的依赖设计的像动态语言一样随便，特别是当我们还仍然依赖 NPM/Yarn 的时候（以便减少中期学习成本）。保持项目的依赖简单轻量，可以有效减少产生冲突的可能性，例如菱形依赖（Diamond Dependency）、接口冲突等。
+**原因**：一门需要编译的静态类型语言不能像动态语言那样轻易地建立其依赖关系模型，特别是当我们还在使用 NPM/Yarn 的时候（这是为了减少中期学习成本）。保持简单和精简的依赖关系有助于减少冲突的可能性，例如菱形依赖、接口冲突等。
 
 <!--
 ## Documentation
@@ -93,13 +92,13 @@ Keep them to a minimum.
 Have them. Spend more effort making them great (examples, pitfalls) and professional rather than _just_ fancy-looking. Do use examples, and avoid using names such as `foo` and `bar`. There's always more concrete names (it's an example, no need to be abstract/generalized just yet. The API docs will do this plentily). For blog posts, don't repeat the docs themselves, describe the _transition_ from old to new, and why (e.g. "it was a component, now it's a function, because ...").
 -->
 
-要有文档！多花点功夫让文档更完善且专业（样例、陷阱），而不只是表面上好看。多写点样例，但避免使用 `foo`、`bar` 这种名字，总有更明确的命名，没必要那么抽象或者一般（这是 API 文档应该做到的）。写博客文章的时候不要重复文档的内容，可以描述新旧版本的*变化*和原因（例如它本来是个组件，现在是个函数，因为...）。
+要有文档！多花点功夫让文档更完善且专业（样例、陷阱），而不是只有花哨的外观。多写点样例，但要避免使用 `foo`、`bar` 这种名字，总有更明确的命名，没必要那么抽象或者一般（这是 API 文档应该做到的）。写博客文章的时候不要重复文档的内容，可以描述新旧版本的*变化*和原因（例如它本来是个组件，现在是个函数，因为...）。
 
 <!--
 **Justification**: It's hard for newcomers to distinguish between a simple/decent library and one that's fancy-looking. For the sake of the community, don't try too hard to one-up each other's libraries. Do spread the words, but use your judgement too.
 -->
 
-**原因**：新手很难分辨出一个库是真的简单好用，还是只是看起来好用而已。为了营造良好的社区环境，不要一心只想卷赢别人的库，应当加入自己的看法。
+**原因**：新手很难分辨出一个库是真的简单好用，还是只是看起来好用而已。为了营造良好的社区环境，不要一心只想卷赢别人的库。请传播这样的理念，但也请使用的判断力。
 
 <!--
 ## PPX & Other Meta-tools
@@ -138,7 +137,7 @@ Don't abuse overly fancy features. Do leave some breathing room for future APIs 
 If it's a wrapper for a JS library, don't publish the JS artifacts. If it's a legit library, publish the artifacts in lib/js if you think JS consumers might use it. This is especially the case when you gradually convert a JS lib to ReScript while not breaking existing JS consumers.
 -->
 
-如果你要发布一个 JS 库的封装，不要发布 JS 的构建产物。如果这是个合法的库，并且有 JS 用户的话，建议把构建产物发布在 lib/js 中。这特别适合你想把一个 JS 库逐渐重构成 ReScript，但又不想破坏存量的 JS 用户的情况。
+如果你要发布一个 JS 库的封装，不要发布 JS 的构建产物。如果你认为 JS 用户可能会使用它，建议把构建产物发布在 lib/js 中。这特别适合你想把一个 JS 库逐渐重构成 ReScript，但又不想破坏存量 JS 用户的情况。
 
 <!--
 Do put the keywords `"rescript"` in your package.json `keywords` field. This allows us to find the library much more easily for future purposes.
@@ -150,4 +149,4 @@ Do put the keywords `"rescript"` in your package.json `keywords` field. This all
 **Justification**: Be nice to JS consumers of your library. They're your future ReScripters.
 -->
 
-**原因**：对你的 JS 用户好一点，他们会是你未来的 ReScript 用户。
+**原因**：对你的 JS 用户好一点，他们会是你未来的 ReScripter。

@@ -13,13 +13,13 @@ canonical: "/docs/manual/latest/bind-to-global-js-values"
 **First**, make sure the value you'd like to model doesn't already exist in our [provided API](api/js).
 -->
 
-**首先**，确保您要建模的值不存在于[我们提供的 API](api/js)中。
+**首先**，确保您要建模的值不存在于[我们提供的 API](api/js) 中。
 
 <!--
 Some JS values, like `setTimeout`, live in the global scope. You can bind to them like so:
 -->
 
-一些 JS 值，例如 `setTimeout`，存在于全局范围内。你可以像这样绑定到它们：
+一些 JS 值，例如 `setTimeout`，存在于全局作用域内。你可以像这样绑定到它们：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -37,13 +37,13 @@ Some JS values, like `setTimeout`, live in the global scope. You can bind to the
 (We already provide `setTimeout`, `clearTimeout` and others in the [Js.Global](api/js/global) module).
 -->
 
-（我们已经在 [Js.Global](api/js/global) 模块中提供了`setTimeout`、`clearTimeout`等值。）
+（我们已经在 [Js.Global](api/js/global) 模块中提供了 `setTimeout`、`clearTimeout` 等值。）
 
 <!--
 This binds to the JavaScript [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrworkerGlobalScope/setTimeout) methods and the corresponding `clearTimeout`. The `external`'s type annotation specifies that `setTimeout`:
 -->
 
-上面的代码会绑定到 JavaScript [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrworkerGlobalScope/setTimeout)方法和相应的 `clearTimeout`。`external` 的类型标注指定 `setTimeout` 需要满足：
+上面的代码会绑定到 JavaScript 的 [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrworkerGlobalScope/setTimeout)方法，和与之对应的 `clearTimeout` 方法。`external` 的类型标注指定 `setTimeout` 需要满足：
 
 <!--
 - Takes a function that accepts `unit` and returns `unit` (which on the JS side turns into a function that accepts nothing and returns nothing aka `undefined`),
@@ -51,20 +51,20 @@ This binds to the JavaScript [`setTimeout`](https://developer.mozilla.org/en-US/
 - returns a number that is the timeout's ID. This number might be big, so we're modeling it as a float rather than the 32-bit int.
 -->
 
-- 接受一个参数为 `unit` 且返回 `unit` 的函数（它在 JS 端变成了一个不接受任何内容并且不返回任何内容（就是返回 `undefined`）的函数）
-- 以及一个指定调用该函数之前的延时整数值
-- 返回一个数字表示 timeout 的 ID。这个数字可能很大，所以我们将其建模为浮点数而不是 32 位整数
+- 接受一个参数为 `unit` 且返回 `unit` 的函数（它在 JS 端变成了一个不接受任何内容并且不返回任何内容的函数（指返回 `undefined`））
+- 和一个指定调用上述函数之前延时的整数值
+- 返回一个数字，即 timeout 的 ID。这个数字可能很大，所以我们将其建模为浮点数，而不是 32 位整数
 
 <!--
 ### Tips & Tricks
 -->
-### 提示与技巧
+### 技巧和诀窍
 
 <!--
 **The above isn't ideal**. See how `setTimeout` returns a `float` and `clearTimeout` accepts one. There's no guarantee that you're passing the float created by `setTimeout` into `clearTimeout`! For all we know, someone might pass it `Math.random()` into the latter.
 -->
 
-**上面的做法并不理想**。想想怎么让 `setTimeout` 返回的 `float` 来作为 `clearTimeout` 的输入。我们没办法保证你传递给 `clearTimeout` 的参数是 `setTimeout` 的返回值！据我们所知，有人可能直接把 `Math.random()` 传递给后者。
+**上面的情况并不理想**。想想怎么让 `setTimeout` 返回的 `float` 来作为 `clearTimeout` 的输入。我们没办法保证你传递给 `clearTimeout` 的参数是 `setTimeout` 的返回值！据我们所知，有人可能直接把 `Math.random()` 传递给后者。
 
 <!--
 We're in a language with a great type system now! Let's leverage a popular feature to solve this problem: abstract types.
@@ -96,13 +96,13 @@ clearTimeout(id);
 Clearly, `timerId` is a type that can only be created by `setTimeout`! Now we've guaranteed that `clearTimeout` _will_ be passed a valid ID. Whether it's a number under the hood is now a mere implementation detail.
 -->
 
-显然，`timerId` 是一个只能通过 `setTimeout` 创建的类型！现在我们可以保证 `clearTimeout` _将_ 被传递一个有效的 ID 了。它是否是数字现在只是一个实现细节。
+显然，`timerId` 是一个只能通过 `setTimeout` 创建的类型！现在我们可以保证 `clearTimeout`_将_被传递一个有效的 ID 了。它是否是数字现在只是一个实现细节。
 
 <!--
 Since `external` s are inlined, we end up with JS output as readable as hand-written JS.
 -->
 
-由于 `external` 是内联的，我们最终得到的生成的 JS 与手写 JS 一样可读。
+由于 `external` 是内联的，我们最终得到的 JS 输出与手写 JS 一样可读。
 
 <!--
 ## Global Modules
@@ -113,7 +113,7 @@ Since `external` s are inlined, we end up with JS output as readable as hand-wri
 If you want to bind to a value inside a global module, e.g. `Math.random`, attach a `scope` to your `val` external:
 -->
 
-如果你想要绑定全局模块内的值，例如 `Math.random`，可以将 `scope` 附加到带 `val` 的 `external`：
+如果你想要绑定一个全局模块内的值，例如 `Math.random`，可以将 `scope` 附加到 `val` 属性的 `external`：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -131,7 +131,7 @@ var someNumber = Math.random();
 you can bind to an arbitrarily deep object by passing a tuple to `scope`:
 -->
 
-您可以通过传递一个元组给 `scope` 来实现绑定到一个任意深度的对象：
+您可以通过传递一个元组给 `scope` 来实现绑定一个任意深度的对象：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -160,7 +160,7 @@ This binds to `window.location.ancestorOrigins.length`.
 Global values like `__filename` and `__DEV__` don't always exist; you can't even model them as an `option`, since the mere act of referring to them in ReScript (then compiled into JS) would trigger the usual `Uncaught ReferenceError: __filename is not defined` error in e.g. the browser environment.
 -->
 
-像 `__filename` 和 `__DEV__` 这样的全局值并不总是存在；你甚至不能将它们建模为 `option`，因为仅仅是在 ReScript 中引用它们（然后编译为 JS）就会触发常见的 `Uncaught ReferenceError: __filename is not defined` 错误，例如浏览器环境。
+像 `__filename` 和 `__DEV__` 这样的全局值并不总是存在；你甚至不能将它们建模为 `option`，因为仅仅是在 ReScript 中引用它们（然后编译为 JS）就会触发常见的 `Uncaught ReferenceError: __filename is not defined` 错误，例如浏览器环境就会这样。
 
 <!--
 For these troublesome global values, ReScript provides a special approach: `%external(a_single_identifier)`.

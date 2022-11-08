@@ -13,9 +13,9 @@ ReScript ships 3 modules in its standard library.
 
 ReScript 在其标准库中提供了三个模块：
 
-- [Js](api/js)：提供你所熟悉的 JavaScript API 绑定
-- [Belt](api/belt)：提供额外的 JavaScript 中所没有的额外内容与辅助功能
-- [Dom](api/dom)：提供 DOM 相关的类型和模块
+- [Js](api/js)：你所熟悉的 JavaScript API 绑定
+- [Belt](api/belt)：JavaScript 中所没有的额外内容与辅助功能
+- [Dom](api/dom)：DOM 相关的类型和模块
 
 <!--
 Usage heuristics:
@@ -26,12 +26,12 @@ Usage heuristics:
 
 使用方法：
 
-- 默认使用 `Js` 模块。其中大部分 APIs 是无运行时的（runtime-free），并且会编译为清晰、可读的 JavaScript 代码
-- 对于那些在标准 JavaScript 中不存在的 API（当然也不存在于 `Js` 模块中），可使用 Belt。如果有的话尽量使用 Js，比如使用 `Js.Array2` 而不是 `Belt.Array`
-- `Dom` 模块包含了用于用户空间 DOM 绑定的标准化类型。但由于 DOM 本身的复杂性，我们不建议你使用该模块，而是为您的应用创建自己的 DOM 绑定
+- 默认使用 `Js` 模块。其中大部分 APIs 是无运行时的（runtime-free），并且会编译为干净可读的 JavaScript 代码，这是我们的首要任务
+- 对于那些常规 JavaScript 中没有的 API（当然也不存在于 `Js` 模块中），使用 Belt。如果有的话尽量使用 Js，比如使用 `Js.Array2` 而不是 `Belt.Array`
+- `Dom` 模块包含了用于用户空间 DOM 绑定的标准化类型。但由于 DOM 本身的复杂性，我们不介意你忽略这个模块，为你的应用创建你的特定 DOM 绑定
 
 <!--
 **Note**: we do not recommend other userland standard library alternatives (unless it's DOM bindings). These cause confusion and split points for the community.
 -->
 
-**注意**：不推荐使用标准库的其他替代方案（除非是 DOM 绑定），因为这可能会导致混乱并分裂社区。
+**注意**：我们不推荐使用标准库的其他替代方案（除非是 DOM 绑定），因为这可能会造成社区的混乱和分裂。

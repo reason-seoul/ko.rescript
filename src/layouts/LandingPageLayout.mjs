@@ -59,13 +59,13 @@ function LandingPageLayout$PlaygroundHero(Props) {
                               className: "md:w-1/2"
                             }, React.createElement("div", {
                                   className: "body-sm text-gray-40 text-center py-3 sm:rounded-t-lg md:rounded-tl-lg bg-gray-100"
-                                }, "Write in ReScript"), React.createElement("pre", {
+                                }, "写 ReScript 程序"), React.createElement("pre", {
                                   className: "text-14 px-8 pt-6 pb-12 whitespace-pre-wrap"
                                 }, HighlightJs.renderHLJS(undefined, true, example.res, "res", undefined))), React.createElement("div", {
                               className: "md:w-1/2 "
                             }, React.createElement("div", {
                                   className: "body-sm text-gray-40 py-3 text-center md:border-l border-gray-80 bg-gray-100 sm:rounded-tr-lg"
-                                }, "Compile to JavaScript"), React.createElement("pre", {
+                                }, "编译到 JavaScript"), React.createElement("pre", {
                                   className: "text-14 px-8 pt-6 pb-14 md:border-l border-gray-80 whitespace-pre-wrap"
                                 }, HighlightJs.renderHLJS(undefined, true, example.js, "js", undefined)))), React.createElement("div", undefined, React.createElement(Next.Link.make, {
                               href: "/try?code=" + LzString.compressToEncodedURIComponent(example.res) + "}",

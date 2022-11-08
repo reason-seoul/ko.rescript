@@ -75,7 +75,7 @@ exports.Button = Button;`,
             <div className="md:w-1/2">
               <div
                 className="body-sm text-gray-40 text-center py-3 sm:rounded-t-lg md:rounded-tl-lg bg-gray-100">
-                {React.string("Write in ReScript")}
+                {React.string("写 ReScript 程序")}
               </div>
               <pre className="text-14 px-8 pt-6 pb-12 whitespace-pre-wrap">
                 {HighlightJs.renderHLJS(~darkmode=true, ~code=example.res, ~lang="res", ())}
@@ -85,7 +85,7 @@ exports.Button = Button;`,
             <div className="md:w-1/2 ">
               <div
                 className="body-sm text-gray-40 py-3 text-center md:border-l border-gray-80 bg-gray-100 sm:rounded-tr-lg">
-                {React.string("Compile to JavaScript")}
+                {React.string("编译到 JavaScript")}
               </div>
               <pre
                 className="text-14 px-8 pt-6 pb-14 md:border-l border-gray-80 whitespace-pre-wrap">

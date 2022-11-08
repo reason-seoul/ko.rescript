@@ -1160,8 +1160,8 @@ module ControlPanel = {
       }
 
       let (text, className) = switch state {
-      | Init => ("Copy Share Link", " bg-sky body-xs active:bg-sky-70 border-sky-70")
-      | CopySuccess => ("Copied to clipboard!", "bg-turtle-dark border-turtle-dark")
+      | Init => ("复制共享链接", " bg-sky body-xs active:bg-sky-70 border-sky-70")
+      | CopySuccess => ("已被复制到剪切板！", "bg-turtle-dark border-turtle-dark")
       }
 
       <>
@@ -1213,7 +1213,7 @@ module ControlPanel = {
       }
       <>
         <div className="mr-2">
-          <Button onClick=onFormatClick> {React.string("Format")} </Button>
+          <Button onClick=onFormatClick> {React.string("格式化")} </Button>
         </div>
         <ShareButton actionIndicatorKey createShareLink />
       </>

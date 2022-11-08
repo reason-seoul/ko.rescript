@@ -1476,10 +1476,10 @@ function Playground$ControlPanel$ShareButton(Props) {
     
   };
   var match$1 = match[0] ? [
-      "Copied to clipboard!",
+      "已被复制到剪切板！",
       "bg-turtle-dark border-turtle-dark"
     ] : [
-      "Copy Share Link",
+      "复制共享链接",
       " bg-sky body-xs active:bg-sky-70 border-sky-70"
     ];
   return React.createElement(React.Fragment, undefined, React.createElement("button", {
@@ -1543,7 +1543,7 @@ function Playground$ControlPanel(Props) {
     children = React.createElement(React.Fragment, undefined, React.createElement("div", {
               className: "mr-2"
             }, React.createElement(Playground$ControlPanel$Button, {
-                  children: "Format",
+                  children: "格式化",
                   onClick: onFormatClick
                 })), React.createElement(Playground$ControlPanel$ShareButton, {
               createShareLink: createShareLink,

@@ -366,9 +366,9 @@ module MainUSP = {
       </video>}
       paragraph={<>
         <p>
-          {React.string(`ReScript 关心任意规模代码库的一致且快速的反馈迭代。
-          重构代码、拉动复杂的变化，或随心所欲地切换到功能分支。
-          没有迟缓的 CI 构建、无效的缓存、错误的类型提示或语言服务器内存不足来拖累你。`)}
+          {React.string(`ReScript 在意任意规模代码库的一致且快速的反馈迭代。
+          你可以重构代码、拉取复杂的变化，或者随心所欲地切换到特性分支。
+          在这里没有迟缓的 CI 构建、无效的缓存、错误的类型提示或语言服务器内存不足来拖累你。`)}
         </p>
         <p className="mt-6">
           <Next.Link href="/docs-cn/manual/latest/build-performance" passHref={true}>
@@ -393,7 +393,7 @@ module MainUSP = {
       </video>}
       polygonDirection=Up
       paragraph={React.string(`每个 ReScript 应用程序都是完全类型化的，并为您程序中的任何值提供可靠的类型信息。为了清晰和方便调试，我们优先考虑简单类型而不是复杂类型。
-      ReScript中没有“任何”神奇的类型，没有令人惊讶的 “undefined”。
+      ReScript中没有 \`any\`，没有magic type，更没有吓你一跳 “undefined”。
       `)}
     />
 
@@ -558,7 +558,7 @@ module CuratedResources = {
     },
     {
       imgSrc: "/static/ic_gentype@2x.png",
-      title: React.string("TypeScript Integration"),
+      title: React.string("集成到 TypeScript"),
       descr: "了解如何在你现有的 TypeScript 代码库中集成 ReScript。",
       href: "/docs/gentype/latest/introduction",
     },

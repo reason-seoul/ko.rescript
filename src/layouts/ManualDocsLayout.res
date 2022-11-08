@@ -69,7 +69,7 @@ module Latest = {
         components
         version
         title
-        metaTitleCategory="ReScript Language Manual"
+        metaTitleCategory="ReScript 语言手册"
         ?frontmatter
         breadcrumbs>
         children

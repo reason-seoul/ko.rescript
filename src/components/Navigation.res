@@ -299,7 +299,7 @@ module DocsSection = {
 
                 <LinkCard
                   icon
-                  title="查找对应语法"
+                  title="语法查找"
                   href="/syntax-lookup"
                   description="探索所有语法结构"
                   active

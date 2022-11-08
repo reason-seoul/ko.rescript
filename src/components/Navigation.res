@@ -537,7 +537,7 @@ let make = (~fixed=true, ~overlayState: (bool, (bool => bool) => unit)) => {
             className="flex ml-10 space-x-5 w-full max-w-320"
             style={ReactDOMStyle.make(~maxWidth="26rem", ())}>
             {collapsibleElements->React.array}
-            <Link href="/docs/manual/latest/api">
+            <Link href="/docs-cn/manual/latest/api">
               <a className={linkOrActiveApiSubroute(~route)}> {React.string("API")} </a>
             </Link>
             <Link href="/try">

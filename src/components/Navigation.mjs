@@ -545,7 +545,7 @@ function Navigation(Props) {
                                 maxWidth: "26rem"
                               }
                             }, collapsibleElements, React.createElement(Next.Link.make, {
-                                  href: "/docs/manual/latest/api",
+                                  href: "/docs-cn/manual/latest/api",
                                   children: React.createElement("a", {
                                         className: linkOrActiveApiSubroute(route)
                                       }, "API")

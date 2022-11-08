@@ -164,12 +164,12 @@ module DocsSection = {
     let documentation = [
       {
         imgSrc: "/static/ic_manual@2x.png",
-        title: "Language Manual",
-        description: "Reference for all language features",
-        href: `/docs/manual/${version}/introduction`,
+        title: "语言手册",
+        description: "所有的语言特性的参考指南",
+        href: `/docs-cn/manual/${version}/introduction`,
         isActive: url => {
           switch url.base {
-          | ["docs", "manual"] => true
+          | ["docs-cn", "manual"] => true
           | _ => false
           }
         },
@@ -177,7 +177,7 @@ module DocsSection = {
       {
         imgSrc: "/static/ic_rescript_react@2x.png",
         title: "ReScript & React",
-        description: "First class bindings for ReactJS",
+        description: "ReactJS 的一等公民绑定",
         href: "/docs/react/latest/introduction",
         isActive: url => {
           switch url.base {
@@ -189,7 +189,7 @@ module DocsSection = {
       {
         imgSrc: "/static/ic_gentype@2x.png",
         title: "GenType",
-        description: "Seamless TypeScript & Flow integration",
+        description: "无缝衔接 TypeScript & Flow 集成",
         href: "/docs/gentype/latest/introduction",
         isActive: url => {
           switch url.base {
@@ -201,7 +201,7 @@ module DocsSection = {
       {
         imgSrc: "/static/ic_reanalyze@2x.png",
         title: "Reanalyze",
-        description: "Dead Code & Termination analysis",
+        description: "死代码消除 & 停机分析",
         href: "https://github.com/reason-association/reanalyze",
         isActive: _ => {
           false
@@ -214,7 +214,7 @@ module DocsSection = {
         <div>
           <div
             className="text-12 font-medium text-gray-100 tracking-wide uppercase subpixel-antialiased">
-            {React.string("Quick Links")}
+            {React.string("快速跳转")}
           </div>
           <div>
             <ul className="space-y-2 ml-2 mt-6">
@@ -299,14 +299,14 @@ module DocsSection = {
 
                 <LinkCard
                   icon
-                  title="Syntax Lookup"
+                  title="查找对应语法"
                   href="/syntax-lookup"
-                  description="Discover all syntax constructs"
+                  description="探索所有语法结构"
                   active
                 />
               }
 
-              <> packageLink syntaxLookupLink </>
+              <> syntaxLookupLink </>
             }
           </div>
         </div>
@@ -371,7 +371,7 @@ module MobileNav = {
         <li className=base>
           <Link href="/try">
             <a className={linkOrActiveLink(~target="/try", ~route)}>
-              {React.string("Playground")}
+              {React.string("工作台")}
             </a>
           </Link>
         </li>
@@ -423,7 +423,7 @@ let make = (~fixed=true, ~overlayState: (bool, (bool => bool) => unit)) => {
 
   let (collapsibles, setCollapsibles) = React.useState(_ => [
     {
-      title: "Docs",
+      title: "文档",
       href: "/docs/manual/latest/api",
       isActiveRoute: route => {
         let url = Url.parse(route)
@@ -542,7 +542,7 @@ let make = (~fixed=true, ~overlayState: (bool, (bool => bool) => unit)) => {
             </Link>
             <Link href="/try">
               <a className={"hidden xs:block " ++ linkOrActiveLink(~target="/try", ~route)}>
-                {React.string("Playground")}
+                {React.string("工作台")}
               </a>
             </Link>
             // <Link href="/blog">

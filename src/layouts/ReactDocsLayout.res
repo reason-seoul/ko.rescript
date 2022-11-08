@@ -25,7 +25,7 @@ let make = (~frontmatter=?, ~components=Markdown.default, ~children) => {
   let breadcrumbs = list{
     {
       open Url
-      {name: "Docs", href: "/docs/latest"}
+      {name: "文档", href: "/docs/latest"}
     },
     {
       open Url

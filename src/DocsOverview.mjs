@@ -40,20 +40,20 @@ function DocsOverview$default(Props) {
   var version$1 = typeof version === "number" ? "latest" : version._0;
   var languageManual = [
     [
-      "Overview",
-      " /docs/manual/" + version$1 + "/introduction"
+      "概览",
+      " /docs-cn/manual/" + version$1 + "/introduction"
     ],
     [
-      "Language Features",
-      "/docs/manual/" + version$1 + "/overview"
+      "语言特性",
+      "/docs-cn/manual/" + version$1 + "/overview"
     ],
     [
-      "JS Interop",
-      "/docs/manual/" + version$1 + "/embed-raw-javascript"
+      "与 JS 互操作",
+      "/docs-cn/manual/" + version$1 + "/embed-raw-javascript"
     ],
     [
-      "Build System",
-      "/docs/manual/" + version$1 + "/build-overview"
+      "构建系统",
+      "/docs-cn/manual/" + version$1 + "/build-overview"
     ]
   ];
   var ecosystem = [
@@ -100,7 +100,7 @@ function DocsOverview$default(Props) {
   return React.createElement(React.Fragment, undefined, React.createElement("div", undefined, versionSelect, React.createElement("div", {
                       className: "mb-6"
                     }), React.createElement(Markdown.H1.make, {
-                      children: "Docs"
+                      children: "文档"
                     })), React.createElement("div", {
                   className: "grid grid-cols-1 xs:grid-cols-2 gap-8"
                 }, React.createElement(DocsOverview$Card, {

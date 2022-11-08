@@ -24,15 +24,15 @@ function LandingPageLayout$Intro(Props) {
                   className: "max-w-1060 flex flex-col items-center px-5 sm:px-8 lg:box-content"
                 }, React.createElement("h1", {
                       className: "hl-title text-center max-w-[53rem]"
-                    }, "Fast, Simple, Fully Typed JavaScript from the Future"), React.createElement("h2", {
+                    }, "来自未来的快速、简单且完全类型化的JavaScript"), React.createElement("h2", {
                       className: "body-lg text-center text-gray-60 my-4 max-w-[40rem]"
-                    }, "ReScript is a robustly typed language that compiles to efficient\n            and human-readable JavaScript. It comes with a lightning fast\n            compiler toolchain that scales to any codebase size."), React.createElement("div", {
+                    }, "ReScript是一种健壮的类型化语言，可以编译成高效且可读的JavaScript。\n          它有一个闪电般速度的编译工具链，可以扩展到任意大小的代码库。"), React.createElement("div", {
                       className: "mt-4 mb-2"
                     }, React.createElement(Next.Link.make, {
-                          href: "/docs/manual/latest/installation",
+                          href: "/docs-cn/manual/latest/installation",
                           passHref: true,
                           children: React.createElement(Button.make, {
-                                children: "Get started"
+                                children: "快速开始"
                               })
                         }))));
 }
@@ -192,9 +192,9 @@ function LandingPageLayout$QuickInstall$Instructions(Props) {
               className: "w-full max-w-[400px]"
             }, React.createElement("h2", {
                   className: "hl-3 lg:mt-12"
-                }, "Quick Install"), React.createElement("div", {
+                }, "快速安装"), React.createElement("div", {
                   className: "captions x text-gray-40 mb-2 mt-1"
-                }, "You can quickly add ReScript to your existing JavaScript codebase via npm / yarn:"), React.createElement("div", {
+                }, "你可以通过npm / yarn将ReScript快速添加到你现有的JavaScript代码库中："), React.createElement("div", {
                   className: "w-full space-y-2"
                 }, copyBox("npm install rescript"), copyBox("npx rescript init .")));
 }
@@ -208,13 +208,13 @@ function LandingPageLayout$QuickInstall(Props) {
                       className: "relative max-w-[28rem]"
                     }, React.createElement("p", {
                           className: "relative z-1 space-y-12 text-gray-80 font-semibold text-24 md:text-32 leading-2"
-                        }, React.createElement("span", {
+                        }, "在一个强大的类型化语言中", React.createElement("span", {
                               className: "bg-fire-5 rounded-lg border border-fire-10 p-1 "
-                            }, "Leverage the full power"), " of JavaScript in a robustly typed language without the fear of \`any\` types.")), React.createElement("div", {
+                            }, "充分利用 JavaScript 的力量"), "而不用担心 \`any\` 类型。")), React.createElement("div", {
                       className: "w-full mt-12 md:flex flex-col lg:flex-row md:justify-between "
                     }, React.createElement("p", {
                           className: "relative z-1 text-gray-80 font-semibold text-24 md:text-32 leading-2 max-w-[32rem]"
-                        }, "ReScript is used to ship and maintain mission-critical products with good UI and UX."), React.createElement("div", {
+                        }, "ReScript 是被用来运送和维护具有良好 UI 和 UX 的关键产品的。"), React.createElement("div", {
                           className: "mt-16 lg:mt-0 self-end",
                           style: {
                             maxWidth: "25rem"
@@ -279,8 +279,8 @@ function LandingPageLayout$MainUSP$Item(Props) {
 }
 
 var item1 = React.createElement(LandingPageLayout$MainUSP$Item, {
-      caption: "Fast and simple",
-      title: "The fastest build system on the web",
+      caption: "快速且简洁",
+      title: "Web 领域最快的构建系统",
       media: React.createElement("video", {
             className: "rounded-lg",
             controls: true,
@@ -289,24 +289,24 @@ var item1 = React.createElement(LandingPageLayout$MainUSP$Item, {
                 src: "https://assets-17077.kxcdn.com/videos/fast-build-3.mp4",
                 type: "video/mp4"
               })),
-      paragraph: React.createElement(React.Fragment, undefined, React.createElement("p", undefined, "ReScript cares about a consistent and fast\n      feedback loop for any codebase size. Refactor code, pull complex changes,\n      or switch to feature branches as you please. No sluggish CI builds, stale\n      caches, wrong type hints, or memory hungry language servers that slow you\n      down."), React.createElement("p", {
+      paragraph: React.createElement(React.Fragment, undefined, React.createElement("p", undefined, "ReScript 关心任意规模代码库的一致且快速的反馈迭代。\n          重构代码、拉动复杂的变化，或随心所欲地切换到功能分支。\n          没有迟缓的 CI 构建、无效的缓存、错误的类型提示或语言服务器内存不足来拖累你。"), React.createElement("p", {
                 className: "mt-6"
               }, React.createElement(Next.Link.make, {
-                    href: "/docs/manual/latest/build-performance",
+                    href: "/docs-cn/manual/latest/build-performance",
                     passHref: true,
                     children: React.createElement(Button.make, {
                           kind: /* PrimaryBlue */1,
                           size: /* Small */0,
-                          children: "Learn more"
+                          children: "了解更多"
                         })
                   })))
     });
 
 var item2 = React.createElement(LandingPageLayout$MainUSP$Item, {
-      caption: "A robust type system",
+      caption: "一个健壮的类型系统",
       title: React.createElement("span", {
             className: "text-transparent bg-clip-text bg-gradient-to-r from-berry-dark-50 to-fire-50"
-          }, "Type Better"),
+          }, "更好的类型"),
       media: React.createElement("video", {
             className: "rounded-lg",
             controls: true,
@@ -316,14 +316,14 @@ var item2 = React.createElement(LandingPageLayout$MainUSP$Item, {
                 type: "video/mp4"
               })),
       polygonDirection: /* Up */0,
-      paragraph: "Every ReScript app is fully typed and provides\n      reliable type information for any given value in your program. We\n      prioritize simpler types over complex types for the sake of\n      clarity and easy debugability. No \`any\`, no magic types, no surprise\n      \`undefined\`.\n      "
+      paragraph: "每个 ReScript 应用程序都是完全类型化的，并为您程序中的任何值提供可靠的类型信息。为了清晰和方便调试，我们优先考虑简单类型而不是复杂类型。\n      ReScript中没有“任何”神奇的类型，没有令人惊讶的 “undefined”。\n      "
     });
 
 var item3 = React.createElement(LandingPageLayout$MainUSP$Item, {
-      caption: "Seamless Integration",
+      caption: "无缝集成",
       title: React.createElement(React.Fragment, undefined, React.createElement("span", {
                 className: "text-orange-dark"
-              }, "The familiar JS ecosystem"), " at your fingertips"),
+              }, "你所熟悉的 JS 生态\n"), "就在你的指尖"),
       media: React.createElement("video", {
             className: "rounded-lg",
             controls: true,
@@ -332,7 +332,7 @@ var item3 = React.createElement(LandingPageLayout$MainUSP$Item, {
                 src: "https://assets-17077.kxcdn.com/videos/interop-example-2.mp4",
                 type: "video/mp4"
               })),
-      paragraph: "Use any library from JavaScript, export ReScript\n      libraries to JavaScript, automatically generate TypeScript types. It's\n      like you've never left the good parts of JavaScript at all."
+      paragraph: "你可以从 JavaScript 使用任何 ReScript 库，\n      将 ReScript 库导出到JavaScript，并自动生成 TypeScript 类型。\n      就像你从没有离开过 JavaScript 最好的那一部分。"
     });
 
 function LandingPageLayout$MainUSP(Props) {
@@ -361,15 +361,15 @@ function LandingPageLayout$OtherSellingPoints(Props) {
                           ]
                         }), React.createElement("h3", {
                           className: "hl-3 text-gray-20 mt-4 mb-2"
-                        }, "A community of programmers who value getting things done"), React.createElement("p", {
+                        }, "一个总是能帮你把事情搞定的程序员社区"), React.createElement("p", {
                           className: "body-md text-gray-40"
-                        }, "No language can be popular without a solid\n            community. A great type system isn't useful if library authors\n            abuse it. Performance doesn't show if all the libraries are slow.\n            Join the ReScript community — A group of companies and individuals\n            who deeply care about simplicity, speed and practicality."), React.createElement("div", {
+                        }, "没有坚实的社区，任何语言都不可能流行。\n            如果库作者滥用它，那么一个强大的类型系统也没有用。\n            如果所有的库都很慢，那么性能优势就无法体现。\n            加入 ReScript 社区 —— 一群深切关注简单性、速度和实用性的公司和个人在这里等你。"), React.createElement("div", {
                           className: "mt-6"
                         }, React.createElement(Button.make, {
                               href: "https://forum.rescript-lang.org",
                               kind: /* PrimaryBlue */1,
                               size: /* Small */0,
-                              children: "Join our Forum"
+                              children: "加入我们的论坛"
                             }))), React.createElement("div", {
                       className: "col-span-4 lg:row-start-1"
                     }, React.createElement("img", {
@@ -377,18 +377,18 @@ function LandingPageLayout$OtherSellingPoints(Props) {
                           src: "/static/lp/editor-tooling-1.jpg"
                         }), React.createElement("h3", {
                           className: "hl-3 text-gray-20 mt-6 mb-2"
-                        }, "Tooling that just works out of the box"), React.createElement("p", {
+                        }, "所有工具开箱即用"), React.createElement("p", {
                           className: "body-md text-gray-40"
-                        }, "A builtin pretty printer, memory friendly\n            VSCode & Vim plugins, a stable type system and compiler that doesn't require lots\n            of extra configuration. ReScript brings all the tools you need to\n            build reliable JavaScript, Node and ReactJS applications.")), React.createElement("div", {
+                        }, "一个内置的格式化工具，内存友好的 VSCode 和 Vim 插件\n            和一个稳定且不需要太多额外的配置的类型系统和编译器。\n            ReScript 为你带来了构建可靠的 JavaScript、Node 和 ReactJS 应用所需的所有工具")), React.createElement("div", {
                       className: "col-span-4 lg:row-start-2"
                     }, React.createElement("img", {
                           className: "w-full rounded-lg border-2 border-fire-30",
                           src: "/static/lp/easy-to-unadopt.jpg"
                         }), React.createElement("h3", {
                           className: "hl-3 text-gray-20 mt-6 mb-2"
-                        }, "Easy to adopt — without any lock-in"), React.createElement("p", {
+                        }, "很容易适配 —— 没有任何限制"), React.createElement("p", {
                           className: "body-md text-gray-40"
-                        }, "ReScript was made with gradual adoption in mind.  If\n            you ever want to go back to plain JavaScript, just remove all\n            source files and keep its clean JavaScript output. Tell\n            your coworkers that your project will keep functioning with or\n            without ReScript!"))));
+                        }, "ReScript 在实现的时候就考虑了渐进式适配。\n            如果你想回到普通的 JavaScript，只需删除所有源文件并保留其干净的 JavaScript 编译结果。\n            你可以告诉您的同事，无论是否使用 ReScript，您的项目都将继续运作"))));
 }
 
 function LandingPageLayout$TrustedBy(Props) {
@@ -396,7 +396,7 @@ function LandingPageLayout$TrustedBy(Props) {
               className: "mt-20"
             }, React.createElement("h3", {
                   className: "hl-1 text-gray-80 text-center max-w-576 mx-auto"
-                }, "Trusted by our users"), React.createElement("div", {
+                }, "被我们的用户所信任"), React.createElement("div", {
                   className: "flex flex-wrap mx-4 gap-8 justify-center items-center max-w-xl lg:mx-auto mt-16 "
                 }, OurUsers.companies.map(function (company) {
                       var renderedCompany = React.createElement("a", {
@@ -423,26 +423,26 @@ function LandingPageLayout$TrustedBy(Props) {
 var cards = [
   {
     imgSrc: "/static/ic_manual@2x.png",
-    title: "Language Manual",
-    descr: "Look up the basics: Reference for all our language features",
-    href: "/docs/manual/latest/introduction"
+    title: "语言手册",
+    descr: "查阅基础知识：所有的语言特性的参考指南",
+    href: "/docs-cn/manual/latest/introduction"
   },
   {
     imgSrc: "/static/ic_rescript_react@2x.png",
     title: "ReScript + React",
-    descr: "First Class bindings for ReactJS used by production users all over the world.",
+    descr: "全世界的用户都在使用 ReactJS 的一等公民绑定。",
     href: "/docs/react/latest/introduction"
   },
   {
     imgSrc: "/static/ic_manual@2x.png",
-    title: "Gradually Adopt ReScript",
-    descr: "Learn how to start using ReScript in your current projects. Try before you buy!",
-    href: "/docs/manual/latest/installation#integrate-into-an-existing-js-project"
+    title: "渐进式适配 ReScript",
+    descr: "了解如何在你当前的项目中开始使用 ReScript。买之前先试试！",
+    href: "/docs-cn/manual/latest/installation#集成到已有的-js-项目中"
   },
   {
     imgSrc: "/static/ic_gentype@2x.png",
     title: "TypeScript Integration",
-    descr: "Learn how to integrate ReScript in your existing TypeScript codebases.",
+    descr: "了解如何在你现有的 TypeScript 代码库中集成 ReScript。",
     href: "/docs/gentype/latest/introduction"
   }
 ];
@@ -452,7 +452,7 @@ var templates = [{
     title: React.createElement(React.Fragment, undefined, React.createElement("div", undefined, "ReScript & "), React.createElement("div", {
               className: "text-gray-40"
             }, "NextJS")),
-    descr: "Get started with our NextJS starter template.",
+    descr: "可以从我们的 NextJS 启动模板开始。",
     href: "https://github.com/ryyppy/rescript-nextjs-template"
   }];
 
@@ -463,13 +463,13 @@ function LandingPageLayout$CuratedResources(Props) {
                   className: "mb-10 max-w-1280 flex flex-col justify-center items-center mx-5 md:mx-8 lg:mx-auto"
                 }, React.createElement("div", {
                       className: "body-sm md:body-lg text-gray-40 w-40 mb-4 xs:w-auto text-center"
-                    }, "Get up and running with ReScript"), React.createElement("h2", {
+                    }, "快来尝试一下 ReScript 吧!"), React.createElement("h2", {
                       className: "hl-1 text-gray-20 text-center"
-                    }, "Curated resources")), React.createElement("div", {
+                    }, "精选资源")), React.createElement("div", {
                   className: "px-5 md:px-8 max-w-1280 mx-auto my-20"
                 }, React.createElement("div", {
                       className: "body-lg text-center z-2 relative text-gray-40 max-w-[12rem] mx-auto bg-gray-100"
-                    }, "Guides and Docs"), React.createElement("hr", {
+                    }, "指引和文档"), React.createElement("hr", {
                       className: "bg-gray-80 h-px border-0 relative top-[-12px]"
                     })), React.createElement("div", undefined, React.createElement("div", {
                       className: "grid grid-flow-col grid-cols-2 grid-rows-2 lg:grid-cols-4 lg:grid-rows-1 gap-2 md:gap-4 lg:gap-8 max-w-1280 px-5 md:px-8 mx-auto"
@@ -492,7 +492,7 @@ function LandingPageLayout$CuratedResources(Props) {
                       className: "px-5 md:px-8 max-w-1280 mx-auto my-20"
                     }, React.createElement("div", {
                           className: "body-lg text-center z-2 relative text-gray-40 w-[8rem] mx-auto bg-gray-100"
-                        }, "Templates"), React.createElement("hr", {
+                        }, "项目模板"), React.createElement("hr", {
                           className: "bg-gray-80 h-px border-0 relative top-[-12px]"
                         })), React.createElement("div", {
                       className: "grid grid-flow-col grid-cols-2 lg:grid-cols-3 lg:grid-rows-1 gap-2 md:gap-4 lg:gap-8 max-w-1280 px-5 md:px-8 mx-auto"
@@ -528,7 +528,7 @@ function LandingPageLayout(Props) {
                     "TypeScript"
                   ],
                   description: "Fast, Simple, Fully Typed JavaScript from the Future",
-                  title: "The ReScript Programming Language",
+                  title: "ReScript 编程语言",
                   ogImage: "/static/Art-3-rescript-launch.jpg"
                 }), React.createElement("div", {
                   className: "mt-4 xs:mt-16"

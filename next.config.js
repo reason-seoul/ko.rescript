@@ -78,20 +78,7 @@ const config = {
         destination: "/blog/bucklescript-is-rebranding",
         permanent: true,
       },
-      // {
-      //   source: "/",
-      //   destination: "/docs-cn/manual/latest/introduction/",
-      //   permanent: true
-      // }
     ];
-  },
-  async rewrites() {
-    return [
-      {
-        source: "/",
-        destination: "/docs-cn/manual/latest/introduction/",
-      }
-    ]
   },
   future: {
     webpack5: isWebpack5,

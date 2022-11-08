@@ -85,7 +85,7 @@ let make = (~components=Markdown.default, ~children) => {
   let prefix = list{
     {
       open Url
-      {name: "Docs", href: "/docs/" ++ version}
+      {name: "文档", href: "/docs/" ++ version}
     },
     {
       open Url

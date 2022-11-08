@@ -27,10 +27,10 @@ let default = (~showVersionSelect=true) => {
   }
 
   let languageManual = [
-    ("Overview", j` /docs/manual/$version/introduction`),
-    ("Language Features", j`/docs/manual/$version/overview`),
-    ("JS Interop", j`/docs/manual/$version/embed-raw-javascript`),
-    ("Build System", j`/docs/manual/$version/build-overview`),
+    ("概览", j` /docs-cn/manual/$version/introduction`),
+    ("语言特性", j`/docs-cn/manual/$version/overview`),
+    ("与 JS 互操作", j`/docs-cn/manual/$version/embed-raw-javascript`),
+    ("构建系统", j`/docs-cn/manual/$version/build-overview`),
   ]
 
   let ecosystem = [
@@ -64,7 +64,7 @@ let default = (~showVersionSelect=true) => {
 
   <>
     <div>
-      versionSelect <div className="mb-6" /> <Markdown.H1> {React.string("Docs")} </Markdown.H1>
+      versionSelect <div className="mb-6" /> <Markdown.H1> {React.string("文档")} </Markdown.H1>
     </div>
     <div className="grid grid-cols-1 xs:grid-cols-2 gap-8">
       <Card title="Language Manual" hrefs=languageManual />

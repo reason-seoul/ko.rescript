@@ -19,20 +19,20 @@ var allManualVersions = [
 function languageManual(version) {
   return [
           [
-            "Overview",
-            "/docs/manual/" + version + "/introduction"
+            "概览",
+            "/docs-cn/manual/" + version + "/introduction"
           ],
           [
-            "Language Features",
-            "/docs/manual/" + version + "/overview"
+            "语言特性",
+            "/docs-cn/manual/" + version + "/overview"
           ],
           [
-            "JS Interop",
-            "/docs/manual/" + version + "/embed-raw-javascript"
+            "与 JS 互操作",
+            "/docs-cn/manual/" + version + "/embed-raw-javascript"
           ],
           [
-            "Build System",
-            "/docs/manual/" + version + "/build-overview"
+            "构建系统",
+            "/docs-cn/manual/" + version + "/build-overview"
           ]
         ];
 }

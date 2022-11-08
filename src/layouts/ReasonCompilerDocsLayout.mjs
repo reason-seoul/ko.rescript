@@ -85,7 +85,7 @@ function ReasonCompilerDocsLayout(Props) {
   var version = url.version;
   var version$1 = typeof version === "number" ? "latest" : version._0;
   var prefix_0 = {
-    name: "Docs",
+    name: "文档",
     href: "/docs/" + version$1
   };
   var prefix_1 = {

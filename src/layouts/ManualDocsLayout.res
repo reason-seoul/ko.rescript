@@ -35,13 +35,13 @@ module Latest = {
     let breadcrumbs = list{
       {
         open Url
-        {name: "Docs", href: "/docs/" ++ version}
+        {name: "文档", href: "/docs/" ++ version}
       },
       {
         open Url
         {
           name: "Language Manual",
-          href: "/docs/manual/" ++ (version ++ "/introduction"),
+          href: "/docs-cn/manual/" ++ (version ++ "/introduction"),
         }
       },
     }
@@ -95,13 +95,13 @@ module V900 = {
     let breadcrumbs = list{
       {
         open Url
-        {name: "Docs", href: "/docs/" ++ version}
+        {name: "文档", href: "/docs/" ++ version}
       },
       {
         open Url
         {
-          name: "Language Manual",
-          href: "/docs/manual/" ++ (version ++ "/introduction"),
+          name: "语言手册",
+          href: "/docs-cn/manual/" ++ (version ++ "/introduction"),
         }
       },
     }
@@ -139,13 +139,13 @@ module V800 = {
     let breadcrumbs = list{
       {
         open Url
-        {name: "Docs", href: "/docs/" ++ version}
+        {name: "文档", href: "/docs/" ++ version}
       },
       {
         open Url
         {
-          name: "Language Manual",
-          href: "/docs/manual/" ++ (version ++ "/introduction"),
+          name: "语言手册",
+          href: "/docs-cn/manual/" ++ (version ++ "/introduction"),
         }
       },
     }

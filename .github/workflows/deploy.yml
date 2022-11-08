@@ -44,8 +44,6 @@ jobs:
         run: npm run build
       - name: Setup Pages
         run: npx next build && npx next export -o gh-pages
-      - name: Overwrite index.html
-        run: cp -f gh-pages/docs-cn/manual/latest/introduction.html gh-pages/index.html
       - name: Create .nojekyll # make gighub trust _next/* file can
         run: touch gh-pages/.nojekyll
       - name: Upload artifact

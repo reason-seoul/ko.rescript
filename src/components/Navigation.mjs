@@ -308,7 +308,7 @@ function Navigation$DocsSection(Props) {
           }));
   var syntaxLookupLink = React.createElement(Navigation$DocsSection$LinkCard, {
         icon: icon$1,
-        title: "查找对应语法",
+        title: "语法查找",
         description: "探索所有语法结构",
         href: "/syntax-lookup",
         active: active$1

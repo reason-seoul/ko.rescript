@@ -58,10 +58,6 @@ function DocsOverview$default(Props) {
   ];
   var ecosystem = [
     [
-      "Package Index",
-      "/packages"
-    ],
-    [
       "rescript-react",
       "/docs/react/latest/introduction"
     ],
@@ -75,10 +71,9 @@ function DocsOverview$default(Props) {
     ]
   ];
   var tools = [[
-      "Syntax Lookup",
+      "语法查找",
       "/syntax-lookup"
     ]];
-  var versionSelect;
   if (showVersionSelect) {
     var onChange = function (evt) {
       evt.preventDefault();
@@ -87,30 +82,24 @@ function DocsOverview$default(Props) {
       var targetUrl = "/" + (url.base.join("/") + ("/" + (version + ("/" + url.pagepath.join("/")))));
       Next.Router.push(router, targetUrl);
     };
-    versionSelect = React.createElement("div", {
+    React.createElement("div", {
           className: "text-fire"
         }, React.createElement(VersionSelect.make, {
               onChange: onChange,
               version: version$1,
               availableVersions: Constants.allManualVersions
             }));
-  } else {
-    versionSelect = null;
   }
-  return React.createElement(React.Fragment, undefined, React.createElement("div", undefined, versionSelect, React.createElement("div", {
-                      className: "mb-6"
-                    }), React.createElement(Markdown.H1.make, {
-                      children: "文档"
-                    })), React.createElement("div", {
+  return React.createElement(React.Fragment, undefined, React.createElement("div", {
                   className: "grid grid-cols-1 xs:grid-cols-2 gap-8"
                 }, React.createElement(DocsOverview$Card, {
-                      title: "Language Manual",
+                      title: "语言手册",
                       hrefs: languageManual
                     }), React.createElement(DocsOverview$Card, {
-                      title: "Ecosystem",
+                      title: "生态系统",
                       hrefs: ecosystem
                     }), React.createElement(DocsOverview$Card, {
-                      title: "Tools",
+                      title: "工具",
                       hrefs: tools
                     })));
 }

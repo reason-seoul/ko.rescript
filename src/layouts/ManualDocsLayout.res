@@ -32,6 +32,12 @@ module Latest = {
     | Latest => "latest"
     }
 
+    let title = switch lang {
+      | LangUtil.English => "Language Manual"
+      | LangUtil.Chinese => "语言手册"
+    } 
+
+
     let breadcrumbs = list{
       {
         open Url
@@ -40,13 +46,12 @@ module Latest = {
       {
         open Url
         {
-          name: "Language Manual",
+          name: title,
           href: "/docs-cn/manual/" ++ (version ++ "/introduction"),
         }
       },
     }
 
-    let title = "Language Manual"
     let version = "latest"
 
     open LangUtil

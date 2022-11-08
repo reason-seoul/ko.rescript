@@ -26,7 +26,7 @@ function LandingPageLayout$Intro(Props) {
                       className: "hl-title text-center max-w-[53rem]"
                     }, "来自未来的快速、简单且完全类型化的JavaScript"), React.createElement("h2", {
                       className: "body-lg text-center text-gray-60 my-4 max-w-[40rem]"
-                    }, "ReScript是一种健壮的类型化语言，可以编译成高效且可读的JavaScript。\n          它有一个闪电般速度的编译工具链，可以扩展到任意大小的代码库。"), React.createElement("div", {
+                    }, "ReScript是一门健壮的类型化语言，可以编译成高效且可读的JavaScript。\n          它有一个闪电般速度的编译工具链，可以扩展到任意大小的代码库。"), React.createElement("div", {
                       className: "mt-4 mb-2"
                     }, React.createElement(Next.Link.make, {
                           href: "/docs-cn/manual/latest/installation",
@@ -59,7 +59,7 @@ function LandingPageLayout$PlaygroundHero(Props) {
                               className: "md:w-1/2"
                             }, React.createElement("div", {
                                   className: "body-sm text-gray-40 text-center py-3 sm:rounded-t-lg md:rounded-tl-lg bg-gray-100"
-                                }, "写 ReScript 程序"), React.createElement("pre", {
+                                }, "写下 ReScript 程序"), React.createElement("pre", {
                                   className: "text-14 px-8 pt-6 pb-12 whitespace-pre-wrap"
                                 }, HighlightJs.renderHLJS(undefined, true, example.res, "res", undefined))), React.createElement("div", {
                               className: "md:w-1/2 "
@@ -71,7 +71,7 @@ function LandingPageLayout$PlaygroundHero(Props) {
                               href: "/try?code=" + LzString.compressToEncodedURIComponent(example.res) + "}",
                               children: React.createElement("a", {
                                     className: "captions md:px-0 border-b border-gray-40 hover:border-gray-60 text-gray-60"
-                                  }, "Edit this example in Playground")
+                                  }, "在工作台编辑该代码")
                             })), React.createElement("div", {
                           className: "hidden md:block"
                         }, React.createElement("img", {
@@ -214,7 +214,7 @@ function LandingPageLayout$QuickInstall(Props) {
                       className: "w-full mt-12 md:flex flex-col lg:flex-row md:justify-between "
                     }, React.createElement("p", {
                           className: "relative z-1 text-gray-80 font-semibold text-24 md:text-32 leading-2 max-w-[32rem]"
-                        }, "ReScript 是被用来运送和维护具有良好 UI 和 UX 的关键产品的。"), React.createElement("div", {
+                        }, "ReScript 是被用来交付和维护具有良好 UI 和 UX 的关键产品的。"), React.createElement("div", {
                           className: "mt-16 lg:mt-0 self-end",
                           style: {
                             maxWidth: "25rem"
@@ -323,7 +323,7 @@ var item3 = React.createElement(LandingPageLayout$MainUSP$Item, {
       caption: "无缝集成",
       title: React.createElement(React.Fragment, undefined, React.createElement("span", {
                 className: "text-orange-dark"
-              }, "你所熟悉的 JS 生态\n"), "就在你的指尖"),
+              }, "你所熟悉的 JS 生态"), "\n就在你的指尖"),
       media: React.createElement("video", {
             className: "rounded-lg",
             controls: true,

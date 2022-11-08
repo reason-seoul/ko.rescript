@@ -101,23 +101,23 @@ let make = (
   let preludeSection =
     <div className="flex justify-between text-fire font-medium items-baseline">
       {React.string(title)}
-      {switch version {
-      | Some(version) =>
-        let onChange = evt => {
-          open Url
-          ReactEvent.Form.preventDefault(evt)
-          let version = (evt->ReactEvent.Form.target)["value"]
-          let url = Url.parse(route)
+      // {switch version {
+      // | Some(version) =>
+      //   let onChange = evt => {
+      //     open Url
+      //     ReactEvent.Form.preventDefault(evt)
+      //     let version = (evt->ReactEvent.Form.target)["value"]
+      //     let url = Url.parse(route)
 
-          let targetUrl =
-            "/" ++
-            (Js.Array2.joinWith(url.base, "/") ++
-            ("/" ++ (version ++ ("/" ++ Js.Array2.joinWith(url.pagepath, "/")))))
-          router->Next.Router.push(targetUrl)
-        }
-        <VersionSelect onChange version availableVersions=allApiVersions />
-      | None => React.null
-      }}
+      //     let targetUrl =
+      //       "/" ++
+      //       (Js.Array2.joinWith(url.base, "/") ++
+      //       ("/" ++ (version ++ ("/" ++ Js.Array2.joinWith(url.pagepath, "/")))))
+      //     router->Next.Router.push(targetUrl)
+      //   }
+      //   <VersionSelect onChange version availableVersions=allApiVersions />
+      // | None => React.null
+      // }}
     </div>
 
   let sidebar =

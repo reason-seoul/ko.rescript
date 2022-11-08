@@ -10,7 +10,6 @@ import * as Belt_Array from "rescript/lib/es6/belt_Array.js";
 import * as ApiMarkdown from "../components/ApiMarkdown.mjs";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as SidebarLayout from "./SidebarLayout.mjs";
-import * as VersionSelect from "../components/VersionSelect.mjs";
 
 var allApiVersions = [
   [
@@ -75,7 +74,6 @@ function ApiLayout(Props) {
   var breadcrumbs = Props.breadcrumbs;
   var categories = Props.categories;
   var titleOpt = Props.title;
-  var version = Props.version;
   var activeToc = Props.activeToc;
   var componentsOpt = Props.components;
   var children = Props.children;
@@ -119,27 +117,10 @@ function ApiLayout(Props) {
                         });
                   });
         }), []);
-  var tmp;
-  if (version !== undefined) {
-    var onChange = function (evt) {
-      evt.preventDefault();
-      var version = evt.target.value;
-      var url = Url.parse(route);
-      var targetUrl = "/" + (url.base.join("/") + ("/" + (version + ("/" + url.pagepath.join("/")))));
-      Next.Router.push(router, targetUrl);
-    };
-    tmp = React.createElement(VersionSelect.make, {
-          onChange: onChange,
-          version: version,
-          availableVersions: allApiVersions
-        });
-  } else {
-    tmp = null;
-  }
   var preludeSection = React.createElement("div", {
         className: "flex justify-between text-fire font-medium items-baseline"
-      }, title, tmp);
-  var tmp$1 = {
+      }, title);
+  var tmp = {
     categories: categories,
     route: route,
     preludeSection: preludeSection,
@@ -147,9 +128,9 @@ function ApiLayout(Props) {
     toggle: toggleSidebar
   };
   if (activeToc !== undefined) {
-    tmp$1.activeToc = Caml_option.valFromOption(activeToc);
+    tmp.activeToc = Caml_option.valFromOption(activeToc);
   }
-  var sidebar = React.createElement(SidebarLayout.Sidebar.make, tmp$1);
+  var sidebar = React.createElement(SidebarLayout.Sidebar.make, tmp);
   var pageTitle;
   if (breadcrumbs !== undefined && breadcrumbs) {
     var match$1 = breadcrumbs.tl;
@@ -165,7 +146,7 @@ function ApiLayout(Props) {
   } else {
     pageTitle = "API";
   }
-  var tmp$2 = {
+  var tmp$1 = {
     metaTitle: pageTitle + " | ReScript API",
     theme: "Reason",
     components: components,
@@ -177,9 +158,9 @@ function ApiLayout(Props) {
     children: children
   };
   if (breadcrumbs !== undefined) {
-    tmp$2.breadcrumbs = Caml_option.valFromOption(breadcrumbs);
+    tmp$1.breadcrumbs = Caml_option.valFromOption(breadcrumbs);
   }
-  return React.createElement(SidebarLayout.make, tmp$2);
+  return React.createElement(SidebarLayout.make, tmp$1);
 }
 
 var make = ApiLayout;

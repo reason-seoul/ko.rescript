@@ -1,12 +1,12 @@
 {
-  "Overview": [
+  "概览": [
     "introduction",
     "installation",
     "editor-plugins",
     "migrate-from-bucklescript-reason",
     "try"
   ],
-  "Language Features": [
+  "语言特性": [
     "overview",
     "let-binding",
     "type",
@@ -33,10 +33,10 @@
     "unboxed",
     "reserved-keywords"
   ],
-  "Advanced Features": [
+  "高级特性": [
     "extensible-variant"
   ],
-  "JavaScript Interop": [
+  "JavaScript 互操作": [
     "interop-cheatsheet",
     "embed-raw-javascript",
     "shared-data-types",
@@ -52,7 +52,7 @@
     "browser-support-polyfills",
     "libraries"
   ],
-  "Build System": [
+  "构建系统": [
     "build-overview",
     "build-configuration",
     "build-configuration-schema",
@@ -62,10 +62,10 @@
     "build-performance",
     "warning-numbers"
   ],
-  "Guides": [
+  "手册": [
     "converting-from-js"
   ],
-  "Extra": [
+  "扩展信息": [
     "newcomer-examples",
     "project-structure",
     "faq"

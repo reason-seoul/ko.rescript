@@ -4,11 +4,11 @@ module Intro = {
     <section className="flex justify-center">
       <div className="max-w-1060 flex flex-col items-center px-5 sm:px-8 lg:box-content">
         <h1 className="hl-title text-center max-w-[53rem]">
-          {React.string("来自未来的快速、简单且完全类型化的JavaScript")}
+          {React.string("来自未来的快速、简单且完全类型化的 JavaScript")}
         </h1>
         <h2 className="body-lg text-center text-gray-60 my-4 max-w-[40rem]">
-          {React.string(`ReScript是一门健壮的类型化语言，可以编译成高效且可读的JavaScript。
-          它有一个闪电般速度的编译工具链，可以扩展到任意大小的代码库。`)}
+          {React.string(`ReScript 是一门健壮的类型化语言，可以编译成高效易读的 JavaScript。
+          它的的编译工具链快如闪电，可轻松应对任意规模的代码库。`)}
         </h2>
         <div className="mt-4 mb-2">
           <Next.Link href="/docs-cn/manual/latest/installation" passHref={true}>
@@ -75,7 +75,7 @@ exports.Button = Button;`,
             <div className="md:w-1/2">
               <div
                 className="body-sm text-gray-40 text-center py-3 sm:rounded-t-lg md:rounded-tl-lg bg-gray-100">
-                {React.string("写下 ReScript 程序")}
+                {React.string("编写 ReScript 程序")}
               </div>
               <pre className="text-14 px-8 pt-6 pb-12 whitespace-pre-wrap">
                 {HighlightJs.renderHLJS(~darkmode=true, ~code=example.res, ~lang="res", ())}
@@ -85,7 +85,7 @@ exports.Button = Button;`,
             <div className="md:w-1/2 ">
               <div
                 className="body-sm text-gray-40 py-3 text-center md:border-l border-gray-80 bg-gray-100 sm:rounded-tr-lg">
-                {React.string("编译到 JavaScript")}
+                {React.string("编译为 JavaScript")}
               </div>
               <pre
                 className="text-14 px-8 pt-6 pb-14 md:border-l border-gray-80 whitespace-pre-wrap">
@@ -98,7 +98,7 @@ exports.Button = Button;`,
             <Next.Link href={`/try?code=${LzString.compressToEncodedURIComponent(example.res)}}`}>
               <a
                 className="captions md:px-0 border-b border-gray-40 hover:border-gray-60 text-gray-60">
-                {React.string("在工作台编辑该代码")}
+                {React.string("在工作台中编辑此代码")}
               </a>
             </Next.Link>
           </div>
@@ -187,7 +187,7 @@ module QuickInstall = {
           // and in the next tick, add the opacity-100 class, so the transition animation actually takes place.
           // If we don't do that, the banner will essentially pop up without any animation
           let bannerEl = Document.createElement("div")
-          bannerEl->Element.setClassName("foobar opacity-0 absolute top-0 mt-4 -mr-1 px-2 rounded right-0 
+          bannerEl->Element.setClassName("foobar opacity-0 absolute top-0 mt-4 -mr-1 px-2 rounded right-0
             bg-turtle text-gray-80-tr body-sm
             transition-all duration-500 ease-in-out ")
           let textNode = Document.createTextNode("Copied!")
@@ -239,7 +239,7 @@ module QuickInstall = {
         <h2 className="hl-3 lg:mt-12"> {React.string("快速安装")} </h2>
         <div className="captions x text-gray-40 mb-2 mt-1">
           {React.string(
-            "你可以通过npm / yarn将ReScript快速添加到你现有的JavaScript代码库中：",
+            "你可以通过 npm 或 yarn 将 ReScript 快速添加到现有的 JavaScript 代码库中：",
           )}
         </div>
         <div className="w-full space-y-2">
@@ -257,18 +257,18 @@ module QuickInstall = {
         <div className="relative max-w-[28rem]">
           <p
             className="relative z-1 space-y-12 text-gray-80 font-semibold text-24 md:text-32 leading-2">
-            {React.string(`在一个强大的类型化语言中`)}
+            {React.string(`在强大的类型化语言中`)}
             <span className="bg-fire-5 rounded-lg border border-fire-10 p-1 ">
-              {React.string(`充分利用 JavaScript 的力量`)}
+              {React.string(`发挥 JavaScript 的全部力量`)}
             </span>
-            {React.string(`而不用担心 \`any\` 类型。`)}
+            {React.string(`而不必担心 \`any\` 类型。`)}
           </p>
         </div>
         //spacing between columns
         <div className="w-full mt-12 md:flex flex-col lg:flex-row md:justify-between ">
           <p
             className="relative z-1 text-gray-80 font-semibold text-24 md:text-32 leading-2 max-w-[32rem]">
-            {React.string(`ReScript 是被用来交付和维护具有良好 UI 和 UX 的关键产品的。`)}
+            {React.string(`ReScript 可用于交付并维护具有良好 UI 和 UX 的关键产品。`)}
           </p>
           <div
             className="mt-16 lg:mt-0 self-end" style={ReactDOM.Style.make(~maxWidth="25rem", ())}>
@@ -358,7 +358,7 @@ module MainUSP = {
 
   let item1 =
     <Item
-      caption="快速且简洁"
+      caption="快速而简洁"
       title={React.string("Web 领域最快的构建系统")}
       media={<video
         className="rounded-lg" controls={true} poster={"/static/lp/fast-build-preview.jpg"}>
@@ -366,9 +366,9 @@ module MainUSP = {
       </video>}
       paragraph={<>
         <p>
-          {React.string(`ReScript 在意任意规模代码库的一致且快速的反馈迭代。
-          你可以重构代码、拉取复杂的变化，或者随心所欲地切换到特性分支。
-          在这里没有迟缓的 CI 构建、无效的缓存、错误的类型提示或语言服务器内存不足来拖累你。`)}
+          {React.string(`ReScript 对任意规模代码库的反馈迭代速度和一致性十分关注。
+          你可以重构代码、拉取复杂的更改，或者随心所欲地切换到特性分支。
+          这里没有迟缓的 CI 构建、无效的缓存、错误的类型提示或耗内存的语言服务器来拖累你。`)}
         </p>
         <p className="mt-6">
           <Next.Link href="/docs-cn/manual/latest/build-performance" passHref={true}>
@@ -382,7 +382,7 @@ module MainUSP = {
 
   let item2 =
     <Item
-      caption="一个健壮的类型系统"
+      caption="健壮的类型系统"
       title={<span
         className="text-transparent bg-clip-text bg-gradient-to-r from-berry-dark-50 to-fire-50">
         {React.string("更好的类型")}
@@ -392,8 +392,8 @@ module MainUSP = {
         <source src="https://assets-17077.kxcdn.com/videos/type-better-3.mp4" type_="video/mp4" />
       </video>}
       polygonDirection=Up
-      paragraph={React.string(`每个 ReScript 应用程序都是完全类型化的，并为您程序中的任何值提供可靠的类型信息。为了清晰和方便调试，我们优先考虑简单类型而不是复杂类型。
-      ReScript中没有 \`any\`，没有magic type，更没有吓你一跳 “undefined”。
+      paragraph={React.string(`每一个 ReScript 应用程序都是完全类型化的，这能为您程序中的任何值提供可靠的类型信息。为了清晰和方便调试，我们优先考虑简单类型而非复杂类型。
+      ReScript 中没有 \`any\`，没有魔法类型，更没有意料之外的 “undefined”。
       `)}
     />
 
@@ -410,9 +410,9 @@ module MainUSP = {
           src="https://assets-17077.kxcdn.com/videos/interop-example-2.mp4" type_="video/mp4"
         />
       </video>}
-      paragraph={React.string(`你可以从 JavaScript 使用任何 ReScript 库，
-      将 ReScript 库导出到JavaScript，并自动生成 TypeScript 类型。
-      就像你从没有离开过 JavaScript 最好的那一部分。`)}
+      paragraph={React.string(`你可以使用任何来自 JavaScript 的库，
+      将 ReScript 库导出到 JavaScript，以及自动生成 TypeScript 类型。
+      就像你从未离开过 JavaScript 最好的那一部分。`)}
     />
 
   @react.component
@@ -448,8 +448,8 @@ module OtherSellingPoints = {
             {React.string(`一个总是能帮你把事情搞定的程序员社区`)}
           </h3>
           <p className="body-md text-gray-40">
-            {React.string(`没有坚实的社区，任何语言都不可能流行。
-            如果库作者滥用它，那么一个强大的类型系统也没有用。
+            {React.string(`没有坚实的社区基础，任何语言都不可能流行。
+            如果库的作者滥用类型，那么再强大的类型系统也没有用。
             如果所有的库都很慢，那么性能优势就无法体现。
             加入 ReScript 社区 —— 一群深切关注简单性、速度和实用性的公司和个人在这里等你。`)}
           </p>
@@ -472,8 +472,8 @@ module OtherSellingPoints = {
           </h3>
           <p className="body-md text-gray-40">
             {React.string(`一个内置的格式化工具，内存友好的 VSCode 和 Vim 插件
-            和一个稳定且不需要太多额外的配置的类型系统和编译器。
-            ReScript 为你带来了构建可靠的 JavaScript、Node 和 ReactJS 应用所需的所有工具`)}
+            和一个稳定且不需要太多额外配置的类型系统和编译器。
+            ReScript 为你带来了构建可靠的 JavaScript、Node 和 ReactJS 应用所需的所有工具。`)}
           </p>
         </div>
         // Item 3
@@ -487,8 +487,8 @@ module OtherSellingPoints = {
           </h3>
           <p className="body-md text-gray-40">
             {React.string(`ReScript 在实现的时候就考虑了渐进式适配。
-            如果你想回到普通的 JavaScript，只需删除所有源文件并保留其干净的 JavaScript 编译结果。
-            你可以告诉您的同事，无论是否使用 ReScript，您的项目都将继续运作`)}
+            如果你想回到普通的 JavaScript，只需删除所有源文件并保留其干净的 JavaScript 编译结果即可。
+            你可以告诉您的同事，无论是否使用 ReScript，您的项目都会正常运作。`)}
           </p>
         </div>
         // </div>
@@ -502,7 +502,7 @@ module TrustedBy = {
   let make = () => {
     <section className="mt-20">
       <h3 className="hl-1 text-gray-80 text-center max-w-576 mx-auto">
-        {React.string("被我们的用户所信任")}
+        {React.string("信任我们的用户")}
       </h3>
       <div
         className="flex flex-wrap mx-4 gap-8 justify-center items-center max-w-xl lg:mx-auto mt-16 ">
@@ -605,7 +605,7 @@ module CuratedResources = {
       <div
         className="mb-10 max-w-1280 flex flex-col justify-center items-center mx-5 md:mx-8 lg:mx-auto">
         <div className="body-sm md:body-lg text-gray-40 w-40 mb-4 xs:w-auto text-center">
-          {React.string("快来尝试一下 ReScript 吧!")}
+          {React.string("快来尝试一下 ReScript 吧！")}
         </div>
         <h2 className="hl-1 text-gray-20 text-center"> {React.string("精选资源")} </h2>
       </div>

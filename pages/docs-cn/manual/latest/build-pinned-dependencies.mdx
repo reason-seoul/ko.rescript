@@ -1,5 +1,5 @@
 ---
-title: "锁定版本的依赖"
+title: "版本锁定依赖"
 metaTitle: "Pinned Dependencies"
 description: "Handling multiple packages within one ReScript project with pinned dependencies"
 canonical: "/docs/manual/latest/build-pinned-dependencies"
@@ -8,7 +8,7 @@ canonical: "/docs/manual/latest/build-pinned-dependencies"
 <!--
 # Pinned Dependencies
 -->
-# 锁定版本的依赖
+# 版本锁定依赖
 
 <!--
 **Since 8.4**
@@ -46,14 +46,14 @@ Before we go into detail, let's first explain all the different package types re
 -->
 
 - 顶层包（这通常是你最后构建得到的 app，它依赖于其他的包）
-- 锁定版本的依赖项（这些是你的本地包，它们应该在构建顶层包时总是被重新构建，它们应该列在 `bs-dependencies` 和 `pinned-dependencies` 里）
+- 版本锁定依赖项（这些是你的本地包，它们应该在构建顶层包时总是被重新构建，它们应该列在 `bs-dependencies` 和 `pinned-dependencies` 里）
 - 通常依赖项（这些是从 npm 获得的包，它们应该列在 `bs-dependencies` 里）
 
 <!--
 Whenever a package is being built (`rescript build`), the build system will build the toplevel package with its pinned-dependencies. So any changes made in a pinned dependency will automatically be reflected in the final app.
 -->
 
-当一个包被构建时（`rescript build`），构建系统会构建顶层包和与之相关的锁定版本的依赖项。这样锁定版本的依赖中的任何修改都会反映到最终的 app 中。
+当一个包被构建时（`rescript build`），构建系统会构建顶层包和它的版本锁定依赖项。因此，在版本锁定依赖中做的任何修改都会自动反映到最终的 app 中。
 
 <!--
 ## Build System Package Rules
@@ -77,10 +77,10 @@ The build system respects the following rules for each package type:
 -->
 
 **顶层包**
-- 会报告警告
-- 会报告错误
-- 会构建 dev 依赖
-- 会构建锁定版本的依赖
+- 报告警告
+- 报告错误
+- 构建 dev 依赖
+- 构建版本锁定依赖项
 - 使用自定义规则
 - 类似 ES6/CommonJS 的 `package-specs` 会覆盖所有依赖的选项
 
@@ -93,11 +93,11 @@ The build system respects the following rules for each package type:
 - Runs custom rules
 -->
 
-**锁定版本的依赖**
-- 会报告警报
-- 会报告错误
-- 忽略锁定版本的依赖
-- 会构建 dev 依赖
+**版本锁定依赖**
+- 报告警报
+- 报告错误
+- 忽略版本锁定依赖
+- 构建 dev 依赖
 - 使用自定义规则
 
 <!--
@@ -109,23 +109,26 @@ The build system respects the following rules for each package type:
 -->
 
 **一般的依赖**
-- 会忽略警报和错误
-- 忽略 dev 依赖
-- 忽略锁定版本的yill
+- 忽略警报和错误
+- 忽略开发目录
+- 忽略版本锁定依赖
 - 忽略自定义生成规则
 
 <!--
 So with that knowledge in mind, let's dive into some more concrete examples to see our pinned dependencies in action.
 -->
 
-记下这些知识，让我们用一些具体的例子来观察一下锁定版本的依赖的行为。
+记下这些知识，让我们用一些具体的例子来观察一下版本锁定依赖的行为。
 
 <!--
 ## Examples
 -->
 ## 例子
 
+<!--
 ### Yarn workspaces
+-->
+### Yarn 工作区
 
 <!--
 Let's assume we have a codebase like this:
@@ -196,10 +199,10 @@ Our `app` folder would be our toplevel package, consuming our `common` and `mypl
 Now, whenever we are running `rescript build` within our `app` package, the compiler would always rebuild any changes within its pinned dependencies as well.
 -->
 
-现在，当我们在 `app` 包中运行 `rescript build` 时，编译器总是会重新构建它的锁定版本的依赖项。
+现在，当我们在 `app` 包中运行 `rescript build` 时，编译器总是会重新构建它的版本锁定依赖项。
 
 <!--
 **Important:** ReScript will not rebuild any `pinned-dependencies` in watch mode! This is due to the complexity of file watching, so you'd need to set up your own file-watcher process that runs `rescript build` on specific file changes.
 -->
 
-**重要：**ReScript 在监视模式中不会对任何的 `pinned-Dependencies` 进行重新构建！这是由文件监视的复杂性导致的，所以你需要建立自己的文件监视进程来在某些特定文件更改时运行 `rescript build`。
+**重要：**ReScript 不会观察模式中对任何的 `pinned-Dependencies` 进行重新构建！这是由文件观察的复杂性导致的，所以你需要建立自己的文件监视进程，在特定文件更改时运行 `rescript build`。

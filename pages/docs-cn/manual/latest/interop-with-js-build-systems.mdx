@@ -30,7 +30,7 @@ If you come from JS, chances are that you already have a build system in your ex
 The JS ecosystem uses a few build systems: [browserify](http://browserify.org/), [rollup](https://github.com/rollup/rollup), [webpack](https://webpack.js.org/), etc. The latter's probably the most popular of the three (as of 2019 =P). These build systems do both the compilation and the linking (aka, bundling many files into one or few files).
 -->
 
-JS 生态系统使用 [browserify](http://browserify.org/)、[rollup](https://github.com/rollup/rollup)、[webpack](https://webpack.js.org/) 诸如此类的构建系统，最后那个可能是三者中最时髦的一个（至少在 2019 年是这样的 =P）。这些构建系统既负责编译又负责链接（也就是把多个文件打包为一个或几个文件）。
+JS 生态使用 [browserify](http://browserify.org/)、[rollup](https://github.com/rollup/rollup)、[webpack](https://webpack.js.org/) 诸如此类的构建系统，最后那个可能是三者中最流行的（至少在 2019 年是这样的 =P）。这些构建系统既负责编译又负责链接（也就是把多个文件打包为一个或几个文件）。
 
 <!--
 `rescript` only take care of the compilation step; it maps one `.res`/`.resi` file into one JS output file. As such, in theory, no build system integration is needed from our side. From e.g. the webpack watcher's perspective, the JS files ReScript generates are almost equivalent to your hand-written JS files. We also recommend **that you initially check in those ReScript-generated JS files**, as this workflow means:
@@ -42,12 +42,12 @@ JS 生态系统使用 [browserify](http://browserify.org/)、[rollup](https://gi
 - You can remove ReScript completely from your codebase and things will still work (in case your company decides to stop using us for whatever reason).
 -->
 
-`rescript`只负责编译；它将 `.res` 或 `.resi` 文件映射为 JS 输出文件。因此，从理论上讲，不需要从我们这边整合构建系统。从 webpack 观察者的角度来看，ReScript 生成的 JS 文件几乎等同于你手写的 JS 文件。我们还建议 **首先检查那些 ReScript 生成的 JS 文件**，因为这种工作流程意味着：
+`rescript`只负责编译；它将 `.res` 或 `.resi` 文件映射为 JS 输出文件。因此，从理论上讲，不需要从我们这边整合构建系统。从 webpack 观察者的角度来看，ReScript 生成的 JS 文件几乎等同于你手写的 JS 文件。我们还建议**首先检查那些 ReScript 生成的 JS 文件**，因为这种工作流程意味着：
 
-- 你可以在不影响现有的基础架构下，将 ReScript 静静地引入您的代码库中
-- 当你更新 `.res` 文件并改变 JS 文件时，你会对 JS 文件的性能和正确性有一种 **视觉** 感受上的不同
-- 紧急情况下，你可以让队友对 JS 文件进行热修复，而不需要先开始学习 ReScript。
-- 您可以从您的代码库中完全删除 ReScript，所有事情将照旧（以防您的公司因任何原因决定停止使用我们）。
+- 你可以在不影响现有的基础架构下，将 ReScript 无声无息地引入您的代码库中
+- 当你更新 `.res` 文件并改变 JS 文件时，你会对 JS 文件的性能和正确性有一种**视觉**感受上的不同
+- 紧急情况下，你可以让团队成员对 JS 文件进行热修复，而不需要先开始学习 ReScript
+- 您可以从您的代码库中完全删除 ReScript，而事情仍然可以进行（以防您的公司因任何原因决定停止使用我们）
 
 <!--
 For what it's worth, you can also turn `rescript` into an automated step in your build pipeline, e.g. into a webpack loader; but such approach is error-prone and therefore discouraged.
@@ -57,13 +57,13 @@ For what it's worth, you can also turn `rescript` into an automated step in your
 <!--
 ### Tips & Tricks
 -->
-### 秘诀 & 技巧
+### 技巧和诀窍
 
 <!--
 You can make ReScript JS files look even more idiomatic through the in-source + bs suffix config in `bsconfig.json`:
 -->
 
-你可以在 `bsconfig.json` 中配置 `in-source` 和 `suffix` 字段使 ReScript JS 看上去更地道：
+你可以在 `bsconfig.json` 中配置 `in-source` 和 `suffix` 字段，使 ReScript JS 看上去更地道：
 
 ```json
 {
@@ -85,12 +85,12 @@ This will:
 这会：
 
 - 与 ReScript 源文件一起生成 JS 文件
-- 使用文件扩展名 `.bs.js`，这样就可以通过 `require('./MyFile.bs')` 在 JS 中导入这些文件，而不需要用到加载器。
+- 使用文件扩展名 `.bs.js`，这样就可以通过 `require('./MyFile.bs')` 在 JS 中导入这些文件，而不需要用到加载器
 
 <!--
 ## Use Loaders on ReScript Side
 -->
-## 在 ReScript 侧使用加载器
+## 在 ReScript 端使用加载器
 
 <!--
 "What if my build system uses a CSS/png/whatever loader and I'd like to use it in ReScript?"
@@ -102,7 +102,7 @@ This will:
 Loaders are indeed troublesome; in the meantime, please use e.g. `%raw("require('./myStyles.css')")` at the top of your file. This just uses [`raw`](embed-raw-javascript.md) to compile the snippet into an actual JS require.
 -->
 
-加载器确实很麻烦；同时，请在文件顶部使用如 `%raw("require('./myStyles.css')")` 这样的命令。这会使 [`raw`](embed-raw-javascript.md) 将代码段编译成一个实际的 JS require。
+加载器确实很麻烦；同时，请在文件顶部使用如 `%raw("require('./myStyles.css')")` 这样的命令。这会使 [`raw`](embed-raw-javascript.md) 将代码片段编译成一个实际的 JS require。
 
 <!--
 ## Getting Project's Dependencies
@@ -113,12 +113,12 @@ Loaders are indeed troublesome; in the meantime, please use e.g. `%raw("require(
 `rescript` generates one `MyFile.d` file per `MyFile` source file; you'll find them in `lib/bs`. These are human readable, machine-friendly list of the dependencies of said `MyFile`. You can read into them for your purpose (though mind the IO overhead). Use these files instead of creating your own dependency graph; we did the hard work of tracking the dependencies as best as possible (including inner modules, `open`s, module names overlap, etc).
 -->
 
-`rescript` 为每个 `MyFile` 源文件生成一个 `MyFile.d` 文件；你可以在 `lib/bs` 中找到它们。文件内容是既对人可读也对机器也友好的 `MyFile` 依赖列表。你可以按你的目的读取这些文件（但要注意 IO 的开销）。请使用这些文件而不要自己创建依赖关系图；我们做了艰苦的工作来尽可能地跟踪这些依赖关系（包括内部模块、`open`s、模块名称重叠等等）。
+`rescript` 为每个 `MyFile` 源文件生成一个 `MyFile.d` 文件；你可以在 `lib/bs` 中找到它们。文件内容是既对人可读也对机器也友好的 `MyFile` 依赖列表。你可以按你的目的读取这些文件（但要注意 IO 的开销）。请使用这些文件而不要自己创建依赖关系图；我们做了艰苦的工作来尽可能地跟踪这些依赖关系（包括内部模块、`open`、模块名称重叠等等）。
 
 <!--
 ## Run Script Per File Built
 -->
-## 每次构建好文件就运行脚本
+## 每次构建好一个文件就运行脚本
 
 <!--
 See [js-post-build](build-configuration#js-post-build). Though please use it sparingly; if you hook up a node.js script after each file built, you'll incur the node startup time per file!

@@ -8,7 +8,7 @@ module Intro = {
         </h1>
         <h2 className="body-lg text-center text-gray-60 my-4 max-w-[40rem]">
           {React.string(`ReScript 是一门健壮的类型化语言，可以编译成高效易读的 JavaScript。
-          它的的编译工具链快如闪电，可轻松应对任意规模的代码库。`)}
+          它的编译工具链快如闪电，可轻松应对任意规模的代码库。`)}
         </h2>
         <div className="mt-4 mb-2">
           <Next.Link href="/docs-cn/manual/latest/installation" passHref={true}>

@@ -113,9 +113,17 @@ module Anchor = {
   // Todo: Headers with nested components don't pass a string, we need to flatten
   // everything to a single string first before we are able to use this id transformation
   // function
+  @val external encodeURI: (string) => string = "encodeURI"
 
   @react.component
   let make = (~id: string) => {
+    let router = Next.Router.useRouter()
+    let url = router.route->Url.parse
+    let lang = LangUtil.whichLang(url)
+    let id = switch lang {
+      | LangUtil.Chinese => encodeURI(id)
+      | LangUtil.English => id
+    }
     let style = ReactDOM.Style.make(~position="absolute", ~top="-7rem", ())
     <span className="inline group relative">
       <a

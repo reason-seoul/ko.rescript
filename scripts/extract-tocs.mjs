@@ -31,7 +31,7 @@ const orderFiles = (filepaths, orderArr) => {
   Object.entries(order).forEach(([name, filepath]) => {
     // may happen e.g. due to invalid file paths within
     // sidebar json
-    if(filepath == null) {
+    if (filepath == null) {
       throw new Error(`Cannot find file for "${name}". Does it exist in the pages folder?`);
     }
   });
@@ -42,11 +42,11 @@ const orderFiles = (filepaths, orderArr) => {
 // Used for collapsing nested inlineCodes with the actual header text
 const collapseHeaderChildren = (children) => {
   return children.reduce((acc, node) => {
-    if(node.type === "link") {
+    if (node.type === "link") {
       return acc + collapseHeaderChildren(node.children);
     }
     // Prevents 'undefined' values in our headers
-    else if(node.value == null) {
+    else if (node.value == null) {
       return acc;
     }
     return acc + node.value
@@ -82,7 +82,7 @@ const processor = unified()
   .use(headers);
 
 // sidebarJson: { [category: string]: array<plain_filename_without_ext> }
-const processFile = (filepath, sidebarJson={}) => {
+const processFile = (filepath, sidebarJson = {}) => {
   const raw = fs.readFileSync(filepath, "utf8");
   const { content, data } = matter(raw);
   const result = processor.processSync(content);
@@ -92,11 +92,11 @@ const processFile = (filepath, sidebarJson={}) => {
   const parsedPath = path.parse(relFilepath);
   const filename = path.basename(filepath, path.extname(filepath));
 
-  const title =  data.title || result.data.mainHeader || filename;
+  const title = data.title || result.data.mainHeader || filename;
 
   let category;
   for (const [categoryName, items] of Object.entries(sidebarJson)) {
-    if(items.find((item) => filename === item)){
+    if (items.find((item) => filename === item)) {
       category = categoryName;
       break;
     }
@@ -109,18 +109,22 @@ const processFile = (filepath, sidebarJson={}) => {
     title,
   };
 
-  if(category != null) {
+  if (category != null) {
     dataset.category = category;
   }
   return dataset;
 };
 
-const createTOC = result => {
+const createTOC = (result, useEncode=false) => {
   // Currently we reorder the data to a map, the key is
   // reflected as the router pathname, as defined by the
   // NextJS router
   return result.reduce((acc, data) => {
-    const { title, headers, category, id } = data;
+    let { title, headers, category, id } = data;
+    if (useEncode) {
+      headers = headers.map(header =>
+        ({ "name": header.name, "href": encodeURI(header.href) }))
+    }
     acc["/" + data.href] = {
       id,
       title,
@@ -141,7 +145,7 @@ const createLatestManualToc = () => {
 
   const FILE_ORDER = Object.values(sidebarJson).reduce((acc, items) => {
     return acc.concat(items)
-  },[]);
+  }, []);
 
   const files = glob.sync(`${MD_DIR}/*.?(js|md?(x))`);
   const ordered = orderFiles(files, FILE_ORDER);
@@ -161,13 +165,13 @@ const createLatestManualCnToc = () => {
 
   const FILE_ORDER = Object.values(sidebarJson).reduce((acc, items) => {
     return acc.concat(items)
-  },[]);
+  }, []);
 
   const files = glob.sync(`${MD_DIR}/*.?(js|md?(x))`);
   const ordered = orderFiles(files, FILE_ORDER);
 
   const result = ordered.map((filepath) => processFile(filepath, sidebarJson));
-  const toc = createTOC(result);
+  const toc = createTOC(result, true);
 
   fs.writeFileSync(TARGET_FILE, JSON.stringify(toc), "utf8");
 };
@@ -192,7 +196,7 @@ const createV900ManualToc = () => {
 
   const FILE_ORDER = Object.values(sidebarJson).reduce((acc, items) => {
     return acc.concat(items)
-  },[]);
+  }, []);
 
   const files = glob.sync(`${MD_DIR}/*.?(js|md?(x))`);
   const ordered = orderFiles(files, FILE_ORDER);
@@ -212,7 +216,7 @@ const createV800ManualToc = () => {
 
   const FILE_ORDER = Object.values(sidebarJson).reduce((acc, items) => {
     return acc.concat(items)
-  },[]);
+  }, []);
 
   const files = glob.sync(`${MD_DIR}/*.?(js|md?(x))`);
   const ordered = orderFiles(files, FILE_ORDER);
@@ -233,7 +237,7 @@ const createReactToc = () => {
 
   const FILE_ORDER = Object.values(sidebarJson).reduce((acc, items) => {
     return acc.concat(items)
-  },[]);
+  }, []);
 
   const files = glob.sync(`${MD_DIR}/*.md?(x)`);
   const ordered = orderFiles(files, FILE_ORDER);
@@ -253,7 +257,7 @@ const createGenTypeToc = () => {
 
   const FILE_ORDER = Object.values(sidebarJson).reduce((acc, items) => {
     return acc.concat(items)
-  },[]);
+  }, []);
 
   const files = glob.sync(`${MD_DIR}/*.?(js|md?(x))`);
   const ordered = orderFiles(files, FILE_ORDER);
@@ -273,7 +277,7 @@ const createCommunityToc = () => {
 
   const FILE_ORDER = Object.values(sidebarJson).reduce((acc, items) => {
     return acc.concat(items)
-  },[]);
+  }, []);
 
   const files = glob.sync(`${MD_DIR}/*.?(js|md?(x))`);
   const ordered = orderFiles(files, FILE_ORDER);

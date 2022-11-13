@@ -4,11 +4,14 @@ module Intro = {
     <section className="flex justify-center">
       <div className="max-w-1060 flex flex-col items-center px-5 sm:px-8 lg:box-content">
         <h1 className="hl-title text-center max-w-[53rem]">
-          {React.string("来自未来的快速、简单且完全类型化的 JavaScript")}
+          {React.string("来自未来的快速、简单、")}
+          <br />
+          {React.string("完全类型化的 JavaScript")}
         </h1>
         <h2 className="body-lg text-center text-gray-60 my-4 max-w-[40rem]">
-          {React.string(`ReScript 是一门健壮的类型化语言，可以编译成高效易读的 JavaScript。
-          它的编译工具链快如闪电，可轻松应对任意规模的代码库。`)}
+          {React.string(`ReScript 是一门健壮的类型化语言，可以编译成高效易读的 JavaScript。`)}
+          <br />
+          {React.string(`它的编译工具链快如闪电，可轻松应对任意规模的代码库。`)}
         </h2>
         <div className="mt-4 mb-2">
           <Next.Link href="/docs-cn/manual/latest/installation" passHref={true}>
@@ -258,9 +261,11 @@ module QuickInstall = {
           <p
             className="relative z-1 space-y-12 text-gray-80 font-semibold text-24 md:text-32 leading-2">
             {React.string(`在强大的类型化语言中`)}
+            <br />
             <span className="bg-fire-5 rounded-lg border border-fire-10 p-1 ">
               {React.string(`发挥 JavaScript 的全部力量`)}
             </span>
+            <br />
             {React.string(`而不必担心 \`any\` 类型。`)}
           </p>
         </div>
@@ -368,7 +373,7 @@ module MainUSP = {
         <p>
           {React.string(`ReScript 对任意规模代码库的反馈迭代速度和一致性十分关注。
           你可以重构代码、拉取复杂的更改，或者随心所欲地切换到特性分支。
-          这里没有迟缓的 CI 构建、无效的缓存、错误的类型提示或耗内存的语言服务器来拖累你。`)}
+          这里没有迟缓的 CI 构建、无效的缓存、错误的类型提示或消耗内存的语言服务器来拖累你。`)}
         </p>
         <p className="mt-6">
           <Next.Link href="/docs-cn/manual/latest/build-performance" passHref={true}>
@@ -402,7 +407,8 @@ module MainUSP = {
       caption="无缝集成"
       title={<>
         <span className="text-orange-dark"> {React.string("你所熟悉的 JS 生态")} </span>
-        {React.string("\n就在你的指尖")}
+        <br />
+        {React.string("就在你的指尖")}
       </>}
       media={<video
         className="rounded-lg" controls={true} poster={"/static/lp/interop-example-preview.jpg"}>

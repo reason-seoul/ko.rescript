@@ -24,9 +24,9 @@ function LandingPageLayout$Intro(Props) {
                   className: "max-w-1060 flex flex-col items-center px-5 sm:px-8 lg:box-content"
                 }, React.createElement("h1", {
                       className: "hl-title text-center max-w-[53rem]"
-                    }, "来自未来的快速、简单且完全类型化的 JavaScript"), React.createElement("h2", {
+                    }, "来自未来的快速、简单、", React.createElement("br", undefined), "完全类型化的 JavaScript"), React.createElement("h2", {
                       className: "body-lg text-center text-gray-60 my-4 max-w-[40rem]"
-                    }, "ReScript 是一门健壮的类型化语言，可以编译成高效易读的 JavaScript。\n          它的的编译工具链快如闪电，可轻松应对任意规模的代码库。"), React.createElement("div", {
+                    }, "ReScript 是一门健壮的类型化语言，可以编译成高效易读的 JavaScript。", React.createElement("br", undefined), "它的编译工具链快如闪电，可轻松应对任意规模的代码库。"), React.createElement("div", {
                       className: "mt-4 mb-2"
                     }, React.createElement(Next.Link.make, {
                           href: "/docs-cn/manual/latest/installation",
@@ -208,9 +208,9 @@ function LandingPageLayout$QuickInstall(Props) {
                       className: "relative max-w-[28rem]"
                     }, React.createElement("p", {
                           className: "relative z-1 space-y-12 text-gray-80 font-semibold text-24 md:text-32 leading-2"
-                        }, "在强大的类型化语言中", React.createElement("span", {
+                        }, "在强大的类型化语言中", React.createElement("br", undefined), React.createElement("span", {
                               className: "bg-fire-5 rounded-lg border border-fire-10 p-1 "
-                            }, "发挥 JavaScript 的全部力量"), "而不必担心 \`any\` 类型。")), React.createElement("div", {
+                            }, "发挥 JavaScript 的全部力量"), React.createElement("br", undefined), "而不必担心 \`any\` 类型。")), React.createElement("div", {
                       className: "w-full mt-12 md:flex flex-col lg:flex-row md:justify-between "
                     }, React.createElement("p", {
                           className: "relative z-1 text-gray-80 font-semibold text-24 md:text-32 leading-2 max-w-[32rem]"
@@ -289,7 +289,7 @@ var item1 = React.createElement(LandingPageLayout$MainUSP$Item, {
                 src: "https://assets-17077.kxcdn.com/videos/fast-build-3.mp4",
                 type: "video/mp4"
               })),
-      paragraph: React.createElement(React.Fragment, undefined, React.createElement("p", undefined, "ReScript 对任意规模代码库的反馈迭代速度和一致性十分关注。\n          你可以重构代码、拉取复杂的更改，或者随心所欲地切换到特性分支。\n          这里没有迟缓的 CI 构建、无效的缓存、错误的类型提示或耗内存的语言服务器来拖累你。"), React.createElement("p", {
+      paragraph: React.createElement(React.Fragment, undefined, React.createElement("p", undefined, "ReScript 对任意规模代码库的反馈迭代速度和一致性十分关注。\n          你可以重构代码、拉取复杂的更改，或者随心所欲地切换到特性分支。\n          这里没有迟缓的 CI 构建、无效的缓存、错误的类型提示或消耗内存的语言服务器来拖累你。"), React.createElement("p", {
                 className: "mt-6"
               }, React.createElement(Next.Link.make, {
                     href: "/docs-cn/manual/latest/build-performance",
@@ -323,7 +323,7 @@ var item3 = React.createElement(LandingPageLayout$MainUSP$Item, {
       caption: "无缝集成",
       title: React.createElement(React.Fragment, undefined, React.createElement("span", {
                 className: "text-orange-dark"
-              }, "你所熟悉的 JS 生态"), "\n就在你的指尖"),
+              }, "你所熟悉的 JS 生态"), React.createElement("br", undefined), "就在你的指尖"),
       media: React.createElement("video", {
             className: "rounded-lg",
             controls: true,

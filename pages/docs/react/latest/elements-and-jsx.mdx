@@ -1,30 +1,37 @@
 ---
-title: Elements & JSX
-description: "Basic concepts for React elements and how to use them in JSX"
+title: 元素和JSX
+description: "React元素的基本概念以及如何在JSX中使用它们"
 canonical: "/docs/react/latest/elements-and-jsx"
 ---
 
-# Elements & JSX
-
+<!-- # Elements & JSX -->
+# 元素和JSX
 <Intro>
 
-Elements are the smallest building blocks of React apps. This page will explain how to handle `React.element`s in your React app with our dedicated JSX syntax.
+<!-- Elements are the smallest building blocks of React apps. This page will explain how to handle `React.element`s in your React app with our dedicated JSX syntax. -->
+React元素是React应用的最小构件。本页将解释如何使用我们专用的 JSX 语法在 React 应用程序中处理 `React.element`。
 
 </Intro>
 
-> **Note:** This page assumes your `bsconfig.json` to be set to `"reason": { "react-jsx": 3 }`, otherwise your JSX will not be transformed to its React specific form. 
+<!-- > **Note:** This page assumes your `bsconfig.json` to be set to `"reason": { "react-jsx": 3 }`, otherwise your JSX will not be transformed to its React specific form.  -->
 
-## Element Basics
+> **注意：** 本页假设你的 `bsconfig.json` 拥有配置 `"reason": { "react-jsx": 3 }`，否则你的JSX将不会转换为它的React特定形式。
 
-Let's start out by creating our first React element.
+<!-- ## Element Basics -->
+## 元素基础
+
+<!-- Let's start out by creating our first React element. -->
+让我们创建第一个React元素。
 
 ```res
 let element = <h1> {React.string("Hello World")} </h1>
 ```
 
-The binding `element` and the expression `{React.string("Hello World")}` are both of type `React.element`, the fundamental type for representing React elements within a React application. An element describes what you see on the screen whenever you render your application to the DOM.
+<!-- The binding `element` and the expression `{React.string("Hello World")}` are both of type `React.element`, the fundamental type for representing React elements within a React application. An element describes what you see on the screen whenever you render your application to the DOM. -->
+绑定 `element` 和表达式 `{React.string("Hello World")}` 都是 `React.element`类型，这是在React应用中表示React元素的基本类型。元素描述了当你将应用渲染到DOM时在屏幕上看到的内容。
 
-Let's say you want to create a function that handles another React element, such as `children`, you can annotate it as `React.element`:
+<!-- Let's say you want to create a function that handles another React element, such as `children`, you can annotate it as `React.element`: -->
+假设您想创建一个函数来处理另一个 React元素，比如 `children` ，你可以将其标记为 `React.element` ：
 
 ```res
 let wrapChildren = (children: React.element) => {
@@ -37,13 +44,17 @@ let wrapChildren = (children: React.element) => {
 wrapChildren(<div> {React.string("Let's use React with ReScript")} </div>)
 ```
 
-Understanding the definition of a `React.element` is essential since it is heavily used within the React APIs, such as `ReactDOM.render(element, ...)`, etc. Be aware that JSX doesn't do any automatic `string` to `React.element` conversion for you (ReScript forces explicit type conversion). For example `<div> Hello World </div>` will not type-check (which is actually a good thing because it's also a huge source for subtle bugs!), you need to convert your `"Hello World"` with the `React.string` function first.
+<!-- Understanding the definition of a `React.element` is essential since it is heavily used within the React APIs, such as `ReactDOM.render(element, ...)`, etc. Be aware that JSX doesn't do any automatic `string` to `React.element` conversion for you (ReScript forces explicit type conversion). For example `<div> Hello World </div>` will not type-check (which is actually a good thing because it's also a huge source for subtle bugs!), you need to convert your `"Hello World"` with the `React.string` function first. -->
+理解 `React.element` 的定义非常重要，因为它在React API中被大量使用，例如 `ReactDOM.render(element, ...)` 等。请注意，JSX不会自动将 `string` 转换为 `React.element` （ReScript强制要求显式类型转换）。例如， `<div> Hello World </div>` 将不会进行类型检查（这实际上是好事，因为它是细微BUG的一个巨大来源！），你需要使用 `React.string` 函数转换 `"Hello World"`。
 
-Fortunately our React bindings bring all necessary functionality to represent all relevant data types as `React.element`s.
+<!-- Fortunately our React bindings bring all necessary functionality to represent all relevant data types as `React.element`s. -->
+幸运的是，我们的 React 绑定拥有所有必要的功能，用于将所有相关的数据类型表示为 `React.element` 。
 
-## Using Elements within JSX
+<!-- ## Using Elements within JSX -->
+## 在JSX中使用元素
 
-You can compose elements into more complex structures by using JSX:
+<!-- You can compose elements into more complex structures by using JSX: -->
+使用JSX，你能将元素组合成更复杂的结构：
 
 ```res
 let greeting = React.string("Hello ")
@@ -54,15 +65,20 @@ let name = React.string("Stranger");
 let element = <div className="myElement"> greeting name </div>
 ```
 
-JSX is the main way to express your React application as a tree of elements.
+<!-- JSX is the main way to express your React application as a tree of elements. -->
+JSX是将你的React应用表示为元素树的主要方式。
 
-Sometimes, when doing a lot of interop with existing ReactJS codebases, you'll find yourself in a situation where you can't use JSX syntax due to syntactic restrictions. Check out the [Escape Hatches](#escape-hatches) chapter later on for workarounds.
+<!-- Sometimes, when doing a lot of interop with existing ReactJS codebases, you'll find yourself in a situation where you can't use JSX syntax due to syntactic restrictions. Check out the [Escape Hatches](#escape-hatches) chapter later on for workarounds. -->
+有时，当你与现有的ReactJS代码库进行大量互操作时，你会遇到因为语法限制而不能使用JSX语法的情况。查看[逃生舱口](#escape-hatches)章节来找到解决办法。
 
-## Creating Elements
+<!-- ## Creating Elements -->
+## 创建元素
 
-### Creating Elements from `string`, `int`, `float`, `array`
+<!-- ### Creating Elements from `string`, `int`, `float`, `array` -->
+### 从 `string`， `int`， `float`， `array` 创建元素
 
-Apart from using JSX to create our React elements or React components, the `React` module offers various functions to create elements from primitive data types:
+<!-- Apart from using JSX to create our React elements or React components, the `React` module offers various functions to create elements from primitive data types: -->
+除了使用JSX来创建我们的React元素或React组件，`React` 模块还提供了各种函数来从原始数据类型创建元素:
 
 ```res
 React.string("Hello") // new element representing "Hello"
@@ -72,7 +88,8 @@ React.int(1) // new element representing "1"
 React.float(1.0) // new element representing "1.0"
 ```
 
-It also offers `React.array` to represent multiple elements as one single element (useful for rendering a list of data, or passing children):
+<!-- It also offers `React.array` to represent multiple elements as one single element (useful for rendering a list of data, or passing children): -->
+它还提供了 `React.array` 来将多个元素表示为单个元素（对于渲染数据列表和传递子元素很有用）：
 
 ```res
 let element = React.array([
@@ -82,11 +99,14 @@ let element = React.array([
 ])
 ```
 
-**Note:** We don't offer a `React.list` function because a `list` value would impose runtime overhead. ReScript cares about clean, idiomatic JS output. If you want to transform a `list` of elements to a single React element, combine the output of `Belt.List.toArray` with `React.array` instead.
+<!-- **Note:** We don't offer a `React.list` function because a `list` value would impose runtime overhead. ReScript cares about clean, idiomatic JS output. If you want to transform a `list` of elements to a single React element, combine the output of `Belt.List.toArray` with `React.array` instead. -->
+**注意：** 我们不提供 `React.list` 函数，因为 `list` 值会增加运行时开销。ReScript关注干净、惯用的JS输出。如果你想把一个元素 `list` 转换成单个React元素，使用 `Belt.List.toArray` 转换为数组后再转换为 `React.array`。
 
-### Creating Null Elements
+<!-- ### Creating Null Elements -->
+### 创建Null元素
 
-ReScript doesn't allow `element || null` constraints due to it's strongly typed nature. Whenever you are expressing conditionals where a value might, or might not be rendered, you will need the `React.null` constant to represent *Nothingness*:
+<!-- ReScript doesn't allow `element || null` constraints due to it's strongly typed nature. Whenever you are expressing conditionals where a value might, or might not be rendered, you will need the `React.null` constant to represent *Nothingness*: -->
+由于ReScript的强类型特性，它不允许 `element || null` 约束。当你要表达一个值可能被渲染或可能不被渲染，你需要 `React.null` 常量来表示 *Null*
 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
@@ -111,15 +131,20 @@ React.createElement("div", undefined, element);
 
 </CodeTab>
 
-## Escape Hatches
+<!-- ## Escape Hatches -->
+## 逃生舱口
 
-**Note:** This chapter features low level APIs that are used by JSX itself, and should only be used whenever you hit certain JSX syntax limitations. More infos on the JSX internals can be found in our [Beyond JSX](./beyond-jsx) section.
+<!-- **Note:** This chapter features low level APIs that are used by JSX itself, and should only be used whenever you hit certain JSX syntax limitations. More infos on the JSX internals can be found in our [Beyond JSX](./beyond-jsx) section. -->
+**注意：** 本章节介绍了JSX使用的底层API，只有在遇到某些JSX语法限制时才应使用。关于JSX内部实现的更多信息可参考[Beyond JSX](./beyond-jsx)。
 
-### Creating Elements from Component Functions
+<!-- ### Creating Elements from Component Functions -->
+### 用组件函数创建元素
 
-**Note:** Details on components and props will be described in the [next chapter](./components-and-props).
+<!-- **Note:** Details on components and props will be described in the [next chapter](./components-and-props). -->
+**注意：** 组件和属性的细节会在[下一章](./components-and-props)说明。
 
-Sometimes it's necessary to pass around component functions to have more control over `React.element` creation. Use the `React.createElement` function to instantiate your elements:
+<!-- Sometimes it's necessary to pass around component functions to have more control over `React.element` creation. Use the `React.createElement` function to instantiate your elements: -->
+有时候需要传递组件函数来更好地控制 `React.element` 的创建。使用 `React.createElement` 函数来实例化你的元素：
 
 ```res
 type props = {"name": string};
@@ -131,7 +156,8 @@ let render = (myComp: props => React.element) => {
 }
 ```
 
-This feature is often used when interacting with existing JS / ReactJS code. In pure ReScript React applications, you would rather pass a function that does the rendering for you (also called a "render prop"):
+<!-- This feature is often used when interacting with existing JS / ReactJS code. In pure ReScript React applications, you would rather pass a function that does the rendering for you (also called a "render prop"): -->
+这个特性通常在与现有的JS/ReactJS代码交互时使用。在纯ReScript React应用中，你会传递一个渲染函数（也叫“渲染属性”）：
 
 ```res
 let render = (renderMyComp: (~name: string) => React.element) => {
@@ -139,9 +165,11 @@ let render = (renderMyComp: (~name: string) => React.element) => {
 }
 ```
 
-#### Pass Variadic Children
+<!-- #### Pass Variadic Children -->
+#### 传递子元素变量
 
-There is also a `React.createElementVariadic` function, which takes an array of children as a third parameter:
+<!-- There is also a `React.createElementVariadic` function, which takes an array of children as a third parameter: -->
+还有一个 `React.createElementVariadic` 函数，它接受一个子元素数组作为第三个参数：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -173,28 +201,38 @@ function render(article) {
 
 </CodeTab>
 
-**Note:** Here we are passing a prop `"children": React.null` to satisfy the type checker. React will ignore the children prop in favor of the children array.
+<!-- **Note:** Here we are passing a prop `"children": React.null` to satisfy the type checker. React will ignore the children prop in favor of the children array. -->
+**注意：** 这里我们传递了一个属性 `"children": React.null` 来满足类型检查。React会忽略children属性而不是children数组。
 
-This function is mostly used by our JSX transformations, so usually you want to use `React.createElement` and pass a children prop instead.
+<!-- This function is mostly used by our JSX transformations, so usually you want to use `React.createElement` and pass a children prop instead. -->
+这个函数主要被我们的JSX转换使用，通常你需要使用 `React.createElement` 并传递一个children属性。
 
-### Creating DOM Elements
+
+<!-- ### Creating DOM Elements -->
+### 创建DOM元素
 
 
-To create DOM elements (`<div>`, `<span>`, etc.), use `ReactDOMRe.createDOMElementVariadic`:
+<!-- To create DOM elements (`<div>`, `<span>`, etc.), use `ReactDOMRe.createDOMElementVariadic`: -->
+要创建DOM元素（ `<div>`，`<span>` 等），使用 `ReactDOMRe.createDOMElementVariadic` ：
 
 ```res
 ReactDOMRe.createDOMElementVariadic("div", ~props=ReactDOM.domProps(~className="card", ()), []);
 ```
 
-The function above requires the `ReactDOM.domProps` constructor function, so ReScript can make sure that we are only passing valid dom props. You can find an exhaustive list of all available props in the [ReactDOM](https://github.com/reasonml/reason-react/blob/master/src/ReactDOM.re#L61) module.
+<!-- The function above requires the `ReactDOM.domProps` constructor function, so ReScript can make sure that we are only passing valid dom props. You can find an exhaustive list of all available props in the [ReactDOM](https://github.com/reasonml/reason-react/blob/master/src/ReactDOM.re#L61) module. -->
+上面的函数需要 `ReactDOM.domProps` 构造函数，这样ReScript可以确保我们只传递有效的DOM属性。你可以在[ReactDOM](https://github.com/reasonml/reason-react/blob/master/src/ReactDOM.re#L61)模块中找到所有可用属性的列表。
 
-**Warning:** The `ReactDOMRe` module will be removed in the next major `rescript-react` release, so use sparsely!
+<!-- **Warning:** The `ReactDOMRe` module will be removed in the next major `rescript-react` release, so use sparsely! -->
+**警告：** `ReactDOMRe`模块会在下个主要的 `rescript-react` 版本中被移除，所以尽量少用！
 
-### Cloning Elements
+<!-- ### Cloning Elements -->
+### 复制元素
 
-**Note:** This is an escape hatch feature and will only be useful for interoping with existing JS code / libraries.
+<!-- **Note:** This is an escape hatch feature and will only be useful for interoping with existing JS code / libraries. -->
+**注意：** 这是一个逃生舱口特性，只有在与现有的JS代码/库进行交互时才有用。
 
-Sometimes it's required to clone an existing element to set, overwrite or add prop values to a new instance, or if you want to set invalid prop names such as `data-name`. You can use `React.cloneElement` for that: 
+<!-- Sometimes it's required to clone an existing element to set, overwrite or add prop values to a new instance, or if you want to set invalid prop names such as `data-name`. You can use `React.cloneElement` for that:  -->
+有时需要复制一个现有元素，并对新实例设置、覆盖或添加属性值，或者你想要设置无效的属性名，例如 `data-name`。你可以使用 `React.cloneElement`：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -217,6 +255,8 @@ React.cloneElement(original, {
 
 </CodeTab>
 
-The feature mentioned above could also replicate `props spreading`, a practise commonly used in ReactJS codebases, but we strongly discourage the usage due to its unsafe nature and its incorrectness (e.g. adding undefined extra props to a component doesn't make sense, and causes hard to find bugs).
+<!-- The feature mentioned above could also replicate `props spreading`, a practise commonly used in ReactJS codebases, but we strongly discourage the usage due to its unsafe nature and its incorrectness (e.g. adding undefined extra props to a component doesn't make sense, and causes hard to find bugs). -->
+上面提到的特性也可以模仿 `属性传播`，一个在ReactJS代码库中常见的用法，但因为它的不安全性和不正确性，我们非常不推荐你这样做（例如，给组件添加未定义的额外属性是没有意义的，并导致很难找到BUG）。
 
-In ReScript, we rather pass down required props explicitly to leaf components or use a renderProp instead. We introduced [JSX punning](/docs/manual/latest/jsx#punning) syntax to make the process of passing down props more convenient.
+<!-- In ReScript, we rather pass down required props explicitly to leaf components or use a renderProp instead. We introduced [JSX punning](/docs/manual/latest/jsx#punning) syntax to make the process of passing down props more convenient. -->
+在ReScript中，我们会将需要的属性显式传递给叶子组件，或者使用renderProp。我们引入了[JSX双关](/docs/manual/latest/jsx#punning)语法来让属性传递过程更便捷。

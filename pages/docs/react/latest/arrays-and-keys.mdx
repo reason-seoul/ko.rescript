@@ -1,20 +1,24 @@
 ---
-title: Arrays and Keys
-description: "Rendering arrays and handling keys in ReScript and React"
+title: 数组 & Keys
+description: "在 Rescript 和 React 中渲染数组和操作keys"
 canonical: "/docs/react/latest/arrays-and-keys"
 ---
 
-# Arrays and Keys
+<!-- # Arrays and Keys -->
+# 数组 & Keys
 
 <Intro>
 
-Whenever we are transforming data into an array of elements and put it in our React tree, we need to make sure to give every element an unique identifier to help React distinguish elements for each render. This page will explain the `key` attribute and how to apply it whenever we need to map data to `React.element`s.
+<!-- Whenever we are transforming data into an array of elements and put it in our React tree, we need to make sure to give every element an unique identifier to help React distinguish elements for each render. This page will explain the `key` attribute and how to apply it whenever we need to map data to `React.element`s. -->
+当我们将数据转换为 React 元素数组并插入我们的 React 元素树时，确保为每个元素提供一个唯一标识符，以帮助 React 区分每个渲染的元素。本节将说明 `key` 属性的概念，以及将数据映射到 `React.element` 时如何应用它。
 
 </Intro>
 
-## Keys & Rendering Arrays
+<!-- ## Keys & Rendering Arrays -->
+## Keys & 渲染数组
 
-Keys help React identify which elements have been changed, added, or removed throughout each render. Keys should be given to elements inside the array to give the elements a stable identity:
+<!-- Keys help React identify which elements have been changed, added, or removed throughout each render. Keys should be given to elements inside the array to give the elements a stable identity: -->
+Keys 在每次渲染时帮助 React 识别被修改、新增或删除的元素。我们应该为数组中的 React 元素提供 Key，从而为元素提供稳定的标识：
 
 ```res
 let numbers = [1, 2, 3, 4, 5];
@@ -24,7 +28,8 @@ let items = Belt.Array.map(numbers, (number) => {
 })
 ```
 
-The best way to pick a key is to use a string that uniquely identifies a list item among its siblings. Most often you would use IDs from your data as keys:
+<!-- The best way to pick a key is to use a string that uniquely identifies a list item among its siblings. Most often you would use IDs from your data as keys: -->
+选择 Key 的最佳方法是使用一个字符串，能够在同级项目中唯一标识一个列表项。通常你会将数据中的 ID 作为 Key：
 
 ```res
 type todo = {id: string, text: string}
@@ -39,7 +44,8 @@ let items = Belt.Array.map(todos, todo => {
 })
 ```
 
-If you don’t have stable IDs for rendered items, you may use the item index as a key as a last resort:
+<!-- If you don’t have stable IDs for rendered items, you may use the item index as a key as a last resort: -->
+如果渲染的列表项没有稳定的 ID，最后的手段是将列表项的索引用作 Key：
 
 ```res {1..3}
 let items = Belt.Array.mapWithIndex(todos, (i, todo) => {
@@ -50,9 +56,11 @@ let items = Belt.Array.mapWithIndex(todos, (i, todo) => {
 });
 ```
 
-### Keys Must Only Be Unique Among Siblings
+<!-- ### Keys Must Only Be Unique Among Siblings -->
+### Keys 需要在同级的项目中唯一
 
-Keys used within arrays should be unique among their siblings. However they don’t need to be globally unique. We can use the same keys when we produce two different arrays:
+<!-- Keys used within arrays should be unique among their siblings. However they don’t need to be globally unique. We can use the same keys when we produce two different arrays: -->
+数组中使用的 Keys 在其同级中应该是唯一的。但是它们不需要全局唯一。当我们生成两个不同的数组时，可以使用相同的 Keys：
 
 ```res {6,10,17,18,25,27}
 type post = {id: string, title: string, content: string}
@@ -95,9 +103,11 @@ let blog = <Blog posts/>
 ```
 
 
-## Rendering `list` Values
+<!-- ## Rendering `list` Values -->
+## 渲染 `list` 值
 
-In case you ever want to render a `list` of items, you can do something like this:
+<!-- In case you ever want to render a `list` of items, you can do something like this: -->
+如果你想要渲染项目的 `list`，你可以这样做：
 
 ```res
 type todo = {id: string, text: string}
@@ -121,7 +131,9 @@ let make = () => {
 
 ```
 
-We use `Belt.List.toArray` to convert our list to an array before creating our `array<React.element>`. Please note that using `list` has performance impact due to extra conversion costs.
+<!-- We use `Belt.List.toArray` to convert our list to an array before creating our `array<React.element>`. Please note that using `list` has performance impact due to extra conversion costs. -->
+创建 `array<React.element>` 之前，使用 `Belt.List.toArray` 转换列表到数组。请注意，由于额外的转换成本，使用 `list` 会影响性能。
 
-99% of the time you'll want to use arrays (seamless interop, faster JS code), but in some cases it might make sense to use a `list` to leverage advanced pattern matching features etc.
+<!-- 99% of the time you'll want to use arrays (seamless interop, faster JS code), but in some cases it might make sense to use a `list` to leverage advanced pattern matching features etc. -->
+99%的情况下你会使用数组（无缝互操作，更快的 JS 代码），但是在某些情况下，可以使用 `list` 来利用模式匹配等特性。
 

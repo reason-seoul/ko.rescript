@@ -1,18 +1,21 @@
 ---
 title: useState Hook
-description: "Details about the useState React hook in ReScript"
+description: "关于 ReScript 中 useState React Hook 的细节"
 canonical: "/docs/react/latest/hooks-state"
 ---
 
+<!-- # useState -->
 # useState
 
 <Intro>
 
-`React.useState` returns a stateful value, and a function to update it.
+<!-- `React.useState` returns a stateful value, and a function to update it. -->
+`React.useState` 返回一个有状态的值，和一个更新它的函数。
 
 </Intro>
 
-## Usage
+<!-- ## Usage -->
+## 用法
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -33,13 +36,17 @@ var setState = match[1];
 </CodeTab>
 
 
-During the initial render, the returned state `state` is the same as the value passed as the first argument (initialState).
+<!-- During the initial render, the returned state `state` is the same as the value passed as the first argument (initialState). -->
+初始渲染过程中，被返回的 `state` 和作为第一个参数传给 `React.useState` 的 initialState 一样。
 
-The `setState` function can be passed down to other components as well, which is useful for e.g. setting the state of a parent component by its children.
+<!-- The `setState` function can be passed down to other components as well, which is useful for e.g. setting the state of a parent component by its children. -->
+`setState` 函数也可以传给其他组件，对于通过子组件设置父组件的 state 非常有用。
 
-## Examples
+<!-- ## Examples -->
+## 示例
 
-### Using State for a Text Input
+<!-- ### Using State for a Text Input -->
+### 为文本输入添加 State
 
 ```res
 @react.component
@@ -58,9 +65,11 @@ let make = () => {
 };
 ```
 
-### Passing `setState` to a Child Component
+<!-- ### Passing `setState` to a Child Component -->
+### 将 `setState` 传给子组件
 
-In this example, we are creating a `ThemeContainer` component that manages a `darkmode` boolean state and passes the `setDarkmode` function to a `ControlPanel` component to trigger the state changes.
+<!-- In this example, we are creating a `ThemeContainer` component that manages a `darkmode` boolean state and passes the `setDarkmode` function to a `ControlPanel` component to trigger the state changes. -->
+这个例子中，我们正在创建 `ThemeContainer` 组件，用于管理 `darkmode` state，以及将 `setDarkmode` 函数传给 `ControlPanel` 组件来触发 state 变更。
 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
@@ -131,12 +140,14 @@ function ThemeContainer(Props) {
 
 </CodeTab>
 
-Note that whenever `setDarkmode` is returning a new value (e.g. switching from `true` -> `false`), it will cause a re-render for `ThemeContainer`'s `className` and the toggle text of its nested `ControlPanel`.
+<!-- Note that whenever `setDarkmode` is returning a new value (e.g. switching from `true` -> `false`), it will cause a re-render for `ThemeContainer`'s `className` and the toggle text of its nested `ControlPanel`. -->
+请注意当 `setDarkmode` 返回一个新值时（例如 `true` 切换到 `false`），将会导致 `ThemeContainer` 的 `className` 进行重渲染，以及嵌套的 `ControlPanel` 的文本切换。
 
+<!-- ## Uncurried Version -->
+## Uncurried 版本
 
-## Uncurried Version
-
-For cleaner JS output, you can use `React.Uncurried.useState` instead:
+<!-- For cleaner JS output, you can use `React.Uncurried.useState` instead: -->
+为了更干净的 JS 输出，可以使用 `React.Uncurried.useState`：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

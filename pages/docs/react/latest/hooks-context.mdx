@@ -1,32 +1,38 @@
 ---
 title: useContext Hook
-description: "Details about the useContext React hook in ReScript"
+description: "关于 ReScript 中 useContext React Hook 的细节"
 canonical: "/docs/react/latest/hooks-context"
 ---
 
+<!-- # useContext -->
 # useContext
 
 <Intro>
 
-Context provides a way to pass data through the component tree without having to pass props down manually at every level. The `useContext` hooks gives access to such Context values.
+<!-- Context provides a way to pass data through the component tree without having to pass props down manually at every level. The `useContext` hooks gives access to such Context values. -->
+Context 提供了一个无需为每层组件手动添加 props，就能在组件树间进行数据传递的方法。
+`useContext` Hook 提供了访问 Context 的方法。
 
 </Intro>
 
-> **Note:** All the details and rationale on React's context feature can be found in [here](./context).
+<!-- > **Note:** All the details and rationale on React's context feature can be found in [here](./context). -->
+> **注意:** React Context 的所有细节和原理参见 [Context](./context)。
 
-## Usage
+<!-- ## Usage -->
+## 用法
 
 ```res
 let value = React.useContext(myContext)
 ```
 
-Accepts a `React.Context.t` (the value returned from `React.createContext`) and returns the current context value for that context. The current context value is determined by the value prop of the nearest `<MyContext.Provider>` above the calling component in the tree.
+<!-- Accepts a `React.Context.t` (the value returned from `React.createContext`) and returns the current context value for that context. The current context value is determined by the value prop of the nearest `<MyContext.Provider>` above the calling component in the tree. -->
+接收一个 `React.Context.t` 参数（从 `React.createContext` 返回的值），然后返回该 Context 的当前值。Context 的当前值由组件树中调用组件的上方最近的 `<MyContext.Provider>` 的 value prop 决定。
 
+<!-- ## Examples -->
+## 示例
 
-## Examples
-
-### A Simple ThemeProvider
-
+<!-- ### A Simple ThemeProvider -->
+### 简单的 ThemeProvider
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

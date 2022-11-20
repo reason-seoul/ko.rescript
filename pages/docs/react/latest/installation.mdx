@@ -1,23 +1,32 @@
 ---
-title: Installation
-description: "Installation and Setup"
+title: Installation | 安装
+description: "Installation and Setup | 安装并设置"
 canonical: "/docs/react/latest/installation"
 ---
 
-# Installation
+# Installation | 安装
 
-**Requirements:**
+<!-- **Requirements:** -->
 
-- `rescript@9.1.2` or later (alternatively for older codebases: `bs-platform@8.3 or later`)
-- `react@16.8.1` or later
+相关要求:
 
-Add following dependency to your ReScript project (in case you don't have any project yet, check out the [installation instructions](/docs/manual/latest/installation) in the manual):
+<!-- - `rescript@9.1.2` or later (alternatively for older codebases: `bs-platform@8.3 or later`)
+- `react@16.8.1` or later -->
+
+- `rescript@9.1.2` 或之后（或者更老的代码库`bs-platform@8.3 or later`）
+- `react@16.8.1` 或之后
+
+<!-- Add following dependency to your ReScript project (in case you don't have any project yet, check out the [installation instructions](/docs/manual/latest/installation) in the manual): -->
+
+在ReScript项目中添加下面的依赖（如果你还没有项目，可以查看此[installation instructions](/docs/manual/latest/installation)手册
 
 ```
 npm install @rescript/react
 ```
 
-Then add the following setting to your existing `bsconfig.json`:
+<!-- Then add the following setting to your existing `bsconfig.json`: -->
+
+之后，在已存在的`bsconfig.json`文件中添加一下配置项：
 
 ```json
 {
@@ -26,7 +35,9 @@ Then add the following setting to your existing `bsconfig.json`:
 }
 ```
 
-To test your setup, create a new `.res` file in your source directory and add the following code:
+<!-- To test your setup, create a new `.res` file in your source directory and add the following code: -->
+
+为了测试前面的配置，请在源码目录中创建一个新的`.res`文件，然后添加下面的代码：
 
 ```res
 // src/Test.res
@@ -36,15 +47,26 @@ let make = () => {
 }
 ```
 
-Now run `npx rescript` and you should see a successful build.
+<!-- Now run `npx rescript` and you should see a successful build. -->
 
-## Exposed Modules
+现在，运行命令`npx rescript`就可以成功的构建项目了。
 
-After a successful installation, `@rescript/react` will make following modules available in your project's global scope:
+## Exposed Modules | 暴露模块
 
-- `React`: Bindings to React
+<!-- After a successful installation, `@rescript/react` will make following modules available in your project's global scope: -->
+
+成功安装之后，`@rescript/react` 可以让你在项目全局作用域中，使用下面这些模块：
+
+<!-- - `React`: Bindings to React
 - `ReactDOM`: Bindings to the ReactDOM
 - `ReactDOMServer`: Bindings to the ReactDOMServer
 - `ReactEvent`: Bindings to React's synthetic events
 - `ReactDOMStyle`: Bindings to the inline style API
-- `RescriptReactRouter`: A simple, yet fully featured router with minimal memory allocations
+- `RescriptReactRouter`: A simple, yet fully featured router with minimal memory allocations -->
+
+- `React`: React 绑定
+- `ReactDOM`: ReactDom 绑定
+- `ReactDOMServer`: ReactDOMServer 绑定
+- `ReactEvent`: React的合成事件 绑定
+- `ReactDOMStyle`: 内联样式API 绑定
+- `RescriptReactRouter`: 一个简单的，内存分配小但功能齐全的路由

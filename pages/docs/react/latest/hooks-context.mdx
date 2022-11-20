@@ -26,7 +26,7 @@ let value = React.useContext(myContext)
 ```
 
 <!-- Accepts a `React.Context.t` (the value returned from `React.createContext`) and returns the current context value for that context. The current context value is determined by the value prop of the nearest `<MyContext.Provider>` above the calling component in the tree. -->
-接收一个 `React.Context.t` 参数（从 `React.createContext` 返回的值），然后返回该 Context 的当前值。Context 的当前值由组件树中调用组件的上方最近的 `<MyContext.Provider>` 的 value prop 决定。
+接收一个 `React.Context.t` 参数（从 `React.createContext` 返回的值），然后返回该 Context 的当前值。Context 的当前值由组件树中调用 useContext 的组件上方最近的 `<MyContext.Provider>` 的 value prop 决定。
 
 <!-- ## Examples -->
 ## 示例

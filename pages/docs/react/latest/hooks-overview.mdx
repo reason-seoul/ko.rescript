@@ -18,10 +18,10 @@ Hooks 是在 React 组件中引入和管理状态和副作用的基本机制。
 ## 什么是 Hook ？
 
 <!-- In the previous chapters we learned how React components are just a simple function representing UI based on specific prop values. For an application to be useful we still need a way to manipulate those props interactively either via user input or via requests loading in data from a server. -->
-在前面的章节中，我们学到了 React 组件是一个用于表示 UI 的基于特定 props 值的简单函数。为了使应用具有可用性，我们仍然需要一种通过用户输入或向服务器发送请求来加载数据，从而交互式地操作 props 的方法。
+在前面的章节中，我们学到了 React 组件是基于特定 props 值的简单函数，用于表示 UI。为了使应用更可用，我们需要一种通过用户输入或向服务器发送请求来加载数据，从而交互式地操作 props 的方法。
 
 <!-- That's where Hooks come in. A Hook is a function that allows us to introduce component state and trigger side-effects for different tasks, such as HTTP requests, direct HTML DOM access, querying window sizes, etc.  -->
-这就是 Hooks 的用武之地。Hook 是一种函数，它让我们可以为组件引入状态，并为不同的任务触发副作用，例如 HTTP 请求、直接访问 HTML DOM、获取窗口大小等等。
+这就是 Hook 的用武之地。Hook 是一种函数，它让我们可以为组件引入状态，并为不同的任务触发副作用，例如 HTTP 请求、直接访问 HTML DOM、获取窗口大小等等。
 
 <!-- In other words: **It allows us to "hook into" React features.** -->
 换句话说：**Hook 可以让我们“钩入” React 特性。**
@@ -30,7 +30,7 @@ Hooks 是在 React 组件中引入和管理状态和副作用的基本机制。
 ### 示例: `useState` Hook
 
 <!-- Just for a quick look, here is an example of a `Counter` component that allows a user to click a button and increment an `count` value that will immediately be rendered on each button click:  -->
-让我们看一个例子，下面是一个 `Counter` 组件，它允许用户通过点击按钮来增加 `count` 值，并且新的 `count` 值会在每次按钮点击时被渲染：
+让我们看一个例子，下面是一个 `Counter` 组件，它允许用户通过点击按钮来增加 `count` 值，并且新的 `count` 值会在按钮点击时被渲染：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -74,13 +74,13 @@ function Counter(Props) {
 
 
 <!-- Here we are using the `React.useState` Hook. We call it inside a component function to add some local state to it. React will preserve this state between re-renders. `React.useState` returns a tuple: the current state value (`count`) and a function that lets you update it (`setCount`). You can call this function from an event handler or pass it down to other components to call the function.  -->
-我们使用了 `React.useState` Hook。我们在组件函数中调用它来为组件添加局部状态。React 会在重渲染之间保留这些状态。`React.useState` 返回一个元组，包括当前状态值（`count`） 和一个更新状态值的函数（`setCount`）。你能在处理事件时调用更新函数，或将更新函数传递给其他组件。
+我们使用了 `React.useState` Hook。我们在组件函数中调用它来为组件添加局部状态。React 会在重渲染之间保持这些状态。`React.useState` 返回一个元组，包括当前状态值（`count`） 和一个更新状态值的函数（`setCount`）。你能在处理事件时调用更新函数，或将更新函数传递给其他组件。
 
 <!-- The only argument to `React.useState` is a function that returns the initial state (`_ => 0`). In the example above, it is 0 because our counter starts from zero. Note that your state can be any type you want and `ReScript` will make sure to infer the types for you (only make sure to return an initial state that matches your type). The initial state argument is only used during the first render. -->
 `React.useState` 的唯一参数是一个返回初始状态的函数（`_ => 0`）。在上面的例子中，它是 0 因为我们的计数器从零开始。请注意，状态可以是任何类型，Rescript 会为你进行类型推断（只需要确保你的初始状态和你的类型匹配）。初始状态参数只会在首次渲染时使用。
 
 <!-- This was just a quick example on our first hook usage. We will go into more detail in a dedicated [useState](./hooks-state) section. -->
-这只是 Hook 应用的一个小例子。我们会在独立的 [useState](./hooks-state) 章节中介绍更多细节。
+这只是 Hook 的一个小例子。我们会在独立的 [useState](./hooks-state) 章节中介绍更多细节。
 
 <!-- ## Available Hooks -->
 ## 可用的 Hooks
@@ -118,7 +118,7 @@ function Counter(Props) {
 ## Hooks 规则
 
 <!-- Hooks are just simple functions, but you need to follow _two rules_ when using them. ReScript doesn't enforce those rules within the compiler, so if you really want to enforce correct hooks conventions, you can use an [eslint-plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to check your compiled JS output. -->
-Hooks本质上是些简单函数，但是你需要在使用时遵循 _两条规则_。ReScript 不会在编译器中强制执行这些规则，如果你想要强制执行正确的 Hooks 约定，可以使用 [eslint-plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) 来检查编译的 JS 输出。
+Hooks 本质上是些简单函数，但是你需要在使用时遵循 _两条规则_。ReScript 不会在编译器中强制执行这些规则，如果你想要强制执行正确的 Hooks 约定，可以使用 [eslint-plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) 来检查编译的 JS 输出。
 
 <!-- ### Rule 1) Only Call Hooks at the Top Level -->
 ### 1. 只在最顶层调用 Hook

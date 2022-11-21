@@ -1,10 +1,10 @@
 {
-  "Overview": [
+  "概览": [
     "introduction",
     "installation",
     "migrate-from-reason-react"
   ],
-  "Main Concepts": [
+  "核心概念": [
     "elements-and-jsx",
     "rendering-elements",
     "components-and-props",
@@ -14,7 +14,7 @@
     "styling",
     "router"
   ],
-  "Hooks & State Management": [
+  "Hooks & 状态管理": [
     "hooks-overview",
     "hooks-effect",
     "hooks-state",
@@ -23,7 +23,7 @@
     "hooks-ref",
     "hooks-custom"
   ],
-  "Guides": [
+  "指引": [
     "beyond-jsx",
     "forwarding-refs"
   ]

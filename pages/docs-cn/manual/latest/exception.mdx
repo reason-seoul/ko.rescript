@@ -69,13 +69,13 @@ try {
 Note that the above is just for demonstration purposes; in reality, you'd return an `option<int>` directly from `getItem` and avoid the `try` altogether.
 -->
 
-注意，上面的代码只是为了演示；在现实中，你可以直接从 `getItem` 返回一个 `option<int>`，并完全避免使用 `try`。
+注意，上面的代码只是为了演示；事实上，你可以直接从 `getItem` 返回一个 `option<int>`，并完全避免使用 `try`。
 
 <!--
 You can directly match on exceptions _while_ getting another return value from a function:
 -->
 
-你可以在对异常进行匹配的_同时_从函数获取返回值：
+你可以在匹配异常的 _同时_ 从函数获取返回值：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -148,7 +148,7 @@ throw {
 To distinguish between JavaScript exceptions and ReScript exceptions, ReScript namespaces JS exceptions under the `Js.Exn.Error(payload)` variant. To catch an exception thrown from the JS side:
 -->
 
-为了区分 JavaScript 异常和 ReScript 异常，ReScript 将 JS 异常命名为 `Js.Exn.Error(payload)` 变体。为了捕获一个从 JS 端抛出的异常：
+为了区分 JavaScript 异常和 ReScript 异常，ReScript 将 JS 异常限制在 `Js.Exn.Error(payload)` 变体下。捕获一个从 JS 端抛出的异常：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -188,7 +188,7 @@ try {
 The `obj` here is of type `Js.Exn.t`, intentionally opaque to disallow illegal operations. To operate on `obj`, do like the code above by using the standard library's [`Js.Exn`](api/js/exn) module's helpers.
 -->
 
-`obj` 的类型是 `Js.Exn.t`，ReScript 故意让这个类型不透名来阻止一些非法操作。如果要对 `obj` 进行操作，可以像上面的代码一样使用标准库 [`Js.Exn`](api/js/exn) 模块中的辅助函数。
+`obj` 的类型是 `Js.Exn.t`，ReScript 故意让这个类型不透明来阻止一些非法操作。如果要对 `obj` 进行操作，可以像上面的代码一样使用标准库 [`Js.Exn`](api/js/exn) 模块中的辅助函数。
 
 <!--
 ## Raise a JS Exception
@@ -273,7 +273,7 @@ function myTest() {
 Then, in your JS:
 -->
 
-然后在 JS 中这样：
+然后在 JS 中：
 
 ```js
 // after importing `myTest`...
@@ -289,13 +289,13 @@ try {
 > Note: `RE_EXN_ID` is an internal field for bookkeeping purposes. Don't use it on the JS side. Use the other fields.
 -->
 
-> 注意：`RE_EXN_ID` 是一个用于记账的内部字段。不要在 JS 端使用它。使用其他的字段。
+> 注意：`RE_EXN_ID` 是一个用于“记录”的内部字段。不要在 JS 端使用它。使用其他的字段。
 
 <!--
 The above `BadArgument` exception takes an inline record type. We special-case compile the exception as `{RE_EXN_ID, myMessage, Error}` for good ergonomics. If the exception instead took ordinary positional arguments, l like the standard library's `Invalid_argument("Oops!")`, which takes a single argument, the argument is compiled to JS as the field `_1` instead. A second positional argument would compile to `_2`, etc.
 -->
 
-上面的 `BadArgument` 异常接受一个内联记录类型。为了符合人体工程学（指用起来更符合直觉），我们将该异常特别编译为 `{RE_EXN_ID, myMessage, Error}`。如果异常接受普通的位置参数，比如标准库的 `Invalid_argument("Oops!")`，它只使用一个参数，那么这个参数将被编译为 JS 的字段 `_1`，第二个位置参数会编译为`_2`，以此类推。
+上面的 `BadArgument` 异常接受一个内联记录类型。为了符合人体工程学（指用起来更符合直觉），我们将该异常编译为 `{RE_EXN_ID, myMessage, Error}`。如果异常接受普通的位置参数，比如标准库的 `Invalid_argument("Oops!")`，它只使用一个参数，那么这个参数将被编译为 JS 的字段 `_1`，第二个位置参数会编译为`_2`，以此类推。
 
 <!--
 ## Tips & Tricks

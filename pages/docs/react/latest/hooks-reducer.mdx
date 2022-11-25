@@ -36,7 +36,7 @@ var match = React.useReducer(reducer, initialState);
 在某些场景下，`useReducer` 会比 `useState` 更适用，例如 state 逻辑较复杂且包含多个子值，或者下一个 state 依赖于之前的 state 等。并且，使用 `useReducer` 还能给那些会触发深层更新的组件做性能优化，因为你可以向子组件传递 `dispatch` 而不是回调函数 。 
 
 <!-- **Note:** You will notice that the action / reducer pattern works especially well in ReScript due to its [immutable records](/docs/manual/latest/record), [variants](/docs/manual/latest/variant) and [pattern matching](/docs/manual/latest/pattern-matching-destructuring) features for easy expression of your action and state transitions. -->
-**注意：** 你会发现，归功于 [不可变记录](/docs/manual/latest/record)，[变体](/docs/manual/latest/variant) 和 [模式匹配](/docs/manual/latest/pattern-matching-destructuring) 特性，action / reducer 模式可以在 ReScript 中轻松地表达 action 和 state 转换。
+**注意**： 你会发现，归功于 [不可变记录](/docs/manual/latest/record)，[变体](/docs/manual/latest/variant) 和 [模式匹配](/docs/manual/latest/pattern-matching-destructuring) 特性，action / reducer 模式可以在 ReScript 中轻松地表达 action 和 state 转换。
 
 <!-- ## Examples -->
 ## 示例

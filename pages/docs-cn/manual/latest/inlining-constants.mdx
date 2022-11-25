@@ -37,7 +37,7 @@ if ('production' === 'development') {
 Then your subsequent Uglifyjs optimization would remove that entire `if` block. This is how projects like ReactJS provide a development mode code with plenty of dev warnings, while ensuring that the uglified (minified) production code is free of those expensive blocks.
 -->
 
-之后的 Uglifyjs 优化过程会将整个 `if` 块移除。这样可以提供一个带有大量开发警告的开发模式代码，同时确保压缩（精简）后的生产代码能去除掉这些昂贵的代码，ReactJS 等项目就是这样做的。
+之后的 Uglifyjs 优化过程会将整个 `if` 块移除。这样开发模式代码可以带有大量开发警告，同时确保压缩（精简）后的生产代码能去除掉这些昂贵的代码，ReactJS 等项目就是这样做的。
 
 <!--
 So, in ReScript, producing that example `if (process.env.mode === 'development')` output is important. This first try doesn't work:

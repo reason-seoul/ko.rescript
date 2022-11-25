@@ -294,7 +294,7 @@ function useFriendStatus(friendId) {
 <!-- There’s nothing new inside of it — the logic is copied from the components above. Just like in a component, make sure to only call other Hooks unconditionally at the top level of your custom Hook. -->
 这里没啥新的内容-都是从上面组件中复制的逻辑。就像在组件中一样，确保只在自定义Hook的顶层无条件地调用其他Hook。
 <!-- Unlike a React component, a custom Hook doesn’t need to have a specific signature. We can decide what it takes as arguments, and what, if anything, it should return. In other words, it’s just like a normal function. Its name should always start with use so that you can tell at a glance that the rules of Hooks apply to it. -->
-与 React 组件不同，自定义 Hook 不需要具有特定签名。 我们可以决定它接受什么作为参数，以及它应该返回什么（如果有的话）。 换句话说，它就像一个普通的函数。 它的名称应该始终以 use 开头，以便您一眼就可以看出 Hooks 的规则适用于它。
+与 React 组件不同，自定义 Hook 不需要具有特定签名。 我们可以决定它接受什么作为参数，以及它应该返回什么（如果有的话）。 换句话说，它就像一个普通的函数。 它的名称应该始终以 use 开头，以便你一眼就可以看出 Hooks 的规则适用于它。
 <!-- The purpose of our `useFriendStatus` Hook is to subscribe us to a friend’s status. This is why it takes `friendId` as an argument, and returns the online state like `Online`, `Offline` or `Loading`: -->
 我们的 `useFriendStatus` Hook的目的是为我们订阅朋友的状态。 这就是为什么它将 `friendId` 作为参数，并返回在线状态，如 `Online`、`Offline` 或 `Loading`：
 ```res
@@ -413,7 +413,7 @@ function FriendListItem(Props) {
 
 
 <!-- **Is this code equivalent to the original examples?** Yes, it works in exactly the same way. If you look closely, you’ll notice we didn’t make any changes to the behavior. All we did was to extract some common code between two functions into a separate function. Custom Hooks are a convention that naturally follows from the design of Hooks, rather than a React feature. -->
-**这个代码和之前的例子是等价的吗？**是的，它会以相同的方式工作。如果您仔细观察，您会注意到我们没有对行为进行任何更改。我们所做的只是将两个函数之间的一些公共代码提取到一个单独的函数中。自定义Hooks是自然遵循Hooks设计的约定，而不是React特性。
+**这个代码和之前的例子是等价的吗？**是的，它会以相同的方式工作。如果你仔细观察，你会注意到我们没有对行为进行任何更改。我们所做的只是将两个函数之间的一些公共代码提取到一个单独的函数中。自定义Hooks是自然遵循Hooks设计的约定，而不是React特性。
 <!-- **Do I have to name my custom Hooks starting with “use”?** Please do. This convention is very important. Without it, we wouldn’t be able to automatically check for violations of rules of Hooks because we couldn’t tell if a certain function contains calls to Hooks inside of it. -->
 **我必须以“use”命名我的自定义Hooks吗？**请这么做吧。这个约定非常重要。没有它，我们将无法自动检查是否违反Hooks规则，因为我们无法判断某个函数内部是否包含对Hooks的调用。
 <!-- **Do two components using the same Hook share state?** No. Custom Hooks are a mechanism to reuse stateful logic (such as setting up a subscription and remembering the current value), but every time you use a custom Hook, all state and effects inside of it are fully isolated. -->
@@ -539,7 +539,7 @@ let recipientOnlineState = FriendStatusHook.useFriendStatus(recipientId)
 ## Use Your Imagination | 发挥你的想象力
 
 <!-- Custom Hooks offer the flexibility of sharing logic. You can write custom Hooks that cover a wide range of use cases like form handling, animation, declarative subscriptions, timers, and probably many more we haven’t considered. What’s more, you can build Hooks that are just as easy to use as React’s built-in features. -->
-自定义Hooks提供了共享逻辑的灵活性。您可以编写自定义Hook，涵盖广泛的用例，例如表单处理、动画、声明式订阅、计时器，以及可能更多我们没有考虑过的用例。更重要的是，您可以构建与React的内置功能一样易于使用的Hooks。
+自定义Hooks提供了共享逻辑的灵活性。你可以编写自定义Hook，涵盖广泛的用例，例如表单处理、动画、声明式订阅、计时器，以及可能更多我们没有考虑过的用例。更重要的是，你可以构建与React的内置功能一样易于使用的Hooks。
 <!-- Try to resist adding abstraction too early. It's pretty common that components grow pretty big when there is enough stateful logic handling involved. This is normal — don’t feel like you have to immediately split it into Hooks. But we also encourage you to start spotting cases where a custom Hook could hide complex logic behind a simple interface, or help untangle a messy component. -->
-尽量避免过早地添加抽象。当涉及到足够多的状态逻辑处理时，组件会变得非常大是很常见的。这很正常——不要觉得你必须立即将其拆分为Hooks。但我们也鼓励您去发现自定义Hook可以将复杂逻辑隐藏在简单的接口后面或帮助解耦复杂组件的场景。
+尽量避免过早地添加抽象。当涉及到足够多的状态逻辑处理时，组件会变得非常大是很常见的。这很正常——不要觉得你必须立即将其拆分为Hooks。但我们也鼓励你去发现自定义Hook可以将复杂逻辑隐藏在简单的接口后面或帮助解耦复杂组件的场景。
 

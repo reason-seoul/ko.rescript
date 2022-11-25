@@ -1,5 +1,5 @@
 ---
-title: "共有数据类型"
+title: "共享数据类型"
 description: "Data types that share runtime presentation between JS and ReScript"
 canonical: "/docs/manual/latest/shared-data-types"
 ---
@@ -7,7 +7,7 @@ canonical: "/docs/manual/latest/shared-data-types"
 <!--
 # Shared Data Types
 -->
-# 共有数据类型
+# 共享数据类型
 
 <!--
 ReScript's built-in values of type `string`, `float`, `array` and a few others have a rather interesting property: they compile to the exact same value in JavaScript!
@@ -31,7 +31,7 @@ Unlike most compiled-to-js languages, in ReScript, **you don't need to write dat
 **Shared, bidirectionally usable types**:
 -->
 
-**共有的、双向可用的类型**：
+**共享的、双向可用的类型**：
 
 <!--
 - String. ReScript strings are JavaScript strings, vice-versa. (Caveat: only our backtick string `` `hello 👋 ${personName}` `` supports unicode and interpolation).
@@ -99,7 +99,7 @@ Unlike most compiled-to-js languages, in ReScript, **you don't need to write dat
 
 - Int：**Int 是 32 位的！**注意，你可以把它们看作 JS 数字，反之亦然，但是如果数字很大，那么你最好将 JS 数字作为浮点数处理。例如，我们使用 `float` 来绑定 Js.Date
 
-- Option：`option` 类型的 `None` 值会编译为 JS 的 `undefined`。`Some` 值，比如 `Some(5)`，会编译为 `5`。同样地，您可以将传入的 JS `undefined` 作为 `None`。**ReScript 不处理 JS `null`**。如果你的 JS 值可能为 `null`，请使用 [Js.Nullable](api/js/nullable) 中的辅助函数
+- Option：`option` 类型的 `None` 值会编译为 JS 的 `undefined`。`Some` 值，比如 `Some(5)`，会编译为 `5`。同样地，你可以将传入的 JS `undefined` 作为 `None`。**ReScript 不处理 JS `null`**。如果你的 JS 值可能为 `null`，请使用 [Js.Nullable](api/js/nullable) 中的辅助函数
 
 - Exception
 
@@ -112,12 +112,12 @@ Unlike most compiled-to-js languages, in ReScript, **you don't need to write dat
 **Non-shared types (aka internal types)**:
 -->
 
-**非共有类型（又名内部类型）**：
+**非共享类型（又名内部类型）**：
 
 - Character
 - Int64
-- Lazy values
-- 剩下的其他东西
+- 惰性值
+- 剩下的其他类型
 
 <!--
 Many of these are stable, which means that you can still serialize/deserialize them as-is without manual conversions. But we discourage actively peeking into their structure otherwise.

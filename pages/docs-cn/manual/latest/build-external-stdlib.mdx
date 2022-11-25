@@ -22,7 +22,7 @@ Your ReScript project depends on the `rescript` package as a [`devDependency`](h
 - For pure JS/TS consumers who probably won't install `bs-platform` in their own project.
 -->
 
-你的 ReScript 项目依赖于作为[开发依赖 `devDependency`](https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file) 的 `rescript` 包，其中包括我们的编译器、构建系统和运行时，如 `Belt`。然而，如果你以如下方式发布了你的代码，你就不得不把它添加到 `package.json` 中的依赖 `dependency` 中：
+你的 ReScript 项目依赖于作为[开发依赖](https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file) 的 `rescript` 包，其中包括我们的编译器、构建系统和运行时，例如 `Belt`。然而，如果你以下面方式发布你的代码，你需要把它移动到 `package.json` 中的 `dependency` 中：
 - 发布到 Docker 或其他低存储容量的部署设备
 - 对于那些可能不会在自己的项目中安装 `bs-platform` 的纯 JS/TS 用户
 
@@ -30,20 +30,20 @@ Your ReScript project depends on the `rescript` package as a [`devDependency`](h
 In these cases, the size or mere presence of `bs-platform` can be troublesome, since it includes not just our necessary runtime like `Belt`, but also our compiler and build system.
 -->
 
-在这些情况下，`bs-platform` 的大小或仅仅是存在就会带来麻烦，因为它不仅包括我们必要的运行时如 `Belt`，还包括我们的编译器和构建系统。
+这些情况下，`bs-platform` 需要的空间大小可能会带来麻烦，因为它不仅包括我们必要的运行时如 `Belt`，还包括我们的编译器和构建系统。
 
 <!--
 To solve that, we now publish our runtime as a standalone package at [`@rescript/std`](https://www.npmjs.com/package/@rescript/std), whose versions mirror `bs-platform`'s. Now you can keep `bs-platform` as a `devDependency` and have only `@rescript/std` as your runtime `dependency`.
 -->
 
-为了解决这个问题，我们现在将我们的运行时作为一个独立的包发布在 [`@rescript/std`](https://www.npmjs.com/package/@rescript/std)，其版本与 `bs-platform` 一致。现在你可以把 `bs-platform` 作为一个开发依赖，而只将 `@rescript/std` 作为你的运行时依赖。
+为了解决这个问题，我们现在将运行时作为一个独立的包发布在 [`@rescript/std`](https://www.npmjs.com/package/@rescript/std)，其版本与 `bs-platform` 一致。现在你可以把 `bs-platform` 作为一个开发依赖，而只将 `@rescript/std` 作为你的运行时依赖。
 
 
 <!--
 **This is an advanced feature**. Please only use it in the aforementioned scenarios. If you already use a JS bundler with dead code elimination, you might not need this feature.
 -->
 
-**这是一个高级特性**，请只在上述情况下使用它，如果你已经使用了具有消除死代码功能的 JS 打包器，你可能不需要这个特性。
+**这是一个高级特性**，请只在上述情况下使用它，如果你已经使用了具有死代码消除功能的 JS 打包器，你可能不需要这个特性。
 
 <!--
 ## Configuration
@@ -66,7 +66,7 @@ npm install @rescript/std@9.0.0 --save
 Then add this to `bsconfig.json`:
 -->
 
-然后把下面的东西添加到 `bsconfig.json` 中：
+然后把这个配置添加到 `bsconfig.json` 中：
 
 ```json
 {
@@ -102,4 +102,4 @@ Belt_Array.forEach([1, 2, 3], function (num) {
 **Make sure the version number of `bs-platform` and `@rescript/std` match in your `package.json`** to avoid running into runtime issues due to mismatching stdlib assumptions.
 -->
 
-**请确保 `bs-platform` 和 `@rescript/std` 的版本号在你的 `package.json` 中一致**，以避免由于 stdlib 假设不匹配而遇到运行时问题。
+**请确保 `bs-platform` 和 `@rescript/std` 的版本号在你的 `package.json` 中一致**，以避免由于 stdlib 不匹配而遇到运行时问题。

@@ -96,7 +96,7 @@ var pet2 = /* Dog */0;
 A variant's constructors can hold extra data separated by comma.
 -->
 
-变体构造器可以持有由逗号分隔的额外数据。
+变体构造器可以持有用逗号分隔的额外数据。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -141,13 +141,13 @@ var friendAccount = {
 <!--
 ### Labeled Variant Payloads (Inline Record)
 -->
-### 带标签的变体载荷 (内联记录)
+### 带标签的变体 payload  (内联记录)
 
 <!--
 If a variant payload has multiple fields, you can use a record-like syntax to label them for better readability:
 -->
 
-如果一个变体载荷（payload，指变体构造器持有的额外数据）有多个字段，你可以使用类似记录的语法来标记它们，以提高可读性：
+如果一个变体 payload （payload，指变体构造器持有的额外数据）有多个字段，你可以使用类似记录的语法来标记它们，以提高可读性：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -217,7 +217,7 @@ The output is slightly uglier and less performant than the former.
 See the [Pattern Matching/Destructuring](pattern-matching-destructuring) section later.
 -->
 
-请阅读后面的[模式匹配/析构](pattern-matching-destructuring)章节。
+请阅读后面的[模式匹配/解构](pattern-matching-destructuring)章节。
 
 <!--
 ## JavaScript Output
@@ -237,10 +237,10 @@ A variant value compiles to 3 possible JavaScript outputs depending on its type 
 - Labeled variant payloads (the inline record trick earlier) compile to an object with the label names instead of `_0`, `_1`, etc. The object might or might not have the `TAG` field as per previous rule.
 -->
 
-- 若变体值是没有载荷的构造器，它编译成一个数字
-- 若变体值是带载荷的构造器，它会被编译成一个带有 `TAG` 字段的对象，对象的字段 `_0` 为第一个载荷，字段 `_1` 为第二个载荷，依此类推
-- 上述情况的一个例外是类型声明只包含单个带载荷变体构造器的变体。在这种情况下，构造器会编译成一个没有 `TAG` 字段的对象
-- 带标签的变体载荷（使用前面的的内联记录技巧）会编译为带有标签名称的对象，而不是 `_0`，`_1` 等。和之前的规则一样，该对象可能有也可能没有 `TAG` 字段
+- 若变体值是没有 payload 的构造器，它编译成一个数字。
+- 若变体值是带 payload 的构造器，它会被编译成一个带有 `TAG` 字段的对象，对象的字段 `_0` 为第一个 payload ，字段 `_1` 为第二个 payload ，依此类推。
+- 上述情况的一个例外是类型声明只包含单个带 payload 变体构造器的变体。在这种情况下，构造器会编译成一个没有 `TAG` 字段的对象。
+- 带标签的变体 payload （使用前面的的内联记录技巧）会编译为带有标签名称的对象，而不是 `_0`，`_1` 等。和之前的规则一样，该对象可能有也可能没有 `TAG` 字段。
 
 <!--
 Check the output in these examples:
@@ -402,7 +402,7 @@ betterDraw({
 **Try not to do that**, as this generates extra noisy output. Alternatively, define two `external`s that both compile to the same JS call:
 -->
 
-**尽量不要这样做**，因为这样会产生额外的噪音输出。你可以定义两个编译为相同 JS 调用的 `external`：
+**尽量不要这样做**，因为这样输出的 JS 会产生额外的噪音。你可以定义两个编译为相同 JS 调用的 `external`：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -442,13 +442,13 @@ Please refer to this [record section](record#tips--tricks). Variants are the sam
 Variants, in their many forms (polymorphic variant, open variant, GADT, etc.), are likely _the_ feature of a type system such as ReScript's. The aforementioned `option` variant, for example, obliterates the need for nullable types, a major source of bugs in other languages. Philosophically speaking, a problem is composed of many possible branches/conditions. Mishandling these conditions is the majority of what we call bugs. **A type system doesn't magically eliminate bugs; it points out the unhandled conditions and asks you to cover them**\*. The ability to model "this or that" correctly is crucial.
 -->
 
-变体，以其多种形式（多态变体，开放变体，广义代数数据类型等），可能是像 ReScript 这样的类型系统的_关键_特性。例如，前面提到的 `option` 变体完全消除了可空类型的需要，这是其他语言中 bug 的主要来源。从哲学上讲，一个问题是由许多可能的分支/条件组成的。对这些条件的错误处理就是我们所说的 bug 的主要组成。**类型系统并不能神奇地消除 bug；它指出了未处理的条件并要求你覆盖它们**。正确建模“这个或那个”的能力是至关重要的。
+变体，以其多种形式（多态变体，开放变体，广义代数数据类型等），可能是像 ReScript 这样的类型系统的 _关键_ 特性。例如，前面提到的 `option` 变体完全消除了对可空类型的需求，这在其他语言中是 bug 的主要来源。从哲学上讲，一个问题是由许多可能的分支/条件组成的。对这些分支/条件的错误的处理就是我们所说的 bug 的主要组成。**类型系统并不能神奇地消除 bug；它指出了未处理的条件并要求你覆盖它们**。正确建模“这个或那个”的能力是至关重要的。
 
 <!--
 For example, some folks wonder how the type system can safely eliminate badly formatted JSON data from propagating into their program. They don't, not by themselves! But if the parser returns the `option` type `None | Some(actualData)`, then you'd have to handle the `None` case explicitly in later call sites. That's all there is.
 -->
 
-比如说，有些人想知道类型系统如何安全地消除格式不好的 JSON 数据传播到他们的程序中。类型系统自己没法做到！但是如果 parser 返回的 `option` 类型是 `None | Some(actualData)`，那么你就必须在后续的调用点明确处理 `None` 的情况。这就是类型系统能做到的。
+比如说，有些人想知道类型系统如何安全地消除格式不正确的 JSON 数据，避免传播到他们的程序中。类型系统自己没法做到！但是如果 parser 返回的 `option` 类型是 `None | Some(actualData)`，那么你就必须在后续的调用点明确处理 `None` 的情况。这就是类型系统能做到的。
 
 <!--
 Performance-wise, a variant can potentially tremendously speed up your program's logic. Here's a piece of JavaScript:
@@ -471,7 +471,7 @@ if (data === 'dog') {
 There's a linear amount of branch checking here (`O(n)`). Compare this to using a ReScript variant:
 -->
 
-这里有一个线性的分支检查（`O(n)`），将它与使用 ReScript 变体进行比较：
+这里有一个线性的分支检查（`O(n)`），将它与使用 ReScript 变体的例子比较：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

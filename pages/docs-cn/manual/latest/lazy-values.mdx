@@ -48,7 +48,7 @@ Check the JS Output tab: that `expensiveFilesRead`'s code isn't executed yet, ev
 **Note**: a lazy value is **not** a [shared data type](shared-data-types.md). Don't rely on its runtime representation in your JavaScript code.
 -->
 
-**注意**：惰性值是**不是**一个[共有数据类型](shared-data-types.md)。不要在你的 JavaScript 代码中依赖它的运行时表示。
+**注意**：惰性值是**不是**一个[共享数据类型](shared-data-types.md)。不要在你的 JavaScript 代码中依赖它的运行时表示。
 
 <!--
 ## Execute The Lazy Computation
@@ -59,7 +59,7 @@ Check the JS Output tab: that `expensiveFilesRead`'s code isn't executed yet, ev
 To actually run the lazy value's computation, use `Lazy.force` from the globally available `Lazy` module:
 -->
 
-要实际运行懒惰值的计算，请使用全局模块`Lazy` 的 `Lazy.force`：
+要实际运行惰性值的计算，请使用全局模块 `Lazy` 的 `Lazy.force`：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -82,7 +82,7 @@ console.log(CamlinternalLazy.force(expensiveFilesRead));
 The first time `Lazy.force` is called, the expensive computation happens and the result is **cached**. The second time, the cached value is directly used.
 -->
 
-第一次调用 `Lazy.force` 时，昂贵的计算发生了，而且结果被**缓存**了。第二次调用会直接使用缓存的值。
+第一次调用 `Lazy.force` 时，进行了昂贵的计算，而且结果被**缓存**了。第二次调用会直接使用缓存的值。
 
 <!--
 **You can't re-trigger the computation after the first `force` call**. Make sure you only use a lazy value with computations whose results don't change (e.g. an expensive server request whose response is always the same).
@@ -169,4 +169,4 @@ try {
 Though you should probably handle the exception inside the lazy computation itself.
 -->
 
-不过你应该在惰性计算中处理这个异常。
+不过你应该在惰性计算内部处理这个异常。

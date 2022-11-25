@@ -1,5 +1,5 @@
 ---
-title: "语言特性概览"
+title: "概览"
 metaTitle: "Language Features Overview"
 description: "A quick overview on ReScript's syntax"
 canonical: "/docs/manual/latest/overview"
@@ -199,7 +199,7 @@ canonical: "/docs/manual/latest/overview"
 <!--
 ### Destructuring
 -->
-### 析构
+### 解构
 
 | JavaScript                    | ReScript                          |
 |-------------------------------|-----------------------------------|
@@ -231,7 +231,7 @@ canonical: "/docs/manual/latest/overview"
 | `<Comp message="hi" onClick={handler} />` | 相同                       |
 | `<Comp message={message} />`              | `<Comp message />` \*      |
 | `<input checked />`                       | `<input checked=true />`   |
-| 没有子节点平展                            | `<Comp>...children</Comp>` |
+| 没有子节点展开                            | `<Comp>...children</Comp>` |
 
 
 <!--
@@ -254,7 +254,7 @@ canonical: "/docs/manual/latest/overview"
 \* No finally.
 -->
 
-\* 最后会没有。
+\* 没有 finally。
 
 <!--
 ### Blocks
@@ -265,7 +265,7 @@ canonical: "/docs/manual/latest/overview"
 The last expression of a block delimited by `{}` implicitly returns (including function body). In JavaScript, this can only be simulated via an immediately-invoked function expression (since function bodies have their own local scope).
 -->
 
-由 `{}` 限定的块的最后一个表达式隐含地返回（函数体也是这样）。在 JavaScript 中，这只能通过一个立即调用函数表达式（IIFE, Immediately Invoked Funtion Expression）来模拟（利用函数作用域）。
+由 `{}` 限定的块的隐式返回最后一个表达式（函数体也是这样）。在 JavaScript 中，这只能通过一个立即调用函数表达式（IIFE, Immediately Invoked Funtion Expression）来模拟（利用函数作用域）。
 
 <table>
   <thead>
@@ -299,7 +299,7 @@ The last expression of a block delimited by `{}` implicitly returns (including f
 -->
 ## 普通特性的 JS 输出
 
-| Feature        | Example                              | JavaScript Output                          |
+| 特性        | 例子                              | JavaScript 输出                          |
 |----------------|--------------------------------------|--------------------------------------------|
 | 字符串         | `"Hello"`                            | `"Hello"`                                  |
 | 字符串插值     | `` `Hello ${message}` ``             | `"Hello " + message`                       |
@@ -316,7 +316,7 @@ The last expression of a block delimited by `{}` implicitly returns (including f
 | 布尔运算       | `!`, `&&`, <code>&#124;&#124;</code> | `!`, `&&`, <code>&#124;&#124;</code>       |
 | 浅等价和深等价 | `===`, `==`                          | `===`, `==`                                |
 | 列表（不推荐） | `list{1, 2, 3}`                      | `{hd: 1, tl: {hd: 2, tl: {hd: 3, tl: 0}}}` |
-| 列表头插       | `list{a1, a2, ...oldList}`           | `{hd: a1, tl: {hd: a2, tl: theRest}}`      |
+| 列表头部拼接       | `list{a1, a2, ...oldList}`           | `{hd: a1, tl: {hd: a2, tl: theRest}}`      |
 | 数组           | `[1, 2, 3]`                          | `[1, 2, 3]`                                |
 | 记录           | `type t = {b: int}; let a = {b: 10}` | `var a = {b: 10}`                          |
 | 多行注释       | `/* Comment here */`                 | 无输出                                     |
@@ -326,4 +326,4 @@ The last expression of a block delimited by `{}` implicitly returns (including f
 _Note that this is a cleaned-up comparison table; a few examples' JavaScript output are slightly different in reality._
 -->
 
-_请注意，这是一个经过清理的对比表；几个例子的 JavaScript 输出与实际略有不同。_
+_请注意，这是一个整理过的对照表；有几个例子的 JavaScript 输出与实际略有不同。_

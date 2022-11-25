@@ -13,7 +13,7 @@ canonical: "/docs/manual/latest/project-structure"
 These are the existing, non-codified community practices that are currently propagated through informal agreement. We might remove some of them at one point, and enforce some others. Right now, they're just recommendations for ease of newcomers.
 -->
 
-下面是社区正在广泛使用，但未成规范的一些约定。我们可能在某些时候删除或是严格规范其中的一些条目。现在，它们只是方便新人上手的建议。
+下面是社区正在广泛使用，但未成规范的一些约定。我们可能在某些时候删除一些条目或是强制要求另一些条目。现在，它们只是方便新人上手的建议。
 
 <!--
 ## File Casing
@@ -30,7 +30,7 @@ Capitalized file names (aka first letter upper-cased).
 **Justification**: Module names can only be capitalized. Newcomers often ask how a file maps to a module, and why `draw.res` maps to the module `Draw`, and sometimes try to refer to a module through uncapitalized identifiers. Using `Draw.res` makes this mapping more straightforward. It also helps certain file names that'd be awkward in uncapitalized form: `uRI.res`.
 -->
 
-**原因**：模块名称只能以大写字母开头。新人经常会问：文件和模块的对应关系是什么、为什么 `draw.res` 文件对应的是 `Draw` 模块。而且新手有时候会尝试用小写字母开头的标识符来表示模块。使用 `Draw.res` 让对应关系更加直接，这也有助于某些文件名在不加大写的情况下显得很别扭，例如 `uRI.res`。
+**原因**：模块名称只能以大写字母开头。新人经常会问：文件和模块的对应关系是什么、为什么 `draw.res` 文件对应的是 `Draw` 模块。而且新手有时候会尝试用小写字母开头的标识符来表示模块。使用 `Draw.res` 让对应关系更加直接，这也有助于避免在不加大写的情况下显得很别扭的某些文件名，例如 `uRI.res`。
 
 <!--
 ## Ignore `.merlin` File
@@ -81,7 +81,7 @@ Keep them to a minimum.
 **Justification**: A compiled, statically typed language cannot model its dependencies easily by muddling along like in a dynamic language, especially when we're still piggy-backing on NPM/Yarn (to reduce learning overhead in the medium-term). Keeping dependencies simple & lean helps reduce possibility of conflicts (e.g. two diamond dependencies, or clashing interfaces).
 -->
 
-**原因**：一门需要编译的静态类型语言不能像动态语言那样轻易地建立其依赖关系模型，特别是当我们还在使用 NPM/Yarn 的时候（这是为了减少中期学习成本）。保持简单和精简的依赖关系有助于减少冲突的可能性，例如菱形依赖、接口冲突等。
+**原因**：一门需要编译的静态类型语言不能像动态语言那样轻易地建立其依赖关系模型，特别是当我们还在使用 NPM/Yarn 的时候（这是为了减少中期学习成本）。保持简单和精简的依赖关系有助于降低冲突的可能性，例如菱形依赖、接口冲突等。
 
 <!--
 ## Documentation
@@ -98,7 +98,7 @@ Have them. Spend more effort making them great (examples, pitfalls) and professi
 **Justification**: It's hard for newcomers to distinguish between a simple/decent library and one that's fancy-looking. For the sake of the community, don't try too hard to one-up each other's libraries. Do spread the words, but use your judgement too.
 -->
 
-**原因**：新手很难分辨出一个库是真的简单好用，还是只是看起来好用而已。为了营造良好的社区环境，不要一心只想卷赢别人的库。请传播这样的理念，但也请使用的判断力。
+**原因**：新手很难分辨出一个库是真的简单好用，还是只是看起来好用而已。为了营造良好的社区环境，不要一心只想卷赢别人的库。请传播这样的理念，但也请使用你的判断力。
 
 <!--
 ## PPX & Other Meta-tools

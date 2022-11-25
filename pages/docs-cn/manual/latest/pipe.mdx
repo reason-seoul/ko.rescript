@@ -14,13 +14,13 @@ canonical: "/docs/manual/latest/pipe"
 ReScript provides a tiny but surprisingly useful operator `->`, called the "pipe", that allows you to "flip" your code inside-out. `a(b)` becomes `b->a`. It's a simple piece of syntax that doesn't have any runtime cost.
 -->
 
-ReScript 提供了一个小巧但好用的操作符 `->`，它被叫做“管道”，它允许你由内向外“翻转”代码。`a(b)` 可以写成 `b->a`。这是一个简单的语法，没有任何运行时开销。
+ReScript 提供了一个小巧但好用的操作符 `->`，称为“管道”，它允许你由内向外“翻转”代码。`a(b)` 可以写成 `b->a`。这是一个简单的语法，没有任何运行时开销。
 
 <!--
 Why would you use it? Imagine you have the following:
 -->
 
-为什么你要使用到它呢？想象下面的情况：
+为什么你要使用它？想象下面的情况：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -37,7 +37,7 @@ validateAge(getAge(parseData(person)));
 This is slightly hard to read, since you need to read the code from the innermost part, to the outer parts. Use pipe to streamline it:
 -->
 
-这有点难读，因为你需要从最里面的部分开始，一直到最外面的部分。使用管道来精简它：
+这有点难读，因为你需要从最里面的部分开始，读到最外面的部分。使用管道来变为链式调用：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -193,7 +193,7 @@ asyncRequest().setWaitDuration(4000).send();
 This looks much worse than the JS counterpart! Clean it up visually with pipe:
 -->
 
-这看起来比对应的 JS 部分要糟糕得多！用管道在视觉上把它清理干净：
+这看起来比对应的 JS 部分要糟糕得多！用管道整理它们：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

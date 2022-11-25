@@ -1,5 +1,5 @@
 ---
-title: "构建系统概览"
+title: "概览"
 metaTitle: "Build System Overview"
 description: "Documentation about the ReScript build system and its toolchain"
 canonical: "/docs/manual/latest/build-overview"
@@ -60,13 +60,13 @@ The default `rescript` is equivalent to `rescript build` subcommand
 Each build will create build artifacts from your project's source files.
 -->
 
-每次构建都会从你的项目的源文件中创建构建工件（artifacts）。
+每次构建都会从你的项目的源文件中创建构建制品（artifacts）。
 
 <!--
 **To build a project (including its dependencies / pinned-dependencies)**, run:
 -->
 
-使用以下命令来**构建一个项目（包括其依赖/锁定版本依赖 (pinned-dependencies)）**：
+使用以下命令来**构建一个项目（包括其依赖/固定依赖）**：
 
 ```sh
 rescript
@@ -82,7 +82,7 @@ Which is an alias for `rescript build`.
 To keep a build watcher, run:
 -->
 
-使用以下命令启动构建观察器：
+使用以下命令以 watch 模式启动构建：
 
 ```sh
 rescript build -w
@@ -92,19 +92,19 @@ rescript build -w
 Any new file change will be picked up and the build will re-run.
 -->
 
-这样任何新的文件变化都会被捕捉到，并重新开始构建。
+这样任何的文件变化都会被捕捉到，并重新开始构建。
 
 <!--
 **Note**: third-party libraries (in `node_modules`, or via `pinned-dependencies`) aren't watched, as doing so may exceed the node.js watcher count limit.
 -->
 
-**注意**：第三方库（指在 `node_modules` 中的库或 `pinned-dependencies` 引入的库）不被观察，因为这样做可能超过 node.js 的观察数量限制。
+**注意**：第三方库（指在 `node_modules` 中的库或 `pinned-dependencies` 引入的库）不会被监听，因为这样做可能超过 node.js 的监听器数量限制。
 
 <!--
 **Note 2**: In case you want to set up a project in a JS-monorepo-esque approach (`npm` and `yarn` workspaces) where changes in your sub packages should be noticed by the build, you will need to define pinned dependencies in your main project's `bsconfig.json`. More details [here](./build-pinned-dependencies).
 -->
 
-**注意2**: 如果你想以 JS-monorepo-esque 的方式（`npm` 和 `yarn` 工作区）建立一个项目，你的子包的变化应该被构建工具注意到，你将需要在主项目的 `bsconfig.json` 中定义锁定版本依赖。更多细节参见[这里](./build-pinned-dependencies)。
+**注意2**: 如果你想以 JS-monorepo-esque 的方式（`npm` 和 `yarn` 工作区）建立一个项目，你的子包的变化应该被构建工具注意到，你需要在主项目的 `bsconfig.json` 中定义固定依赖。更多细节参见[这里](./build-pinned-dependencies)。
 
 <!--
 ## Clean Project
@@ -115,7 +115,7 @@ Any new file change will be picked up and the build will re-run.
 If you ever get into a stale build for edge-case reasons, use:
 -->
 
-如果你有一天偶然陷入了一个陈旧的构建，可以使用：
+如果你因为边缘情况需要处理过时的构建，可以使用：
 
 ```sh
 rescript clean
@@ -125,7 +125,7 @@ rescript clean
 This will clean your own project's build artifacts. To also clean the dependencies' artifacts:
 -->
 
-这将清空你的项目的构建工件。要清理依赖项的构建工件，可以使用：
+这将清空你的项目的构建制品。要清理依赖项的构建制品，可以使用：
 
 ```sh
 rescript clean -with-deps

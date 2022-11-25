@@ -22,10 +22,10 @@ ReScript 对象和[记录](record.md)很像，但：
 - Doesn't support [pattern matching](pattern-matching-destructuring).
 -->
 
-- 不需要类型声明
-- 结构化并且更加多态，[和记录不同](record.md#record-types-are-found-by-field-name)
-- 不支持更新，除非对象来自 JS 端
-- 不支持[模式匹配](pattern-matching-destructuring)
+- 不需要类型声明。
+- 结构化并且更加多态，[和记录不同](record.md#record-types-are-found-by-field-name)。
+- 不支持更新，除非对象来自 JS 端。
+- 不支持[模式匹配](pattern-matching-destructuring)。
 
 <!-- TODO: support update man -->
 
@@ -33,7 +33,7 @@ ReScript 对象和[记录](record.md)很像，但：
 Although ReScript records compile to clean JavaScript objects, ReScript objects are a better candidate for emulating/binding to JS objects, as you'll see.
 -->
 
-尽管 ReScript 记录可以编译成干净的 JavaScript 对象，但 ReScript 对象是模拟/绑定到 JS 对象的更好的候选者，你马上就会看到。
+尽管 ReScript 记录可以编译成干净的 JavaScript 对象，但 ReScript 对象是模拟/绑定到 JS 对象的更好的选择，如你所见。
 
 <!--
 ## Type Declaration
@@ -44,7 +44,7 @@ Although ReScript records compile to clean JavaScript objects, ReScript objects 
 **Optional**, unlike for records. The type of an object is inferred from the value, so you never really need to write down its type definition. Nevertheless, here's its type declaration syntax:
 -->
 
-声明是**可选的**，这与记录不同。对象的类型是从值中推断出来的，所以你从来不需要真正写下它的类型定义。尽管如此，这里是它的类型声明语法：
+声明是**可选的**，与记录不同。对象的类型是从值中推断出来的，所以你从来不需要写下它的类型定义。尽管如此，这里是它的类型声明语法：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -100,7 +100,7 @@ var me = {
 **Note**: as said above, unlike for record, this `me` value does **not** try to find a conforming type declaration with the field `"age"` and `"name"`; rather, the type of `me` is inferred as `{"age": int, "name": string}`. This is convenient, but also means this code passes type checking without errors:
 -->
 
-**注意**：如上所述，与记录不同的是，这个 `me` 值**不会**试图找到一个符合 `"age"` 和 `"name"` 字段的类型声明；相反，`"me"` 的类型被推断为 `"{"age": int, "name": string}"`。这很方便，但也意味着下面的代码无错通过了类型检查：
+**注意**：如上所述，与记录不同的是，这个 `me` 值**不会**试图找到一个符合 `"age"` 和 `"name"` 字段的类型声明；相反，`"me"` 的类型被推断为 `"{"age": int, "name": string}"`。这很方便，但也意味着下面的代码通过了类型检查但不会报错：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -193,7 +193,7 @@ MyJSFile.student1.name = "Mary";
 You can spread one object type definition into another using `...`:
 -->
 
-你可以使用 `...` 将一个对象类型的定义平展到另一个对象中：
+你可以使用 `...` 将一个对象类型的定义展开到另一个对象中：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -272,4 +272,4 @@ document.location.href = "rescript-lang.org";
 The `external` feature and the usage of this trick are also documented in the [external](external#tips--tricks) section later. It's an excellent way to start writing some ReScript code without worrying about whether bindings to a particular library exists.
 -->
 
-`external` 特性和上面技巧的用法记录在后面的 [external](external#tips--tricks) 章节。这是一个很好的方法，可以开始编写一些 ReScript 代码，而不必担心是否存在与某个特定库的绑定关系。
+`external` 特性和上面技巧的用法在后面的 [external](external#tips--tricks) 章节给出。这是一个优秀的方法，可以开始编写一些 ReScript 代码，而不必担心是否存在与某个特定库的绑定关系。

@@ -1,5 +1,5 @@
 ---
-title: "If-Else & loop"
+title: "If-Else & 循环"
 description: "If, else, ternary, for, and while"
 canonical: "/docs/manual/latest/control-flow"
 ---
@@ -7,7 +7,7 @@ canonical: "/docs/manual/latest/control-flow"
 <!--
 # If-Else & Loops
 -->
-# 条件和循环表达式
+# If-Else & 循环
 
 <!--
 ReScript supports `if`, `else`, ternary expression (`a ? b : c`), `for` and `while`.
@@ -25,13 +25,13 @@ ReScript 还支持十分强大的模式匹配，我们将用一个[专门的章�
 <!--
 ## If-Else & Ternary
 -->
-## 条件表达式和三目运算符
+## If-Else & 三目运算符
 
 <!--
 Unlike its JavaScript counterpart, ReScript's `if` is an expression; they evaluate to their body's content:
 -->
 
-与它的 JavaScript 对应物不同，ReScript的 `if` 是一个表达式；它们对表达式体中的内容进行求值：
+与它的 JavaScript 对应不同，ReScript的 `if` 是一个表达式；它们对表达式体中的内容进行求值：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -52,7 +52,7 @@ var message = isMorning ? "Good morning!" : "Hello!";
 **Note:** an `if-else` expression without the final `else` branch implicitly gives `()` (aka the `unit` type). So this:
 -->
 
-**注意：**没有 `else` 分支的 `if-else` 表达式隐含地给出了 `()`（`unit` 类型）来作为 `else` 分支的值。所以：
+**注意**：没有 `else` 分支的 `if-else` 表达式隐式给出了 `()`（`unit` 类型）作为 `else` 分支的值。所以：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -74,7 +74,7 @@ if (showMenu) {
 is basically the same as:
 -->
 
-基本和以下代码相同：
+和以下代码基本相同：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -97,7 +97,7 @@ if (showMenu) {
 Here's another way to look at it. This is clearly wrong:
 -->
 
-可以从另一个角度看这个特性，这显然是错误的：
+从另一个角度看这个特性，这显然是错误的：
 
 ```res
 let result = if showMenu {
@@ -115,7 +115,7 @@ It'll give a type error, saying basically that the implicit `else` branch has th
 We also have ternary sugar, but **we encourage you to prefer if-else when possible**.
 -->
 
-我们提供了三目运算符的语法糖，但是**我们鼓励你优先使用 `if-else` 表达式**。
+我们还提供了三目运算符，作为语法糖，但是**我们鼓励你优先使用 `if-else` 表达式**。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -132,7 +132,7 @@ var message = isMorning ? "Good morning!" : "Hello!";
 **`if-else` and ternary are much less used** in ReScript than in other languages; [Pattern-matching](pattern-matching-destructuring.md) kills a whole category of code that previously required conditionals.
 -->
 
-`if-else` 和三目运算符在 ReScript 中的使用**比其他语言少得多**；[模式匹配](pattern-matching-destructuring.md)消灭了一大堆以前需要条件表达式的代码。
+`if-else` 和三目运算符在 ReScript 中的使用比其他语言**少得多**；[模式匹配](pattern-matching-destructuring.md)消灭了一整类以前需要条件表达式的代码。
 
 <!--
 ## For Loops
@@ -143,7 +143,7 @@ var message = isMorning ? "Good morning!" : "Hello!";
 For loops iterate from a starting value up to (and including) the ending value.
 -->
 
-For 循环从一个起始值一直到（包括）终止值进行迭代。
+for 循环从一个起始值迭代到终止值（包括终止值）。
 
 
 <CodeTab labels={["ReScript", "JS Output"]}>

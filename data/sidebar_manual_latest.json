@@ -62,10 +62,10 @@
     "build-performance",
     "warning-numbers"
   ],
-  "手册": [
+  "指引": [
     "converting-from-js"
   ],
-  "扩展信息": [
+  "补充": [
     "newcomer-examples",
     "project-structure",
     "faq"

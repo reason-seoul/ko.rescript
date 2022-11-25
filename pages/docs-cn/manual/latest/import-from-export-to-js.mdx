@@ -13,13 +13,13 @@ canonical: "/docs/manual/latest/import-from-export-to-js"
 You've seen how ReScript's idiomatic [Import & Export](import-export.md) works. This section describes how we work with importing stuff from JavaScript and exporting stuff for JavaScript consumption.
 -->
 
-你已经看到了 ReScript 惯用的[导入和导出](import-export.md)是如何工作的。本节介绍了我们如何从 JavaScript 导入内容并导出内容供 JavaScript 使用。
+你已经了解了如何使用 ReScript 惯用的[导入和导出](import-export.md)。本节将介绍如何从 JavaScript 导入内容并导出内容供 JavaScript 使用。
 
 <!--
 **Note**: due to JS ecosystem's module compatibility issues, our advice of keeping your ReScript file's compiled JS output open in a tab applies here **more than ever**, as you don't want to subtly output the wrong JS module import/export code, on top of having to deal with Babel/Webpack/Jest/Node's CommonJS<->ES6 compatibility shims.
 -->
 
-**注意**：由于 JS 生态的模块兼容性问题，我们建议将 ReScript 文件编译后的 JS 输出打开在一个选项卡中，**这比任何方法都好用**。因为你不想微妙地输出错误的 JS 模块导入/导出代码，或是还必须处理 Babel/Webpack/Jest/Node 的 CommonJS <-> ES6 兼容性的小问题。
+**注意**：由于 JS 生态的模块兼容性问题，我们建议将 ReScript 文件编译后的 JS 输出打开在一个选项卡中，**这比任何方法都好用**。如果你不想微妙地输出错误的 JS 模块导入/导出代码，或是被迫处理 Babel/Webpack/Jest/Node 的 CommonJS <-> ES6 兼容性问题。
 
 <!--
 In short: **make sure your bindings below output what you'd have manually written in JS**.
@@ -98,11 +98,11 @@ Here's what the `external` does:
 - `= "dirname"`: the name of the variable inside the `path` JS module. There's repetition in writing the first and second `dirname`, because sometime the binding name you want to use on the ReScript side is different than the variable name the JS module exported.
 -->
 
-- `@module("path")`：传递 JS 模块的名称；在这里就是 `"path"`。它可以是任何形式的字符串：`"./src/myJsFile"`，`"@myNpmNamespace/myLib"`，等等
-- `external`：用于声明存在于 JS 端的值的通用关键字
-- `dirname`：你将在 ReScript 端使用的绑定名称
-- `string => string`：`dirname` 的类型签名，`external` 必须要有类型签名
-- `= "dirname"`：JS 模块 `path` 内的变量名称。在写第一个和第二个 `dirname` 的时候会重复，因为有时你想在 ReScript 端使用的绑定名称与 JS 模块导出的变量名称不同
+- `@module("path")`：传递 JS 模块的名称；在这里就是 `"path"`。它可以是任何形式的字符串：`"./src/myJsFile"`，`"@myNpmNamespace/myLib"`，等等。
+- `external`：用于声明存在于 JS 端的值的通用关键字。
+- `dirname`：将在 ReScript 端使用的绑定名称。
+- `string => string`：`dirname` 的类型签名，`external` 必须要有类型签名。
+- `= "dirname"`：JS 模块 `path` 内的变量名称。在写第一个和第二个 `dirname` 的时候会重复，因为有时你想在 ReScript 端使用的绑定名称与 JS 模块导出的变量名称不同。
 
 <!--
 ### Import a JavaScript Module As a Single Value
@@ -136,7 +136,7 @@ var paddedResult = LeftPad("hi", 5);
 Depending on whether you're compiling ReScript to CommonJS or ES6 module, **this feature will generate subtly different code**. Please check both output tabs to see the difference. The ES6 output here would be wrong!
 -->
 
-取决于你要将 ReScript 编译到 CommonJS 还是 ES6 module，**此特性将生成微妙不同的代码**。请检查两个输出选项卡，看看有什么不同。这里的 ES6 输出是错误的！
+取决于你要将 ReScript 编译到 CommonJS 还是 ES6 module，**此特性将生成稍微不同的代码**。请检查两个输出选项卡，看看有什么不同。这里的 ES6 输出是错误的！
 
 <!--
 ### Import an ES6 Default Export
@@ -187,7 +187,7 @@ As mentioned in ReScript's idiomatic [Import & Export](import-export.md), every 
 If your JS project uses ES6 modules, you're likely exporting & importing some default values:
 -->
 
-如果您的 JS 项目使用 ES6 模块，你可以导出和导入一些默认值：
+如果你的 JS 项目使用 ES6 模块，你可以导出和导入一些默认值：
 
 ```js
 // student.js

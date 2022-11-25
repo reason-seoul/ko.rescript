@@ -15,7 +15,7 @@ React 元素是 React 应用的最小构件。本节将说明如何使用 ReScri
 
 <!-- > **Note:** This page assumes your `bsconfig.json` to be set to `"reason": { "react-jsx": 3 }`, otherwise your JSX will not be transformed to its React specific form.  -->
 
-> **注意：** 以下内容假设你的 `bsconfig.json` 拥有配置 `"reason": { "react-jsx": 3 }`，否则你的 JSX 将不会转换为它的 React 特定形式。
+> **注意**： 以下内容假设你的 `bsconfig.json` 拥有配置 `"reason": { "react-jsx": 3 }`，否则你的 JSX 将不会转换为它的 React 特定形式。
 
 <!-- ## Element Basics -->
 ## 元素基础
@@ -69,7 +69,7 @@ let element = <div className="myElement"> greeting name </div>
 JSX 能将你的 React 应用表示为一颗 React 元素构成的树。
 
 <!-- Sometimes, when doing a lot of interop with existing ReactJS codebases, you'll find yourself in a situation where you can't use JSX syntax due to syntactic restrictions. Check out the [Escape Hatches](#escape-hatches) chapter later on for workarounds. -->
-当你与现有的 ReactJS 代码库进行大量的互操作时，可能会遇到语法限制而不能使用 JSX 语法，请查看[逃生舱口](#逃生舱口)。
+当你与现有的 ReactJS 代码库进行大量的互操作时，可能会遇到语法限制而不能使用 JSX 语法，请查看[逃生通道](#逃生通道)。
 
 <!-- ## Creating Elements -->
 ## 创建元素
@@ -100,7 +100,7 @@ let element = React.array([
 ```
 
 <!-- **Note:** We don't offer a `React.list` function because a `list` value would impose runtime overhead. ReScript cares about clean, idiomatic JS output. If you want to transform a `list` of elements to a single React element, combine the output of `Belt.List.toArray` with `React.array` instead. -->
-**注意：** 我们不提供 `React.list` 函数，因为 `list` 值会增加运行时开销。 ReScript 关注干净、符合习惯的 JS 输出。如果你想把一个元素 `list` 转换成单个 React 元素，使用 `Belt.List.toArray` 转换为数组后再转换为 `React.array`。
+**注意**： 我们不提供 `React.list` 函数，因为 `list` 值会增加运行时开销。 ReScript 关注干净、符合习惯的 JS 输出。如果你想把一个元素 `list` 转换成单个 React 元素，使用 `Belt.List.toArray` 转换为数组后再转换为 `React.array`。
 
 <!-- ### Creating Null Elements -->
 ### 创建 Null 元素
@@ -132,16 +132,16 @@ React.createElement("div", undefined, element);
 </CodeTab>
 
 <!-- ## Escape Hatches -->
-## 逃生舱口
+## 逃生通道
 
 <!-- **Note:** This chapter features low level APIs that are used by JSX itself, and should only be used whenever you hit certain JSX syntax limitations. More infos on the JSX internals can be found in our [Beyond JSX](./beyond-jsx) section. -->
-**注意：** 本章节介绍了 JSX 使用的底层 API ，只有在遇到 JSX 语法限制时才应使用。关于 JSX 内部实现的更多信息可参考[Beyond JSX](./beyond-jsx)。
+**注意**： 本章节介绍了 JSX 使用的底层 API ，只有在遇到 JSX 语法限制时才应使用。关于 JSX 内部实现的更多信息可参考[Beyond JSX](./beyond-jsx)。
 
 <!-- ### Creating Elements from Component Functions -->
 ### 用组件函数创建元素
 
 <!-- **Note:** Details on components and props will be described in the [next chapter](./components-and-props). -->
-**注意：** 组件和 props 的细节会在[下一章](./components-and-props)说明。
+**注意**： 组件和 props 的细节会在[下一章](./components-and-props)说明。
 
 <!-- Sometimes it's necessary to pass around component functions to have more control over `React.element` creation. Use the `React.createElement` function to instantiate your elements: -->
 有时候需要传递组件函数来更好地控制 `React.element` 的创建。使用 `React.createElement` 函数来实例化你的元素：
@@ -202,7 +202,7 @@ function render(article) {
 </CodeTab>
 
 <!-- **Note:** Here we are passing a prop `"children": React.null` to satisfy the type checker. React will ignore the children prop in favor of the children array. -->
-**注意：** 这里我们传递了一个 prop `"children": React.null` 来满足类型检查。 React 会忽略 children prop 而会使用 children 数组。
+**注意**： 这里我们传递了一个 prop `"children": React.null` 来满足类型检查。 React 会忽略 children prop 而会使用 children 数组。
 
 <!-- This function is mostly used by our JSX transformations, so usually you want to use `React.createElement` and pass a children prop instead. -->
 这个函数主要被 JSX 转换使用，通常你需要使用 `React.createElement` 并传递一个 children prop。
@@ -229,7 +229,7 @@ ReactDOMRe.createDOMElementVariadic("div", ~props=ReactDOM.domProps(~className="
 ### 复制元素
 
 <!-- **Note:** This is an escape hatch feature and will only be useful for interoping with existing JS code / libraries. -->
-**注意：** 这是一个逃生舱口特性，只有在与现有的 JS 代码/库进行交互时才有用。
+**注意**： 这是一个逃生通道特性，只有在与现有的 JS 代码/库进行交互时才有用。
 
 <!-- Sometimes it's required to clone an existing element to set, overwrite or add prop values to a new instance, or if you want to set invalid prop names such as `data-name`. You can use `React.cloneElement` for that:  -->
 有时需要复制一个现有元素，并对新实例设置、覆写或添加 props，或者你想要设置无效的 prop 名称，例如 `data-name` 。你可以使用 `React.cloneElement` ：

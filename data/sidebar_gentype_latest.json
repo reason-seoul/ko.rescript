@@ -1,10 +1,10 @@
 {
-  "Overview": [
+  "概览": [
     "introduction",
     "getting-started",
     "usage"
   ],
-  "Advanced": [
+  "进阶": [
     "supported-types"
   ]
 }

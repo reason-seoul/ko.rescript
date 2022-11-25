@@ -18,24 +18,24 @@ JavaScript objects are a combination of several use-cases:
 - As a module to import/export.
 -->
 
-JavaScript 中的对象有以下用途：
-- 和其他语言（比如 Rescript 和 C 语言）一样用作“记录”或者“结构”
-- 用作哈希表
-- 用作类
-- 用作输入或输出的模块
+JavaScript 中的对象有下面这些用例：
+- 作为数据存储，类似其他语言（比如 Rescript 和 C 语言）的“记录”或者“结构体”
+- 作为哈希表
+- 作为类
+- 作为输入或输出的模块
 
 <!--
 ReScript cleanly separates the binding methods for JS object based on these 4 use-cases. This page documents the first three. Binding to JS module objects is described in the [Import from/Export to JS](import-from-export-to-js.md) section.
 -->
 
-ReScript 清楚地将这四种不同用途的 JS 对象的绑定方式区分开来了。本页描述其中前三类情况。对 JS 模块对象的绑定会在[从 JS 导入/导出到 JS](import-from-export-to-js.md)中阐述。
+ReScript 清楚地区分这四种不同用途的 JS 对象的绑定方式。本章描述前三种情况。对 JS 模块对象的绑定会在[从 JS 导入/导出到 JS](import-from-export-to-js.md)中说明。
 
 <!-- TODO: mention scope here too? -->
 
 <!--
 ## Bind to Record-like JS Objects
 -->
-## 绑定到用作“记录”的 JS 对象
+## 绑定到类似“记录”的 JS 对象
 
 <!--
 ### Bind Using ReScript Record
@@ -46,7 +46,7 @@ ReScript 清楚地将这四种不同用途的 JS 对象的绑定方式区分开�
 If your JavaScript object has fixed fields, then it's conceptually like a ReScript record. Since a ReScript record compiles to a clean JavaScript object, you can definitely type a JS object as a ReScript record!
 -->
 
-如果你的 JavaScript 对象有固定的字段，那么它在概念上就像一个 ReScript 记录。因为 ReScript 记录可以编译成干净的 JavaScript 对象，所以你可以把 JS 对象当作 ReScript 的记录！
+如果你的 JavaScript 对象有固定的字段，那么它在概念上就像一个 ReScript 记录。因为 ReScript 记录编译成干净的 JavaScript 对象，所以你可以将 JS 对象的类型标注为 ReScript 的记录！
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -102,7 +102,7 @@ var action = {
 This is useful to map to JavaScript attribute names that cannot be expressed in ReScript (such as keywords).
 -->
 
-这对于映射到无法在 ReScript 中表达的 JavaScript 属性名称（例如关键字）很有用。
+这用于映射到无法在 ReScript 中表达的 JavaScript 属性名称（例如 ReScript 关键字）。
 
 <!--
 It is also possible to map a ReScript record to a JavaScript array by passing indices to the `@as` decorator:
@@ -172,7 +172,7 @@ var johnName = MySchool.john.name;
 Alternatively, you can use `get` and `set` to bind to individual fields of a JS object:
 -->
 
-除此之外，你还可以使用 `get` 和 `set` 去绑定 JS 对象的独立字段：
+除此之外，你还可以使用 `@get` 和 `@set` 去绑定 JS 对象的独立字段：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -190,7 +190,7 @@ type textarea
 You can also use `get_index` and `set_index` to access a dynamic property or an index:
 -->
 
-你也可以使用 `get_index` 和 `set_index` 去访问动态属性或者索引：
+你也可以使用 `@get_index` 和 `@set_index` 去访问动态属性或者索引：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -215,7 +215,7 @@ console.log(i32arr[0]);
 <!--
 ## Bind to Hash Map-like JS Object
 -->
-## 绑定到类哈希表 JS 对象
+## 绑定到类似哈希表的 JS 对象
 
 <!--
 If your JavaScript object:
@@ -244,7 +244,7 @@ Then it's not really an object, it's a hash map. Use [Js.Dict](api/js/dict), whi
 Use `new` to emulate e.g. `new Date()`:
 -->
 
-使用 `new` 来模拟，比如 `new Date()`：
+使用 `@new` 来模拟 `new Date()`：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -264,7 +264,7 @@ var date = new Date();
 You can chain `new` and `module` if the JS module you're importing is itself a class:
 -->
 
-如果你要导入的 JS 模块本身就是一个类，你可以将 `new` 和 `module` 串联使用：
+如果你要导入的 JS 模块本身是一个类，你可以将 `new` 和 `module` 串联使用：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

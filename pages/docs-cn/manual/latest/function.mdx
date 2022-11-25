@@ -55,7 +55,7 @@ greet("world!");
 Multi-arguments functions have arguments separated by comma:
 -->
 
-多参函数的参数由逗号分隔：
+多参数函数的参数用逗号分隔：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -75,7 +75,7 @@ function add(x, y, z) {
 For longer functions, you'd surround the body with a block:
 -->
 
-对于较长的函数，你可以用 `{}` 将函数体围起来：
+对于较长的函数，你得用 `{}` 将函数体围起来：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -102,7 +102,7 @@ If your function has no argument, just write `let greetMore = () => {...}`.
 <!--
 ## Labeled Arguments
 -->
-## 带标签的参数
+## 标签参数
 
 <!--
 Multi-arguments functions, especially those whose arguments are of the same type, can be confusing to call.
@@ -133,7 +133,7 @@ addCoordinates(5, 6);
 You can attach labels to an argument by prefixing the name with the `~` symbol:
 -->
 
-你可以为参数附加标签，方法是在名字前面加上 `~` 符号：
+你可以为参数附加标签，在参数名前面加上 `~` 符号：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -175,7 +175,7 @@ addCoordinates(5, 6);
 The `~x` part in the declaration means the function accepts an argument labeled `x` and can refer to it in the function body by the same name. You can also refer to the arguments inside the function body by a different name for conciseness:
 -->
 
-声明中的 `~x` 部分意味着该函数接受一个标签为 `x` 的参数，并且可以在函数体中用相同的名称来指代它。为了简洁起见，你也可以在函数体中用不同的名字指代参数：
+声明中的 `~x` 部分意味着该函数接受一个标签为 `x` 的参数，并且可以在函数体中用相同的名称来指代它。你也可以在函数体中用不同的名字指代参数，这样更简洁：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -209,7 +209,7 @@ As a matter of fact, `(~radius)` is just a shorthand for `(~radius as radius)`.
 Here's the syntax for typing the arguments:
 -->
 
-下面是给参数加上类型的语法：
+下面是给参数标记类型的语法：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -229,13 +229,13 @@ function drawCircle(r, c) {
 <!--
 ## Optional Labeled Arguments
 -->
-## 可选的带标签参数
+## 可选的标签参数
 
 <!--
 Labeled function arguments can be made optional during declaration. You can then omit them when calling the function.
 -->
 
-带标签的函数参数可以在声明时设置成可选项。然后你可以在调用函数时省略它们。
+带标签的函数参数可以在声明时设置成可选的。你可以在调用函数时省略它们。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -280,18 +280,18 @@ More on `option` type [here](null-undefined-option.md).
 **Note** for the sake of the type system, whenever you have an optional argument, you need to ensure that there's also at least one positional argument (aka non-labeled, non-optional argument) after it. If there's none, provide a dummy `unit` (aka `()`) argument.
 -->
 
-**注意**，因为类型系统的缘故，只要你有一个可选参数，你就需要确保在它后面至少有一个位置参数（positional argument，又称非标记的，非可选的参数）。如果没有，可以提供一个哑的 `unit`（`()`）参数。
+**注意**：因为类型系统的限制，只要函数有一个可选参数，你就需要确保在它后面至少有一个位置参数（又称非标记的，非可选的参数）。如果没有，可以提供一个虚拟的 `unit`（又表示为 `()`）参数。
 
 <!--
 ### Signatures and Type Annotations
 -->
-### 签名和类型标注
+### 类型签名和类型标注
 
 <!--
 Functions with optional labeled arguments can be confusing when it comes to signature and type annotations. Indeed, the type of an optional labeled argument looks different depending on whether you're calling the function, or working inside the function body. Outside the function, a raw value is either passed in (`int`, for example), or left off entirely. Inside the function, the parameter is always there, but its value is an option (`option<int>`). This means that the type signature is different, depending on whether you're writing out the function type, or the parameter type annotation. The first being a raw value, and the second being an option.
 -->
 
-当涉及到签名和类型标注时，带有可选标记参数的函数可能会令人困惑。事实上，一个可选标记参数的类型在不同地方看起来是不同的，这取决于你是在函数的调用处，还是在函数体内部。在函数外部，一个原始值要么被传入（比如 `int`）要么被舍弃不传入。在函数内部，参数总是存在的，但其值是一个 `option` 值（`option<int>`）。这意味着类型签名是不同的，这取决于你写的是函数类型还是参数类型的标注，前者是一个原始值，而后者是一个 `option`。
+当涉及到类型签名和类型标注时，带有可选标记参数的函数可能会令人困惑。事实上，一个可选标记参数的类型在不同地方看起来是不同的，这取决于你是正在调用函数，还是在函数体内部。在函数外部，一个原生值要么被传入（比如 `int`），要么不传入。在函数内部，参数总是存在的，但其值是一个 `option` 值（`option<int>`）。这意味着类型签名是不同的，这取决于你标注的是函数类型还是参数类型，前者是一个原生值，而后者是一个 `option`。
 
 <!--
 If we get back to our previous example and both add a signature and type annotations to its argument, we get this:
@@ -340,7 +340,7 @@ In the second line, we annotate the arguments to help us remember the types of t
 So if you happen to struggle when writing the signature of a function with optional labeled arguments, try to remember this!
 -->
 
-因此如果你在编写带有可选标记参数的函数的签名时碰巧遇到了困难，请记住参数类型内外有别这一点！
+如果你在编写带有可选标记参数的函数的类型签名时遇到了困难，请记住参数类型内外有别！
 
 <!--
 ### Explicitly Passed Optional
@@ -351,7 +351,7 @@ So if you happen to struggle when writing the signature of a function with optio
 Sometimes, you might want to forward a value to a function without knowing whether the value is `None` or `Some(a)`. Naively, you'd do:
 -->
 
-有时，你可能希望将值转发给函数，但不确定该值是 `None` 还是 `Some(a)`。你可能会想当然地这样做：
+有时，你想将值转发给函数，但不确定值是 `None` 还是 `Some(a)`。你可能会这样做：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -376,7 +376,7 @@ var result = r !== undefined
 This quickly gets tedious. We provide a shortcut:
 -->
 
-这很快就会变得乏味。我们提供了一个简短写法：
+这会变得很啰嗦。我们提供了一个简写：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -393,7 +393,7 @@ var result = drawCircle(1, undefined, undefined);
 This means "I understand `radius` is optional, and that when I pass it a value it needs to be an `int`, but I don't know whether the value I'm passing is `None` or `Some(val)`, so I'll pass you the whole `option` wrapper".
 -->
 
-这样做的意思是“我知道 `radius` 是可选值，当我给它传递一个值时，它需要是一个 `int`，但我不确定我传递的值是 `None` 还是 `Some(val)`，所以我给你传递整个 `option` 包装”。
+这样做的意思是“我知道 `radius` 是可选值，当我给它传值时，它需要是一个 `int`，但我不确定传的值是 `None` 还是 `Some(val)`，所以我传整个 `option` 包装给你”。
 
 <!--
 ### Optional with Default Value
@@ -433,7 +433,7 @@ function drawCircle(radiusOpt, color, param) {
 ReScript chooses the sane default of preventing a function to be called recursively within itself. To make a function recursive, add the `rec` keyword after the `let`:
 -->
 
-ReScript 选择了将函数不能在内部调用自身设置为默认行为。要创建一个递归函数，需要在 `let` 后面加上 `rec` 关键字：
+ReScript 默认不允许函数在它内部调用自身。要创建一个递归函数，需要在 `let` 后面加上 `rec` 关键字：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -537,7 +537,7 @@ function callFirst(_param) {
 ReScript's functions are curried by default, which is one of the few performance penalties we pay in the compiled JS output. The compiler does a best-effort job at removing those currying whenever possible. However, in certain edge cases, you might want guaranteed uncurrying. In those cases, put a dot in the function's parameter list:
 -->
 
-ReScript 的函数是默认柯里化的，这是少数的编译到 JS 可能会付出性能代价的情况之一。编译器会尽最大可能地去除这些柯里化。然而，在一些边缘情况下，你可能希望保证没有柯里化。这时可以在函数的参数列表前放一个点：
+ReScript 的函数是默认柯里化的，这是少数的编译到 JS 之后付出的性能代价之一。编译器会尽最大可能去除这些柯里化。然而，在一些边缘情况下，你可能希望保证函数没有柯里化。这时可以在函数的参数列表前放一个 `.`：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -560,7 +560,7 @@ add(1, 2);
 If you write down the uncurried function's type, you'll add a dot there as well.
 -->
 
-如果你写了去柯里化函数的类型，你也要在那加一个点。
+如果你为去柯里化函数标注了类型，你也要在那加一个 `.`。
 
 <!--
 **Note**: both the declaration site and the call site need to have the uncurry annotation. That's part of the guarantee/requirement.
@@ -622,7 +622,7 @@ Error handling is done by simply using `try`/`catch`, or a switch with an `excep
 Both JS exceptions and exceptions defined in ReScript can be caught. The compiler takes care of packaging JS exceptions into the builtin `JsError` exception:
 -->
 
-错误处理是通过简单地使用 `try/catch` 或者带 `exception` 情况的 switch 来完成的，就像在非异步的函数中一样。JS 异常和 ReScript 中定义的异常都可被捕获。编译器负责将 JS 异常打包成内置的 `JsError` 异常：
+错误处理是通过简单地使用 `try/catch` 或者匹配 `exception` 的 switch 来完成的，就像在非异步的函数中一样。JS 异常和 ReScript 中定义的异常都可被捕获。编译器负责将 JS 异常打包成内置的 `JsError` 异常：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -671,7 +671,7 @@ async function someAsyncFn(param) {
 Occasionally you may want to ignore the return value of a function. ReScript provides an `ignore()` function that discards the value of its argument and returns `()`:
 -->
 
-偶尔你可能想忽略一个函数的返回值，ReScript 提供了一个 `ignore()` 函数，它抛弃参数的值并返回 `()`：
+偶尔你可能想忽略一个函数的返回值，ReScript 提供了一个 `ignore()` 函数，它抛弃传入的值并返回 `()`：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -762,7 +762,7 @@ let add = (~first: option<int>=?, ~second: option<int>=?) : int => switch first 
 <!--
 ### Application
 -->
-### 函数应用
+### 应用函数
 
 ```res
 add(x, y)
@@ -784,7 +784,7 @@ add(~first?, ~second?)
 <!--
 #### With Type Annotation
 -->
-#### 在函数应用中加上类型标注
+#### 在应用时加上类型标注
 
 ```res
 // labeled
@@ -803,7 +803,7 @@ add(~first=?Some(1): option<int>, ~second=?Some(2): option<int>)
 <!--
 ### Standalone Type Signature
 -->
-### 分离的类型签名
+### 独立的类型签名
 
 ```res
 // first arg type, second arg type, return type

@@ -1,5 +1,5 @@
 ---
-title: "let 绑定"
+title: "Let 绑定"
 description: "Let binding syntax for binding to values in ReScript"
 canonical: "/docs/manual/latest/let-binding"
 ---
@@ -13,7 +13,7 @@ canonical: "/docs/manual/latest/let-binding"
 A "let binding", in other languages, might be called a "variable declaration". `let` _binds_ values to names. They can be seen and referenced by code that comes _after_ them.
 -->
 
-在其他语言中，“let绑定”可能被称为“变量声明”。`let` 将值与名字_绑定_，它们可以被后面的代码看到和引用。
+在其他语言中，“let 绑定”可能被称为“变量声明”。`let` 将值与名字 _绑定_，它们可以被后面的代码看到和引用。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -39,7 +39,7 @@ var newScore = 20;
 Bindings can be scoped through `{}`.
 -->
 
-可以通过`{}`限制绑定的作用域。
+可以通过 `{}` 限制绑定的作用域。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -61,7 +61,7 @@ var message = "hello world";
 The value of the last line of a scope is implicitly returned.
 -->
 
-块最后一行的值被隐式返回。
+作用域最后一行的值被隐式返回。
 
 <!--
 ### Design Decisions
@@ -100,18 +100,18 @@ if (displayGreeting) {
 Let bindings are "immutable", aka "cannot change". This helps our type system deduce and optimize much more than other languages (and in turn, help you more).
 -->
 
-let 绑定是“不可变的”，也就是“不能改变”。这有助于我们的类型系统比其他语言有更多的推理和优化（反过来，也能够帮助你更多）。
+let 绑定是“不可变的”，也就是“不能改变”。这帮助 Rescript 的类型系统进行比其他语言更多的推理和优化（反过来，也能更好地帮助你）。
 
 <!--
 ## Binding Shadowing
 -->
-## 绑定遮蔽
+## 绑定覆盖
 
 <!--
 The above restriction might sound unpractical at first. How would you change a value then? Usually, 2 ways:
 -->
 
-上述限制一开始可能听起来不切实际。那么你如何改变一个值呢？通常情况下，有两种方法：
+上述限制一开始可能听起来不切实际。那么如何改变一个值呢？通常情况下，有两种方法：
 
 <!--
 The first is to realize that many times, what you want isn't to mutate a variable's value. For example, this JavaScript pattern:
@@ -129,7 +129,7 @@ result = calculateSomeMore(result);
 ...is really just to comment on intermediate steps. You didn't need to mutate `result` at all! You could have just written this JS:
 -->
 
-这种写法只是对中间步骤进行注释，你完全就不需要修改 `result`！你可以直接写这样的 JS：
+这种写法只是对中间步骤进行注释，你完全不需要修改 `result`！你可以直接这样写：
 
 ```js
 var result1 = 0;
@@ -162,7 +162,7 @@ var result3 = calculateSomeMore(result2);
 Additionally, reusing the same let binding name overshadows the previous bindings with the same name. So you can write this too:
 -->
 
-此外，重用相同的 let 绑定名字会掩盖之前的同名绑定。所以你也可以这样写：
+此外，用相同的名字进行 let 绑定会覆盖之前的同名绑定。所以你也可以这样写：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -211,7 +211,7 @@ The binding you refer to is whatever's the closest upward. No mutation here!
 If you need _real_ mutation, e.g. passing a value around, have it modified by many pieces of code, we provide a slightly heavier [mutation feature](mutation.md).
 -->
 
-你引用的绑定是上面最接近的绑定。这里没有修改！如果你需要_真正的_修改，比如说把一个值传来传去，让它被很多段代码修改，我们提供了一个稍微重一点的[可变性特性](mutation.md)。
+你引用的绑定是上方距离最近绑定。这里没有修改！如果你需要 _真正的_ 修改，比如说把一个值传来传去，让它被很多段代码修改，我们提供了一个稍微重一点的[可变性特性](mutation.md)。
 
 <!--
 ## Private let bindings
@@ -222,7 +222,7 @@ If you need _real_ mutation, e.g. passing a value around, have it modified by ma
 Private let bindings are introduced in the release [7.2](https://rescript-lang.org/blog/bucklescript-release-7-2).
 -->
 
-私有 let 绑定在[7.2](https://rescript-lang.org/blog/bucklescript-release-7-2)版本中引入。
+私有 let 绑定在 [7.2](https://rescript-lang.org/blog/bucklescript-release-7-2) 版本中引入。
 
 <!--
 In the module system, everything is public by default,
@@ -230,7 +230,7 @@ the only way to hide some values is by providing a separate signature to
 list public fields and their types:
 -->
 
-在模块系统中，所有东西默认是公开的，隐藏某些值的唯一方式是提供一个单独的模块签名，列出模块中的公共字段和他们的类型：
+在模块系统中，所有东西默认是公开的，隐藏某些值的唯一方式是提供一个独立的模块签名，列出模块中的公共字段和他们的类型：
 
 ```res
 module A: {
@@ -266,7 +266,7 @@ Note interface files are still recommended as a general best practice since they
 separate compilation units and also they're better for documentation.
 -->
 
-接口文件仍然被推荐为一般的最佳实践，因为它们给你提供了更好的独立编译单元，而且它们也更适合于文档。
+注意，仍然建议将接口文件作为通用最佳实践，因为接口给你提供了更好的独立编译单元，而且对文档更友好。
 
 <!--
 Still, `%%private` is useful in the following scenarios:

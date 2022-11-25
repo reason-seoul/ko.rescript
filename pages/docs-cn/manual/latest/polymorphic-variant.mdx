@@ -13,7 +13,7 @@ canonical: "/docs/manual/latest/polymorphic-variant"
 Polymorphic variants (or poly variant) are a cousin of [variant](variant). With these differences:
 -->
 
-多态变体是[变体](variant)的表亲。有这些不同之处：
+多态变体是[变体](variant)的表亲。它们有这些不同之处：
 
 <!--
 - They start with a `#` and the constructor name doesn't need to be capitalized.
@@ -21,15 +21,15 @@ Polymorphic variants (or poly variant) are a cousin of [variant](variant). With 
 - Values of different poly variant types can share the constructors they have in common (aka, poly variants are "structurally" typed, as opposed to ["nominally" typed](variant#variant-types-are-found-by-field-name)).
 -->
 
-- 它们以 `#` 开头，构造器的名字无需首字母大写
-- 它们不需要显式的类型定义，类型是由使用情况推断出来的
-- 不同多态变体可以共享它们共同的构造器（也就是说，多态变体是“结构式”的类型，而不是[“名义式”](variant#variant-types-are-found-by-field-name)的类型）
+- 多态变体以 `#` 开头，构造器的名字无需首字母大写。
+- 多态变体不需要显式的类型定义，类型是由使用情况推断出来的。
+- 不同多态变体可以共享它们共同的构造器（也就是说，多态变体是“结构式”的类型，而不是[“名义式”](variant#variant-types-are-found-by-field-name)的类型）。
 
 <!--
 They're a convenient and useful alternative to regular variants, but should **not** be abused. See the drawbacks at the end of this page.
 -->
 
-它们是普通变体方便有用的替代物，但**不应该**被滥用，见本页末尾的缺点。
+它们是普通变体的更便利的替代，但**不应该**被滥用，见本页末尾的缺点。
 
 <!--
 ## Creation
@@ -68,7 +68,7 @@ var myNumber = 7;
 `myColor` uses the common syntax. The second and third syntaxes are to support expressing strings and numbers more conveniently. We allow the second one because otherwise it'd be invalid syntax since symbols like `-` and others are usually reserved.
 -->
 
-`myColor` 使用的是一般语法。第二和第三种语法是为了支持更方便地表达字符串和数字。我们允许第二种语法，因为不这样做的话它将是无效的的语法，像 `-` 和其他符号通常是保留的。
+`myColor` 使用的是一般语法。第二和第三种语法是为了更方便地表达字符串和数字。我们允许第二种语法，因为不这样做的话它将是无效的的语法，因为像 `-` 和其他符号通常是保留的。
 
 <!--
 ## Type Declaration
@@ -79,7 +79,7 @@ var myNumber = 7;
 Although **optional**, you can still pre-declare a poly variant type:
 -->
 
-虽然是**可选的**，但你仍然可以预先声明一个多态变体类型：
+虽然类型声明是**可选的**，但你仍然可以预先声明一个多态变体类型：
 
 ```res
 // Note the surrounding square brackets, and # for constructors
@@ -383,18 +383,18 @@ var intl = Intl.NumberFormat("de-DE");
 The JS output is identical to handwritten JS, but we also get to enjoy type errors if we accidentally write `makeNumberFormat(#"de-DR")`.
 -->
 
-JS 输出与手写 JS 相同，但如果我们不小心写了 `makeNumberFormat(#"de-DR")`，我们也能享受到类型错误。
+JS 输出与手写 JS 相同，但如果我们不小心写了 `makeNumberFormat(#"de-DR")`，我们也会遇到类型错误。
 
 <!--
 More advanced usage examples for poly variant interop can be found in [Bind to JS Function](bind-to-js-function#constrain-arguments-better).
 -->
 
-更多关于多态变体互操作的高级用例可以看[绑定到 JS 函数](bind-to-js-function#constrain-arguments-better)。
+更多关于多态变体互操作的高级用例参见[绑定到 JS 函数](bind-to-js-function#constrain-arguments-better)。
 
 <!--
 ### Bind to String Enums
 -->
-### 绑定到枚举字符串
+### 绑定到字符串枚举
 
 <!--
 Let's assume we have a TypeScript module that expresses following enum export:
@@ -418,7 +418,7 @@ export const myDirection = Direction.Up
 For this particular example, we can also inline poly variant type definitions to design the type for the imported `myDirection` value:
 -->
 
-对于这个特别的例子，我们也可以内联多态变体类型定义来设计导入的 `myDirection` 值的类型：
+对于这个特别的例子，我们也可以内联多态变体的类型定义来设计导入的 `myDirection` 值的类型：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -469,7 +469,7 @@ let background: [< #Red | #Blue] = #Red
 **Note:** We added this info for educational purposes. In most cases you will not want to use any of this stuff, since it makes your APIs pretty unreadable / hard to use.
 -->
 
-**注意：**我们补充这些信息是出于教学目的。大多数情况下，你不会想使用这些东西，因为它会让你的 API 变得相当难读和难用。
+**注意**：我们补充这些信息是出于教学目的。大多数情况下，你不会想使用这些东西，因为它会让你的 API 变得相当难读和难用。
 
 <!--
 ### Closed `[`
@@ -537,7 +537,7 @@ Here, the compiler will enforce the user to define `#Blue | #DeepBlue | #LightBl
 **Note:** Since we want to define an extensible poly variant, we need to provide a type placeholder `<'a>`, and also add `as 'a` after the poly variant declaration, which essentially means: "Given type `'a` is constraint to the minimum set of constructors (`#Blue | #DeepBlue | #LightBlue`) defined in `basicBlueTone`".
 -->
 
-**注意：**因为我们想要定义一个可扩展的多态变体，我们需要提供一个类型占位符 `<'a>`，同时在类型声明后添加 `as 'a`。这样做的意思是：“给定类型 `'a` 受制于 `basicBlueTone` 中定义的最小构造器集合（`#Blue | #DeepBlue | #LightBlue`）”。
+**注意**：因为我们想要定义一个可扩展的多态变体，我们需要提供一个类型占位符 `<'a>`，同时在类型声明后添加 `as 'a`。这样做的意思是：“给定类型 `'a` 受制于 `basicBlueTone` 中定义的最小构造器集合（`#Blue | #DeepBlue | #LightBlue`）”。
 
 <!--
 ### Upper Bound `[<`
@@ -573,7 +573,7 @@ type notWorking = validRed<[#Purple]>
 You can convert a poly variant to a `string` or `int` at no cost:
 -->
 
-你可以将多态变体类型无成本地转换到 `string` 或 `int`：
+你可以将多态变体类型零成本地转换到 `string` 或 `int`：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -630,7 +630,7 @@ One might think that polymorphic variants are superior to regular [variants](./v
 <!--
   Refactoring the first one to `#Orange` doesn't mean we should refactor the third one. Therefore, the editor plugin can't touch the second one either. Regular variant doesn't have such problem, as these 2 values presumably come from different variant type definitions.
 -->
-  把第一个重构成 `#Orange` 并不意味着我们应该重构第三个。同样的道理，编辑器插件也不能碰第二个。普通变体没有这样的问题，因为这两个值可能来自不同的变体类型定义。
+  把第一个重构成 `#Orange` 并不意味着我们应该重构第三个。同样的道理，编辑器插件也不能触及第二个。普通变体没有这样的问题，因为这两个值可能来自不同的变体类型定义。
 
 <!--
 - You might lose some nice pattern match checks from the compiler:
@@ -647,7 +647,7 @@ One might think that polymorphic variants are superior to regular [variants](./v
 <!--
   Because there's no poly variant definition, it's hard to know whether the `#blue` case can be safely removed.
 -->
-  因为没有多态变体的定义，所以很难知道是否可以安全地删除 `#blue` 的情况。
+  因为没有多态变体的定义，所以很难知道是否可以安全地删除 `#blue` 的 case。
 
 <!--
 In most scenarios, we'd recommend to use regular variants over polymorphic variants, especially when you are writing plain ReScript code. In case you want to write zero-cost interop bindings or generate clean JS output, poly variants are oftentimes a better option.

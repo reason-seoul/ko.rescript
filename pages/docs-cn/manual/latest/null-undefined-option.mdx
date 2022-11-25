@@ -1,5 +1,5 @@
 ---
-title: "Null，Undefined 和 Option"
+title: "Null，Undefined & Option"
 description: "JS interop with nullable and optional values in ReScript"
 canonical: "/docs/manual/latest/null-undefined-option"
 ---
@@ -7,19 +7,19 @@ canonical: "/docs/manual/latest/null-undefined-option"
 <!--
 # Null, Undefined and Option
 -->
-# Null，Undefined 和 Option
+# Null，Undefined & Option
 
 <!--
 ReScript itself doesn't have the notion of `null` or `undefined`. This is a _great_ thing, as it wipes out an entire category of bugs. No more `undefined is not a function`, and `cannot access someAttribute of undefined`!
 -->
 
-ReScript 本身没有 `null` 和 `undefined`。这实在是件_好事_，因为它消除了一整类的 bug。再也不会有 `undefined is not a function` 和 `cannot access someAttribute of undefined` 了！
+ReScript 本身没有 `null` 和 `undefined`。这实在是件 _好事_，因为它消除了一整类的 bug。再也不会有 `undefined is not a function` 和 `cannot access someAttribute of undefined` 了！
 
 <!--
 However, the **concept** of a potentially nonexistent value is still useful, and safely exists in our language.
 -->
 
-不过，“可能不存在”这一**概念**仍然是有用的，并且安全地存在于我们的语言中。
+不过，“可能不存在值”这一**概念**仍然是有用的，并且安全地存在于我们的语言中。
 
 <!--
 We represent the existence and nonexistence of a value by wrapping it with the `option` type. Here's its definition from the standard library:
@@ -42,7 +42,7 @@ type option<'a> = None | Some('a)
 It means "a value of type option is either None (representing nothing) or that actual value wrapped in a Some".
 -->
 
-它的意思是“option 类型的值要么是 None（什么也没有），要么是被 Some 包裹的那个实际值”。
+它的意思是“option 类型的值要么是 None（什么也没有），要么是被 Some 包装的那个实际值”。
 
 <!--
 **Note** how the `option` type is just a regular [variant](variant.md).
@@ -53,7 +53,7 @@ It means "a value of type option is either None (representing nothing) or that a
 <!--
 ## Example
 -->
-## 例子
+## 示例
 
 <!--
 Here's a normal value:
@@ -171,7 +171,7 @@ var x;
 compiles to `undefined`! If you've got e.g. a string in JavaScript that you know might be `undefined`, type it as `option<string>` and you're done! Likewise, you can send a `Some(5)` or `None` to the JS side and expect it to be interpreted correctly =)
 -->
 
-会编译为 `undefined`！如果你在 JavaScript 中有一个字符串，你知道它可能是 `undefined`，那么把它标注为 `option<string>` 就完事了！同样地，你可以向 JS 端发送一个 `Some(5)` 或 `None`，并期望它被正确解释 =)
+会编译为 `undefined`！如果你在 JavaScript 中有一个字符串，你知道它可能是 `undefined`，那么把它标注为 `option<string>` 就完事了！同样地，你可以向 JS 端发送一个 `Some(5)` 或 `None`，并期望它被正确解释 =)。
 
 <!--
 ### Caveat 1
@@ -182,7 +182,7 @@ compiles to `undefined`! If you've got e.g. a string in JavaScript that you know
 The option-to-undefined translation isn't perfect, because on our side, `option` values can be composed:
 -->
 
-`option` 到 `undefined` 的翻译并不是完美的，因为在我们这边， `option` 值是可组合的：
+`option` 到 `undefined` 的翻译并不是完美的，因为在 ReScript 这边， `option` 值是可组合的：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -253,19 +253,19 @@ To solve this, we provide access to more elaborate `null` and `undefined` helper
 <!--
 #### Examples
 -->
-#### 例子
+#### 示例
 
 <!--
 To create a JS `null`, use the value `Js.Nullable.null`. To create a JS `undefined`, use `Js.Nullable.undefined` (you can naturally use `None` too, but that's not the point here; the `Js.Nullable.*` helpers wouldn't work with it).
 -->
 
-要创建 JS 的 `null`，使用 `Js.Nullable.null` 的值。要创建 JS 的 `undefined`，使用 `Js.Nullable.undefined`（你自然也可以使用 `None`，但这不是这里的重点；`Js.Nullable.*` 里的辅助函数不会对它起作用）。
+要创建 JS 的 `null`，使用 `Js.Nullable.null` 的值。要创建 JS 的 `undefined`，使用 `Js.Nullable.undefined`（你也可以使用 `None`，但这不是这里的重点；`Js.Nullable.*` 里的辅助函数不会对它起作用）。
 
 <!--
 If you're receiving, for example, a JS string that can be null and undefined, type it as:
 -->
 
-例如，如果你收到的是一个可以为 `null` 和 `undefined` 的 JS 字符串，那就这样做：
+例如，如果你收到的是一个可以为 `null` 和 `undefined` 的 JS 字符串，那就这样声明类型：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -282,7 +282,7 @@ If you're receiving, for example, a JS string that can be null and undefined, ty
 To create such a nullable string from our side (presumably to pass it to the JS side, for interop purpose), do:
 -->
 
-如果要从我们这边创建一个可空（nullable）字符串（假设是为了互操作目的，会把它传递给 JS 端），可以这么做：
+如果要从 ReScript 这边创建一个可空（nullable）字符串（假设是为了互操作目的，会把它传递给 JS 端），可以这么做：
 
 
 <CodeTab labels={["ReScript", "JS Output"]}>

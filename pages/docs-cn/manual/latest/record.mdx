@@ -76,7 +76,7 @@ var me = {
 When you create a new record value, ReScript tries to find a record type declaration that conforms to the shape of the value. So the `me` value here is inferred as of type `person`.
 -->
 
-当你创建新的记录值时，ReScript 试图找到符合该值形状的记录类型声明。因此，这里的 `me` 值被推断为 `person` 类型。
+当你创建新的记录值时，ReScript 试图找到符合值的形状的记录类型声明。因此，这里的 `me` 值被推断为 `person` 类型。
 
 <!--
 The type is found by looking above the `me` value. **Note**: if the type instead resides in another file or module, you need to explicitly indicate which file or module it is:
@@ -155,7 +155,7 @@ var name = "Big ReScript";
 New records can be created from old records with the `...` spread operator. The original record isn't mutated.
 -->
 
-可以用 `...` 平展操作符从旧记录中创建新记录。原始记录不会被修改。
+可以用 `...` 展开操作符从旧记录中创建新记录。原始记录不会被修改。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -175,7 +175,7 @@ var meNextYear = {
 **Note**: spread cannot add new fields to the record value, as a record's shape is fixed by its type.
 -->
 
-**注意**: 平展不能向记录值添加新字段，记录的形状是由其类型固定的。
+**注意**: 展开不能向记录值添加新字段，记录的形状是由其类型固定的。
 
 <!--
 ## Mutable Update
@@ -186,7 +186,7 @@ var meNextYear = {
 Record fields can optionally be mutable. This allows you to efficiently update those fields in-place with the `=` operator.
 -->
 
-记录的字段可以是可变的，这允许你用 `=` 操作符高效地就地更新这些字段。
+记录的字段可以是可变的，这允许你用 `=` 操作符高效地原地更新这些字段。
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -256,12 +256,12 @@ type person = {
 Notice how `name` has a suffixed `?`. That means that the field itself is _optional_.
 -->
 
-注意 `name` 有一个 `?` 后缀，这意味着字段本身是_可选的_。
+注意 `name` 有一个 `?` 后缀，这意味着字段本身是 _可选的_。
 
 <!--
 ### Creation
 -->
-## 创建过程
+## 创建记录
 
 <!--
 You can omit any optional fields when creating a record. Not setting an optional field will default the field's value to `None`:
@@ -586,7 +586,7 @@ The type system will complain that `me` is a `person`, and that `getAge` only wo
 Many JavaScript APIs tend to have large configuration objects that can be a bit annoying to model as records, since you previously always needed to specify all record fields when creating a record.
 -->
 
-很多 JavaScript API 往往有庞大的配置的对象，如果用记录来建模这些对象可能有点令人讨厌，因为你总是需要在创建记录时指定所有记录字段。
+很多 JavaScript API 往往有庞大的配置对象，如果用记录来建模这些对象可能有点令人讨厌，因为你总是需要在创建记录时指定所有记录字段。
 
 <!--
 Optional record fields, introduced in [`v10`](/blog/release-10-0-0#experimental-optional-record-fields), is intended to help with this. Optional fields will let you avoid having to specify all fields, and let you just specify the one's you care about. A significant improvement in ergonomics for bindings and other APIs with for example large configuration objects.
@@ -610,5 +610,5 @@ After reading the constraints in the previous sections, and if you're coming fro
 2. Since a record type is resolved through finding that single explicit type declaration (we call this "nominal typing"), the type error messages end up better than the counterpart ("structural typing", like for tuples). This makes refactoring easier; changing a record type's fields naturally allows the compiler to know that it's still the same record, just misused in some places. Otherwise, under structural typing, it might get hard to tell whether the definition site or the usage site is wrong.
 -->
 
-1. 事实是，在你的应用程序中，大多数时候你的数据的形状实际上是固定的，如果不是，它有可能更好地表示为变体(接下来介绍) + 记录的组合
-2. 由于记录类型是通过找到那个单一的显式类型声明来解决的（我们称之为“名义类型(nominal typing)”），类型错误信息最终会比对等的类型（“结构式类型(structural typing)”，如元组）更好。这使得重构更容易；改变一个记录类型的字段自然地允许编译器知道它仍然是同一个记录，只是在某些地方被误用。否则，在结构化类型下，可能会变得很难分辨是定义的地方还是使用的地方出了问题
+1. 事实是，在你的应用程序中，大多数时候你的数据的形状实际上是固定的，如果不是，它表示为变体(接下来介绍) + 记录的组合可能会更好。
+2. 由于记录类型是通过找到那个单一的显式类型声明来解决的（我们称之为“名义类型(nominal typing)”），类型错误信息最终会比对等的类型（“结构式类型(structural typing)”，如元组）更好。这使得重构更容易；改变一个记录类型的字段天然允许编译器知道它仍然是同一个记录，只是在某些地方被误用。否则，在结构化类型下，可能会很难分辨是定义的地方还是使用的地方出了问题。

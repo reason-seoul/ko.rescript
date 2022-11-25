@@ -220,7 +220,7 @@ React 还支持另一种设置 refs 的方法，称为 “回调 refs”（`Reac
 不同于传递由 `React.useRef()` 创建的 ref 值，你会传递一个回调函数。这个函数接收 `Dom.element` 作为参数，以使这个 `Dom.element` 能被存储并在其他地方访问。
 
 <!-- **Note:** Usually we'd use `React.Ref.domRef()` to pass a ref value, but for callback refs, we use `React.Ref.callbackDomRef()` instead. -->
-**注意：**通常我们会使用 `React.Ref.domRef()` 传递一个 ref 值，但是对于回调 refs，我们使用 `React.Ref.callbackDomRef()`。
+**注意**：通常我们会使用 `React.Ref.domRef()` 传递一个 ref 值，但是对于回调 refs，我们使用 `React.Ref.callbackDomRef()`。
 
 <!-- The example below implements a common pattern: using the ref callback to store a reference to a DOM node in an instance property. -->
 下面的例子描述了一个通用的范例：使用 ref 回调函数，在实例的属性中存储对 DOM 节点的引用。

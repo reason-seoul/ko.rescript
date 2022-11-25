@@ -91,7 +91,7 @@ Ordinary variants (with capitalized cases, e.g. ``` | A | B(int) ```) and polymo
 类似地，多态变体类型 ``[@genType] type days = [ | `Monday | `Tuesday ] `` 具有相同的 JS 表示。
 
 <!-- When at most one variant case has a payload, and if the payload is of object type, e.g. -->
-当最多一个变体的情况下有一个有效载荷，如果有效载荷是对象类型，例如。
+当最多一个变体的情况下有一个有效 payload ，如果有效 payload 是对象类型，例如。
 ``` [ | Unnamed | Named({. "name": string, "surname": string}) ] ```
 <!-- then the representation is unboxed: JS values are e.g. `"Unnamed"` and -->
 那么该表示是未被装箱的: JS 值是例如 `"Unnamed"` 和
@@ -108,7 +108,7 @@ Ordinary variants (with capitalized cases, e.g. ``` | A | B(int) ```) and polymo
 <!-- ```{tag: "B", value: 42}``` and ```{tag: "C", value: "hello"}```. -->
 ```{tag: "B", value: 42}``` 和 ```{tag: "C", value: "hello"}```.
 <!-- Polymorhphic variants are treated similarly. Notice that payloads for polymorphic variants are always unary: ``` `Pair(int,int) ``` has a single payload of type `(int,int)`. Instead, ordinary variants distinguish between unary ``` Pair((int,int)) ``` and binary ``` Pair(int,int) ``` payloads. All those cases are represented in JS as ```{tag: "Pair", value: [3, 4]}```, and the conversion functions take care of the different ReScript representations. -->
-多态变体的处理方式类似。注意，多态变量的有效负载总是一元的: ``` `Pair(int,int) ``` 只有一个 `(int,int)` 类型的有效载荷。相反，普通变体区分一元``` Pair((int,int)) ``` 和二进制 ``` Pair(int,int) ``` 有效载荷。所有这些情况在 JS 中都表示为 ```{tag: "Pair", value: [3, 4]}```，转换函数负责不同的 ReScript 表示。
+多态变体的处理方式类似。注意，多态变量的有效负载总是一元的: ``` `Pair(int,int) ``` 只有一个 `(int,int)` 类型的有效 payload 。相反，普通变体区分一元``` Pair((int,int)) ``` 和二进制 ``` Pair(int,int) ``` 有效 payload 。所有这些情况在 JS 中都表示为 ```{tag: "Pair", value: [3, 4]}```，转换函数负责不同的 ReScript 表示。
 <!-- The `@genType.as` annotation can be used to modify the name emitted for a variant case on the JS side. So e.g. ``` | [@genType.as "Arenamed"] A``` exports ReScript value `` A `` to JS value `"Arenamed"`.
 Boolean/integer/float constants can be expressed as ``` | [@genType.as true] True ``` and ``` | [@genType.as 20] Twenty ``` and ``` | [@genType.as 0.5] Half ```. Similarly for polymorphic variants. -->
 `@genType.as` 注解可用于在 JS 端修改为变体情况发出的名称。所以如。``` | [@genType.as "Arenamed"] A``` 导出 ReScript 值 `` A `` 到 JS 值`"Arenamed"`
@@ -127,7 +127,7 @@ Boolean/integer/float constants can be expressed as ``` | [@genType.as true] Tru
 <!-- Immutable arrays are supported with the additional ReScript library -->
 附加的ReScript库支持不可变数组
 <!-- [ImmutableArray.res/.resi](https://github.com/reason-association/genType/tree/master/examples/typescript-react-example/src/ImmutableArray.resi), which currently needs to be added to your project. -->
-[ImmutableArray.res/.resi](https://github.com/reason-association/genType/tree/master/examples/typescript-react-example/src/ImmutableArray.resi), 目前需要添加哪些到您的项目中
+[ImmutableArray.res/.resi](https://github.com/reason-association/genType/tree/master/examples/typescript-react-example/src/ImmutableArray.resi), 目前需要添加哪些到你的项目中
 <!-- The type `ImmutableArray.t(+'a)` is covariant, and is mapped to readonly array types in TS/Flow. As opposed to TS/Flow, `ImmutableArray.t` does not allow casting in either direction with normal arrays. Instead, a copy must be performed using `fromArray` and `toArray`. -->
 类型 `ImmutableArray.t(+'a)` 是协变的，并且被映射到 TS/Flow 中的只读数组类型。相对于 TS/Flow, `ImmutableArray.t` 不允许对普通数组进行任意方向的类型转换。相反，拷贝必须使用 `fromArray` 和 `toArray` 来执行。
 
@@ -214,7 +214,7 @@ export firstClassModule: module(MT) = module(M)
 ## Polymorphic Types
 
 <!-- If a ReScript type contains a type variable, the corresponding value is not converted. In other words, the conversion is the identity function. For example, a ReScript function of type `{payload: 'a} => 'a` must treat the value of the payload as a black box, as a consequence of parametric polymorphism. If a typed back-end is used, the ReScript type is converted to the corresponding generic type. -->
-如果 ReScript 类型包含类型变量，则不转换对应的值。换句话说，转换就是恒等函数。例如，类型为 `{payload: 'a} => 'a` 的 ReScript 函数，必须将有效载荷的值视为黑箱，作为参数多态的结果。如果使用类型化后端，则将 ReScript 类型转换为相应的泛型类型。
+如果 ReScript 类型包含类型变量，则不转换对应的值。换句话说，转换就是恒等函数。例如，类型为 `{payload: 'a} => 'a` 的 ReScript 函数，必须将有效 payload 的值视为黑箱，作为参数多态的结果。如果使用类型化后端，则将 ReScript 类型转换为相应的泛型类型。
 ### Exporting Values from Polymorphic Types with Hidden Type Variables ｜ 从具有隐藏类型变量的多态类型导出值
 
 <!-- For cases when a value that contains a hidden type variable needs to be converted, a function can be used to produce the appropriate output: -->

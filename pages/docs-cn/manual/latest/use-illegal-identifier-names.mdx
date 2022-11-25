@@ -1,5 +1,5 @@
 ---
-title: "使用不合法的标识符"
+title: "使用非法的标识符"
 description: "Handling (JS) naming collisions in ReScript"
 canonical: "/docs/manual/latest/use-illegal-identifier-names"
 ---
@@ -7,7 +7,7 @@ canonical: "/docs/manual/latest/use-illegal-identifier-names"
 <!--
 # Use Illegal Identifier Names
 -->
-# 使用不合法的标识符
+# 使用非法的标识符
 
 <!--
 Sometime, for e.g. a let binding or a record field, you might want to use:
@@ -17,15 +17,15 @@ Sometime, for e.g. a let binding or a record field, you might want to use:
 -->
 
 有时对于一个 let 绑定或一个 record 字段，你可能想使用：
-- 大写的名字
-- 包含非法字符的名字（如：表情符号、连字符、空格）
-- 属于 ReScript 保留关键字的名字
+- 大写的名字。
+- 包含非法字符的名字（如：表情符号、连字符、空格）。
+- 属于 ReScript 保留关键字的名字。
 
 <!--
 We provide an escape hatch syntax for these cases:
 -->
 
-我们为这些情况提供了一个逃逸语法：
+我们为这些情况提供了一个语法：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

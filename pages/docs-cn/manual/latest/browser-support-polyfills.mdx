@@ -1,5 +1,5 @@
 ---
-title: "浏览器支持与填充"
+title: "浏览器支持 & Polyfills"
 description: "Note on browser support in ReScript"
 canonical: "/docs/manual/latest/browser-support-polyfills"
 ---
@@ -7,20 +7,20 @@ canonical: "/docs/manual/latest/browser-support-polyfills"
 <!--
 # Browser Support & Polyfills
 -->
-# 浏览器支持与填充
+# 浏览器支持 & Polyfills
 
 <!--
 ReScript compiles to JavaScript **ES5**, with the exception of optionally allowing to compile to ES6's module import & export.
 -->
 
-ReScript 编译为 JavaScript ES5，但可选择允许编译为 ES6 的模块导入和导出。
+ReScript 编译为 **ES5** 标准的 JavaScript，但可选择编译为 ES6 的模块导入/导出。
 
 
 <!--
 For [old browsers](https://caniuse.com/#search=typed%20array), you also need to polyfill TypedArray. The following standard library functions require it:
 -->
 
-对于[旧浏览器](https://caniuse.com/#search=typed%20array)，你还需要补上 TypedArray。以下这些标准库函数需要它：
+对于[旧浏览器](https://caniuse.com/#search=typed%20array)，你还需要 TypedArray polyfill。以下这些标准库函数需要它：
 
 - `Int64.float_of_bits`
 - `Int64.bits_of_float`
@@ -31,4 +31,4 @@ For [old browsers](https://caniuse.com/#search=typed%20array), you also need to 
 If you don't use these functions, you're fine. Otherwise, it'll be a runtime failure.
 -->
 
-如果你不使用上面这些函数，那最好不过了。否则，会出现运行时错误。
+如果你不使用上面这些函数，那就没事。否则，会出现运行时错误。

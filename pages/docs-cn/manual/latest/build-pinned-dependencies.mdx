@@ -1,5 +1,5 @@
 ---
-title: "版本锁定依赖"
+title: "固定依赖"
 metaTitle: "Pinned Dependencies"
 description: "Handling multiple packages within one ReScript project with pinned dependencies"
 canonical: "/docs/manual/latest/build-pinned-dependencies"
@@ -8,7 +8,7 @@ canonical: "/docs/manual/latest/build-pinned-dependencies"
 <!--
 # Pinned Dependencies
 -->
-# 版本锁定依赖
+# 固定依赖
 
 <!--
 **Since 8.4**
@@ -26,7 +26,7 @@ Usually we'd recommend to use ReScript in a single-codebase style by using one `
 There are scenarios where you still want to connect and build multiple independent ReScript packages for one main project though (`npm` workspaces-like "monorepos"). This is where `pinned-dependencies` come into play.
 -->
 
-但是也存在你想要为某个主要项目连接和构建多个独立 ReScript 包的情况（类似于 `npm` 的 `monorepos`）。这也就是 `pinned-dependencies` 发挥作用的地方。
+但是也有这样的场景，你想要为某个主要项目连接和构建多个独立的 ReScript 包（类似于 `npm` 工作区的 `monorepos`）。这就是 `pinned-dependencies` 发挥作用的地方。
 
 <!--
 ## Package Types
@@ -37,7 +37,7 @@ There are scenarios where you still want to connect and build multiple independe
 Before we go into detail, let's first explain all the different package types recognized by the build system:
 -->
 
-在我们开始详细讨论之前，我们首先解释一下构建系统识别的所有不同的包类型：
+在我们讨论细节之前，首先说明一下构建系统识别的所有的包类型：
 
 <!--
 - Toplevel (this is usually the final app you are building, which has dependencies to other packages)
@@ -45,15 +45,15 @@ Before we go into detail, let's first explain all the different package types re
 - Normal dependencies (these are packages that are consumed from npm and listed via `bs-dependencies`)
 -->
 
-- 顶层包（这通常是你最后构建得到的 app，它依赖于其他的包）
-- 版本锁定依赖项（这些是你的本地包，它们应该在构建顶层包时总是被重新构建，它们应该列在 `bs-dependencies` 和 `pinned-dependencies` 里）
-- 通常依赖项（这些是从 npm 获得的包，它们应该列在 `bs-dependencies` 里）
+- 顶层包（通常是你最后构建的 app，依赖于其他的包）
+- 固定依赖（这些是你的本地包，它们在构建顶层包时总是被重新构建，应该列在 `bs-dependencies` 和 `pinned-dependencies` 里）
+- 普通依赖（这些是从 npm 获得的包，它们应该列在 `bs-dependencies` 里）
 
 <!--
 Whenever a package is being built (`rescript build`), the build system will build the toplevel package with its pinned-dependencies. So any changes made in a pinned dependency will automatically be reflected in the final app.
 -->
 
-当一个包被构建时（`rescript build`），构建系统会构建顶层包和它的版本锁定依赖项。因此，在版本锁定依赖中做的任何修改都会自动反映到最终的 app 中。
+当一个包被构建时（`rescript build`），构建系统会构建顶层包和它的固定依赖。因此，在固定依赖中做的任何修改都会自动反映到最终的 app 中。
 
 <!--
 ## Build System Package Rules
@@ -78,11 +78,11 @@ The build system respects the following rules for each package type:
 
 **顶层包**
 - 报告警告
-- 报告错误
+- 提示错误
 - 构建 dev 依赖
-- 构建版本锁定依赖项
+- 构建固定依赖
 - 使用自定义规则
-- 类似 ES6/CommonJS 的 `package-specs` 会覆盖所有依赖的选项
+- Package-specs（ES6/CommonJS）会覆盖所有依赖
 
 <!--
 **Pinned dependencies**
@@ -93,11 +93,11 @@ The build system respects the following rules for each package type:
 - Runs custom rules
 -->
 
-**版本锁定依赖**
-- 报告警报
-- 报告错误
-- 忽略版本锁定依赖
+**固定依赖**
+- 报告警告
+- 提示错误
 - 构建 dev 依赖
+- 忽略固定依赖
 - 使用自定义规则
 
 <!--
@@ -108,22 +108,22 @@ The build system respects the following rules for each package type:
 - Ignores custom generator rules
 -->
 
-**一般的依赖**
-- 忽略警报和错误
+**普通依赖**
+- 忽略警告和错误
 - 忽略开发目录
-- 忽略版本锁定依赖
+- 忽略固定依赖
 - 忽略自定义生成规则
 
 <!--
 So with that knowledge in mind, let's dive into some more concrete examples to see our pinned dependencies in action.
 -->
 
-记下这些知识，让我们用一些具体的例子来观察一下版本锁定依赖的行为。
+记住这些知识，让我们深入更多具体的例子来理解固定依赖。
 
 <!--
 ## Examples
 -->
-## 例子
+## 示例
 
 <!--
 ### Yarn workspaces
@@ -154,7 +154,7 @@ myproject/
 Our `package.json` file within our codebase root would look like this:
 -->
 
-我们代码库根目录下的 `package.json` 文件：
+我们代码库根目录下的 `package.json` 文件像这样：
 
 ```json
 {
@@ -199,10 +199,10 @@ Our `app` folder would be our toplevel package, consuming our `common` and `mypl
 Now, whenever we are running `rescript build` within our `app` package, the compiler would always rebuild any changes within its pinned dependencies as well.
 -->
 
-现在，当我们在 `app` 包中运行 `rescript build` 时，编译器总是会重新构建它的版本锁定依赖项。
+现在，当我们在 `app` 包中运行 `rescript build` 时，编译器总是会重新构建它的固定依赖。
 
 <!--
 **Important:** ReScript will not rebuild any `pinned-dependencies` in watch mode! This is due to the complexity of file watching, so you'd need to set up your own file-watcher process that runs `rescript build` on specific file changes.
 -->
 
-**重要：**ReScript 不会观察模式中对任何的 `pinned-Dependencies` 进行重新构建！这是由文件观察的复杂性导致的，所以你需要建立自己的文件监视进程，在特定文件更改时运行 `rescript build`。
+**重要：**ReScript 不会在 watch 模式中对任何的 `pinned-dependencies` 进行重新构建！因为文件监听很复杂，所以你需要建立自己的文件监听进程，在特定文件更改时运行 `rescript build`。

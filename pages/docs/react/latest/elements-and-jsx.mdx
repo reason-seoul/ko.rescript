@@ -28,7 +28,7 @@ let element = <h1> {React.string("Hello World")} </h1>
 ```
 
 <!-- The binding `element` and the expression `{React.string("Hello World")}` are both of type `React.element`, the fundamental type for representing React elements within a React application. An element describes what you see on the screen whenever you render your application to the DOM. -->
-`element` 绑定和表达式 `{React.string("Hello World")}` 都是 `React.element`类型，`React.element` 是 React 应用中表示 React 元素的基本类型。元素描述了你能在屏幕上看到的内容。
+`element` 绑定和表达式 `{React.string("Hello World")}` 都是 `React.element` 类型，`React.element` 是 React 应用中表示 React 元素的基本类型。元素描述了你能在屏幕上看到的内容。
 
 <!-- Let's say you want to create a function that handles another React element, such as `children`, you can annotate it as `React.element`: -->
 当你想创建一个函数来操作另一个 React 元素，例如 `children` ，你可以将 `children` 的类型标记为 `React.element` ：
@@ -45,10 +45,10 @@ wrapChildren(<div> {React.string("Let's use React with ReScript")} </div>)
 ```
 
 <!-- Understanding the definition of a `React.element` is essential since it is heavily used within the React APIs, such as `ReactDOM.render(element, ...)`, etc. Be aware that JSX doesn't do any automatic `string` to `React.element` conversion for you (ReScript forces explicit type conversion). For example `<div> Hello World </div>` will not type-check (which is actually a good thing because it's also a huge source for subtle bugs!), you need to convert your `"Hello World"` with the `React.string` function first. -->
-理解 `React.element` 的定义非常重要，因为它在 React API 中被大量使用，例如 `ReactDOM.render(element, ...)` 等。需要注意的是，JSX 不会自动将 `string` 转换为 `React.element` （ReScript强制要求显式类型转换）。例如， `<div> Hello World </div>` 将不会进行类型转换（这实际上是好事，因为它很容易引发 bug ！），你需要使用 `React.string` 函数显式转换 `"Hello World"` 到 `React.element`。
+理解 `React.element` 的定义非常重要，因为它在 React API 中被大量使用，例如 `ReactDOM.render(element, ...)` 等。需要注意的是，JSX 不会自动将 `string` 转换为 `React.element` （ReScript 强制要求显式类型转换）。例如， `<div> Hello World </div>` 将不会进行类型转换（这实际上是好事，因为它很容易引发 bug ！），你需要使用 `React.string` 函数将 `"Hello World"` 显式转换为 `React.element`。
 
 <!-- Fortunately our React bindings bring all necessary functionality to represent all relevant data types as `React.element`s. -->
-我们的 React bindings 拥有必要的功能，用于将所有相关的数据类型表示为 `React.element` 。
+我们的 React bindings 拥有所有的必要功能，用于将所有相关的数据类型表示为 `React.element` 。
 
 <!-- ## Using Elements within JSX -->
 ## 使用 JSX 组合元素
@@ -135,13 +135,13 @@ React.createElement("div", undefined, element);
 ## 逃生通道
 
 <!-- **Note:** This chapter features low level APIs that are used by JSX itself, and should only be used whenever you hit certain JSX syntax limitations. More infos on the JSX internals can be found in our [Beyond JSX](./beyond-jsx) section. -->
-**注意**： 本章节介绍了 JSX 使用的底层 API ，只有在遇到 JSX 语法限制时才应使用。关于 JSX 内部实现的更多信息可参考[Beyond JSX](./beyond-jsx)。
+**注意**： 本章节介绍了 JSX 使用的底层 API ，只有在遇到 JSX 语法限制时才应使用。关于 JSX 内部实现的更多信息可参考[超越 JSX](./beyond-jsx)。
 
 <!-- ### Creating Elements from Component Functions -->
 ### 用组件函数创建元素
 
 <!-- **Note:** Details on components and props will be described in the [next chapter](./components-and-props). -->
-**注意**： 组件和 props 的细节会在[下一章](./components-and-props)说明。
+**注意**：组件和 props 的细节会在[下一章](./components-and-props)说明。
 
 <!-- Sometimes it's necessary to pass around component functions to have more control over `React.element` creation. Use the `React.createElement` function to instantiate your elements: -->
 有时候需要传递组件函数来更好地控制 `React.element` 的创建。使用 `React.createElement` 函数来实例化你的元素：
@@ -166,7 +166,7 @@ let render = (renderMyComp: (~name: string) => React.element) => {
 ```
 
 <!-- #### Pass Variadic Children -->
-#### 传递子元素作为可变参数
+#### 传递任意多个子元素
 
 <!-- There is also a `React.createElementVariadic` function, which takes an array of children as a third parameter: -->
 还有一个 `React.createElementVariadic` 函数，它接受一个子元素数组作为第三个参数：
@@ -256,7 +256,7 @@ React.cloneElement(original, {
 </CodeTab>
 
 <!-- The feature mentioned above could also replicate `props spreading`, a practise commonly used in ReactJS codebases, but we strongly discourage the usage due to its unsafe nature and its incorrectness (e.g. adding undefined extra props to a component doesn't make sense, and causes hard to find bugs). -->
-上面提到的特性也可以模仿 `props传播`，一个在 ReactJS 代码库中常见的用法，但由于它的不安全性和不正确性，我们非常不推荐你这样做（例如，给组件添加未定义的额外 props 是没有意义的，并会导致难以发现的 bug ）。
+上面提到的特性也可以模仿 `props 传播`，一个在 ReactJS 代码库中常见的用法，但由于它的不安全性和不正确性，我们非常不推荐你这样做（例如，给组件添加未定义的额外 props 是没有意义的，并会导致难以发现的 bug ）。
 
 <!-- In ReScript, we rather pass down required props explicitly to leaf components or use a renderProp instead. We introduced [JSX punning](/docs/manual/latest/jsx#punning) syntax to make the process of passing down props more convenient. -->
-在 ReScript 中，我们会将需要的 props 显式传递给叶子组件，或者使用 renderProp 。我们引入了[JSX双关](/docs/manual/latest/jsx#punning)语法来更便捷地传递 props。
+在 ReScript 中，我们会将需要的 props 显式传递给叶子组件，或者使用 renderProp 。我们引入了[JSX 双关](/docs/manual/latest/jsx#punning)语法来更便捷地传递 props。

@@ -10,7 +10,7 @@ canonical: "/docs/react/latest/arrays-and-keys"
 <Intro>
 
 <!-- Whenever we are transforming data into an array of elements and put it in our React tree, we need to make sure to give every element an unique identifier to help React distinguish elements for each render. This page will explain the `key` attribute and how to apply it whenever we need to map data to `React.element`s. -->
-当我们将数据转换为 React 元素数组并插入我们的 React 元素树时，需要确保为每个元素提供一个唯一标识符，以帮助 React 在渲染时区分元素。本节将说明 `key` 属性的概念，以及当我们需要将数据映射到 `React.element` 时如何设置 `key`。
+当我们将数据转换为 React 元素数组，并插入我们的 React 元素树时，需要确保为每个元素提供一个唯一标识符，以帮助 React 在渲染时区分元素。本节将介绍 `key` 属性的概念，以及当我们需要将数据映射到 `React.element` 时如何设置 `key`。
 
 </Intro>
 
@@ -60,7 +60,7 @@ let items = Belt.Array.mapWithIndex(todos, (i, todo) => {
 ### Keys 需要在同级的项目中唯一
 
 <!-- Keys used within arrays should be unique among their siblings. However they don’t need to be globally unique. We can use the same keys when we produce two different arrays: -->
-数组中使用的 Keys 在其同级中应该是唯一的。但是它们不需要全局唯一。当我们生成两个不同的数组时，可以使用相同的 Keys：
+数组中使用的 Keys 在其同级中应该是唯一的。但是它们不需要是全局唯一的。当我们生成两个不同的数组时，可以使用相同的 Keys：
 
 ```res {6,10,17,18,25,27}
 type post = {id: string, title: string, content: string}
@@ -132,7 +132,7 @@ let make = () => {
 ```
 
 <!-- We use `Belt.List.toArray` to convert our list to an array before creating our `array<React.element>`. Please note that using `list` has performance impact due to extra conversion costs. -->
-创建 `array<React.element>` 之前，使用 `Belt.List.toArray` 将列表转换到数组。请注意，由于有额外的转换成本，使用 `list` 会影响性能。
+创建 `array<React.element>` 之前，使用 `Belt.List.toArray` 将列表转换到数组。请注意，由于有额外的转换开销，使用 `list` 会影响性能。
 
 <!-- 99% of the time you'll want to use arrays (seamless interop, faster JS code), but in some cases it might make sense to use a `list` to leverage advanced pattern matching features etc. -->
 99%的情况下你会使用数组（与 JS 无缝互操作，生成更快的 JS 代码），但是在某些情况下，可以使用 `list` 来利用模式匹配等特性。

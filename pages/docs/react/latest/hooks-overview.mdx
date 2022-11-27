@@ -1,5 +1,5 @@
 ---
-title: Hooks & 状态管理概览
+title: 概览
 description: "ReScript and React 中的 Hooks 和状态管理概览"
 canonical: "/docs/react/latest/hooks-overview"
 ---
@@ -77,7 +77,7 @@ function Counter(Props) {
 我们使用了 `React.useState` Hook。我们在组件函数中调用它来为组件添加局部状态。React 会在重渲染之间保持这些状态。`React.useState` 返回一个元组，包括当前状态值（`count`） 和一个更新状态值的函数（`setCount`）。你能在处理事件时调用更新函数，或将更新函数传递给其他组件。
 
 <!-- The only argument to `React.useState` is a function that returns the initial state (`_ => 0`). In the example above, it is 0 because our counter starts from zero. Note that your state can be any type you want and `ReScript` will make sure to infer the types for you (only make sure to return an initial state that matches your type). The initial state argument is only used during the first render. -->
-`React.useState` 的唯一参数是一个返回初始状态的函数（`_ => 0`）。在上面的例子中，它是 0 因为我们的计数器从零开始。请注意，状态可以是任何类型，Rescript 会为你进行类型推断（只需要确保你的初始状态和你的类型匹配）。初始状态参数只会在首次渲染时使用。
+`React.useState` 的唯一参数是一个返回初始状态的函数（`_ => 0`）。在上面的例子中，它是 0 ，因为我们的计数器从零开始。请注意，状态可以是任何类型，Rescript 会为你进行类型推断（只需要确保你的初始状态和你的类型匹配）。初始状态参数只会在首次渲染时使用。
 
 <!-- This was just a quick example on our first hook usage. We will go into more detail in a dedicated [useState](./hooks-state) section. -->
 这只是 Hook 的一个小例子。我们会在独立的 [useState](./hooks-state) 章节中介绍更多细节。

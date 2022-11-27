@@ -44,7 +44,7 @@ The nice thing about this concept is that you can solely focus on the input and 
 > If you want to know more about the low level details on how a component interface is implemented, refer to the [Beyond JSX](./beyond-jsx) page.
 -->
 
-> 如果你想要了解更多关于组件接口实现的底层细节，请参考 [Beyond JSX](./beyond-jsx) 页面。
+> 如果你想要了解更多关于组件接口实现的底层细节，请参考 [超越 JSX](./beyond-jsx) 页面。
 
 <!--
 ## Component Example
@@ -85,7 +85,7 @@ var make = Greeting;
 **Important:** Always make sure to name your component function `make` and don't forget to add the `@react.component` attribute.
 -->
 
-**重要：** 始终确保将组件命名为 `make`，并且不要忘记添加 `@react.component` 装饰器。
+**重要：** 始终确保将组件函数命名为 `make`，并且不要忘记添加 `@react.component` 装饰器。
 
 <!--
   We've created a `Greeting.res` file that contains a `make` function that doesn't receive any props (the function doesn't receive any parameters), and returns a `React.element` that represents `<div> Hello ReScripters! </div>` in the rendered DOM.
@@ -109,7 +109,7 @@ You can also see in the the JS output that the function we created was directly 
 In ReactJS, props are usually described as a single `props` object. In ReScript, we use [labeled arguments](/docs/manual/latest/function#labeled-arguments) to define our props parameters instead. Here's an example:
 -->
 
-在 ReactJS 中，props 通常被描述为单个 `props` 对象。而在 ReScript 中，我们使用[带标签的参数](/docs/manual/latest/function#labeled-arguments)来定义 props 参数。这是一个示例：
+在 ReactJS 中，props 通常被描述为单个 `props` 对象。而在 ReScript 中，我们使用[标签参数](/docs/manual/latest/function#labeled-arguments)来定义 props 参数。这是一个示例：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -228,7 +228,7 @@ You can't define any props called `key` or `ref`. React treats those props diffe
 Check out the corresponding [Arrays and Keys](./arrays-and-keys) and [Forwarding React Refs](./forwarding-refs) sections for more details.
 -->
 
-查看对应的 [Arrays and Keys](./arrays-and-keys) 与 [Forwarding React Refs](./forwarding-refs) 章节来获取更多信息。
+查看对应的 [数组 & Keys](./arrays-and-keys) 与 [转发 React Refs](./forwarding-refs) 章节来获取更多信息。
 
 <!--
 ### Handling Invalid Prop Names (e.g. keywords)
@@ -246,7 +246,7 @@ Prop names like `type` (as in `<input type="text" />`) aren't syntactically vali
 For `aria-*` use camelCasing, e.g., `ariaLabel`. For DOM components, we'll translate it to `aria-label` under the hood.
 -->
 
-对于 `aria-*`，使用驼峰式，例如 `ariaLabel`。对于 DOM 组件，我们会在幕后将其翻译成 `aria-label`。
+对于 `aria-*`，使用驼峰式，例如 `ariaLabel`。对于 DOM 组件，我们会在底层将其翻译成 `aria-label`。
 
 <!--
 For `data-*` this is a bit trickier; words with `-` in them aren't valid in ReScript. When you do want to write them, e.g., `<div data-name="click me" />`, check out the [React.cloneElement](./elements-and-jsx#cloning-elements) or [React.createDOMElementVariadic](./elements-and-jsx#creating-dom-elements) section.
@@ -258,7 +258,7 @@ For `data-*` this is a bit trickier; words with `-` in them aren't valid in ReSc
 ## Children Props
 -->
 
-## 子属性
+## Children Props
 
 <!--
 In React `props.children` is a special attribute to represent the nested elements within a parent element:
@@ -399,13 +399,13 @@ module NoChildren = {
 Children props are really tempting to be abused as a way to model hierarchies, e.g. `<List> <ListHeader/> <Item/> </List>` (`List` should only allow `Item` / `ListHeader` elements), but this kind of constraint is hard to enforce because all components end up being a `React.element`, so it would require notorious runtime checking within `List` to verify that all children are in fact of type `Item` or `ListHeader`.
 -->
 
-子属性很容易被滥用为建模层次结构的方法，例如，`<List> <ListHeader/> <Item/> </List>`（`List` 应该只允许 `Item` 或 `ListHeader` 元素），但这种约束很难实行，因为所有组件最终都是 `React.element`，所以这需要在 `List` 中添加臭名昭著的运行时检查来验证所有的子元素实际上是 `Item` 或 `ListHeader` 类型。
+children props 很容易被滥用为建模层次结构的方法，例如，`<List> <ListHeader/> <Item/> </List>`（`List` 应该只允许 `Item` 或 `ListHeader` 元素），但这种约束很难实行，因为所有组件最终都是 `React.element`，所以这需要在 `List` 中添加臭名昭著的运行时检查来验证所有的子元素实际上是 `Item` 或 `ListHeader` 类型。
 
 <!--
 The best way to approach this kind of issue is by using props instead of children, e.g. `<List header="..." items=[{id: "...", text: "..."}]/>`. This way it's easy to type check the constraints, and it also spares component consumers from memorizing and remembering component constraints.
 -->
 
-解决此类问题的最好方法是使用普通属性，而不是 children，例如 `<List header="..." items=[{id: "...", text: "..."}]/>`。这种方式很容易对约束进行类型检查，并且让组件的使用者脱离一遍遍记忆组件间约束的苦海。
+解决此类问题的最好方法是使用普通 props，而不是 children，例如 `<List header="..." items=[{id: "...", text: "..."}]/>`。这种方式很容易对约束进行类型检查，并且让组件的使用者脱离一遍遍记忆组件间约束的苦海。
 
 <!--
 **The best use-case for `children` is to pass down `React.element`s without any semantic order or implementation details!**
@@ -429,7 +429,7 @@ ReScript 的类型系统非常擅长于根据 prop 的使用情况来推断其�
 For simple cases, well-scoped usage, or experimentation, it's still fine to omit type annotations:
 -->
 
-对于简单的, 作用域恰当的使用，或实验，是可以省略类型注释的：
+对于简单的, 作用域恰当的使用，或为了实验目的，是可以省略类型注释的：
 
 ```res
 // Button.res
@@ -514,7 +514,7 @@ You don't need to use the `@react.component` decorator to write components that 
 This works with your own version of `@obj`, or any other function that takes named args and returns a single props structure. For example:
 -->
 
-这适用于你自己版本的 `@obj`，或任何其他接受命名参数并返回单个 props 结构的函数。例如：
+这适用于你自己版本的 `@obj`，或其他接受命名参数并返回单个 props 结构的函数。例如：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -554,7 +554,7 @@ React.createElement(Link, {
 More details on the `@react.component` decorator and its generated interface can be found in our [Beyond JSX](./beyond-jsx) page.
 -->
 
-关于 `@react.component` 装饰器的细节以及它生成接口的更多信息可以在我们的 [Beyond JSX](./beyond-jsx) 章节找到。
+关于 `@react.component` 装饰器的细节以及它生成接口的更多信息可以在我们的 [超越 JSX](./beyond-jsx) 章节找到。
 
 <!--
 ## Submodule Components
@@ -590,7 +590,7 @@ let make = (~children) => {
 The `Button.res` file defined above is now containing a `Label` component, that can also be used by other components, either by writing the fully qualified module name (`<Button.Label title="My Button"/>`) or by using a module alias to shortcut the full qualifier:
 -->
 
-上面定义的 `Button.res` 文件现在包含了一个 `Label` 组件，它也可以被其他组件使用，或通过编写完整限定的模块名（`<Button.Label title="My Button"/>`），或通过模块别名来快捷表示完整限定符：
+上面定义的 `Button.res` 文件现在包含了一个 `Label` 组件，它也可以被其他组件使用，或通过编写完整限定的模块名（`<Button.Label title="My Button"/>`），或通过模块别名来简写完整的限定符：
 
 ```res
 module Label = Button.Label
@@ -608,7 +608,7 @@ let content = <Label title="Test"/>
 Because components are actually a pair of functions, they have to belong to a module to be used in JSX. It makes sense to use these modules for identification purposes as well. `@react.component` automatically adds the name for you based on the module you are in.
 -->
 
-因为组件实际上是一对函数，为了在 JSX 中使用，它们必须属于一个模块。用模块来识别目的是很有意义的。`@react.component` 会根据你所在的模块自动为你添加名称。
+因为组件实际上是一对函数，为了在 JSX 中使用，它们必须属于一个模块。用模块来识别用途是很有意义的。`@react.component` 会根据你所在的模块自动为你添加名称。
 
 ```res
 // File.res
@@ -641,12 +641,12 @@ If you need a dynamic name for higher-order components or you would like to set 
 ## Tips & Tricks
 -->
 
-## 提示 & 技巧
+## 技巧和诀窍
 
 <!--
 - Start with one component file and utilize submodule components as your component grows. Consider splitting up in multiple files when really necessary.
 - Keep your directory hierarchy flat. Instead of `article/Header.res` use `ArticleHeader.res` etc. Filenames are unique across the codebase, so filenames tend to be very specific `ArticleUserHeaderCard.res`, which is not necessarily a bad thing, since it clearly expresses the intent of the component within its name, and makes it also very easy to find, match and refactor across the whole codebase.
 -->
 
-- 从一个组件文件开始。随着组件的增长，运用子模块组件的能力。在真正需要时将组件拆分为多个文件。
+- 从一个组件文件开始。随着组件的增长，运用子模块组件的能力。在真正需要时才考虑将组件拆分为多个文件。
 - 保持你的目录结构扁平化。例如，使用 `ArticleHeader.res` 而不是 `article/Header.res`。文件名在代码库中是唯一的，所以文件名往往像是非常具体的 `ArticleUserHeaderCard.res`，这未必是件坏事，因为文件名清楚地表达了组件的意图，并使其可以轻松地在整个代码库中查找、匹配、重构。

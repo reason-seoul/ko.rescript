@@ -36,7 +36,7 @@ var match = React.useReducer(reducer, initialState);
 在某些场景下，`useReducer` 会比 `useState` 更适用，例如 state 逻辑较复杂且包含多个子值，或者下一个 state 依赖于之前的 state 等。并且，使用 `useReducer` 还能给那些会触发深层更新的组件做性能优化，因为你可以向子组件传递 `dispatch` 而不是回调函数 。 
 
 <!-- **Note:** You will notice that the action / reducer pattern works especially well in ReScript due to its [immutable records](/docs/manual/latest/record), [variants](/docs/manual/latest/variant) and [pattern matching](/docs/manual/latest/pattern-matching-destructuring) features for easy expression of your action and state transitions. -->
-**注意**： 你会发现，归功于 [不可变记录](/docs/manual/latest/record)，[变体](/docs/manual/latest/variant) 和 [模式匹配](/docs/manual/latest/pattern-matching-destructuring) 特性，action / reducer 模式可以在 ReScript 中轻松地表达 action 和 state 转换。
+**注意**： 你会发现，归功于 [不可变记录](/docs/manual/latest/record)，[变体](/docs/manual/latest/variant) 和 [模式匹配](/docs/manual/latest/pattern-matching-destructuring) 特性，action / reducer 模式可以在 ReScript 中轻松地表达 action 和 state 变换。
 
 <!-- ## Examples -->
 ## 示例
@@ -110,7 +110,7 @@ function Counter(Props) {
 ### 拥有更多复杂操作的基础 Todo List 应用
 
 <!-- You can leverage the full power of variants to express actions with data payloads to parametrize your state transitions: -->
-你可以充分利用变体的强大功能，通过数据 payload 来表达 action，从而参数化 state 转换：
+你可以充分利用变体的强大功能，通过数据 payload 来表达 action，从而参数化 state 变换：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -284,10 +284,10 @@ var match = React.useReducer(reducer, initialState, init);
 </CodeTab>
 
 <!-- You can also create the `initialState` lazily. To do this, you can use `React.useReducerWithMapState` and pass an `init` function as the third argument. The initial state will be set to `init(initialState)`. -->
-你可以选择惰性地创建 `initialState`。为此，需要将 `init` 函数作为 `React.useReducerWithMapState` 的第三个参数传入，这样初始 state 将被设置为 `init(initialState)`。
+你也可以惰性地创建 `initialState`。为此，需要将 `init` 函数作为 `React.useReducerWithMapState` 的第三个参数传入，这样初始 state 将被设置为 `init(initialState)`。
 
 <!-- It lets you extract the logic for calculating the initial state outside the reducer. This is also handy for resetting the state later in response to an action: -->
-这么做可以将用于计算 state 的逻辑提取到 reducer 外部，这也为将来对重置 state 的 action 做处理提供了便利：
+它让你将计算 state 的逻辑提取到 reducer 外部，这也为以后在响应某个 action 时重置 state 提供了便利：
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 

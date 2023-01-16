@@ -1,23 +1,46 @@
 ---
-title: "Type"
-description: "Types and type definitions in ReScript"
+title: "타입(Type)"
+description: "ReScript에서 타입과 타입 정의"
 canonical: "/docs/manual/latest/type"
 ---
 
+<!--
 # Type
+-->
+# 타입(Type)
 
+<!--
 Types are the highlight of ReScript! They are:
 - **Strong**. A type can't change into another type. In JavaScript, your variable's type might change when the code runs (aka at runtime). E.g. a `number` variable might change into a `string` sometimes. This is an anti-feature; it makes the code much harder to understand when reading or debugging.
 - **Static**. ReScript types are erased after compilation and don't exist at runtime. Never worry about your types dragging down performance. You don't need type info during runtime; we report all the information (especially all the type errors) during compile time. Catch the bugs earlier!
-- **Sound**. This is our biggest differentiator versus many other typed languages that compile to JavaScript. Our type system is guaranteed to **never** be wrong. Most type systems make a guess at the type of a value and show you a type in your editor that's sometime incorrect. We don't do that. We believe that a type system that is sometime incorrect can end up being dangerous due to expectation mismatches.
+- **Sound**. This is our biggest differentiator versus many other typed languages that compile to JavaScript. Our type system is guaranteed to **never** be wrong. Most type systems make a guess at the type of a value and show you a type in your editor that's sometimes incorrect. We don't do that. We believe that a type system that is sometimes incorrect can end up dangerous due to expectation mismatches.
 - **Fast**. Many developers underestimate how much of their project's build time goes into type checking. Our type checker is one of the fastest around.
 - **Inferred**. You don't have to write down the types! ReScript can deduce them from their values. Yes, it might seem magical that we can deduce all of your program's types, without incorrectness, without your manual annotation, and do so quickly. Welcome to ReScript =).
+-->
 
+타입은 ReScript의 꽃이라 할 수 있습니다! ReScript에 타입은,
+- **강력합니다.** 타입은 다른 타입으로 바뀌지 않습니다. JavaScript에서는 코드가 실행(런타임)될 때 변수의 타입이 바뀌기도 합니다. 예를 들어, `number` 타입의 변수가 때로 `string` 타입의 변수로 바뀌기도 합니다. 이는 하나의 반 기능(anti-feature)으로, 코드를 읽거나 디버깅할 때 코드를 더욱 이해하기 어렵습니다.
+- **정적입니다.** ReScript의 타입들은 컴파일 후 지워지며, 타입이 필요 없는 런타임 단계에서는 그 정보들이 남아있지 않습니다. 사용된 타입들이 퍼포먼스 저하에 영향을 끼치지 않는다는 것입니다. 또한, 런타임 중에 타입 정보는 필요하지 않을 것이기에, ReScript는 타입 오류들을 포함한 모든 정보를 컴파일 중에 알려줍니다. 버그를 보다 더 빨리 잡아보세요! 
+- **명확합니다.** JavaScript로 컴파일되는 다른 여러 타입 언어들 비교했을 때 가장 큰 차별화 요소로, ReScript의 타입 시스템은 **절대** 틀리지 않을 것을 보장합니다. 대부분의 타입 시스템은, 값의 타입을 추측하여 때로는 편집기에서 잘못된 타입을 표시합니다. 그러나 ReScript는 다릅니다. ReScript에서는 그런 부류의 때때로 부정확한 타입 시스템이 예상 불일치에서 발생하는 위험이라 믿기 때문에 절대 틀리지 않습니다.
+- **빠릅니다.** 많은 개발자가 자신들의 프로젝트의 빌드 시간 중 얼마나 많은 시간이 타입 검사에 투자되는지를 과소평가합니다. ReScript의 타입 검사기는 가장 빠른 검사기 중 하나입니다. 
+- **유추됩니다.** 타입을 일일이 쓸 필요가 없습니다! ReScript는 변수의 값에서 타입을 유추할 수 있습니다. ReScript가 여러분의 파일의 모든 타입을 오류 없이, 직접 주석을 달지 않고도 빠르게 유추할 수 있다는 게 마치 마법 같아 보일 수도 있습니다. ReScript의 세계에 오신 것을 환영합니다! =)
+
+<!--
 The following sections explore more of our type system.
+-->
 
+지금부터 ReScript 타입 시스템에 대해 하나하나 알아보겠습니다.
+
+<!--
 ## Inference
+-->
+## 추론(Inference)
 
+<!--
 This let-binding doesn't contain any written type:
+-->
+
+다음의 let 바인딩에는 어떠한 타입도 작성하지 않았습니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -34,11 +57,22 @@ function add(a, b) {
 
 </CodeTab>
 
+<!--
 ReScript knows that `score` is an `int`, judging by the value `10`. This is called **inference**. Likewise, it also knows that the `add` function takes 2 `int`s and returns an `int`, judging from the `+` operator, which works on ints.
+-->
 
+ReScript는 `score`가 가지고 있는 값 `10`을 토대로, `score`는 `int`임을 알고 있습니다. 이를 **추론**이라 합니다. 마찬가지로, ReScript는 정수에서 작동하는 `+` 연산자를 토대로, `add` 함수가 두 개의 `int`를 받고 `int`를 반환하는 것으로 추론할 수 있습니다. 
+
+<!--
 ## Type Annotation
+-->
+## 타입 어노테이션(Type Annotation)
 
+<!--
 But you can also optionally write down the type, aka annotate your value:
+-->
+
+위와 같이 타입들이 추론되지만, 여러분은 타입을 또한 유동적으로 손수 쓸 수 있습니다. 이걸 ReScript에서는 값에 어노테이션(Annotation)을 쓴다고 합니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -51,9 +85,17 @@ var score = 10;
 
 </CodeTab>
 
+<!--
 If the type annotation for `score` doesn't correspond to our inferred type for it, we'll show you an error during compilation time. We **won't** silently assume your type annotation is correct, unlike many other languages.
+-->
 
+만약 `score`의 타입 어노테이션이 ReScript가 유추한 타입과 일치하지 않는 경우, ReScript는 컴파일 시에 에러를 보여줄 것입니다. ReScript는 다른 많은 언어와는 다르게 여러분의 타입 어노테이션이 맞을 것이라고 **가볍게 넘기지 않을 것**입니다. 
+
+<!--
 You can also wrap any expression in parentheses and annotate it:
+-->
+
+다음과 같이 어떤 표현이든 괄호 안에 넣고 어노테이션을 달 수도 있습니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -76,11 +118,22 @@ function drawCircle(r) {
 
 </CodeTab>
 
+<!--
 Note: in the last line, `(~radius as r: int)` is a labeled argument. More on this in the [function](function.md) page.
+-->
 
+참고: 마지막 줄의 `(~radius as r: int)`는 이름이 지정된 인수입니다. 이에 대한 자세한 내용은 [함수](function.md) 페이지에서 확인하세요.
+
+<!--
 ## Type Alias
+-->
+## 타입의 별칭(Type alias)
 
+<!--
 You can refer to a type by a different name. They'll be equivalent:
+-->
+
+타입에 다른 이름을 부여할 수 있습니다. 다음의 예시들은 서로 같은 뜻입니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -94,11 +147,23 @@ var x = 10;
 
 </CodeTab>
 
+<!--
 ## Type Parameter (Aka Generic)
+-->
+## 타입 매개변수 (Type Parameter - Aka Generic)
 
+<!--
 Types can accept parameters, akin to generics in other languages. The parameters' names **need** to start with `'`.
+-->
 
+타입들은 매개변수를 받을 수 있습니다(다른 언어에서는 Generics라고 합니다.). 매개변수 이름은 **꼭** `'`로 시작해야 합니다.
+
+<!--
 The use-case of a parameterized type is to kill duplications. Before:
+-->
+
+다음은 중복을 제거하기 위해 매개 변수화한 타입을 사용한 예제입니다.
+사용 전:
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -117,7 +182,11 @@ var b = [10.5, 20.5, 20.5];
 
 </CodeTab>
 
+<!--
 After:
+-->
+
+사용 후:
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -134,7 +203,11 @@ var b = [10.5, 20.5, 20.5];
 
 </CodeTab>
 
+<!--
 Note that the above codes are just contrived examples for illustration purposes. Since the types are inferred, you could have just written:
+-->
+
+위의 코드는 설명을 위한 인위적인 예일뿐입니다. 타입이 유추되었으므로 다음과 같이 작성할 수 있습니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -147,9 +220,17 @@ var buddy = [10, 20, 20];
 
 </CodeTab>
 
+<!--
 The type system infers that it's a `(int, int, int)`. Nothing else needed to be written down.
+-->
 
+타입 시스템은 이것이 `(int, int, int)`라고 유추합니다. 그 외에는 다른 어떤 것도 쓰여질 필요가 없습니다.
+
+<!--
 Type arguments appear in many places. Our `array<'a>` type is such a type that requires a type parameter
+-->
+
+타입 인수는 여러 위치에 나타납니다. ReScript의 `array<'a>` 타입은 타입 매개변수가 필요한 유형입니다. 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -164,9 +245,17 @@ var greetings = ["hello", "world", "how are you"];
 
 </CodeTab>
 
+<!--
 If types didn't accept parameters, the standard library would need to define the types `arrayOfString`, `arrayOfInt`, `arrayOfTuplesOfInt`, etc. That'd be tedious.
+-->
 
+타입 인수는 여러 위치에 나타납니다. ReScript의 `array<'a>` 타입은 타입 매개변수가 필요한 유형입니다. 
+
+<!--
 Types can receive many arguments, and be composable.
+-->
+
+타입은 많은 인수를 받을 수 있고 구성할 수 있습니다.
 
 <!-- TODO: too early for this example -->
 
@@ -206,9 +295,16 @@ var payloadResults = [
 
 </CodeTab>
 
+<!--
 ## Recursive Types
+-->
+## 재귀 타입(Recursive Types)
 
+<!--
 Just like a function, a type can reference itself within itself using `rec`:
+-->
+
+함수와 마찬가지로 타입은 `rec`을 사용하여 자기 자신을 참조할 수 있습니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -224,9 +320,16 @@ type rec person = {
 
 </CodeTab>
 
+<!--
 ## Mutually Recursive Types
+-->
+## 상호적 재귀 타입(Mutually Recursive Types)
 
+<!--
 Types can also be _mutually_ recursive through `and`:
+-->
+
+타입은 `and`을 통해 _상호적_ 재귀가 될 수 있습니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -240,9 +343,16 @@ and teacher = {students: array<student>}
 
 </CodeTab>
 
+<!--
 ## Type Escape Hatch
+-->
+## 타입 비상구(Type Escape Hatch)
 
+<!--
 ReScript's type system is robust and does not allow dangerous, unsafe stuff like implicit type casting, randomly guessing a value's type, etc. However, out of pragmatism, we expose a single escape hatch for you to "lie" to the type system:
+-->
+
+ReScript의 타입 시스템은 강력하며, 암시적 타입 변환과 값의 타입을 임의로 추측하는 등의 위험을 허락하지 않습니다. 하지만, 실용적인 측면에서 ReScript는 타입 시스템을 "속일 수" 있는 하나의 비상구를 제공합니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -255,7 +365,11 @@ external myShadyConversion: myType1 => myType2 = "%identity"
 
 </CodeTab>
 
+<!--
 This declaration converts a `myType1` of your choice to `myType2` of your choice. You can use it like so:
+-->
+
+이 선언은 `myType1`의 선택을 `myType2`로 바꿔줍니다. 이런 비상구는 아래와 같이 사용할 수 있습니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -271,8 +385,20 @@ var gpa = 2.1 + 10;
 
 </CodeTab>
 
+<!--
 Obviously, do **not** abuse this feature. Use it tastefully when you're working with existing, overly dynamic JS code, for example.
+-->
 
+절대 이 기능을 **남용하지 마십시오.** 예를 들어, 기존의 지나치게 동적인 JS 코드의 작업이 필요할 때, 세련되게 사용하기를 바랍니다.
+
+<!--
 More on externals [here](external.md).
+-->
 
+`external`에 대한 자세한 내용은 [여기서](external.md) 확인하세요.
+
+<!--
 **Note**: this particular `external` is the only one that isn't preceded by a `@` [attribute](attribute.md).
+-->
+
+**참고**: 이 `external`은 앞에 `@` [어트리뷰트](attribute.md)가 붙지 않은 유일한 `external`입니다.

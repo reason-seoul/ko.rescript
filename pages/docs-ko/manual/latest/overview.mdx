@@ -1,88 +1,136 @@
 ---
-title: "Overview"
-metaTitle: "Language Features Overview"
-description: "A quick overview on ReScript's syntax"
+title: "개요"
+metaTitle: "언어 특징 개요"
+description: "ReScript의 문법 개요 빠르게 훑어보기"
 canonical: "/docs/manual/latest/overview"
 ---
 
+<!--
 # Overview
+-->
 
+# 개요
+
+<!--
 ## Comparison to JS
+-->
 
+## JavaScript와 비교
+
+<!--
 ### Semicolon
+-->
 
-| JavaScript                           | ReScript             |
-| ------------------------------------ | -------------------- |
-| Rules enforced by linter/formatter   | No semicolon needed! |
+### 세미콜론(Semicolon)
 
+| JavaScript               | ReScript                |
+| ------------------------ | ----------------------- |
+| 린터나 포매터에서 강제함 | 세미콜론 필요하지 않음! |
+
+<!--
 ### Comments
+-->
+
+### 주석(Comments)
 
 | JavaScript           | ReScript                         |
 | -------------------- | -------------------------------- |
-| `// Line comment`    | Same                             |
-| `/* Comment */`      | Same                             |
+| `// Line comment`    | 같음                             |
+| `/* Comment */`      | 같음                             |
 | `/** Doc Comment */` | `/** Before Types/Values */`     |
 |                      | `/*** Standalone Doc Comment */` |
 
+<!--
 ### Variable
+-->
 
-| JavaScript              | ReScript                       |
-| ----------------------- | ------------------------------ |
-| `const x = 5;`          | `let x = 5`                    |
-| `var x = y;`            | No equivalent (thankfully)     |
+### 변수(Variable)
+
+| JavaScript              | ReScript                              |
+| ----------------------- | ------------------------------------- |
+| `const x = 5;`          | `let x = 5`                           |
+| `var x = y;`            | 동등한 항목 없음(다행히도)            |
 | `let x = 5; x = x + 1;` | `let x = ref(5); x := x.contents + 1` |
 
+<!--
 ### String & Character
+-->
 
-| JavaScript                | ReScript              |
-| --------------------------| --------------------- |
-| `"Hello world!"`          | Same                  |
-| `'Hello world!'`          | Strings must use `"`  |
-| `"hello " + "world"`      | `"hello " ++ "world"` |
-| `` `hello ${message}` ``  | Same                  |
+### 문자열 & 캐릭터(String & Character)
 
+| JavaScript               | ReScript                |
+| ------------------------ | ----------------------- |
+| `"Hello world!"`         | 같음                    |
+| `'Hello world!'`         | 문자열은 무조건 `"`사용 |
+| `"hello " + "world"`     | `"hello " ++ "world"`   |
+| `` `hello ${message}` `` | 같음                    |
+
+<!--
 ### Boolean
+-->
 
-| JavaScript                                            | ReScript                                       |
-| ----------------------------------------------------- | ---------------------------------------------- |
-| `true`, `false`                                       | Same                                           |
-| `!true`                                               | Same                                           |
-| <code>&#124;&#124;</code>, `&&`, `<=`, `>=`, `<`, `>` | Same                                           |
-| `a === b`, `a !== b`                                  | Same                                           |
-| No deep equality (recursive compare)                  | `a == b`, `a != b`                             |
-| `a == b`                                              | No equality with implicit casting (thankfully) |
+### 불리언(Boolean)
 
+| JavaScript                                            | ReScript                                      |
+| ----------------------------------------------------- | --------------------------------------------- |
+| `true`, `false`                                       | 같음                                          |
+| `!true`                                               | 같음                                          |
+| <code>&#124;&#124;</code>, `&&`, `<=`, `>=`, `<`, `>` | 같음                                          |
+| `a === b`, `a !== b`                                  | 같음                                          |
+| 깊은(완전) 동일성 없음(재귀적 비교)                   | `a == b`, `a != b`                            |
+| `a == b`                                              | 암시적 캐스팅을 수반한 동일성 없음 (다행히도) |
+
+<!--
 ### Number
+-->
+
+### 숫자(Number)
 
 | JavaScript  | ReScript     |
 | ----------- | ------------ |
-| `3`         | Same \*      |
-| `3.1415`    | Same         |
-| `3 + 4`     | Same         |
+| `3`         | 같음 \*      |
+| `3.1415`    | 같음         |
+| `3 + 4`     | 같음         |
 | `3.0 + 4.5` | `3.0 +. 4.5` |
 | `5 % 3`     | `mod(5, 3)`  |
 
+<!--
 \* JS has no distinction between integer and float.
+-->
 
+\* JS는 정수와 실수(float) 간의 차이가 없습니다.
+
+<!--
 ### Object/Record
+-->
+
+### 객체/레코드(Object/Record)
 
 | JavaScript          | ReScript                                |
 | ------------------- | --------------------------------------- |
-| no types            | `type point = {x: int, mutable y: int}` |
-| `{x: 30, y: 20}`    | Same                                    |
-| `point.x`           | Same                                    |
-| `point.y = 30;`     | Same                                    |
-| `{...point, x: 30}` | Same                                    |
+| 타입 없음           | `type point = {x: int, mutable y: int}` |
+| `{x: 30, y: 20}`    | 같음                                    |
+| `point.x`           | 같음                                    |
+| `point.y = 30;`     | 같음                                    |
+| `{...point, x: 30}` | 같음                                    |
 
+<!--
 ### Array
+-->
 
-| JavaScript            | ReScript                           |
-| --------------------- | ---------------------------------- |
-| `[1, 2, 3]`           | Same                               |
-| `myArray[1] = 10`     | Same                               |
-| `[1, "Bob", true]`    | `(1, "Bob", true)` \*              |
+### 배열(Array)
 
+| JavaScript         | ReScript              |
+| ------------------ | --------------------- |
+| `[1, 2, 3]`        | 같음                  |
+| `myArray[1] = 10`  | 같음                  |
+| `[1, "Bob", true]` | `(1, "Bob", true)` \* |
+
+<!--
 \* Heterogenous arrays in JS are disallowed for us. Use tuple instead.
+-->
+
+JavaScript의 이종 배열(heterogenous array)은 ReScript에서는 허용되지 않습니다. 대신에 튜플(tuple)의 사용을 권장합니다.
 
 ### Null
 
@@ -90,41 +138,57 @@ canonical: "/docs/manual/latest/overview"
 | ------------------- | --------- |
 | `null`, `undefined` | `None` \* |
 
+<!--
 \* Again, only a spiritual equivalent; we don't have nulls, nor null bugs! But we do have an `option` type for when you actually need nullability.
+-->
 
+\* 재차 강조하지만, 단지 개념 상 동등할 뿐입니다. ReScript에서는 null도 없을뿐더러 null 버그도 없습니다!그러나 null의 개념이 정말 필요한 경우에는 `option` 타입을 제공합니다.
+
+<!--
 ### Function
+-->
+
+### 함수(Function)
 
 | JavaScript                      | ReScript                     |
 | ------------------------------- | ---------------------------- |
-| `arg => retVal`                 | Same                         |
+| `arg => retVal`                 | 같음                         |
 | `function named(arg) {...}`     | `let named = (arg) => {...}` |
 | `const f = function(arg) {...}` | `let f = (arg) => {...}`     |
-| `add(4, add(5, 6))`             | Same                         |
+| `add(4, add(5, 6))`             | 같음                         |
 
+<!--
 ### Blocks
+-->
+
+### 블록(Blocks)
 
 <table>
   <thead>
     <tr>
       <th>JavaScript</th>
-      <th>ReScript  </th>
+      <th>ReScript </th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-  <pre><code>{`const myFun = (x, y) => {
+        <pre>
+          <code>{`const myFun = (x, y) => {
   const doubleX = x + x;
   const doubleY = y + y;
   return doubleX + doubleY
-};`}</code></pre>
+};`}</code>
+        </pre>
       </td>
       <td>
-  <pre><code>{`let myFun = (x, y) => {
+        <pre>
+          <code>{`let myFun = (x, y) => {
   let doubleX = x + x
   let doubleY = y + y
   doubleX + doubleY
-}`}</code></pre>
+}`}</code>
+        </pre>
       </td>
     </tr>
   </tbody>
@@ -132,31 +196,47 @@ canonical: "/docs/manual/latest/overview"
 
 ### If-else
 
-| JavaScript            | ReScript                                                            |
-| --------------------- | ------------------------------------------------------------------- |
-| `if (a) {b} else {c}` | `if a {b} else {c}` \*                                              |
-| `a ? b : c`           | Same                                                                |
+| JavaScript            | ReScript                                                                          |
+| --------------------- | --------------------------------------------------------------------------------- |
+| `if (a) {b} else {c}` | `if a {b} else {c}` \*                                                            |
+| `a ? b : c`           | 같음                                                                              |
 | `switch`              | `switch` but [super-powered pattern matching!](pattern-matching-destructuring.md) |
 
+<!--
 \* Our conditionals are always expressions! You can write `let result = if a {"hello"} else {"bye"}`
+-->
 
+\* ReScript에서 조건문은 언제나 식(expression) 입니다. 예시: `let result = if a {"hello"} else {"bye"}`
+
+<!--
 ### Destructuring
+-->
 
-| JavaScript                    | ReScript                                      |
-| ----------------------------- | --------------------------------------------- |
-| `const {a, b} = data`         | `let {a, b} = data`                           |
-| `const [a, b] = data`         | <code>let [a, b] = data</code> \*             |
-| `const {a: aa, b: bb} = data` | `let {a: aa, b: bb} = data`                   |
+### 구조 분해 할당(Destructuring)
 
+| JavaScript                    | ReScript                          |
+| ----------------------------- | --------------------------------- |
+| `const {a, b} = data`         | `let {a, b} = data`               |
+| `const [a, b] = data`         | <code>let [a, b] = data</code> \* |
+| `const {a: aa, b: bb} = data` | `let {a: aa, b: bb} = data`       |
+
+<!--
 \* Gives good compiler warning that `data` might not be of length 2.
+-->
 
+\* 컴파일러에서 `data`의 길이가 2가 아닐 수 있다는 좋은 컴파일러 경고를 제공합니다.
+
+<!--
 ### Loop
+-->
 
-| JavaScript                            | ReScript                       |
-| ------------------------------------- | ------------------------------ |
-| `for (let i = 0; i <= 10; i++) {...}` | `for i in 0 to 10 {...}`       |
-| `for (let i = 10; i >= 0; i--) {...}` | `for i in 10 downto 0 {...}`   |
-| `while (true) {...}`                  | `while true {...}`             |
+### 반복 또는 루프(Loop)
+
+| JavaScript                            | ReScript                     |
+| ------------------------------------- | ---------------------------- |
+| `for (let i = 0; i <= 10; i++) {...}` | `for i in 0 to 10 {...}`     |
+| `for (let i = 10; i >= 0; i--) {...}` | `for i in 10 downto 0 {...}` |
+| `while (true) {...}`                  | `while true {...}`           |
 
 ### JSX
 
@@ -165,22 +245,42 @@ canonical: "/docs/manual/latest/overview"
 | `<Comp message="hi" onClick={handler} />` | Same                       |
 | `<Comp message={message} />`              | `<Comp message />` \*      |
 | `<input checked />`                       | `<input checked=true />`   |
-| No children spread                        | `<Comp>...children</Comp>` |
+| 자식 컴포넌트 스프레드 없음               | `<Comp>...children</Comp>` |
 
+<!--
 \* Argument punning!
+-->
 
+\* 인수 펀닝(punning)
+
+<!--
 ### Exception
+-->
 
-| JavaScript                                      | ReScript                                   |
-| ----------------------------------------------- | ------------------------------------------ |
-| `throw new SomeError(...)`                      | `raise(SomeError(...))`                    |
-| `try {a} catch (Err) {...} finally {...}`       | <code>try a catch { &#124; Err => ...}</code> \* |
+### 예외 처리(Exception)
 
+| JavaScript                                | ReScript                                         |
+| ----------------------------------------- | ------------------------------------------------ |
+| `throw new SomeError(...)`                | `raise(SomeError(...))`                          |
+| `try {a} catch (Err) {...} finally {...}` | <code>try a catch { &#124; Err => ...}</code> \* |
+
+<!--
 \* No finally.
+-->
 
+\* finally가 없습니다.
+
+<!--
 ### Blocks
+-->
 
+### 블록(Blocks)
+
+<!--
 The last expression of a block delimited by `{}` implicitly returns (including function body). In JavaScript, this can only be simulated via an immediately-invoked function expression (since function bodies have their own local scope).
+-->
+
+`{}`으로 구분된 블록의 마지막 표현식은 암시적으로 반환됩니다(함수 본문 포함). JavaScript에서는 함수 본체(body)의 고유한 로컬 범위를 가지고 있기 때문에, 즉시 호출되는 함수 표현식을 통해서만 시뮬레이션해볼 수 있습니다.
 
 <table>
   <thead>
@@ -192,46 +292,58 @@ The last expression of a block delimited by `{}` implicitly returns (including f
   <tbody>
     <tr>
       <td>
-  <pre><code>{`let result = (function() {
+        <pre>
+          <code>{`let result = (function() {
   const x = 23;
   const y = 34;
   return x + y;
-})();`}</code></pre>
+})();`}</code>
+        </pre>
       </td>
       <td>
-  <pre><code>{`let result = {
+        <pre>
+          <code>{`let result = {
   let x = 23
   let y = 34
   x + y
-}`}</code></pre>
+}`}</code>
+        </pre>
       </td>
     </tr>
   </tbody>
 </table>
 
+<!--
 ## Common Features' JS Output
+-->
 
-Feature                         | Example                              | JavaScript Output
---------------------------------|--------------------------------------|----------------------
-String                          | `"Hello"`                            | `"Hello"`
-String Interpolation            | `` `Hello ${message}` ``             | `"Hello " + message`
-Character (disrecommended)      | `'x'`                                | `120` (char code)
-Integer                         | `23`, `-23`                          | `23`, `-23`
-Float                           | `23.0`, `-23.0`                      | `23.0`, `-23.0`
-Integer Addition                | `23 + 1`                             | `23 + 1`
-Float Addition                  | `23.0 +. 1.0`                        | `23.0 + 1.0`
-Integer Division/Multiplication | `2 / 23 * 1`                         | `2 / 23 * 1`
-Float Division/Multiplication   | `2.0 /. 23.0 *. 1.0`                 | `2.0 / 23.0 * 1.0`
-Float Exponentiation            | `2.0 ** 3.0`                         | `Math.pow(2.0, 3.0)`
-String Concatenation            | `"Hello " ++ "World"`                | `"Hello " + "World"`
-Comparison                      | `>`, `<`, `>=`, `<=`                 | `>`, `<`, `>=`, `<=`
-Boolean operation               | `!`, `&&`, <code>&#124;&#124;</code> | `!`, `&&`, <code>&#124;&#124;</code>
-Shallow and deep Equality       | `===`, `==`                          | `===`, `==`
-List (disrecommended)           | `list{1, 2, 3}`                      | `{hd: 1, tl: {hd: 2, tl: {hd: 3, tl: 0}}}`
-List Prepend                    | `list{a1, a2, ...oldList}`           | `{hd: a1, tl: {hd: a2, tl: theRest}}`
-Array                           | `[1, 2, 3]`                          | `[1, 2, 3]`
-Record                          | `type t = {b: int}; let a = {b: 10}` | `var a = {b: 10}`
-Multiline Comment               | `/* Comment here */`                 | Not in output
-Single line Comment             | `// Comment here`                    | Not in output
+## 공통 기능들(Common features)의 JavaScript 출력
 
+| 기능(Feature)                                       | 예시                                 | JavaScript 출력                            |
+| --------------------------------------------------- | ------------------------------------ | ------------------------------------------ |
+| 문자열(String)                                      | `"Hello"`                            | `"Hello"`                                  |
+| 문자열 보간(String Interpolation                    | `` `Hello ${message}` ``             | `"Hello " + message`                       |
+| 캐릭터(Character) - 비추천                          | `'x'`                                | `120` (char code)                          |
+| 정수(Integer)                                       | `23`, `-23`                          | `23`, `-23`                                |
+| 실수(Float)                                         | `23.0`, `-23.0`                      | `23.0`, `-23.0`                            |
+| 정수 덧셈(Integer Addition)                         | `23 + 1`                             | `23 + 1`                                   |
+| 실수 덧셈(Float Addition)                           | `23.0 +. 1.0`                        | `23.0 + 1.0`                               |
+| 정수 나눗셈/곱셈(Integer Division/Multiplication)   | `2 / 23 * 1`                         | `2 / 23 * 1`                               |
+| 실수 나눗셈/곱셈(Float Division/Multiplication)     | `2.0 /. 23.0 *. 1.0`                 | `2.0 / 23.0 * 1.0`                         |
+| 실수 거듭제곱(Float Exponentiation)                 | `2.0 ** 3.0`                         | `Math.pow(2.0, 3.0)`                       |
+| 문자열 연결(String Concatenation)                   | `"Hello " ++ "World"`                | `"Hello " + "World"`                       |
+| 비교(Comparison)                                    | `>`, `<`, `>=`, `<=`                 | `>`, `<`, `>=`, `<=`                       |
+| 불리언 연산(Boolean operation)                      | `!`, `&&`, <code>&#124;&#124;</code> | `!`, `&&`, <code>&#124;&#124;</code>       |
+| 얕은 동일성, 깊은 동일성(Shallow and deep Equality) | `===`, `==`                          | `===`, `==`                                |
+| 리스트(List) - 비추천                               | `list{1, 2, 3}`                      | `{hd: 1, tl: {hd: 2, tl: {hd: 3, tl: 0}}}` |
+| 리스트 앞에 값 추가(List Prepend)                   | `list{a1, a2, ...oldList}`           | `{hd: a1, tl: {hd: a2, tl: theRest}}`      |
+| 배열(Array)                                         | `[1, 2, 3]`                          | `[1, 2, 3]`                                |
+| 레코드(Record)                                      | `type t = {b: int}; let a = {b: 10}` | `var a = {b: 10}`                          |
+| 여러 줄 주석(Multiline Comment)                     | `/* Comment here */`                 | 출력에 나오지 않음                         |
+| 한 줄 주석(Single line Comment)                     | `// Comment here`                    | 출력에 나오지 않음                         |
+
+<!--
 _Note that this is a cleaned-up comparison table; a few examples' JavaScript output are slightly different in reality._
+-->
+
+이 표는 정화 작업을 거친 비교표이므로, 몇몇 예시의 JavaScript 출력은 실제로 약간 다른 점을 명시하세요.

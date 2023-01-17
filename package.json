@@ -1,6 +1,7 @@
 {
-  "name": "rescript-lang.org",
+  "name": "ko.rescript-lang.org",
   "private": true,
+  "homepage": "http://jiaek.github.io/",
   "version": "1.0.0",
   "author": "Patrick Ecker <ryyppy@users.noreply.github.com>",
   "license": "MIT",
@@ -36,10 +37,11 @@
   },
   "scripts": {
     "dev": "next",
-    "build": "rescript && npm run update-index && next build",
+    "build": "rescript && npm run update-index && next build && next export",
     "test": "node scripts/test-examples.mjs && node scripts/test-hrefs.mjs",
     "reanalyze": "reanalyze -all-cmt .",
-    "update-index": "node scripts/extract-indices.mjs && node scripts/extract-tocs.mjs && node scripts/extract-syntax.mjs && node scripts/generate_feed.mjs > public/blog/feed.xml"
+    "update-index": "node scripts/extract-indices.mjs && node scripts/extract-tocs.mjs && node scripts/extract-syntax.mjs && node scripts/generate_feed.mjs > public/blog/feed.xml",
+    "deploy": "next build && next export && touch out/.nojekyll && git add -f out/ && git commit -m 'deploy to gh-pages' && git subtree push --prefix out origin gh-pages"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",

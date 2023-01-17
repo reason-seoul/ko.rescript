@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/2b269719632b344a478b.css" as="style"/><link rel="stylesheet" href="/_next/static/css/2b269719632b344a478b.css" data-n-g=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/webpack-c49b9de92a7202ac2146.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" as="script"/><link rel="preload" href="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-9e9d9ab67b4ceb7ec93b.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/docs/manual/v9.0.0/api/js/int-392b0026f43337426a5d.js" as="script"/></head><body><div id="__next"><h1 id="int">Int</h1><div><p>Provide utilities for handling <code>int</code>.</p></div><h2 id="toexponential">toExponential</h2><pre><code class="language-res" metastring="sig">let toExponential: int =&gt; string
+</code></pre><p>Formats an <code>int</code> using exponential (scientific) notation.
+Returns a <code>string</code> representing the given value in exponential notation.
+Raises <code>RangeError</code> if digits is not in the range <!-- -->[<!-- -->0, 20<!-- -->]<!-- --> (inclusive).</p><pre><code class="language-res" metastring="example">/* prints &quot;7.7e+1&quot; */
+Js.log(Js.Int.toExponential(77))
+</code></pre><h2 id="toexponentialwithprecision">toExponentialWithPrecision</h2><pre><code class="language-res" metastring="sig">let toExponentialWithPrecision: (int, ~digits: int) =&gt; string
+</code></pre><p>Formats an <code>int</code> using exponential (scientific) notation.
+<code>digits</code> specifies how many digits should appear after the decimal point. The value must be in the range <!-- -->[<!-- -->0, 20<!-- -->]<!-- --> (inclusive).</p><p>Returns a <code>string</code> representing the given value in exponential notation.</p><p>The output will be rounded or padded with zeroes if necessary.
+Raises <code>RangeError</code> if <code>digits</code> is not in the range <!-- -->[<!-- -->0, 20<!-- -->]<!-- --> (inclusive).</p><pre><code class="language-res" metastring="example">/* prints &quot;7.70e+1&quot; */
+Js.log(Js.Int.toExponentialWithPrecision(77, ~digits=2))
+
+/* prints &quot;5.68e+3&quot; */
+Js.log(Js.Int.toExponentialWithPrecision(5678, ~digits=2))
+</code></pre><h2 id="toprecision">toPrecision</h2><pre><code class="language-res" metastring="sig">let toPrecision: int =&gt; string
+</code></pre><p>Formats an <code>int</code> using some fairly arbitrary rules.
+Returns a <code>string</code> representing the given value in fixed-point (usually).</p><p><code>toPrecision</code> differs from <code>toFixed</code> in that the former will format the number with full precision, while the latter will not output any digits after the decimal point.
+Raises <code>RangeError</code> if <code>digits</code> is not in the range accepted by this function.</p><pre><code class="language-res" metastring="example">/* prints &quot;123456789&quot; */
+Js.log(Js.Int.toPrecision(123456789))
+</code></pre><h2 id="toprecisionwithprecision">toPrecisionWithPrecision</h2><pre><code class="language-res" metastring="sig">let toPrecisionWithPrecision: (int, ~digits: int) =&gt; string
+</code></pre><p>Formats an <code>int</code> using some fairly arbitrary rules.
+<code>digits</code> specifies how many digits should appear in total. The value must between 0 and some arbitrary number that&#x27;s hopefully at least larger than 20 (for Node it&#x27;s 21. Why? Who knows).</p><p>Returns a <code>string</code> representing the given value in fixed-point or scientific notation.</p><p>The output will be rounded or padded with zeroes if necessary.</p><p><code>toPrecisionWithPrecision</code> differs from <code>toFixedWithPrecision</code> in that the former will count all digits against the precision, while the latter will count only the digits after the decimal point.
+<code>toPrecisionWithPrecision</code> will also use scientific notation if the specified precision is less than the number of digits before the decimal point.
+Raises <code>RangeError</code> if <code>digits</code> is not in the range accepted by this function.</p><pre><code class="language-res" metastring="example">/* prints &quot;1.2e+8&quot; */
+Js.log(Js.Int.toPrecisionWithPrecision(123456789, ~digits=2))
+
+/* prints &quot;0.0&quot; */
+Js.log(Js.Int.toPrecisionWithPrecision(0, ~digits=2))
+</code></pre><h2 id="tostring">toString</h2><pre><code class="language-res" metastring="sig">let toString: int =&gt; string
+</code></pre><p>Formats an <code>int</code> as a <code>string</code>.
+Returns a <code>string</code> representing the given value in fixed-point (usually).</p><pre><code class="language-res" metastring="example">/* prints &quot;123456789&quot; */
+Js.log(Js.Int.toString(123456789))
+</code></pre><h2 id="tostringwithradix">toStringWithRadix</h2><pre><code class="language-res" metastring="sig">let toStringWithRadix: (int, ~radix: int) =&gt; string
+</code></pre><p>Formats an <code>int</code> as a <code>string</code>.
+<code>radix</code> specifies the radix base to use for the formatted number. The value must be in the range <!-- -->[<!-- -->2, 36<!-- -->]<!-- --> (inclusive).
+Returns a <code>string</code> representing the given value in fixed-point (usually).
+Raises <code>RangeError</code> if <code>radix</code> is not in the range <!-- -->[<!-- -->2, 36<!-- -->]<!-- --> (inclusive).</p><pre><code class="language-res" metastring="example">/* prints &quot;110&quot; */
+Js.log(Js.Int.toStringWithRadix(6, ~radix=2))
+
+/* prints &quot;deadbeef&quot; */
+Js.log(Js.Int.toStringWithRadix(3735928559, ~radix=16))
+
+/* prints &quot;2n9c&quot; */
+Js.log(Js.Int.toStringWithRadix(123456, ~radix=36))
+</code></pre><h2 id="tofloat">toFloat</h2><pre><code class="language-res" metastring="sig">let toFloat: int =&gt; float
+</code></pre><h2 id="equal">equal</h2><pre><code class="language-res" metastring="sig">let equal: (int, int) =&gt; bool
+</code></pre><h2 id="max">max</h2><pre><code class="language-res" metastring="sig">let max: int
+</code></pre><h2 id="min">min</h2><pre><code class="language-res" metastring="sig">let min: int
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/docs/manual/v9.0.0/api/js/int","query":{},"buildId":"57i003GrurB9OA8mdo-dW","runtimeConfig":{},"nextExport":true,"autoExport":true,"isFallback":false}</script><script nomodule="" src="/_next/static/chunks/polyfills-9def993fe817cc057038.js"></script><script src="/_next/static/chunks/webpack-c49b9de92a7202ac2146.js" async=""></script><script src="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" async=""></script><script src="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" async=""></script><script src="/_next/static/chunks/pages/_app-9e9d9ab67b4ceb7ec93b.js" async=""></script><script src="/_next/static/chunks/pages/docs/manual/v9.0.0/api/js/int-392b0026f43337426a5d.js" async=""></script><script src="/_next/static/57i003GrurB9OA8mdo-dW/_buildManifest.js" async=""></script><script src="/_next/static/57i003GrurB9OA8mdo-dW/_ssgManifest.js" async=""></script><script async="" defer="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script><noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript></body></html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/2b269719632b344a478b.css" as="style"/><link rel="stylesheet" href="/_next/static/css/2b269719632b344a478b.css" data-n-g=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/webpack-c49b9de92a7202ac2146.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" as="script"/><link rel="preload" href="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-9e9d9ab67b4ceb7ec93b.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/docs/manual/v9.0.0/api/belt/mutable-set-int-effb1079e105c9a74520.js" as="script"/></head><body><div id="__next"><h1 id="mutablesetint">MutableSetInt</h1><div><p>This module is <a href="mutable-set">Belt.MutableSet</a> specialized with key type to be a <code>int</code> type.
+It is more efficient in general, the API is the same with <a href="mutable-set">Belt.MutableSet</a> except its key type is fixed, and identity is not needed (using the built-in one).</p></div><h2 id="value">value</h2><pre><code class="language-res" metastring="prelude">type value = int
+</code></pre><p>The type of the set elements</p><h2 id="t">t</h2><pre><code class="language-res" metastring="prelude">type t
+</code></pre><p>Type of the sets.</p><h2 id="make">make</h2><pre><code class="language-res" metastring="sig">let make: unit =&gt; t
+</code></pre><p>Returns empty set.</p><pre><code class="language-res" metastring="example">let set = Belt.MutableSet.Int.make()
+</code></pre><h2 id="fromarray">fromArray</h2><pre><code class="language-res" metastring="sig">let fromArray: array&lt;value&gt; =&gt; t
+</code></pre><p>Creates new set from array of elements.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.fromArray([1, 3, 2, 4])
+
+s0-&gt;Belt.MutableSet.Int.toArray /* [1, 2, 3, 4] */
+</code></pre><h2 id="fromsortedarrayunsafe">fromSortedArrayUnsafe</h2><pre><code class="language-res" metastring="sig">let fromSortedArrayUnsafe: array&lt;value&gt; =&gt; t
+</code></pre><p>The same as <!-- -->[fromArray][#fromarray]<!-- --> except it is after assuming the input array is already sorted.</p><h2 id="copy">copy</h2><pre><code class="language-res" metastring="sig">let copy: t =&gt; t
+</code></pre><p>Returns copy of a set.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.fromArray([1, 3, 2, 4])
+
+let copied = s0-&gt;Belt.MutableSet.Int.copy
+copied-&gt;Belt.MutableSet.Int.toArray /* [1, 2, 3, 4] */
+</code></pre><h2 id="isempty">isEmpty</h2><pre><code class="language-res" metastring="sig">let isEmpty: t =&gt; bool
+</code></pre><p>Checks if set is empty.</p><pre><code class="language-res" metastring="example">let empty = Belt.MutableSet.Int.fromArray([])
+let notEmpty = Belt.MutableSet.Int.fromArray([1])
+
+Belt.MutableSet.Int.isEmpty(empty) /* true */
+Belt.MutableSet.Int.isEmpty(notEmpty) /* false */
+</code></pre><h2 id="has">has</h2><pre><code class="language-res" metastring="sig">let has: (t, value) =&gt; bool
+</code></pre><p>Checks if element exists in set.</p><pre><code class="language-res" metastring="example">let set = Belt.MutableSet.Int.fromArray([1, 4, 2, 5])
+
+set-&gt;Belt.MutableSet.Int.has(3) /* false */
+set-&gt;Belt.MutableSet.Int.has(1) /* true */
+</code></pre><h2 id="add">add</h2><pre><code class="language-res" metastring="sig">let add: (t, value) =&gt; unit
+</code></pre><p>Adds element to set. If element existed in set, value is unchanged.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.make()
+s0-&gt;Belt.MutableSet.Int.add(1)
+s0-&gt;Belt.MutableSet.Int.add(2)
+s0-&gt;Belt.MutableSet.Int.add(2)
+
+s0-&gt;Belt.MutableSet.Int.toArray /* [1, 2] */
+</code></pre><h2 id="addcheck">addCheck</h2><pre><code>let addCheck: (t, value) =&gt; bool;
+</code></pre><h2 id="mergemany">mergeMany</h2><pre><code class="language-res" metastring="sig">let mergeMany: (t, array&lt;value&gt;) =&gt; unit
+</code></pre><p>Adds each element of array to set. Unlike <a href="#add">add</a>, the reference of return value might be changed even if all values in array already exist in set</p><pre><code class="language-res" metastring="example">let set = Belt.MutableSet.Int.make()
+
+set-&gt;Belt.MutableSet.Int.mergeMany([5, 4, 3, 2, 1])
+set-&gt;Belt.MutableSet.Int.toArray /* [1, 2, 3, 4, 5] */
+</code></pre><h2 id="remove">remove</h2><pre><code class="language-res" metastring="sig">let remove: (t, value) =&gt; unit
+</code></pre><p>Removes element from set. If element wasn&#x27;t existed in set, value is unchanged.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.fromArray([2, 3, 1, 4, 5])
+s0-&gt;Belt.MutableSet.Int.remove(1)
+s0-&gt;Belt.MutableSet.Int.remove(3)
+s0-&gt;Belt.MutableSet.Int.remove(3)
+
+s0-&gt;Belt.MutableSet.Int.toArray /* [2,4,5] */
+</code></pre><h2 id="removecheck">removeCheck</h2><pre><code class="language-res" metastring="sig">let removeCheck: (t, value) =&gt; bool
+</code></pre><h2 id="removemany">removeMany</h2><pre><code class="language-res" metastring="sig">let removeMany: (t, array&lt;value&gt;) =&gt; unit
+</code></pre><p>Removes each element of array from set.</p><pre><code class="language-res" metastring="example">let set = Belt.MutableSet.Int.fromArray([1, 2, 3, 4])
+
+set-&gt;Belt.MutableSet.Int.removeMany([5, 4, 3, 2, 1])
+set-&gt;Belt.MutableSet.Int.toArray /* [] */
+</code></pre><h2 id="union">union</h2><pre><code class="language-res" metastring="sig">let union: (t, t) =&gt; t
+</code></pre><p>Returns union of two sets.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.fromArray([5, 2, 3, 5, 6])
+let s1 = Belt.MutableSet.Int.fromArray([5, 2, 3, 1, 5, 4])
+let union = Belt.MutableSet.Int.union(s0, s1)
+union-&gt;Belt.MutableSet.Int.toArray /* [1,2,3,4,5,6] */
+</code></pre><h2 id="intersect">intersect</h2><pre><code class="language-res" metastring="sig">let intersect: (t, t) =&gt; t
+</code></pre><p>Returns intersection of two sets.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.fromArray([5, 2, 3, 5, 6])
+let s1 = Belt.MutableSet.Int.fromArray([5, 2, 3, 1, 5, 4])
+let intersect = Belt.MutableSet.Int.intersect(s0, s1)
+intersect-&gt;Belt.MutableSet.Int.toArray /* [2,3,5] */
+</code></pre><h2 id="diff">diff</h2><pre><code class="language-res" metastring="sig">let diff: (t, t) =&gt; t
+</code></pre><p>Returns elements from first set, not existing in second set.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.fromArray([5, 2, 3, 5, 6])
+let s1 = Belt.MutableSet.Int.fromArray([5, 2, 3, 1, 5, 4])
+Belt.MutableSet.Int.toArray(Belt.MutableSet.Int.diff(s0, s1)) /* [6] */
+Belt.MutableSet.Int.toArray(Belt.MutableSet.Int.diff(s1, s0)) /* [1,4] */
+</code></pre><h2 id="subset">subset</h2><pre><code class="language-res" metastring="sig">let subset: (t, t) =&gt; bool
+</code></pre><p>Checks if second set is subset of first set.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.fromArray([5, 2, 3, 5, 6])
+let s1 = Belt.MutableSet.Int.fromArray([5, 2, 3, 1, 5, 4])
+let s2 = Belt.MutableSet.Int.intersect(s0, s1)
+Belt.MutableSet.Int.subset(s2, s0) /* true */
+Belt.MutableSet.Int.subset(s2, s1) /* true */
+Belt.MutableSet.Int.subset(s1, s0) /* false */
+</code></pre><h2 id="cmp">cmp</h2><pre><code class="language-res" metastring="sig">let cmp: (t, t) =&gt; int
+</code></pre><p>Total ordering between sets. Can be used as the ordering function for doing sets of sets. It compares size first and then iterates over each element following the order of elements.</p><h2 id="eq">eq</h2><pre><code class="language-res" metastring="sig">let eq: (t, t) =&gt; bool
+</code></pre><p>Checks if two sets are equal.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.fromArray([5, 2, 3])
+let s1 = Belt.MutableSet.Int.fromArray([3, 2, 5])
+
+Belt.MutableSet.Int.eq(s0, s1) /* true */
+</code></pre><h2 id="foreachu">forEachU</h2><pre><code class="language-res" metastring="sig">let forEachU: (t, (. value) =&gt; unit) =&gt; unit
+</code></pre><p>Same as <a href="##forEach">forEach</a> but takes uncurried functon.</p><h2 id="foreach">forEach</h2><pre><code class="language-res" metastring="sig">let forEach: (t, value =&gt; unit) =&gt; unit
+</code></pre><p>Applies function <code>f</code> in turn to all elements of set in increasing order.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.fromArray([5, 2, 3, 5, 6])
+let acc = ref(list{})
+s0-&gt;Belt.MutableSet.Int.forEach(x =&gt; acc := Belt.List.add(acc.contents, x))
+acc /* [6,5,3,2] */
+</code></pre><h2 id="reduceu">reduceU</h2><pre><code class="language-res" metastring="sig">let reduceU: (t, &#x27;a, (. &#x27;a, value) =&gt; &#x27;a) =&gt; &#x27;a
+</code></pre><h2 id="reduce">reduce</h2><pre><code>let reduce: (t, &#x27;a, (&#x27;a, value) =&gt; &#x27;a) =&gt; &#x27;a;
+</code></pre><p>Applies function <code>f</code> to each element of set in increasing order. Function <code>f</code> has two parameters: the item from the set and an “accumulator”, which starts with a value of <code>initialValue</code>. <code>reduce</code> returns the final value of the accumulator.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.fromArray([5, 2, 3, 5, 6])
+s0-&gt;Belt.MutableSet.Int.reduce(list{}, (acc, element) =&gt;
+  acc-&gt;Belt.List.add(element)
+) /* [6,5,3,2] */
+</code></pre><h2 id="everyu">everyU</h2><pre><code class="language-res" metastring="sig">let everyU: (t, (. value) =&gt; bool) =&gt; bool
+</code></pre><h2 id="every">every</h2><pre><code class="language-res" metastring="sig">let every: (t, value =&gt; bool) =&gt; bool
+</code></pre><p>Checks if all elements of the set satisfy the predicate. Order unspecified.</p><pre><code class="language-res" metastring="example">let isEven = x =&gt; mod(x, 2) == 0
+
+let s0 = Belt.MutableSet.Int.fromArray([2, 4, 6, 8])
+s0-&gt;Belt.MutableSet.Int.every(isEven) /* true */
+</code></pre><h2 id="someu">someU</h2><pre><code class="language-res" metastring="sig">let someU: (t, (. value) =&gt; bool) =&gt; bool
+</code></pre><h2 id="some">some</h2><pre><code class="language-res" metastring="sig">let some: (t, value =&gt; bool) =&gt; bool
+</code></pre><p>Checks if at least one element of the set satisfies the predicate.</p><pre><code class="language-res" metastring="example">let isOdd = x =&gt; mod(x, 2) != 0
+
+let s0 = Belt.MutableSet.Int.fromArray([1, 2, 4, 6, 8])
+s0-&gt;Belt.MutableSet.Int.some(isOdd) /* true */
+</code></pre><h2 id="keepu">keepU</h2><pre><code class="language-res" metastring="sig">let keepU: (t, (. value) =&gt; bool) =&gt; t
+</code></pre><h2 id="keep">keep</h2><pre><code class="language-res" metastring="sig">let keep: (t, value =&gt; bool) =&gt; t
+</code></pre><p>Returns the set of all elements that satisfy the predicate.</p><pre><code class="language-res" metastring="example">let isEven = x =&gt; mod(x, 2) == 0
+
+let s0 = Belt.MutableSet.Int.fromArray([1, 2, 3, 4, 5])
+let s1 = s0-&gt;Belt.MutableSet.Int.keep(isEven)
+
+s1-&gt;Belt.MutableSet.Int.toArray /* [2, 4] */
+</code></pre><h2 id="partitionu">partitionU</h2><pre><code class="language-res" metastring="sig">let partitionU: (t, (. value) =&gt; bool) =&gt; (t, t)
+</code></pre><h2 id="partition">partition</h2><pre><code class="language-res" metastring="sig">let partition: (t, value =&gt; bool) =&gt; (t, t)
+</code></pre><pre><code class="language-res" metastring="example">let isOdd = x =&gt; mod(x, 2) != 0
+
+let s0 = Belt.MutableSet.Int.fromArray([1, 2, 3, 4, 5])
+let (s1, s2) = s0-&gt;Belt.MutableSet.Int.partition(isOdd)
+
+s1-&gt;Belt.MutableSet.Int.toArray /* [1,3,5] */
+s2-&gt;Belt.MutableSet.Int.toArray /* [2,4] */
+</code></pre><h2 id="size">size</h2><pre><code class="language-res" metastring="sig">let size: t =&gt; int
+</code></pre><p>Returns size of the set.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.fromArray([1, 2, 3, 4])
+
+s0-&gt;Belt.MutableSet.Int.size /* 4 */
+</code></pre><h2 id="tolist">toList</h2><pre><code class="language-res" metastring="sig">let toList: t =&gt; list&lt;value&gt;
+</code></pre><p>Returns list of ordered set elements.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.fromArray([3, 2, 1, 5])
+
+s0-&gt;Belt.MutableSet.Int.toList /* [1,2,3,5] */
+</code></pre><h2 id="toarray">toArray</h2><pre><code class="language-res" metastring="sig">let toArray: t =&gt; array&lt;value&gt;
+</code></pre><p>Returns array of ordered set elements.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.fromArray([3, 2, 1, 5])
+
+s0-&gt;Belt.MutableSet.Int.toArray /* [1,2,3,5] */
+</code></pre><h2 id="minimum">minimum</h2><pre><code class="language-res" metastring="sig">let minimum: t =&gt; option&lt;value&gt;
+</code></pre><p>Returns minimum value of the collection. <code>None</code> if collection is empty.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.make()
+let s1 = Belt.MutableSet.Int.fromArray([3, 2, 1, 5])
+
+s0-&gt;Belt.MutableSet.Int.minimum /* None */
+s1-&gt;Belt.MutableSet.Int.minimum /* Some(1) */
+</code></pre><h2 id="minundefined">minUndefined</h2><pre><code class="language-res" metastring="sig">let minUndefined: t =&gt; Js.undefined&lt;value&gt;
+</code></pre><p>Returns minimum value of the collection. <code>undefined</code> if collection is empty.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.make()
+let s1 = Belt.MutableSet.Int.fromArray([3, 2, 1, 5])
+
+s0-&gt;Belt.MutableSet.Int.minUndefined /* undefined */
+s1-&gt;Belt.MutableSet.Int.minUndefined /* 1 */
+</code></pre><h2 id="maximum">maximum</h2><pre><code class="language-res" metastring="sig">let maximum: t =&gt; option&lt;value&gt;
+</code></pre><p>Returns maximum value of the collection. <code>None</code> if collection is empty.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.make()
+let s1 = Belt.MutableSet.Int.fromArray([3, 2, 1, 5])
+
+s0-&gt;Belt.MutableSet.Int.maximum /* None */
+s1-&gt;Belt.MutableSet.Int.maximum /* Some(5) */
+</code></pre><h2 id="maxundefined">maxUndefined</h2><pre><code class="language-res" metastring="sig">let maxUndefined: t =&gt; Js.undefined&lt;value&gt;
+</code></pre><p>Returns maximum value of the collection. <code>undefined</code> if collection is empty.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.make()
+let s1 = Belt.MutableSet.Int.fromArray([3, 2, 1, 5])
+
+s0-&gt;Belt.MutableSet.Int.maxUndefined /* undefined */
+s1-&gt;Belt.MutableSet.Int.maxUndefined /* 5 */
+</code></pre><h2 id="get">get</h2><pre><code class="language-res" metastring="sig">let get: (t, value) =&gt; option&lt;value&gt;
+</code></pre><p>Returns the reference of the value which is equivalent to value using the comparator specifiecd by this collection. Returns <code>None</code> if element does not exist.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.fromArray([1, 2, 3, 4, 5])
+
+s0-&gt;Belt.MutableSet.Int.get(3) /* Some(3) */
+s0-&gt;Belt.MutableSet.Int.get(20) /* None */
+</code></pre><h2 id="getundefined">getUndefined</h2><pre><code class="language-res" metastring="sig">let getUndefined: (t, value) =&gt; Js.undefined&lt;value&gt;
+</code></pre><p>Same as <a href="#get">get</a> but returns <code>undefined</code> when element does not exist.</p><h2 id="getexn">getExn</h2><pre><code class="language-res" metastring="sig">let getExn: (t, value) =&gt; value
+</code></pre><p>Same as <a href="#get">get</a> but raise when element does not exist.</p><h2 id="split">split</h2><pre><code class="language-res" metastring="sig">let split: (t, value) =&gt; ((t, t), bool)
+</code></pre><p>Returns a tuple <code>((smaller, larger), present)</code>, <code>present</code> is true when element exist in set.</p><pre><code class="language-res" metastring="example">let s0 = Belt.MutableSet.Int.fromArray([1, 2, 3, 4, 5])
+
+let ((smaller, larger), present) = s0-&gt;Belt.MutableSet.Int.split(3)
+
+present /* true */
+smaller-&gt;Belt.MutableSet.Int.toArray /* [1,2] */
+larger-&gt;Belt.MutableSet.Int.toArray /* [4,5] */
+</code></pre><h2 id="checkinvariantinternal">checkInvariantInternal</h2><pre><code class="language-res" metastring="sig">let checkInvariantInternal: t =&gt; unit
+</code></pre><p><strong>raise</strong> when invariant is not held</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/docs/manual/v9.0.0/api/belt/mutable-set-int","query":{},"buildId":"57i003GrurB9OA8mdo-dW","runtimeConfig":{},"nextExport":true,"autoExport":true,"isFallback":false}</script><script nomodule="" src="/_next/static/chunks/polyfills-9def993fe817cc057038.js"></script><script src="/_next/static/chunks/webpack-c49b9de92a7202ac2146.js" async=""></script><script src="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" async=""></script><script src="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" async=""></script><script src="/_next/static/chunks/pages/_app-9e9d9ab67b4ceb7ec93b.js" async=""></script><script src="/_next/static/chunks/pages/docs/manual/v9.0.0/api/belt/mutable-set-int-effb1079e105c9a74520.js" async=""></script><script src="/_next/static/57i003GrurB9OA8mdo-dW/_buildManifest.js" async=""></script><script src="/_next/static/57i003GrurB9OA8mdo-dW/_ssgManifest.js" async=""></script><script async="" defer="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script><noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript></body></html>

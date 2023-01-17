@@ -1,0 +1,60 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/2b269719632b344a478b.css" as="style"/><link rel="stylesheet" href="/_next/static/css/2b269719632b344a478b.css" data-n-g=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/webpack-c49b9de92a7202ac2146.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" as="script"/><link rel="preload" href="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-9e9d9ab67b4ceb7ec93b.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/docs/manual/v9.0.0/api/js/typed-array-2_float-64-array-8143bc34ee12aa077844.js" as="script"/></head><body><div id="__next"><h1 id="typedarray2float64array">TypedArray2.Float64Array</h1><div><p>Provide bindings to JS typed array Float64Array.</p></div><h2 id="t">t</h2><pre><code class="language-res" metastring="prelude">type elt = float
+type typed_array&lt;&#x27;a&gt;
+type t = typed_array&lt;elt&gt;
+</code></pre><h2 id="unsafe_get">unsafe_get</h2><pre><code class="language-res" metastring="sig">let unsafe_get: (t, int) =&gt; elt
+</code></pre><h2 id="unsafe_set">unsafe_set</h2><pre><code class="language-res" metastring="sig">let unsafe_set: (t, int, elt) =&gt; unit
+</code></pre><h2 id="buffer">buffer</h2><pre><code class="language-res" metastring="sig">let buffer: t =&gt; Js_typed_array2.array_buffer
+</code></pre><h2 id="bytelength">byteLength</h2><pre><code class="language-res" metastring="sig">let byteLength: t =&gt; int
+</code></pre><h2 id="byteoffset">byteOffset</h2><pre><code class="language-res" metastring="sig">let byteOffset: t =&gt; int
+</code></pre><h2 id="setarray">setArray</h2><pre><code class="language-res" metastring="sig">let setArray: (array&lt;elt&gt;, t) =&gt; unit
+</code></pre><h2 id="setarrayoffset">setArrayOffset</h2><pre><code class="language-res" metastring="sig">let setArrayOffset: (array&lt;elt&gt;, int, t) =&gt; unit
+</code></pre><h2 id="length">length</h2><pre><code class="language-res" metastring="sig">let length: t =&gt; int
+</code></pre><h2 id="copywithin">copyWithin</h2><pre><code class="language-res" metastring="sig">let copyWithin: (~to_: int, t) =&gt; t
+</code></pre><h2 id="copywithinfrom">copyWithinFrom</h2><pre><code class="language-res" metastring="sig">let copyWithinFrom: (~to_: int, ~from: int, t) =&gt; t
+</code></pre><h2 id="copywithinfromrange">copyWithinFromRange</h2><pre><code class="language-res" metastring="sig">let copyWithinFromRange: (~to_: int, ~start: int, ~end_: int, t) =&gt; t
+</code></pre><h2 id="fillinplace">fillInPlace</h2><pre><code class="language-res" metastring="sig">let fillInPlace: (elt, t) =&gt; t
+</code></pre><h2 id="fillfrominplace">fillFromInPlace</h2><pre><code class="language-res" metastring="sig">let fillFromInPlace: (elt, ~from: int, t) =&gt; t
+</code></pre><h2 id="fillrangeinplace">fillRangeInPlace</h2><pre><code class="language-res" metastring="sig">let fillRangeInPlace: (elt, ~start: int, ~end_: int, t) =&gt; t
+</code></pre><h2 id="reverseinplace">reverseInPlace</h2><pre><code class="language-res" metastring="sig">let reverseInPlace: t =&gt; t
+</code></pre><h2 id="sortinplace">sortInPlace</h2><pre><code class="language-res" metastring="sig">let sortInPlace: t =&gt; t
+</code></pre><h2 id="sortinplacewith">sortInPlaceWith</h2><pre><code class="language-res" metastring="sig">let sortInPlaceWith: ((. elt, elt) =&gt; int, t) =&gt; t
+</code></pre><h2 id="includes">includes</h2><pre><code class="language-res" metastring="sig">let includes: (elt, t) =&gt; bool
+</code></pre><p>ES2016</p><h2 id="indexof">indexOf</h2><pre><code class="language-res" metastring="sig">let indexOf: (elt, t) =&gt; int
+</code></pre><h2 id="indexoffrom">indexOfFrom</h2><pre><code class="language-res" metastring="sig">let indexOfFrom: (elt, ~from: int, t) =&gt; int
+</code></pre><h2 id="join">join</h2><pre><code class="language-res" metastring="sig">let join: t =&gt; string
+</code></pre><h2 id="joinwith">joinWith</h2><pre><code class="language-res" metastring="sig">let joinWith: (string, t) =&gt; string
+</code></pre><h2 id="lastindexof">lastIndexOf</h2><pre><code class="language-res" metastring="sig">let lastIndexOf: (elt, t) =&gt; int
+</code></pre><h2 id="lastindexoffrom">lastIndexOfFrom</h2><pre><code class="language-res" metastring="sig">let lastIndexOfFrom: (elt, ~from: int, t) =&gt; int
+</code></pre><h2 id="slice">slice</h2><pre><code class="language-res" metastring="sig">let slice: (~start: int, ~end_: int, t) =&gt; t
+</code></pre><p><code>start</code> is inclusive, <code>end_</code> exclusive.</p><h2 id="copy">copy</h2><pre><code class="language-res" metastring="sig">let copy: t =&gt; t
+</code></pre><h2 id="slicefrom">sliceFrom</h2><pre><code class="language-res" metastring="sig">let sliceFrom: (int, t) =&gt; t
+</code></pre><h2 id="subarray">subarray</h2><pre><code class="language-res" metastring="sig">let subarray: (~start: int, ~end_: int, t) =&gt; t
+</code></pre><p><code>start</code> is inclusive, <code>end_</code> exclusive.</p><h2 id="subarrayfrom">subarrayFrom</h2><pre><code class="language-res" metastring="sig">let subarrayFrom: (int, t) =&gt; t
+</code></pre><h2 id="tostring">toString</h2><pre><code class="language-res" metastring="sig">let toString: t =&gt; string
+</code></pre><h2 id="tolocalestring">toLocaleString</h2><pre><code class="language-res" metastring="sig">let toLocaleString: t =&gt; string
+</code></pre><h2 id="every">every</h2><pre><code class="language-res" metastring="sig">let every: ((. elt) =&gt; bool, t) =&gt; bool
+</code></pre><h2 id="everyi">everyi</h2><pre><code class="language-res" metastring="sig">let everyi: ((. elt, int) =&gt; bool, t) =&gt; bool
+</code></pre><h2 id="filter">filter</h2><pre><code class="language-res" metastring="sig">let filter: ((. elt) =&gt; bool, t) =&gt; t
+</code></pre><h2 id="filteri">filteri</h2><pre><code class="language-res" metastring="sig">let filteri: ((. elt, int) =&gt; bool, t) =&gt; t
+</code></pre><h2 id="find">find</h2><pre><code class="language-res" metastring="sig">let find: ((. elt) =&gt; bool, t) =&gt; Js.undefined&lt;elt&gt;
+</code></pre><h2 id="findi">findi</h2><pre><code class="language-res" metastring="sig">let findi: ((. elt, int) =&gt; bool, t) =&gt; Js.undefined&lt;elt&gt;
+</code></pre><h2 id="findindex">findIndex</h2><pre><code class="language-res" metastring="sig">let findIndex: ((. elt) =&gt; bool, t) =&gt; int
+</code></pre><h2 id="findindexi">findIndexi</h2><pre><code class="language-res" metastring="sig">let findIndexi: ((. elt, int) =&gt; bool, t) =&gt; int
+</code></pre><h2 id="foreach">forEach</h2><pre><code class="language-res" metastring="sig">let forEach: ((. elt) =&gt; unit, t) =&gt; unit
+</code></pre><h2 id="foreachi">forEachi</h2><pre><code class="language-res" metastring="sig">let forEachi: ((. elt, int) =&gt; unit, t) =&gt; unit
+</code></pre><h2 id="map">map</h2><pre><code class="language-res" metastring="sig">let map: ((. elt) =&gt; &#x27;b, t) =&gt; typed_array&lt;&#x27;b&gt;
+</code></pre><h2 id="mapi">mapi</h2><pre><code class="language-res" metastring="sig">let mapi: ((. elt, int) =&gt; &#x27;b, t) =&gt; typed_array&lt;&#x27;b&gt;
+</code></pre><h2 id="reduce">reduce</h2><pre><code class="language-res" metastring="sig">let reduce: ((. &#x27;b, elt) =&gt; &#x27;b, &#x27;b, t) =&gt; &#x27;b
+</code></pre><h2 id="reducei">reducei</h2><pre><code class="language-res" metastring="sig">let reducei: ((. &#x27;b, elt, int) =&gt; &#x27;b, &#x27;b, t) =&gt; &#x27;b
+</code></pre><h2 id="reduceright">reduceRight</h2><pre><code class="language-res" metastring="sig">let reduceRight: ((. &#x27;b, elt) =&gt; &#x27;b, &#x27;b, t) =&gt; &#x27;b
+</code></pre><h2 id="reducerighti">reduceRighti</h2><pre><code class="language-res" metastring="sig">let reduceRighti: ((. &#x27;b, elt, int) =&gt; &#x27;b, &#x27;b, t) =&gt; &#x27;b
+</code></pre><h2 id="some">some</h2><pre><code class="language-res" metastring="sig">let some: ((. elt) =&gt; bool, t) =&gt; bool
+</code></pre><h2 id="somei">somei</h2><pre><code class="language-res" metastring="sig">let somei: ((. elt, int) =&gt; bool, t) =&gt; bool
+</code></pre><h2 id="_bytes_per_element">_BYTES_PER_ELEMENT</h2><pre><code class="language-res" metastring="sig">let _BYTES_PER_ELEMENT: int
+</code></pre><h2 id="make">make</h2><pre><code class="language-res" metastring="sig">let make: array&lt;elt&gt; =&gt; t
+</code></pre><h2 id="frombuffer">fromBuffer</h2><pre><code class="language-res" metastring="sig">let fromBuffer: Js_typed_array2.array_buffer =&gt; t
+</code></pre><h2 id="frombufferoffset">fromBufferOffset</h2><pre><code class="language-res" metastring="sig">let fromBufferOffset: (Js_typed_array2.array_buffer, int) =&gt; t
+</code></pre><p>Can throw an exception.</p><h2 id="frombufferrange">fromBufferRange</h2><pre><code class="language-res" metastring="sig">let fromBufferRange: (Js_typed_array2.array_buffer, ~offset: int, ~length: int) =&gt; t
+</code></pre><p>Raises <code>Js.Exn.Error</code> raise Js exception.</p><h2 id="fromlength">fromLength</h2><pre><code class="language-res" metastring="sig">let fromLength: int =&gt; t
+</code></pre><p>Raises <code>Js.Exn.Error</code> raise Js exception.</p><h2 id="from">from</h2><pre><code class="language-res" metastring="sig">let from: Js_typed_array2.array_like&lt;elt&gt; =&gt; t
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/docs/manual/v9.0.0/api/js/typed-array-2_float-64-array","query":{},"buildId":"57i003GrurB9OA8mdo-dW","runtimeConfig":{},"nextExport":true,"autoExport":true,"isFallback":false}</script><script nomodule="" src="/_next/static/chunks/polyfills-9def993fe817cc057038.js"></script><script src="/_next/static/chunks/webpack-c49b9de92a7202ac2146.js" async=""></script><script src="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" async=""></script><script src="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" async=""></script><script src="/_next/static/chunks/pages/_app-9e9d9ab67b4ceb7ec93b.js" async=""></script><script src="/_next/static/chunks/pages/docs/manual/v9.0.0/api/js/typed-array-2_float-64-array-8143bc34ee12aa077844.js" async=""></script><script src="/_next/static/57i003GrurB9OA8mdo-dW/_buildManifest.js" async=""></script><script src="/_next/static/57i003GrurB9OA8mdo-dW/_ssgManifest.js" async=""></script><script async="" defer="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script><noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript></body></html>

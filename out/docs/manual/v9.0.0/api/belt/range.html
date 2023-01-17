@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/2b269719632b344a478b.css" as="style"/><link rel="stylesheet" href="/_next/static/css/2b269719632b344a478b.css" data-n-g=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/webpack-c49b9de92a7202ac2146.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" as="script"/><link rel="preload" href="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-9e9d9ab67b4ceb7ec93b.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/docs/manual/v9.0.0/api/belt/range-e26f0cde3bfc49ab73eb.js" as="script"/></head><body><div id="__next"><h1 id="range">Range</h1><div><p>A small utility module to provide inclusive range operations for <code>[start,
+finish]</code>.  Internally it is relying on loops instead of creating new arrays,
+which makes it pretty performant and memory friendly.</p></div><h2 id="foreachu">forEachU</h2><pre><code class="language-res" metastring="sig">let forEachU: (int, int, (. int) =&gt; unit) =&gt; unit
+</code></pre><h2 id="foreach">forEach</h2><pre><code class="language-res" metastring="sig">let forEach: (int, int, int =&gt; unit) =&gt; unit
+</code></pre><p><code>forEach(start, finish, action)</code></p><p>equivalent to <code>Belt.Array.(forEach(range(start, finish), action))</code></p><pre><code class="language-res" metastring="example">Belt.Range.forEach(0, 4, (i) =&gt; Js.log(i))
+
+/**
+ * prints:
+ *   0
+ *   1
+ *   2
+ *   3
+ *   4
+ */
+</code></pre><h2 id="everyu">everyU</h2><pre><code class="language-res" metastring="sig">let everyU: (int, int, (. int) =&gt; bool) =&gt; bool
+</code></pre><h2 id="every">every</h2><pre><code class="language-res" metastring="sig">let every: (int, int, int =&gt; bool) =&gt; bool
+</code></pre><p><code>every(start, finish, p)</code></p><p>equivalent to <code>Belt.Array.(every(range(start, finish), p))</code></p><pre><code class="language-res" metastring="example">Belt.Range.every(0, 4, (i) =&gt; i &lt; 5) /* true */
+
+Belt.Range.every(0, 4, (i) =&gt; i &lt; 4) /* false */
+</code></pre><h2 id="everybyu">everyByU</h2><pre><code class="language-res" metastring="sig">let everyByU: (int, int, ~step: int, (. int) =&gt; bool) =&gt; bool
+</code></pre><h2 id="everyby">everyBy</h2><pre><code class="language-res" metastring="sig">let everyBy: (int, int, ~step: int, int =&gt; bool) =&gt; bool
+</code></pre><p><code>everyBy(start, finish, ~step, p)</code></p><p>See <code>Belt_Array.rangeBy</code></p><p>equivalent to <code>Belt.Array.(every(rangeBy(start, finish, ~step), p))</code></p><pre><code class="language-res" metastring="example">Belt.Range.everyBy(0, 4, ~step=1, (i) =&gt; mod(i, 2) === 0) /* false */
+
+Belt.Range.everyBy(0, 4, ~step=2, (i) =&gt; mod(i, 2) === 0) /* true */
+</code></pre><h2 id="someu">someU</h2><pre><code class="language-res" metastring="sig">let someU: (int, int, (. int) =&gt; bool) =&gt; bool
+</code></pre><h2 id="some">some</h2><pre><code class="language-res" metastring="sig">let some: (int, int, int =&gt; bool) =&gt; bool
+</code></pre><p><code>some(start, finish, p)</code></p><p>equivalent to <code>Belt.Array.(some(range(start, finish), p))</code></p><pre><code class="language-res" metastring="example">Belt.Range.some(0, 4, (i) =&gt; i &gt; 5) /* false */
+
+Belt.Range.some(0, 4, (i) =&gt; i &gt; 2) /* true */
+</code></pre><h2 id="somebyu">someByU</h2><pre><code class="language-res" metastring="sig">let someByU: (int, int, ~step: int, (. int) =&gt; bool) =&gt; bool
+</code></pre><h2 id="someby">someBy</h2><pre><code class="language-res" metastring="sig">let someBy: (int, int, ~step: int, int =&gt; bool) =&gt; bool
+</code></pre><p><code>someBy(start, finish, ~step, p)</code></p><p>See <code>Belt_Array.rangeBy</code></p><p>equivalent to <code>Belt.Array.(some(rangeBy(start, finish, ~step), p))</code></p><pre><code class="language-res" metastring="example">Belt.Range.someBy(1, 5, ~step=2, (i) =&gt; mod(i, 2) === 0) /* false */
+
+Belt.Range.someBy(0, 4, ~step=2, (i) =&gt; mod(i, 2) === 0) /* true */
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/docs/manual/v9.0.0/api/belt/range","query":{},"buildId":"57i003GrurB9OA8mdo-dW","runtimeConfig":{},"nextExport":true,"autoExport":true,"isFallback":false}</script><script nomodule="" src="/_next/static/chunks/polyfills-9def993fe817cc057038.js"></script><script src="/_next/static/chunks/webpack-c49b9de92a7202ac2146.js" async=""></script><script src="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" async=""></script><script src="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" async=""></script><script src="/_next/static/chunks/pages/_app-9e9d9ab67b4ceb7ec93b.js" async=""></script><script src="/_next/static/chunks/pages/docs/manual/v9.0.0/api/belt/range-e26f0cde3bfc49ab73eb.js" async=""></script><script src="/_next/static/57i003GrurB9OA8mdo-dW/_buildManifest.js" async=""></script><script src="/_next/static/57i003GrurB9OA8mdo-dW/_ssgManifest.js" async=""></script><script async="" defer="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script><noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript></body></html>

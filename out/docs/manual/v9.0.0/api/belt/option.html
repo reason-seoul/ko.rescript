@@ -1,0 +1,99 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/2b269719632b344a478b.css" as="style"/><link rel="stylesheet" href="/_next/static/css/2b269719632b344a478b.css" data-n-g=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/webpack-c49b9de92a7202ac2146.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" as="script"/><link rel="preload" href="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-9e9d9ab67b4ceb7ec93b.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/docs/manual/v9.0.0/api/belt/option-010b524538cb7c7fed42.js" as="script"/></head><body><div id="__next"><h1 id="option">Option</h1><div><p>In Belt we represent the existence and nonexistence of a value by wrapping it
+with the <code>option</code> type.  In order to make it a bit more convenient to work with
+option-types, Belt provides utility-functions for it.</p><p>The <code>option</code> type is a part of the Reason / OCaml standard library which is defined like this:</p></div><pre><code class="language-res" metastring="sig">type option&lt;&#x27;a&gt; = None | Some(&#x27;a)
+</code></pre><pre><code class="language-res" metastring="example">let someString: option&lt;string&gt; = Some(&quot;hello&quot;)
+</code></pre><h2 id="getexn">getExn</h2><pre><code class="language-res" metastring="sig">let getExn: option&lt;&#x27;a&gt; =&gt; &#x27;a
+</code></pre><p>Raises an Error in case <code>None</code> is provided. Use with care.</p><pre><code class="language-res" metastring="example">Belt.Option.getExn(Some(3)) /* 3 */
+
+Belt.Option.getExn(None) /* Raises an Error */
+</code></pre><h2 id="mapwithdefault">mapWithDefault</h2><pre><code class="language-res" metastring="sig">let mapWithDefault: (option&lt;&#x27;a&gt;, &#x27;b, &#x27;a =&gt; &#x27;b) =&gt; &#x27;b
+</code></pre><p>If <code>optionValue</code> is of <code>Some(value)</code>,
+this function returns that value applied with <code>f</code>, in other words <code>f(value)</code>.</p><p>If <code>optionValue</code> is <code>None</code>, the default is returned.</p><pre><code class="language-res" metastring="example">let someValue = Some(3)
+someValue-&gt;Belt.Option.mapWithDefault(0, x =&gt; x + 5) /* 8 */
+
+let noneValue = None
+noneValue-&gt;Belt.Option.mapWithDefault(0, x =&gt; x + 5) /* 0 */
+</code></pre><h2 id="mapwithdefaultu">mapWithDefaultU</h2><pre><code class="language-res" metastring="sig">let mapWithDefaultU: (option&lt;&#x27;a&gt;, &#x27;b, (. &#x27;a) =&gt; &#x27;b) =&gt; &#x27;b
+</code></pre><p>Uncurried version of <a href="#mapWithDefault">mapWithDefault</a>.</p><h2 id="map">map</h2><pre><code class="language-res" metastring="sig">let map: (option&lt;&#x27;a&gt;, &#x27;a =&gt; &#x27;b) =&gt; option&lt;&#x27;b&gt;
+</code></pre><p>If <code>optionValue</code> is <code>Some(value)</code> this returns <code>f(value)</code>, otherwise it returns <code>None</code>.</p><pre><code class="language-res" metastring="example">Belt.Option.map(Some(3), x =&gt; x * x) /* Some(9) */
+
+Belt.Option.map(None, x =&gt; x * x) /* None */
+</code></pre><h2 id="mapu">mapU</h2><pre><code class="language-res" metastring="sig">let mapU: (option&lt;&#x27;a&gt;, (. &#x27;a) =&gt; &#x27;b) =&gt; option&lt;&#x27;b&gt;
+</code></pre><p>Uncurried version of <a href="#map">map</a>.</p><h2 id="flatmap">flatMap</h2><pre><code class="language-res" metastring="sig">let flatMap: (option&lt;&#x27;a&gt;, &#x27;a =&gt; option&lt;&#x27;b&gt;) =&gt; option&lt;&#x27;b&gt;
+</code></pre><p>If <code>optionValue</code> is <code>Some(value)</code>, returns <code>f(value)</code>, otherwise returns
+<code>None</code>.<br/>
+The function <code>f</code> must have a return type of <code>option&lt;&#x27;b&gt;</code>.</p><pre><code class="language-res" metastring="example">let addIfAboveOne = value =&gt;
+  if (value &gt; 1) {
+    Some(value + 1)
+  } else {
+    None
+  }
+
+Belt.Option.flatMap(Some(2), addIfAboveOne) /* Some(3) */
+
+Belt.Option.flatMap(Some(-4), addIfAboveOne) /* None */
+
+Belt.Option.flatMap(None, addIfAboveOne) /* None */
+</code></pre><h2 id="flatmapu">flatMapU</h2><pre><code class="language-res" metastring="sig">let flatMapU: (option&lt;&#x27;a&gt;, (. &#x27;a) =&gt; option&lt;&#x27;b&gt;) =&gt; option&lt;&#x27;b&gt;
+</code></pre><p>Uncurried version of flatMap.</p><h2 id="getwithdefault">getWithDefault</h2><pre><code class="language-res" metastring="sig">let getWithDefault: (option&lt;&#x27;a&gt;, &#x27;a) =&gt; &#x27;a
+</code></pre><p>If <code>optionalValue</code> is <code>Some(value)</code>, returns <code>value</code>, otherwise default.</p><pre><code class="language-res" metastring="example">Belt.Option.getWithDefault(None, &quot;Banana&quot;) /* Banana */
+
+Belt.Option.getWithDefault(Some(&quot;Apple&quot;), &quot;Banana&quot;) /* Apple */
+</code></pre><pre><code class="language-res" metastring="example">let greet = (firstName: option&lt;string&gt;) =&gt;
+  &quot;Greetings &quot; ++ firstName-&gt;Belt.Option.getWithDefault(&quot;Anonymous&quot;)
+
+Some(&quot;Jane&quot;)-&gt;greet /* &quot;Greetings Jane&quot; */
+
+None-&gt;greet /* &quot;Greetings Anonymous&quot; */
+</code></pre><pre><code class="language-res" metastring="example">Belt.Option.getWithDefault(Some(1812), 1066) /* 1812 */
+
+Belt.Option.getWithDefault(None, 1066) /* 1066 */
+</code></pre><h2 id="issome">isSome</h2><pre><code class="language-res" metastring="sig">let isSome: option&lt;&#x27;a&gt; =&gt; bool
+</code></pre><p>Returns <code>true</code> if the argument is <code>Some(value)</code>, <code>false</code> otherwise.</p><pre><code class="language-res" metastring="example">Belt.Option.isSome(None) /* false */
+
+Belt.Option.isSome(Some(1)) /* true */
+</code></pre><h2 id="isnone">isNone</h2><pre><code class="language-res" metastring="sig">let isNone: option&lt;&#x27;a&gt; =&gt; bool
+</code></pre><p>Returns <code>true</code> if the argument is <code>None</code>, <code>false</code> otherwise.</p><pre><code class="language-res" metastring="example">Belt.Option.isNone(None) /* true */
+
+Belt.Option.isNone(Some(1)) /* false */
+</code></pre><h2 id="eq">eq</h2><pre><code class="language-res" metastring="sig">let eq: (option&lt;&#x27;a&gt;, option&lt;&#x27;b&gt;, (&#x27;a, &#x27;b) =&gt; bool) =&gt; bool
+</code></pre><p>Evaluates two optional values for equality with respect to a predicate
+function. If both <code>optValue1</code> and <code>optValue2</code> are <code>None</code>, returns <code>true</code>.
+If one of the arguments is <code>Some(value)</code> and the other is <code>None</code>, returns
+<code>false</code>.</p><p>If arguments are <code>Some(value1)</code> and <code>Some(value2)</code>, returns the result of
+<code>predicate(value1, value2)</code>; the predicate function must return a bool.</p><pre><code class="language-res" metastring="example">let clockEqual = (a, b) =&gt; mod(a, 12) == mod(b, 12)
+
+open Belt.Option
+
+eq(Some(3), Some(15), clockEqual) /* true */
+
+eq(Some(3), None, clockEqual) /* false */
+
+eq(None, Some(3), clockEqual) /* false */
+
+eq(None, None, clockEqual) /* true */
+</code></pre><h2 id="equ">eqU</h2><pre><code class="language-res" metastring="sig">let eqU: (option&lt;&#x27;a&gt;, option&lt;&#x27;b&gt;, (.&#x27;a, &#x27;b) =&gt; bool) =&gt; bool
+</code></pre><p>Uncurried version of <a href="#eq">eq</a>.</p><h2 id="cmp">cmp</h2><pre><code class="language-res" metastring="sig">let cmp: (option&lt;&#x27;a&gt;, option&lt;&#x27;b&gt;, (&#x27;a, &#x27;b) =&gt; int) =&gt; int
+</code></pre><p><code>cmp(optValue1, optValue2, comparisonFunction)</code> compares two optional values
+with respect to given <code>comparisonFunction</code>.</p><p>If both <code>optValue1</code> and <code>optValue2</code> are <code>None</code>, it returns <code>0</code>.</p><p>If the first argument is <code>Some(value1)</code> and the second is <code>None</code>, returns <code>1</code>
+(something is greater than nothing).</p><p>If the first argument is <code>None</code> and the second is <code>Some(value2)</code>, returns <code>-1</code>
+(nothing is less than something).</p><p>If the arguments are <code>Some(value1)</code> and <code>Some(value2)</code>, returns the result of
+<code>comparisonFunction(value1, value2)</code>; comparisonFunction takes two arguments
+and returns <code>-1</code> if the first argument is less than the second, <code>0</code> if the
+arguments are equal, and <code>1</code> if the first argument is greater than the second.</p><pre><code class="language-res" metastring="example">let clockCompare = (a, b) =&gt; compare(mod(a, 12), mod(b, 12))
+
+open Belt.Option
+
+cmp(Some(3), Some(15), clockCompare) /* 0 */
+
+cmp(Some(3), Some(14), clockCompare) /* 1 */
+
+cmp(Some(2), Some(15), clockCompare) /* (-1) */
+
+cmp(None, Some(15), clockCompare) /* (-1) */
+
+cmp(Some(14), None, clockCompare) /* 1 */
+
+cmp(None, None, clockCompare) /* 0 */
+</code></pre><h2 id="cmpu">cmpU</h2><pre><code class="language-res" metastring="sig">let cmpU: (option&lt;&#x27;a&gt;, option&lt;&#x27;b&gt;, ((.&#x27;a, &#x27;b) =&gt; int)) =&gt; int
+</code></pre><p>Uncurried version of <a href="#cmp">cmp</a>.</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/docs/manual/v9.0.0/api/belt/option","query":{},"buildId":"57i003GrurB9OA8mdo-dW","runtimeConfig":{},"nextExport":true,"autoExport":true,"isFallback":false}</script><script nomodule="" src="/_next/static/chunks/polyfills-9def993fe817cc057038.js"></script><script src="/_next/static/chunks/webpack-c49b9de92a7202ac2146.js" async=""></script><script src="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" async=""></script><script src="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" async=""></script><script src="/_next/static/chunks/pages/_app-9e9d9ab67b4ceb7ec93b.js" async=""></script><script src="/_next/static/chunks/pages/docs/manual/v9.0.0/api/belt/option-010b524538cb7c7fed42.js" async=""></script><script src="/_next/static/57i003GrurB9OA8mdo-dW/_buildManifest.js" async=""></script><script src="/_next/static/57i003GrurB9OA8mdo-dW/_ssgManifest.js" async=""></script><script async="" defer="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script><noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript></body></html>

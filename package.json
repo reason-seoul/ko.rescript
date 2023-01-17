@@ -1,5 +1,5 @@
 {
-  "name": "ko.rescript-lang.org",
+  "name": "ko.rescript",
   "private": true,
   "homepage": "http://jiaek.github.io/",
   "version": "1.0.0",
@@ -41,12 +41,14 @@
     "test": "node scripts/test-examples.mjs && node scripts/test-hrefs.mjs",
     "reanalyze": "reanalyze -all-cmt .",
     "update-index": "node scripts/extract-indices.mjs && node scripts/extract-tocs.mjs && node scripts/extract-syntax.mjs && node scripts/generate_feed.mjs > public/blog/feed.xml",
-    "deploy": "next build && next export && touch out/.nojekyll && git add -f out/ && git commit -m 'deploy to gh-pages' && git subtree push --prefix out origin gh-pages"
+    "predeploy": "npm run build",
+    "deploy": "touch out/.nojekyll && gh-pages -d out --dotfiles"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",
     "cssnano": "^4.1.10",
     "esbuild-loader": "^2.13.1",
+    "gh-pages": "^4.0.0",
     "postcss-cli": "^8.3.0",
     "reanalyze": "^2.16.0",
     "rescript": "^10.1.0-rc.4",

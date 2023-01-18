@@ -4,7 +4,7 @@ name: Deploy static content to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["chinese-translation"]
+    branches: ["gh-pages"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -50,13 +50,13 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: 'gh-pages'
+          path: "gh-pages"
       - name: deploy changes to a repo
         uses: tagus/git-deploy@v0.4.1
         with:
           changes: gh-pages
-          repository: git@github.com:rescript-idea/rescript-idea.github.io.git
-          ssh_key: ${{ secrets.SSH_DEPLOY_KEY }}
-          branch: master
+          repository: git@github.com:JiaeK/jiaek.github.io.git
+          ssh_key: ${{ secrets.SSH_KEY }}
+          branch: main
           name: deploy-bot
           clean_repo: true

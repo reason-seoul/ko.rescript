@@ -1,12 +1,19 @@
 ---
-title: "Let Binding"
-description: "Let binding syntax for binding to values in ReScript"
+title: "Let 바인딩"
+description: "ReScript에서 값을 바인딩하는 Let 바인딩 문법"
 canonical: "/docs/manual/latest/let-binding"
 ---
 
+<!--
 # Let Binding
+-->
+# Let 바인딩
 
+<!--
 A "let binding", in other languages, might be called a "variable declaration". `let` _binds_ values to names. They can be seen and referenced by code that comes _after_ them.
+-->
+
+"let 바인딩"은 다른 말로 "변수 선언"이라고도 할 수 있습니다. 즉, `let`이 값과 변수 이름을 _묶는(binds)_ 것입니다. 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -23,9 +30,15 @@ var newScore = 20;
 
 </CodeTab>
 
+<!--
 ## Block Scope
+-->
+## 
 
+<!--
 Bindings can be scoped through `{}`.
+-->
+
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -35,7 +48,7 @@ let message = {
   let part2 = "world"
   part1 ++ " " ++ part2
 }
-// `part1` and `part2` not accessible here!
+// `part1` and `part2` are not accessible here!
 ```
 ```js
 var message = "hello world";
@@ -43,11 +56,21 @@ var message = "hello world";
 
 </CodeTab>
 
+<!--
 The value of the last line of a scope is implicitly returned.
+-->
 
+
+
+<!--
 ### Design Decisions
+-->
+### 
 
+<!--
 ReScript's `if`, `while` and functions all use the same block scoping mechanism. The code below works **not** because of some special "if scope"; but simply because it's the same scope syntax and feature you just saw:
+-->
+
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -66,15 +89,30 @@ if (displayGreeting) {
 
 </CodeTab>
 
+<!--
 ## Bindings Are Immutable
+-->
+## 
 
+<!--
 Let bindings are "immutable", aka "cannot change". This helps our type system deduce and optimize much more than other languages (and in turn, help you more).
+-->
 
+
+<!--
 ## Binding Shadowing
+-->
+## 
 
-The above restriction might sound unpractical at first. How would you change a value then? Usually, 2 ways:
+<!--
+The above restriction might sound impractical at first. How would you change a value then? Usually, 2 ways:
+-->
 
+
+<!--
 The first is to realize that many times, what you want isn't to mutate a variable's value. For example, this JavaScript pattern:
+-->
+
 
 ```js
 var result = 0;
@@ -82,7 +120,10 @@ result = calculate(result);
 result = calculateSomeMore(result);
 ```
 
+<!--
 ...is really just to comment on intermediate steps. You didn't need to mutate `result` at all! You could have just written this JS:
+-->
+
 
 ```js
 var result1 = 0;
@@ -90,7 +131,10 @@ var result2 = calculate(result1);
 var result3 = calculateSomeMore(result2);
 ```
 
+<!--
 In ReScript, this obviously works too:
+-->
+
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -107,7 +151,10 @@ var result3 = calculateSomeMore(result2);
 
 </CodeTab>
 
+<!--
 Additionally, reusing the same let binding name overshadows the previous bindings with the same name. So you can write this too:
+-->
+
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -123,9 +170,17 @@ var result$1 = calculateSomeMore(result);
 
 </CodeTab>
 
+<!--
 (Though for the sake of clarity, we don't recommend this).
+-->
 
+
+
+<!--
 As a matter of fact, even this is valid code:
+-->
+
+
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -143,16 +198,28 @@ console.log(1);
 
 </CodeTab>
 
+<!--
 The binding you refer to is whatever's the closest upward. No mutation here!
-If you need _real_ mutation, e.g. passing a value around, have it modified by many pieces of code, we provide a slightly heavier [mutation feature](mutation.md).
+If you need _real_ mutation, e.g. passing a value around, have it modified by many pieces of code, we provides a slightly heavier [mutation feature](mutation.md).
+-->
 
+
+<!--
 ## Private let bindings
+-->
+## 
 
+<!--
 Private let bindings are introduced in the release [7.2](https://rescript-lang.org/blog/bucklescript-release-7-2).
+-->
 
+
+<!--
 In the module system, everything is public by default,
 the only way to hide some values is by providing a separate signature to
 list public fields and their types:
+-->
+
 
 ```res
 module A: {
@@ -162,7 +229,11 @@ module A: {
   let b = 4
 }
 ```
+
+<!--
 `%%private` gives you an option to mark private fields directly
+-->
+
 
 ```res
 module A = {
@@ -171,15 +242,28 @@ module A = {
 }
 ```
 
+<!--
 `%%private` also applies to file level modules, so in some cases,
 users do not need to provide a separate interface file just to hide some particular values.
+-->
 
+
+<!--
 Note interface files are still recommended as a general best practice since they give you better
 separate compilation units and also they're better for documentation.
+-->
 
+
+<!--
 Still, `%%private` is useful in the following scenarios:
 
 - **Code generators.** Some code generators want to hide some values but it is sometimes very hard or time consuming for code generators to synthesize the types for public fields.
 
 - **Quick prototyping.** During prototyping, we still want to hide some values, but the interface file is not stable yet, `%%private` provide you such convenience.
+-->
 
+
+
+- 
+
+- 

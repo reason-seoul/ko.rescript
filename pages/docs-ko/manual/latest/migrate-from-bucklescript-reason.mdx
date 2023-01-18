@@ -1,19 +1,39 @@
 ---
-title: "Migrate to ReScript Syntax"
-description: "Instructions on upgrading from Reason to ReScript"
+title: "ReScript 문법으로 변경하기"
+description: "Reason에서 ReScript로 업그레이드하는 방법"
 canonical: "/docs/manual/latest/migrate-to-new-syntax"
 ---
 
+<!--
 # Migrate from BuckleScript/Reason
+-->
+# BuckleScript/Reason에서 ReScript 문법으로 변경하기
 
+<!--
 ReScript is a rebranding and cleanup of BuckleScript (since `v8.2.0`) & Reason (`v3.6`) that enables us to ship a tighter compile-to-JS stack with more coherent documentation & tools. If you're an existing user of BuckleScript & Reason, here's the gist:
+-->
 
+ReScript는 BuckleScript `v8.2.0`과 Reason `v3.6` 이후의 버전을 정화하여 리브랜딩한 언어로, 더 견고한 compile-to-JS 스택, 더 이해하기 쉬운 문서와 툴링을 갖춤으로써 더 나은 개발 환경을 제공하게 되었습니다. 지금도 BuckleScript와 Reason 사용한다면, 다음 내용을 참고하세요.
+
+<!--
 - ReScript is mostly just BuckleScript rebranded, with a new syntax that's like the Reason syntax, but catered more toward the JavaScript crowd.
 - All your existing code will keep working even if you don't upgrade.
+-->
 
+- ReScript의 많은 부분이 BuckleScript의 이미지를 새롭게 리브랜딩한 것으로, Reason과 닮아있지만, 더욱 JavaScript 사용자층을 고려한 새로운 문법들을 제공합니다.
+- 업그레이드하지 않아도 기존의 코드들은 잘 작동할 것입니다.
+
+
+<!--
 ## Upgrade Your Codebase
+-->
+## 코드 베이스 업그레이드하기
 
+<!--
 There are lots of exciting improvements in the new syntax (features, speed, error messages, etc.). The upgrade is trivial, backward-compatible and can be done on a per-file basis:
+-->
+
+리브랜딩 된 ReScript에는 새로운 기능과, 속도, 에러 메시지 등 여러 흥미로운 개선 사항이 있습니다. 이 업그레이드는 간단하고 이전 버전과 호환되며 파일 단위로 수행할 수 있습니다:
 
 ```
 npm install rescript@9
@@ -22,28 +42,49 @@ npm install rescript@9
 npx rescript convert src/MyFile.re
 ```
 
+<!--
 Enjoy the improved experience!
+-->
 
+향상된 개발 경험을 즐겨보세요!
+
+<!--
 ### Upgrade Individual Folders
+-->
+### 개별 폴더 업그레이드하기
 
-This is useful for per-directory convertions:
+<!--
+This is useful for per-directory conversions:
+-->
+
+다음은 디렉토리별 변환에 유용합니다:
 
 ```console
 # *.rei, *.ml, *.mli,....
 for f in your-folder/**/*.re; do; node_modules/.bin/rescript convert $f && rm $f; done;
 ```
 
+<!--
 ### Upgrade an Entire Codebase
+-->
+### 코드 베이스 전체를 업그레이드하기
 
+<!--
 In case you are confident in converting your codebase in one step, use the following:
+-->
+
+코드 베이스를 한 번에 변환하고 싶다면 다음을 참고하세요:
 
 ```
 npx rescript convert -all
 ```
 
-
+<!--
 ## Difference With Old Reason
+-->
+## 이전 Reason과의 차이점
 
+<!--
 - Complete removal of semicolon (you can still write them).
 - No need for parentheses around `if`, `switch` and `try`.
 - Type arguments: from `option(int)` to `option<int>`.
@@ -56,9 +97,29 @@ npx rescript convert -all
 - First class module: from `(module S: Student)` to `module(S: Student)`.
 - No custom infix operator for now (including `mod`).
 - Object access: from `settings##visible #= true` to `settings["visible"] = true`. Rejoice!
-- Object: from `Js.t({"age": int})` to just `{"age": int}`. The `Js.t` part is now uneeded.
+- Object: from `Js.t({"age": int})` to just `{"age": int}`. The `Js.t` part is now unneeded.
 - Attribute: from `[@myAttribute "hello"]` to `@myAttribute("hello")`. From `[%re bla]` to `%re(bla)`.
 - Removed dereference syntax `result^`. Just use `result.contents`.
 - `fun` pattern matching syntax removed.
 - Type declaration is non-recursive by default, consistent with let bindings. To have recursive types, use `type rec myList<'a> = Nil | Cons('a, myList<'a>)`.
 - Use any words, including reserved keywords, as your identifier name: `let \"try" = true`.
+-->
+
+- 세미콜론을 완전히 제거해도 됩니다. (물론 사용도 가능합니다)
+- `if`, `switch`, `try` 구문 들에서 괄호가 필요하지 않습니다.
+- `option(int)`에서 `option<int>`로 타입 인자 구문이 변경됩니다.
+- 이전 `{j|hello ${name}|j}`로 작성했던 문자열 보간을 `` j`hello ${name}` ``라고 작성하며, 완전한 유니코드 지원도 갖추게 되었습니다.
+- 백틱(backtick)을 사용하는 새로운 문자열 보간법인 `` `hello world` ``는 멀티 라인 지원과 유니코드 지원도 갖추게 되었습니다. `"hello world"` 문자열은 이제 싱글 라인입니다.
+- 폴리모픽 배리언트는 `` `red`` 에서 `#red`처럼 앞에 샾을 붙여 사용하도록 변경됐습니다.
+- 배열은 `[|1,2,3|]` 에서 `[1,2,3]`로 JavaScript의 기본 배열처럼 사용합니다.
+- 리스트는 `[1,2,3]` 에서 `list[1,2,3]`와 같이 바뀌었었고, _8.1.1 업데이트_ 이후로는 `list{1, 2, 3}`처럼 사용합니다. 이는 `set[...]` 와 `map[...]`처럼 통일된 방식으로 자료 구조(containers)에 접근하려는 향후 계획과 관련이 있는데, 일시적인 의견일 수도 있습니다.
+- 예외 처리는 `try (compute()) { | Not_found => Js.log("oops")}` 에서 `try compute() catch { | Not_found => Js.log("oops")}`와 같이 바뀌었습니다.
+- 1급 모듈(First class module)은 `(module S: Student)` 에서 `module(S: Student)`와 같이 바뀌었습니다.
+- `mod`를 포함한 커스텀 인픽스 오퍼레이터를 더 이상 사용할 수 없습니다.
+- 객체 접근은 `settings##visible #= true` 에서 `settings["visible"] = true`와 같이 바뀌었는데, 좀 더 JavaScript 같아진 이 점을 개발자들이 누리길 바랍니다!
+- 객체는 `Js.t({"age": int})`였던 것을 `{"age": int}`처럼 간단히 나타낼 수 있게 되었습니다. 이제 `Js.t`는 더 이상 필요하지 않습니다.
+- 어트리뷰트는 `[@myAttribute "hello"]`에서 `@myAttribute("hello")`와 같이 변경되었습니다. 정규 표현식도 `[%re bla]` 에서 `%re(bla)`처럼 바뀌었습니다.
+- `result^`와 같은 역참조 구문은 삭제되었습니다. 대신에 `result.contents``와 같이 사용합니다.
+- `fun`구문을 사용한 패턴 매칭 문법은 삭제되었습니다. 
+- 타입 선언은 기본적으로 비재귀적이며 let 바인딩과 일치합니다. 재귀 타입을 만들기 위해서는,  `type rec myList<'a> = Nil | Cons('a, myList<'a>)`와 같이 사용합니다.
+- `let \"try" = true`와 같이, 예약된 키워드를 포함한 모든 단어를 식별자 이름으로 사용합니다.

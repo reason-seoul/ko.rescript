@@ -24,7 +24,7 @@ function LandingPageLayout$Intro(Props) {
                   className: "max-w-1060 flex flex-col items-center px-5 sm:px-8 lg:box-content"
                 }, React.createElement("h1", {
                       className: "hl-title text-center max-w-[53rem]"
-                    }, "빠르고, 단순하고, 온전한 타입의", React.createElement("br", undefined), "미래에서 온 JavaScript"), React.createElement("h2", {
+                    }, "빠르고, 단순하고,", React.createElement("br", undefined), "온전한 타입의", React.createElement("br", undefined), "미래에서 온 JavaScript"), React.createElement("h2", {
                       className: "body-lg text-center text-gray-60 my-4 max-w-[40rem]"
                     }, "ReScript는 강력한 타입의 언어로 효율적이며 가독성 높은 JavaScript로 컴파일됩니다.\n          함께 제공되는 번개처럼 빠른 툴체인을 통해 어떠한 크기의 코드베이스도 컴파일해낼 수 있습니다."), React.createElement("div", {
                       className: "mt-4 mb-2"
@@ -214,7 +214,7 @@ function LandingPageLayout$QuickInstall(Props) {
                       className: "w-full mt-12 md:flex flex-col lg:flex-row md:justify-between "
                     }, React.createElement("p", {
                           className: "relative z-1 text-gray-80 font-semibold text-24 md:text-32 leading-2 max-w-[32rem]"
-                        }, "ReScript는 UI 및 UX가 우수한 미션 크리티컬한 제품을 출시하고 관리하는 데 사용됩니다."), React.createElement("div", {
+                        }, "ReScript는 UI 및 UX가 우수한", React.createElement("br", undefined), "미션 크리티컬한 제품을 출시하고 관리하는 데 사용됩니다."), React.createElement("div", {
                           className: "mt-16 lg:mt-0 self-end",
                           style: {
                             maxWidth: "25rem"
@@ -280,7 +280,7 @@ function LandingPageLayout$MainUSP$Item(Props) {
 
 var item1 = React.createElement(LandingPageLayout$MainUSP$Item, {
       caption: "빠르고 심플함",
-      title: "웹에서 가장 빠른 빌드 시스템",
+      title: React.createElement(React.Fragment, undefined, "웹에서 가장 빠른", React.createElement("br", undefined), "빌드 시스템"),
       media: React.createElement("video", {
             className: "rounded-lg",
             controls: true,
@@ -316,11 +316,11 @@ var item2 = React.createElement(LandingPageLayout$MainUSP$Item, {
                 type: "video/mp4"
               })),
       polygonDirection: /* Up */0,
-      paragraph: "모든 ReScript 앱은 완전히 타이핑되어 여러분의 프로그램에 어떤 값이 주어지더라도 안전한 타입 정보를 제공합니다.\n      우리는 명확하고 쉬운 디버깅을 위해 복잡한 타입보다는 단순한 타입을 우선시합니다.\n      어떤 종류의 \`any\`도, 어려운 타입도, \`undefined\` 같은 당황스러움도 없습니다."
+      paragraph: "모든 ReScript 앱은 여러분의 프로그램에 어떤 값이 주어지더라도 안전한 타입 정보를 제공합니다.\n      우리는 명확하고 쉬운 디버깅을 위해 복잡한 타입보다는 단순한 타입을 우선시합니다.\n      어떤 종류의 \`any\`도, 어려운 타입도, \`undefined\` 같은 당황스러움도 없습니다."
     });
 
 var item3 = React.createElement(LandingPageLayout$MainUSP$Item, {
-      caption: "매끄럽게 진행되는 통합",
+      caption: "매끄럽게 진행되는 인터그레이션",
       title: React.createElement(React.Fragment, undefined, React.createElement("span", {
                 className: "text-orange-dark"
               }, "JS에 친숙한 생태계를"), React.createElement("br", undefined), "바로 사용해보세요."),
@@ -388,7 +388,7 @@ function LandingPageLayout$OtherSellingPoints(Props) {
                           className: "hl-3 text-gray-20 mt-6 mb-2"
                         }, "제한없는 간단한 적용"), React.createElement("p", {
                           className: "body-md text-gray-40"
-                        }, "ReScript는 점진적인 적용을 염두에 두고 만들어졌습니다. 만약 일반 JavaScript로 돌아가고 싶다면, 모든 소스 파일을 제거하고 깨끗한 JavaScript 컴파일 결과를 유지하면 됩니다. ReScript가 있든 없든 프로젝트는 계속 정상적으로 작동할 것이라고 동료들에게 말할 수 있을 것입니다!"))));
+                        }, "ReScript는 점진적인 적용(Adoption)을 염두에 두고 만들어졌습니다. 만약 일반 JavaScript로 돌아가고 싶다면, 모든 소스 파일을 제거하고 깨끗한 JavaScript 컴파일 결과를 유지하면 됩니다. ReScript가 있든 없든 프로젝트는 계속 정상적으로 작동할 것이라고 동료들에게 말할 수 있을 것입니다!"))));
 }
 
 function LandingPageLayout$TrustedBy(Props) {
@@ -396,7 +396,7 @@ function LandingPageLayout$TrustedBy(Props) {
               className: "mt-20"
             }, React.createElement("h3", {
                   className: "hl-1 text-gray-80 text-center max-w-576 mx-auto"
-                }, "사용자들의 신뢰"), React.createElement("div", {
+                }, "Trusted by our users"), React.createElement("div", {
                   className: "flex flex-wrap mx-4 gap-8 justify-center items-center max-w-xl lg:mx-auto mt-16 "
                 }, OurUsers.companies.map(function (company) {
                       var renderedCompany = React.createElement("a", {
@@ -423,25 +423,25 @@ function LandingPageLayout$TrustedBy(Props) {
 var cards = [
   {
     imgSrc: "./static/ic_manual@2x.png",
-    title: "Language Manual",
-    descr: "기본 문법 탐색: ReScript의 모든 언어 기능에 대한 참조 문서",
+    title: "언어 메뉴얼",
+    descr: "기본 문법 탐색: ReScript의 모든 언어 기능에 대한 참조 문서를 제공합니다.",
     href: "/docs/manual/latest/introduction"
   },
   {
     imgSrc: "./static/ic_rescript_react@2x.png",
     title: "ReScript + React",
-    descr: "전 세계의 사용자들이 이용하는 ReactJS를 위한 1급 바인딩들",
+    descr: "전 세계의 사용자들이 이용하는 ReactJS를 위한 1급 바인딩들을 알아보세요.",
     href: "/docs/react/latest/introduction"
   },
   {
     imgSrc: "./static/ic_manual@2x.png",
-    title: "Gradually Adopt ReScript",
+    title: "점진적으로 ReScript 적용하기",
     descr: "현 프로젝트에서 ReScript 사용을 시작하는 방법에 대해 배워보세요. 전부를 이해할 필요는 없습니다. 먼저 사용해 보세요!",
     href: "/docs/manual/latest/installation#integrate-into-an-existing-js-project"
   },
   {
     imgSrc: "./static/ic_gentype@2x.png",
-    title: "TypeScript Integration",
+    title: "TypeScript 인터그레이션",
     descr: "이미 가지고 있는 TypeScript 코드베이스에서 ReScript를 통합하는 방법을 알아보세요.",
     href: "/docs/gentype/latest/introduction"
   }

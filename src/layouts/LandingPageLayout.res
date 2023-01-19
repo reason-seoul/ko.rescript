@@ -4,7 +4,9 @@ module Intro = {
     <section className="flex justify-center">
       <div className="max-w-1060 flex flex-col items-center px-5 sm:px-8 lg:box-content">
         <h1 className="hl-title text-center max-w-[53rem]">
-          {React.string(`빠르고, 단순하고, 온전한 타입의`)}
+          {React.string(`빠르고, 단순하고,`)}
+          <br />
+          {React.string(`온전한 타입의`)}
           <br />
           {React.string(`미래에서 온 JavaScript`)}
         </h1>
@@ -268,7 +270,9 @@ module QuickInstall = {
         <div className="w-full mt-12 md:flex flex-col lg:flex-row md:justify-between ">
           <p
             className="relative z-1 text-gray-80 font-semibold text-24 md:text-32 leading-2 max-w-[32rem]">
-            {React.string(`ReScript는 UI 및 UX가 우수한 미션 크리티컬한 제품을 출시하고 관리하는 데 사용됩니다.`)}
+            {React.string(`ReScript는 UI 및 UX가 우수한`)}
+            <br />
+            {React.string(`미션 크리티컬한 제품을 출시하고 관리하는 데 사용됩니다.`)}
           </p>
           <div
             className="mt-16 lg:mt-0 self-end" style={ReactDOM.Style.make(~maxWidth="25rem", ())}>
@@ -359,7 +363,11 @@ module MainUSP = {
   let item1 =
     <Item
       caption="빠르고 심플함"
-      title={React.string(`웹에서 가장 빠른 빌드 시스템`)}
+      title={<>
+        {React.string(`웹에서 가장 빠른`)}
+        <br />
+        {React.string(`빌드 시스템`)}
+      </>}
       media={<video
         className="rounded-lg" controls={true} poster={"/static/lp/fast-build-preview.jpg"}>
         <source src="https://assets-17077.kxcdn.com/videos/fast-build-3.mp4" type_="video/mp4" />
@@ -392,14 +400,14 @@ module MainUSP = {
         <source src="https://assets-17077.kxcdn.com/videos/type-better-3.mp4" type_="video/mp4" />
       </video>}
       polygonDirection=Up
-      paragraph={React.string(`모든 ReScript 앱은 완전히 타이핑되어 여러분의 프로그램에 어떤 값이 주어지더라도 안전한 타입 정보를 제공합니다.
+      paragraph={React.string(`모든 ReScript 앱은 여러분의 프로그램에 어떤 값이 주어지더라도 안전한 타입 정보를 제공합니다.
       우리는 명확하고 쉬운 디버깅을 위해 복잡한 타입보다는 단순한 타입을 우선시합니다.
       어떤 종류의 \`any\`도, 어려운 타입도, \`undefined\` 같은 당황스러움도 없습니다.`)}
     />
 
   let item3 =
     <Item
-      caption="매끄럽게 진행되는 통합"
+      caption="매끄럽게 진행되는 인터그레이션"
       title={<>
         <span className="text-orange-dark"> {React.string(`JS에 친숙한 생태계를`)} </span>
         <br />
@@ -483,7 +491,7 @@ ReScript 커뮤니티에 참여하세요! 단순성, 속도 및 실용성에 대
             {React.string(`제한없는 간단한 적용`)}
           </h3>
           <p className="body-md text-gray-40">
-            {React.string(`ReScript는 점진적인 적용을 염두에 두고 만들어졌습니다. 만약 일반 JavaScript로 돌아가고 싶다면, 모든 소스 파일을 제거하고 깨끗한 JavaScript 컴파일 결과를 유지하면 됩니다. ReScript가 있든 없든 프로젝트는 계속 정상적으로 작동할 것이라고 동료들에게 말할 수 있을 것입니다!`)}
+            {React.string(`ReScript는 점진적인 적용(Adoption)을 염두에 두고 만들어졌습니다. 만약 일반 JavaScript로 돌아가고 싶다면, 모든 소스 파일을 제거하고 깨끗한 JavaScript 컴파일 결과를 유지하면 됩니다. ReScript가 있든 없든 프로젝트는 계속 정상적으로 작동할 것이라고 동료들에게 말할 수 있을 것입니다!`)}
           </p>
         </div>
         // </div>
@@ -497,7 +505,7 @@ module TrustedBy = {
   let make = () => {
     <section className="mt-20">
       <h3 className="hl-1 text-gray-80 text-center max-w-576 mx-auto">
-        {React.string(`사용자들의 신뢰`)}
+        {React.string(`Trusted by our users`)}
       </h3>
       <div
         className="flex flex-wrap mx-4 gap-8 justify-center items-center max-w-xl lg:mx-auto mt-16 ">
@@ -535,25 +543,25 @@ module CuratedResources = {
   let cards = [
     {
       imgSrc: "./static/ic_manual@2x.png",
-      title: React.string("Language Manual"),
-      descr: "기본 문법 탐색: ReScript의 모든 언어 기능에 대한 참조 문서",
+      title: React.string("언어 메뉴얼"),
+      descr: "기본 문법 탐색: ReScript의 모든 언어 기능에 대한 참조 문서를 제공합니다.",
       href: "/docs/manual/latest/introduction",
     },
     {
       imgSrc: "./static/ic_rescript_react@2x.png",
       title: React.string("ReScript + React"),
-      descr: "전 세계의 사용자들이 이용하는 ReactJS를 위한 1급 바인딩들",
+      descr: "전 세계의 사용자들이 이용하는 ReactJS를 위한 1급 바인딩들을 알아보세요.",
       href: "/docs/react/latest/introduction",
     },
     {
       imgSrc: "./static/ic_manual@2x.png",
-      title: React.string("Gradually Adopt ReScript"),
+      title: React.string("점진적으로 ReScript 적용하기"),
       descr: "현 프로젝트에서 ReScript 사용을 시작하는 방법에 대해 배워보세요. 전부를 이해할 필요는 없습니다. 먼저 사용해 보세요!",
       href: "/docs/manual/latest/installation#integrate-into-an-existing-js-project",
     },
     {
       imgSrc: "./static/ic_gentype@2x.png",
-      title: React.string("TypeScript Integration"),
+      title: React.string("TypeScript 인터그레이션"),
       descr: "이미 가지고 있는 TypeScript 코드베이스에서 ReScript를 통합하는 방법을 알아보세요.",
       href: "/docs/gentype/latest/introduction",
     },

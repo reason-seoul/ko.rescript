@@ -1,0 +1,293 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/2b269719632b344a478b.css" as="style"/><link rel="stylesheet" href="/_next/static/css/2b269719632b344a478b.css" data-n-g=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/webpack-06b7252a4ff689e08871.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" as="script"/><link rel="preload" href="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-c403ba37fcc2de691b6d.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/docs/manual/v9.0.0/api/js/array-2-a6dba6f8a0782189513a.js" as="script"/></head><body><div id="__next"><h1 id="array2">Array2</h1><div><p>Provides bindings to JavaScript’s <code>Array</code> functions. These bindings are optimized for pipe-first (<code>-&gt;</code>), where the array to be processed is the first parameter in the function.</p><p>Here is an example to find the sum of squares of all even numbers in an array.
+Without pipe first, we must call the functions in reverse order:</p><pre><code class="language-res" metastring="example">let isEven = x =&gt; mod(x, 2) == 0
+let square = x =&gt; x * x
+let result = {
+  open Js.Array2
+  reduce(map(filter([5, 2, 3, 4, 1], isEven), square), \&quot;+&quot;, 0)
+}
+</code></pre><p>With pipe first, we call the functions in the “natural” order:</p><pre><code class="language-res" metastring="example">let isEven = x =&gt; mod(x, 2) == 0
+let square = x =&gt; x * x
+let result = {
+  open Js.Array2
+  [5, 2, 3, 4, 1]-&gt;filter(isEven)-&gt;map(square)-&gt;reduce(\&quot;+&quot;, 0)
+}
+</code></pre></div><h2 id="t">t</h2><pre><code class="language-res" metastring="prelude">type t&lt;&#x27;a&gt; = array&lt;&#x27;a&gt;
+</code></pre><p>The type used to describe a JavaScript array.</p><h2 id="array_like">array_like</h2><pre><code class="language-res" metastring="prelude">type array_like&lt;&#x27;a&gt;
+</code></pre><p>A type used to describe JavaScript objects that are like an array or are iterable.</p><h2 id="from">from</h2><pre><code class="language-res" metastring="sig">let from: array_like&lt;&#x27;a&gt; =&gt; array&lt;&#x27;a&gt;
+</code></pre><p>Creates a shallow copy of an array from an array-like object. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from"><code>Array.from</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let strArr = Js.String.castToArrayLike(&quot;abcd&quot;)
+Js.Array2.from(strArr) == [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+</code></pre><h2 id="frommap">fromMap</h2><pre><code class="language-res" metastring="sig">let fromMap: (array_like&lt;&#x27;a&gt;, &#x27;a =&gt; &#x27;b) =&gt; array&lt;&#x27;b&gt;
+</code></pre><p>Creates a new array by applying a function (the second argument) to each item in the <code>array_like</code> first argument.  See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from"><code>Array.from</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let strArr = Js.String.castToArrayLike(&quot;abcd&quot;)
+let code = s =&gt; Js.String.charCodeAt(0, s)
+Js.Array2.fromMap(strArr, code) == [97.0, 98.0, 99.0, 100.0]
+</code></pre><h2 id="isarray">isArray</h2><pre><code class="language-res" metastring="sig">let isArray: &#x27;a =&gt; bool
+</code></pre><p>Returns <code>true</code> if its argument is an array; <code>false</code> otherwise. This is a runtime check, which is why the second example returns <code>true</code>---a list is internally represented as a nested JavaScript array.</p><pre><code class="language-res" metastring="example">Js.Array2.isArray([5, 2, 3, 1, 4]) == true
+Js.Array2.isArray(list{5, 2, 3, 1, 4}) == true
+Js.Array2.isArray(&quot;abcd&quot;) == false
+</code></pre><h2 id="length">length</h2><pre><code class="language-res" metastring="sig">let length: array&lt;&#x27;a&gt; =&gt; int
+</code></pre><p>Returns the number of elements in the array. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length"><code>Array.length</code></a> on MDN.</p><h2 id="copywithin">copyWithin</h2><pre><code class="language-res" metastring="sig">let copyWithin: (t&lt;&#x27;a&gt;, ~to_: int) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Copies from the first element in the given array to the designated <code>~to_</code> position, returning the resulting array. <em>This function modifies the original array.</em> See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin"><code>Array.copyWithin</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let arr = [100, 101, 102, 103, 104]
+Js.Array2.copyWithin(arr, ~to_=2) == [100, 101, 100, 101, 102]
+arr == [100, 101, 100, 101, 102]
+</code></pre><h2 id="copywithinfrom">copyWithinFrom</h2><pre><code class="language-res" metastring="sig">let copyWithinFrom: (t&lt;&#x27;a&gt;, ~to_: int, ~from: int) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Copies starting at element <code>~from</code> in the given array to the designated <code>~to_</code> position, returning the resulting array. <em>This function modifies the original array.</em> See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin"><code>Array.copyWithin</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let arr = [100, 101, 102, 103, 104]
+Js.Array2.copyWithinFrom(arr, ~from=2, ~to_=0) == [102, 103, 104, 103, 104]
+arr == [102, 103, 104, 103, 104]
+</code></pre><h2 id="copywithinfromrange">copyWithinFromRange</h2><pre><code class="language-res" metastring="sig">let copyWithinFromRange: (t&lt;&#x27;a&gt;, ~to_: int, ~start: int, ~end_: int) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Copies starting at element <code>~start</code> in the given array up to but not including <code>~end_</code> to the designated <code>~to_</code> position, returning the resulting array. <em>This function modifies the original array.</em> See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin"><code>Array.copyWithin</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let arr = [100, 101, 102, 103, 104, 105]
+Js.Array2.copyWithinFromRange(arr, ~start=2, ~end_=5, ~to_=1) == [100, 102, 103, 104, 104, 105]
+arr == [100, 102, 103, 104, 104, 105]
+</code></pre><h2 id="fillinplace">fillInPlace</h2><pre><code class="language-res" metastring="sig">let fillInPlace: (t&lt;&#x27;a&gt;, &#x27;a) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Sets all elements of the given array (the first arumgent) to the designated value (the secon argument), returning the resulting array. <em>This function modifies the original array.</em> See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill"><code>Array.fill</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let arr = [100, 101, 102, 103, 104]
+Js.Array2.fillInPlace(arr, 99) == [99, 99, 99, 99, 99]
+arr == [99, 99, 99, 99, 99]
+</code></pre><h2 id="fillfrominplace">fillFromInPlace</h2><pre><code class="language-res" metastring="sig">let fillFromInPlace: (t&lt;&#x27;a&gt;, &#x27;a, ~from: int) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Sets all elements of the given array (the first arumgent) from position <code>~from</code> to the end to the designated value (the second argument), returning the resulting array. <em>This function modifies the original array.</em> See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill"><code>Array.fill</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let arr = [100, 101, 102, 103, 104]
+Js.Array2.fillFromInPlace(arr, 99, ~from=2) == [100, 101, 99, 99, 99]
+arr == [100, 101, 99, 99, 99]
+</code></pre><h2 id="fillrangeinplace">fillRangeInPlace</h2><pre><code class="language-res" metastring="sig">let fillRangeInPlace: (t&lt;&#x27;a&gt;, &#x27;a, ~start: int, ~end_: int) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Sets the elements of the given array (the first arumgent) from position <code>~start</code> up to but not including position <code>~end_</code> to the designated value (the second argument), returning the resulting array. <em>This function modifies the original array.</em> See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill"><code>Array.fill</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let arr = [100, 101, 102, 103, 104]
+Js.Array2.fillRangeInPlace(arr, 99, ~start=1, ~end_=4) == [100, 99, 99, 99, 104]
+arr == [100, 99, 99, 99, 104]
+</code></pre><h2 id="pop">pop</h2><pre><code class="language-res" metastring="sig">let pop: t&lt;&#x27;a&gt; =&gt; option&lt;&#x27;a&gt;
+</code></pre><p>If the array is not empty, removes the last element and returns it as <code>Some(value)</code>; returns <code>None</code> if the array is empty. <em>This function modifies the original array.</em> See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop"><code>Array.pop</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let arr = [100, 101, 102, 103, 104]
+Js.Array2.pop(arr) == Some(104)
+arr == [100, 101, 102, 103]
+
+let empty: array&lt;int&gt; = []
+Js.Array2.pop(empty) == None
+</code></pre><h2 id="push">push</h2><pre><code class="language-res" metastring="sig">let push: (t&lt;&#x27;a&gt;, &#x27;a) =&gt; int
+</code></pre><p>Appends the given value to the array, returning the number of elements in the updated array. <em>This function modifies the original array.</em> See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push"><code>Array.push</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let arr = [&quot;ant&quot;, &quot;bee&quot;, &quot;cat&quot;]
+Js.Array2.push(arr, &quot;dog&quot;) == 4
+arr == [&quot;ant&quot;, &quot;bee&quot;, &quot;cat&quot;, &quot;dog&quot;]
+</code></pre><h2 id="pushmany">pushMany</h2><pre><code class="language-res" metastring="sig">let pushMany: (t&lt;&#x27;a&gt;, array&lt;&#x27;a&gt;) =&gt; int
+</code></pre><p>Appends the values from one array (the second argument) to another (the first argument), returning the number of elements in the updated array. <em>This function modifies the original array.</em> See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push"><code>Array.push</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let arr = [&quot;ant&quot;, &quot;bee&quot;, &quot;cat&quot;]
+Js.Array2.pushMany(arr, [&quot;dog&quot;, &quot;elk&quot;]) == 5
+arr == [&quot;ant&quot;, &quot;bee&quot;, &quot;cat&quot;, &quot;dog&quot;, &quot;elk&quot;]
+</code></pre><h2 id="reverseinplace">reverseInPlace</h2><pre><code class="language-res" metastring="sig">let reverseInPlace: t&lt;&#x27;a&gt; =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Returns an array with the elements of the input array in reverse order. <em>This function modifies the original array.</em> See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse"><code>Array.reverse</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let arr = [&quot;ant&quot;, &quot;bee&quot;, &quot;cat&quot;]
+Js.Array2.reverseInPlace(arr) == [&quot;cat&quot;, &quot;bee&quot;, &quot;ant&quot;]
+arr == [&quot;cat&quot;, &quot;bee&quot;, &quot;ant&quot;]
+</code></pre><h2 id="shift">shift</h2><pre><code class="language-res" metastring="sig">let shift: t&lt;&#x27;a&gt; =&gt; option&lt;&#x27;a&gt;
+</code></pre><p>If the array is not empty, removes the first element and returns it as <code>Some(value)</code>; returns <code>None</code> if the array is empty. <em>This function modifies the original array.</em> See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift"><code>Array.shift</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let arr = [100, 101, 102, 103, 104]
+Js.Array2.shift(arr) == Some(100)
+arr == [101, 102, 103, 104]
+
+let empty: array&lt;int&gt; = []
+Js.Array2.shift(empty) == None
+</code></pre><h2 id="sortinplace">sortInPlace</h2><pre><code class="language-res" metastring="sig">let sortInPlace: t&lt;&#x27;a&gt; =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Sorts the given array in place and returns the sorted array. JavaScript sorts the array by converting the arguments to UTF-16 strings and sorting them. See the second example with sorting numbers, which does not do a numeric sort. <em>This function modifies the original array.</em> See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort"><code>Array.sort</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let words = [&quot;bee&quot;, &quot;dog&quot;, &quot;ant&quot;, &quot;cat&quot;]
+Js.Array2.sortInPlace(words) == [&quot;ant&quot;, &quot;bee&quot;, &quot;cat&quot;, &quot;dog&quot;]
+words == [&quot;ant&quot;, &quot;bee&quot;, &quot;cat&quot;, &quot;dog&quot;]
+
+let numbers = [3, 30, 10, 1, 20, 2]
+Js.Array2.sortInPlace(numbers) == [1, 10, 2, 20, 3, 30]
+numbers == [1, 10, 2, 20, 3, 30]
+</code></pre><h2 id="sortinplacewith">sortInPlaceWith</h2><pre><code class="language-res" metastring="sig">let sortInPlaceWith: (t&lt;&#x27;a&gt;, (&#x27;a, &#x27;a) =&gt; int) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Sorts the given array in place and returns the sorted array. <em>This function modifies the original array.</em></p><p>The first argument to <code>sortInPlaceWith()</code> is a function that compares two items from the array and returns:</p><ul><li>an integer less than zero if the first item is less than the second item</li><li>zero if the items are equal</li><li>an integer greater than zero if the first item is greater than the second item</li></ul><p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort"><code>Array.sort</code></a> on MDN.</p><pre><code class="language-res" metastring="example">// sort by word length
+let words = [&quot;horse&quot;, &quot;aardvark&quot;, &quot;dog&quot;, &quot;camel&quot;]
+let byLength = (s1, s2) =&gt; Js.String.length(s1) - Js.String.length(s2)
+
+Js.Array2.sortInPlaceWith(words, byLength) == [&quot;dog&quot;, &quot;horse&quot;, &quot;camel&quot;, &quot;aardvark&quot;]
+
+// sort in reverse numeric order
+let numbers = [3, 30, 10, 1, 20, 2]
+let reverseNumeric = (n1, n2) =&gt; n2 - n1
+Js.Array2.sortInPlaceWith(numbers, reverseNumeric) == [30, 20, 10, 3, 2, 1]
+</code></pre><h2 id="spliceinplace">spliceInPlace</h2><pre><code class="language-res" metastring="sig">let spliceInPlace: (t&lt;&#x27;a&gt;, ~pos: int, ~remove: int, ~add: array&lt;&#x27;a&gt;) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Starting at position <code>~pos</code>, remove <code>~remove</code> elements and then add the elements from the <code>~add</code> array. Returns an array consisting of the removed items. <em>This function modifies the original array.</em> See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice"><code>Array.splice</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;]
+Js.Array2.spliceInPlace(arr, ~pos=2, ~remove=2, ~add=[&quot;x&quot;, &quot;y&quot;, &quot;z&quot;]) == [&quot;c&quot;, &quot;d&quot;]
+arr == [&quot;a&quot;, &quot;b&quot;, &quot;x&quot;, &quot;y&quot;, &quot;z&quot;, &quot;e&quot;, &quot;f&quot;]
+
+let arr2 = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+Js.Array2.spliceInPlace(arr2, ~pos=3, ~remove=0, ~add=[&quot;x&quot;, &quot;y&quot;]) == []
+arr2 == [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;x&quot;, &quot;y&quot;, &quot;d&quot;]
+
+let arr3 = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;]
+Js.Array2.spliceInPlace(arr3, ~pos=9, ~remove=2, ~add=[&quot;x&quot;, &quot;y&quot;, &quot;z&quot;]) == []
+arr3 == [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;x&quot;, &quot;y&quot;, &quot;z&quot;]
+</code></pre><h2 id="removefrominplace">removeFromInPlace</h2><pre><code class="language-res" metastring="sig">let removeFromInPlace: (t&lt;&#x27;a&gt;, ~pos: int) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Removes elements from the given array starting at position <code>~pos</code> to the end of the array, returning the removed elements. <em>This function modifies the original array.</em> See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice"><code>Array.splice</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;]
+Js.Array2.removeFromInPlace(arr, ~pos=4) == [&quot;e&quot;, &quot;f&quot;]
+arr == [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+</code></pre><h2 id="removecountinplace">removeCountInPlace</h2><pre><code class="language-res" metastring="sig">let removeCountInPlace: (t&lt;&#x27;a&gt;, ~pos: int, ~count: int) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Removes <code>~count</code> elements from the given array starting at position <code>~pos</code>, returning the removed elements. <em>This function modifies the original array.</em> See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice"><code>Array.splice</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;]
+Js.Array2.removeCountInPlace(arr, ~pos=2, ~count=3) == [&quot;c&quot;, &quot;d&quot;, &quot;e&quot;]
+arr == [&quot;a&quot;, &quot;b&quot;, &quot;f&quot;]
+</code></pre><h2 id="unshift">unshift</h2><pre><code class="language-res" metastring="sig">let unshift: (t&lt;&#x27;a&gt;, &#x27;a) =&gt; int
+</code></pre><p>Adds the given element to the array, returning the new number of elements in the array. <em>This function modifies the original array.</em> See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift"><code>Array.unshift</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let arr = [&quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+Js.Array2.unshift(arr, &quot;a&quot;) == 4
+arr == [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+</code></pre><h2 id="unshiftmany">unshiftMany</h2><pre><code class="language-res" metastring="sig">let unshiftMany: (t&lt;&#x27;a&gt;, array&lt;&#x27;a&gt;) =&gt; int
+</code></pre><p>Adds the elements in the second array argument at the beginning of the first array argument, returning the new number of elements in the array. <em>This function modifies the original array.</em> See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift"><code>Array.unshift</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let arr = [&quot;d&quot;, &quot;e&quot;]
+Js.Array2.unshiftMany(arr, [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]) == 5
+arr == [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;]
+</code></pre><h2 id="append">append</h2><pre><code class="language-res" metastring="sig">let append: (t&lt;&#x27;a&gt;, &#x27;a) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Deprecated. <code>append()</code> is not type-safe. Use <code>concat()</code> instead.</p><h2 id="concat">concat</h2><pre><code class="language-res" metastring="sig">let concat: (t&lt;&#x27;a&gt;, t&lt;&#x27;a&gt;) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Concatenates the second array argument to the first array argument, returning a new array. The original arrays are not modified. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat"><code>Array.concat</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.Array2.concat([&quot;a&quot;, &quot;b&quot;], [&quot;c&quot;, &quot;d&quot;, &quot;e&quot;]) == [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;]
+</code></pre><h2 id="concatmany">concatMany</h2><pre><code class="language-res" metastring="sig">let concatMany: (t&lt;&#x27;a&gt;, array&lt;t&lt;&#x27;a&gt;&gt;) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>The second argument to <code>concatMany()</code> is an array of arrays; these are added at the end of the first argument, returning a new array. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat"><code>Array.concat</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.Array2.concatMany([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], [[&quot;d&quot;, &quot;e&quot;], [&quot;f&quot;, &quot;g&quot;, &quot;h&quot;]]) == [
+    &quot;a&quot;,
+    &quot;b&quot;,
+    &quot;c&quot;,
+    &quot;d&quot;,
+    &quot;e&quot;,
+    &quot;f&quot;,
+    &quot;g&quot;,
+    &quot;h&quot;,
+  ]
+</code></pre><h2 id="includes">includes</h2><pre><code class="language-res" metastring="sig">let includes: (t&lt;&#x27;a&gt;, &#x27;a) =&gt; bool
+</code></pre><p>Returns true if the given value is in the array, <code>false</code> otherwise. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes"><code>Array.includes</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.Array2.includes([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], &quot;b&quot;) == true
+Js.Array2.includes([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], &quot;x&quot;) == false
+</code></pre><h2 id="indexof">indexOf</h2><pre><code class="language-res" metastring="sig">let indexOf: (t&lt;&#x27;a&gt;, &#x27;a) =&gt; int
+</code></pre><p>Returns the index of the first element in the array that has the given value. If the value is not in the array, returns -1. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf"><code>Array.indexOf</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.Array2.indexOf([100, 101, 102, 103], 102) == 2
+Js.Array2.indexOf([100, 101, 102, 103], 999) == -1
+</code></pre><h2 id="indexoffrom">indexOfFrom</h2><pre><code class="language-res" metastring="sig">let indexOfFrom: (t&lt;&#x27;a&gt;, &#x27;a, ~from: int) =&gt; int
+</code></pre><p>Returns the index of the first element in the array with the given value. The search starts at position <code>~from</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf"><code>Array.indexOf</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.Array2.indexOfFrom([&quot;a&quot;, &quot;b&quot;, &quot;a&quot;, &quot;c&quot;, &quot;a&quot;], &quot;a&quot;, ~from=2) == 2
+Js.Array2.indexOfFrom([&quot;a&quot;, &quot;b&quot;, &quot;a&quot;, &quot;c&quot;, &quot;a&quot;], &quot;a&quot;, ~from=3) == 4
+Js.Array2.indexOfFrom([&quot;a&quot;, &quot;b&quot;, &quot;a&quot;, &quot;c&quot;, &quot;a&quot;], &quot;b&quot;, ~from=2) == -1
+</code></pre><h2 id="joinwith">joinWith</h2><pre><code class="language-res" metastring="sig">let joinWith: (t&lt;&#x27;a&gt;, string) =&gt; string
+</code></pre><p>This function converts each element of the array to a string (via JavaScript) and concatenates them, separated by the string given in the first argument, into a single string. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join"><code>Array.join</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.Array2.joinWith([&quot;ant&quot;, &quot;bee&quot;, &quot;cat&quot;], &quot;--&quot;) == &quot;ant--bee--cat&quot;
+Js.Array2.joinWith([&quot;door&quot;, &quot;bell&quot;], &quot;&quot;) == &quot;doorbell&quot;
+Js.Array2.joinWith([2020, 9, 4], &quot;/&quot;) == &quot;2020/9/4&quot;
+Js.Array2.joinWith([2.5, 3.6, 3e-2], &quot;;&quot;) == &quot;2.5;3.6;0.03&quot;
+</code></pre><h2 id="lastindexof">lastIndexOf</h2><pre><code class="language-res" metastring="sig">let lastIndexOf: (t&lt;&#x27;a&gt;, &#x27;a) =&gt; int
+</code></pre><p>Returns the index of the last element in the array that has the given value. If the value is not in the array, returns -1. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf"><code>Array.lastIndexOf</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.Array2.lastIndexOf([&quot;a&quot;, &quot;b&quot;, &quot;a&quot;, &quot;c&quot;], &quot;a&quot;) == 2
+Js.Array2.lastIndexOf([&quot;a&quot;, &quot;b&quot;, &quot;a&quot;, &quot;c&quot;], &quot;x&quot;) == -1
+</code></pre><h2 id="lastindexoffrom">lastIndexOfFrom</h2><pre><code class="language-res" metastring="sig">let lastIndexOfFrom: (t&lt;&#x27;a&gt;, &#x27;a, ~from: int) =&gt; int
+</code></pre><p>Returns the index of the last element in the array that has the given value, searching from position <code>~from</code> down to the start of the array. If the value is not in the array, returns -1. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf"><code>Array.lastIndexOf</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.Array2.lastIndexOfFrom([&quot;a&quot;, &quot;b&quot;, &quot;a&quot;, &quot;c&quot;, &quot;a&quot;, &quot;d&quot;], &quot;a&quot;, ~from=3) == 2
+Js.Array2.lastIndexOfFrom([&quot;a&quot;, &quot;b&quot;, &quot;a&quot;, &quot;c&quot;, &quot;a&quot;, &quot;d&quot;], &quot;c&quot;, ~from=2) == -1
+</code></pre><h2 id="slice">slice</h2><pre><code class="language-res" metastring="sig">let slice: (t&lt;&#x27;a&gt;, ~start: int, ~end_: int) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Returns a shallow copy of the given array from the <code>~start</code> index up to but not including the <code>~end_</code> position. Negative numbers indicate an offset from the end of the array. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice"><code>Array.slice</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let arr = [100, 101, 102, 103, 104, 105, 106]
+Js.Array2.slice(arr, ~start=2, ~end_=5) == [102, 103, 104]
+Js.Array2.slice(arr, ~start=-3, ~end_=-1) == [104, 105]
+Js.Array2.slice(arr, ~start=9, ~end_=10) == []
+</code></pre><h2 id="copy">copy</h2><pre><code class="language-res" metastring="sig">let copy: t&lt;&#x27;a&gt; =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Returns a copy of the entire array. Same as <code>Js.Array2.Slice(arr, ~start=0, ~end_=Js.Array2.length(arr))</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice"><code>Array.slice</code></a> on MDN.</p><h2 id="slicefrom">sliceFrom</h2><pre><code class="language-res" metastring="sig">let sliceFrom: (t&lt;&#x27;a&gt;, int) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Returns a shallow copy of the given array from the given index to the end. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice"><code>Array.slice</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.Array2.sliceFrom([100, 101, 102, 103, 104], 2) == [102, 103, 104]
+</code></pre><h2 id="tostring">toString</h2><pre><code class="language-res" metastring="sig">let toString: t&lt;&#x27;a&gt; =&gt; string
+</code></pre><p>Converts the array to a string. Each element is converted to a string using JavaScript. Unlike the JavaScript <code>Array.toString()</code>, all elements in a ReasonML array must have the same type. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toString"><code>Array.toString</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.Array2.toString([3.5, 4.6, 7.8]) == &quot;3.5,4.6,7.8&quot;
+Js.Array2.toString([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]) == &quot;a,b,c&quot;
+</code></pre><h2 id="tolocalestring">toLocaleString</h2><pre><code class="language-res" metastring="sig">let toLocaleString: t&lt;&#x27;a&gt; =&gt; string
+</code></pre><p>Converts the array to a string using the conventions of the current locale. Each element is converted to a string using JavaScript. Unlike the JavaScript <code>Array.toLocaleString()</code>, all elements in a ReasonML array must have the same type. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toLocaleString"><code>Array.toLocaleString</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.Array2.toLocaleString([Js.Date.make()])
+// returns &quot;3/19/2020, 10:52:11 AM&quot; for locale en_US.utf8
+// returns &quot;2020-3-19 10:52:11&quot; for locale de_DE.utf8
+</code></pre><h2 id="every">every</h2><pre><code class="language-res" metastring="sig">let every: (t&lt;&#x27;a&gt;, &#x27;a =&gt; bool) =&gt; bool
+</code></pre><p>The first argument to <code>every()</code> is an array. The second argument is a predicate function that returns a boolean. The <code>every()</code> function returns <code>true</code> if the predicate function is true for all items in the given array. If given an empty array, returns <code>true</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every"><code>Array.every</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let isEven = x =&gt; mod(x, 2) == 0
+Js.Array2.every([6, 22, 8, 4], isEven) == true
+Js.Array2.every([6, 22, 7, 4], isEven) == false
+</code></pre><h2 id="everyi">everyi</h2><pre><code class="language-res" metastring="sig">let everyi: (t&lt;&#x27;a&gt;, (&#x27;a, int) =&gt; bool) =&gt; bool
+</code></pre><p>The first argument to <code>everyi()</code> is an array. The second argument is a predicate function with two arguments: an array element and that element’s index; it returns a boolean. The <code>everyi()</code> function returns <code>true</code> if the predicate function is true for all items in the given array. If given an empty array, returns <code>true</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every"><code>Array.every</code></a> on MDN.</p><pre><code class="language-res" metastring="example">// determine if all even-index items are positive
+let evenIndexPositive = (item, index) =&gt; mod(index, 2) == 0 ? item &gt; 0 : true
+
+Js.Array2.everyi([6, -3, 5, 8], evenIndexPositive) == true
+Js.Array2.everyi([6, 3, -5, 8], evenIndexPositive) == false
+</code></pre><h2 id="filter">filter</h2><pre><code class="language-res" metastring="sig">let filter: (t&lt;&#x27;a&gt;, &#x27;a =&gt; bool) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Applies the given predicate function (the second argument) to each element in the array; the result is an array of those elements for which the predicate function returned <code>true</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"><code>Array.filter</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let nonEmpty = s =&gt; s != &quot;&quot;
+Js.Array2.filter([&quot;abc&quot;, &quot;&quot;, &quot;&quot;, &quot;def&quot;, &quot;ghi&quot;], nonEmpty) == [&quot;abc&quot;, &quot;def&quot;, &quot;ghi&quot;]
+</code></pre><h2 id="filteri">filteri</h2><pre><code class="language-res" metastring="sig">let filteri: (t&lt;&#x27;a&gt;, (&#x27;a, int) =&gt; bool) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Each element of the given array are passed to the predicate function. The return value is an array of all those elements for which the predicate function returned <code>true</code>.  See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"><code>Array.filter</code></a> on MDN.</p><pre><code class="language-res" metastring="example">// keep only positive elements at odd indices
+let positiveOddElement = (item, index) =&gt; mod(index, 2) == 1 &amp;&amp; item &gt; 0
+
+Js.Array2.filteri([6, 3, 5, 8, 7, -4, 1], positiveOddElement) == [3, 8]
+</code></pre><h2 id="find">find</h2><pre><code class="language-res" metastring="sig">let find: (t&lt;&#x27;a&gt;, &#x27;a =&gt; bool) =&gt; option&lt;&#x27;a&gt;
+</code></pre><p>Returns <code>Some(value)</code> for the first element in the array that satisifies the given predicate function, or <code>None</code> if no element satisifies the predicate. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find"><code>Array.find</code></a> on MDN.</p><pre><code class="language-res" metastring="example">// find first negative element
+Js.Array2.find([33, 22, -55, 77, -44], x =&gt; x &lt; 0) == Some(-55)
+Js.Array2.find([33, 22, 55, 77, 44], x =&gt; x &lt; 0) == None
+</code></pre><h2 id="findi">findi</h2><pre><code class="language-res" metastring="sig">let findi: (t&lt;&#x27;a&gt;, (&#x27;a, int) =&gt; bool) =&gt; option&lt;&#x27;a&gt;
+</code></pre><p>Returns <code>Some(value)</code> for the first element in the array that satisifies the given predicate function, or <code>None</code> if no element satisifies the predicate. The predicate function takes an array element and an index as its parameters. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find"><code>Array.find</code></a> on MDN.</p><pre><code class="language-res" metastring="example">// find first positive item at an odd index
+let positiveOddElement = (item, index) =&gt; mod(index, 2) == 1 &amp;&amp; item &gt; 0
+
+Js.Array2.findi([66, -33, 55, 88, 22], positiveOddElement) == Some(88)
+Js.Array2.findi([66, -33, 55, -88, 22], positiveOddElement) == None
+</code></pre><h2 id="findindex">findIndex</h2><pre><code class="language-res" metastring="sig">let findIndex: (t&lt;&#x27;a&gt;, &#x27;a =&gt; bool) =&gt; int
+</code></pre><p>Returns the index of the first element in the array that satisifies the given predicate function, or -1 if no element satisifies the predicate. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find"><code>Array.find</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.Array2.findIndex([33, 22, -55, 77, -44], x =&gt; x &lt; 0) == 2
+Js.Array2.findIndex([33, 22, 55, 77, 44], x =&gt; x &lt; 0) == -1
+</code></pre><h2 id="findindexi">findIndexi</h2><pre><code class="language-res" metastring="sig">let findIndexi: (t&lt;&#x27;a&gt;, (&#x27;a, int) =&gt; bool) =&gt; int
+</code></pre><p>Returns <code>Some(value)</code> for the first element in the array that satisifies the given predicate function, or <code>None</code> if no element satisifies the predicate. The predicate function takes an array element and an index as its parameters. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find"><code>Array.find</code></a> on MDN.</p><pre><code class="language-res" metastring="example">// find index of first positive item at an odd index
+let positiveOddElement = (item, index) =&gt; mod(index, 2) == 1 &amp;&amp; item &gt; 0
+
+Js.Array2.findIndexi([66, -33, 55, 88, 22], positiveOddElement) == 3
+Js.Array2.findIndexi([66, -33, 55, -88, 22], positiveOddElement) == -1
+</code></pre><h2 id="foreach">forEach</h2><pre><code class="language-res" metastring="sig">let forEach: (t&lt;&#x27;a&gt;, &#x27;a =&gt; unit) =&gt; unit
+</code></pre><p>The <code>forEach()</code> function applies the function given as the second argument to each element in the array. The function you provide returns <code>unit</code>, and the <code>forEach()</code> function also returns <code>unit</code>. You use <code>forEach()</code> when you need to process each element in the array but not return any new array or value; for example, to print the items in an array. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach"><code>Array.forEach</code></a> on MDN.</p><pre><code class="language-res" metastring="example">// display all elements in an array
+Js.Array2.forEach([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], x =&gt; Js.log(x)) == ()
+</code></pre><h2 id="foreachi">forEachi</h2><pre><code class="language-res" metastring="sig">let forEachi: (t&lt;&#x27;a&gt;, (&#x27;a, int) =&gt; unit) =&gt; unit
+</code></pre><p>The <code>forEachi()</code> function applies the function given as the second argument to each element in the array. The function you provide takes an item in the array and its index number, and returns <code>unit</code>. The <code>forEachi()</code> function also returns <code>unit</code>. You use <code>forEachi()</code> when you need to process each element in the array but not return any new array or value; for example, to print the items in an array. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach"><code>Array.forEach</code></a> on MDN.</p><pre><code class="language-res" metastring="example">// display all elements in an array as a numbered list
+Js.Array2.forEachi([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], (item, index) =&gt; Js.log2(index + 1, item)) == ()
+</code></pre><h2 id="map">map</h2><pre><code class="language-res" metastring="sig">let map: (t&lt;&#x27;a&gt;, &#x27;a =&gt; &#x27;b) =&gt; t&lt;&#x27;b&gt;
+</code></pre><p>Applies the function (the second argument) to each item in the array, returning a new array. The result array does not have to have elements of the same type as the input array. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map"><code>Array.map</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.Array2.map([12, 4, 8], x =&gt; x * x) == [144, 16, 64]
+Js.Array2.map([&quot;animal&quot;, &quot;vegetable&quot;, &quot;mineral&quot;], Js.String.length) == [6, 9, 7]
+</code></pre><h2 id="mapi">mapi</h2><pre><code class="language-res" metastring="sig">let mapi: (t&lt;&#x27;a&gt;, (&#x27;a, int) =&gt; &#x27;b) =&gt; t&lt;&#x27;b&gt;
+</code></pre><p>Applies the function (the second argument) to each item in the array, returning a new array. The function acceps two arguments: an item from the array and its index number. The result array does not have to have elements of the same type as the input array. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map"><code>Array.map</code></a> on MDN.</p><pre><code class="language-res" metastring="example">// multiply each item in array by its position
+let product = (item, index) =&gt; item * index
+Js.Array2.mapi([10, 11, 12], product) == [0, 11, 24]
+</code></pre><h2 id="reduce">reduce</h2><pre><code class="language-res" metastring="sig">let reduce: (t&lt;&#x27;a&gt;, (&#x27;b, &#x27;a) =&gt; &#x27;b, &#x27;b) =&gt; &#x27;b
+</code></pre><p>The <code>reduce()</code> function takes three parameters: an array, a <em>reducer function</em>,  and a beginning accumulator value. The reducer function has two parameters: an accumulated value and an element of the array.</p><p><code>reduce()</code> first calls the reducer function with the beginning value and the first element in the array. The result becomes the new accumulator value, which is passed in to the reducer function along with the second element in the array. <code>reduce()</code> proceeds through the array, passing in the result of each stage as the accumulator to the reducer function.</p><p>When all array elements are processed, the final value of the accumulator becomes the return value of <code>reduce()</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"><code>Array.reduce</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let sumOfSquares = (accumulator, item) =&gt; accumulator + item * item
+
+Js.Array2.reduce([10, 2, 4], sumOfSquares, 0) == 120
+Js.Array2.reduce([10, 2, 4], \&quot;*&quot;, 1) == 80
+Js.Array2.reduce(
+  [&quot;animal&quot;, &quot;vegetable&quot;, &quot;mineral&quot;],
+  (acc, item) =&gt; acc + Js.String.length(item),
+  0,
+) == 22 // 6 + 9 + 7
+Js.Array2.reduce([2.0, 4.0], (acc, item) =&gt; item /. acc, 1.0) == 2.0 // 4.0 / (2.0 / 1.0)
+</code></pre><h2 id="reducei">reducei</h2><pre><code class="language-res" metastring="sig">let reducei: (t&lt;&#x27;a&gt;, (&#x27;b, &#x27;a, int) =&gt; &#x27;b, &#x27;b) =&gt; &#x27;b
+</code></pre><p>The <code>reducei()</code> function takes three parameters: an array, a <em>reducer function</em>, and a beginning accumulator value. The reducer function has three parameters: an accumulated value, an element of the array, and the index of that element.</p><p><code>reducei()</code> first calls the reducer function with the beginning value, the first element in the array, and zero (its index). The result becomes the new accumulator value, which is passed to the reducer function along with the second element in the array and one (its index). <code>reducei()</code> proceeds from left to right through the array, passing in the result of each stage as the accumulator to the reducer function.</p><p>When all array elements are processed, the final value of the accumulator becomes the return value of <code>reducei()</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"><code>Array.reduce</code></a> on MDN.</p><pre><code class="language-res" metastring="example">// find sum of even-index elements in array
+let sumOfEvens = (accumulator, item, index) =&gt;
+  if mod(index, 2) == 0 {
+    accumulator + item
+  } else {
+    accumulator
+  }
+
+Js.Array2.reducei([2, 5, 1, 4, 3], sumOfEvens, 0) == 6
+</code></pre><h2 id="reduceright">reduceRight</h2><pre><code class="language-res" metastring="sig">let reduceRight: (t&lt;&#x27;a&gt;, (&#x27;b, &#x27;a) =&gt; &#x27;b, &#x27;b) =&gt; &#x27;b
+</code></pre><p>The <code>reduceRight()</code> function takes three parameters: an array, a <em>reducer function</em>, and a beginning accumulator value. The reducer function has two parameters: an accumulated value and an element of the array.</p><p><code>reduceRight()</code> first calls the reducer function with the beginning value and the last element in the array. The result becomes the new accumulator value, which is passed in to the reducer function along with the next-to-last element in the array. <code>reduceRight()</code> proceeds from right to left through the array, passing in the result of each stage as the accumulator to the reducer function.</p><p>When all array elements are processed, the final value of the accumulator becomes the return value of <code>reduceRight()</code>.  See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight"><code>Array.reduceRight</code></a> on MDN.</p><p><strong>NOTE:</strong> In many cases, <code>reduce()</code> and <code>reduceRight()</code> give the same result. However, see the last example here and compare it to the example from <code>reduce()</code>, where order makes a difference.</p><pre><code class="language-res" metastring="example">let sumOfSquares = (accumulator, item) =&gt; accumulator + item * item
+
+Js.Array2.reduceRight([10, 2, 4], sumOfSquares, 0) == 120
+Js.Array2.reduceRight([2.0, 4.0], (acc, item) =&gt; item /. acc, 1.0) == 0.5 // 2.0 / (4.0 / 1.0)
+</code></pre><h2 id="reducerighti">reduceRighti</h2><pre><code class="language-res" metastring="sig">let reduceRighti: (t&lt;&#x27;a&gt;, (&#x27;b, &#x27;a, int) =&gt; &#x27;b, &#x27;b) =&gt; &#x27;b
+</code></pre><p>The <code>reduceRighti()</code> function takes three parameters: an array, a <em>reducer function</em>, and a beginning accumulator value. The reducer function has three parameters: an accumulated value, an element of the array, and the index of that element. <code>reduceRighti()</code> first calls the reducer function with the beginning value, the last element in the array, and its index (length of array minus one). The result becomes the new accumulator value, which is passed in to the reducer function along with the second element in the array and one (its index). <code>reduceRighti()</code> proceeds from right to left through the array, passing in the result of each stage as the accumulator to the reducer function.</p><p>When all array elements are processed, the final value of the accumulator becomes the return value of <code>reduceRighti()</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight"><code>Array.reduceRight</code></a> on MDN.</p><p><strong>NOTE:</strong> In many cases, <code>reducei()</code> and <code>reduceRighti()</code> give the same result. However, there are cases where the order in which items are processed makes a difference.</p><pre><code class="language-res" metastring="example">// find sum of even-index elements in array
+let sumOfEvens = (accumulator, item, index) =&gt;
+  if mod(index, 2) == 0 {
+    accumulator + item
+  } else {
+    accumulator
+  }
+
+Js.Array2.reduceRighti([2, 5, 1, 4, 3], sumOfEvens, 0) == 6
+</code></pre><h2 id="some">some</h2><pre><code class="language-res" metastring="sig">let some: (t&lt;&#x27;a&gt;, &#x27;a =&gt; bool) =&gt; bool
+</code></pre><p>Returns <code>true</code> if the predicate function given as the second argument to <code>some()</code> returns <code>true</code> for any element in the array; <code>false</code> otherwise.</p><pre><code class="language-res" metastring="example">let isEven = x =&gt; mod(x, 2) == 0
+
+Js.Array2.some([3, 7, 5, 2, 9], isEven) == true
+Js.Array2.some([3, 7, 5, 1, 9], isEven) == false
+</code></pre><h2 id="somei">somei</h2><pre><code class="language-res" metastring="sig">let somei: (t&lt;&#x27;a&gt;, (&#x27;a, int) =&gt; bool) =&gt; bool
+</code></pre><p>Returns <code>true</code> if the predicate function given as the second argument to <code>somei()</code> returns <code>true</code> for any element in the array; <code>false</code> otherwise. The predicate function has two arguments: an item from the array and the index value</p><pre><code class="language-res" metastring="example">// Does any string in the array
+// have the same length as its index?
+
+let sameLength = (str, index) =&gt; Js.String.length(str) == index
+
+// &quot;ef&quot; has length 2 and is it at index 2
+Js.Array2.somei([&quot;ab&quot;, &quot;cd&quot;, &quot;ef&quot;, &quot;gh&quot;], sameLength) == true
+// no item has the same length as its index
+Js.Array2.somei([&quot;a&quot;, &quot;bc&quot;, &quot;def&quot;, &quot;gh&quot;], sameLength) == false
+</code></pre><h2 id="unsafe_get">unsafe_get</h2><pre><code class="language-res" metastring="sig">let unsafe_get: (array&lt;&#x27;a&gt;, int) =&gt; &#x27;a
+</code></pre><p>Returns the value at the given position in the array if the position is in bounds; returns the JavaScript value <code>undefined</code> otherwise.</p><pre><code class="language-res" metastring="example">let arr = [100, 101, 102, 103]
+Js.Array2.unsafe_get(arr, 3) == 103
+Js.Array2.unsafe_get(arr, 4) // returns undefined
+</code></pre><h2 id="unsafe_set">unsafe_set</h2><pre><code class="language-res" metastring="sig">let unsafe_set: (array&lt;&#x27;a&gt;, int, &#x27;a) =&gt; unit
+</code></pre><p>Sets the value at the given position in the array if the position is in bounds. If the index is out of bounds, well, “here there be dragons.“ <em>This function modifies the original array.</em></p><pre><code class="language-res" metastring="example">let arr = [100, 101, 102, 103]
+Js.Array2.unsafe_set(arr, 3, 99)
+// result is [100, 101, 102, 99];
+
+Js.Array2.unsafe_set(arr, 4, 88)
+// result is [100, 101, 102, 99, 88]
+
+Js.Array2.unsafe_set(arr, 6, 77)
+// result is [100, 101, 102, 99, 88, &lt;1 empty item&gt;, 77]
+
+Js.Array2.unsafe_set(arr, -1, 66)
+// you don&#x27;t want to know.
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/docs/manual/v9.0.0/api/js/array-2","query":{},"buildId":"602i-qp0kZ9P4jfYYZO6L","runtimeConfig":{},"nextExport":true,"autoExport":true,"isFallback":false}</script><script nomodule="" src="/_next/static/chunks/polyfills-9def993fe817cc057038.js"></script><script src="/_next/static/chunks/webpack-06b7252a4ff689e08871.js" async=""></script><script src="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" async=""></script><script src="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" async=""></script><script src="/_next/static/chunks/pages/_app-c403ba37fcc2de691b6d.js" async=""></script><script src="/_next/static/chunks/pages/docs/manual/v9.0.0/api/js/array-2-a6dba6f8a0782189513a.js" async=""></script><script src="/_next/static/602i-qp0kZ9P4jfYYZO6L/_buildManifest.js" async=""></script><script src="/_next/static/602i-qp0kZ9P4jfYYZO6L/_ssgManifest.js" async=""></script><script async="" defer="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script><noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript></body></html>

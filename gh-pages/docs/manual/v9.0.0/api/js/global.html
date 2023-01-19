@@ -1,0 +1,75 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/2b269719632b344a478b.css" as="style"/><link rel="stylesheet" href="/_next/static/css/2b269719632b344a478b.css" data-n-g=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/webpack-06b7252a4ff689e08871.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" as="script"/><link rel="preload" href="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-c403ba37fcc2de691b6d.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/docs/manual/v9.0.0/api/js/global-8169f738cce0101dfd8c.js" as="script"/></head><body><div id="__next"><h1 id="global">Global</h1><div><p>Provide bindings to JS global functions in global namespace.</p></div><pre><code class="language-res" metastring="prelude">type intervalId
+</code></pre><p>Identify an interval started by <code>Js.Global.setInterval</code>.</p><pre><code class="language-res" metastring="prelude">type timeoutId
+</code></pre><p>Identify timeout started by <code>Js.Global.setTimeout</code>.</p><h2 id="clearinterval">clearInterval</h2><pre><code class="language-res" metastring="sig">let clearInterval: intervalId =&gt; unit
+</code></pre><p>Clear an interval started by <code>Js.Global.setInterval</code></p><pre><code class="language-res" metastring="example">/* API for a somewhat aggressive snoozing alarm clock */
+
+let punchSleepyGuy = () =&gt; Js.log(&quot;Punch&quot;)
+
+let interval = ref(Js.Nullable.null)
+
+let remind = () =&gt; {
+  Js.log(&quot;Wake Up!&quot;)
+  punchSleepyGuy()
+}
+
+let snooze = mins =&gt;
+  interval := Js.Nullable.return(Js.Global.setInterval(remind, mins * 60 * 1000))
+
+let cancel = () =&gt;
+  Js.Nullable.iter(interval.contents, (. intervalId) =&gt; Js.Global.clearInterval(intervalId))
+</code></pre><h2 id="cleartimeout">clearTimeout</h2><pre><code class="language-res" metastring="sig">let clearTimeout: timeoutId =&gt; unit
+</code></pre><p>Clear a timeout started by <code>Js.Global.setTimeout</code>.</p><pre><code class="language-res" metastring="example">/* A simple model of a code monkey&#x27;s brain */
+
+let closeHackerNewsTab = () =&gt; Js.log(&quot;close&quot;)
+
+let timer = ref(Js.Nullable.null)
+
+let work = () =&gt; closeHackerNewsTab()
+
+let procrastinate = mins =&gt; {
+  Js.Nullable.iter(timer.contents, (. timer) =&gt; Js.Global.clearTimeout(timer))
+  timer := Js.Nullable.return(Js.Global.setTimeout(work, mins * 60 * 1000))
+}
+</code></pre><h2 id="setinterval">setInterval</h2><pre><code class="language-res" metastring="sig">let setInterval: (unit =&gt; unit, int) =&gt; intervalId
+</code></pre><p>Repeatedly executes a callback with a specified interval (in milliseconds) between calls.
+Returns a <code>Js.Global.intervalId</code> that can be passed to <code>Js.Global.clearInterval</code> to cancel the timeout.</p><pre><code class="language-res" metastring="example">/* Will count up and print the count to the console every second */
+
+let count = ref(0)
+
+let tick = () =&gt; {
+  count := count.contents + 1
+  Js.log(Belt.Int.toString(count.contents))
+}
+
+Js.Global.setInterval(tick, 1000)
+</code></pre><h2 id="setintervalfloat">setIntervalFloat</h2><pre><code class="language-res" metastring="sig">let setIntervalFloat: (unit =&gt; unit, float) =&gt; intervalId
+</code></pre><p>Repeatedly executes a callback with a specified interval (in milliseconds) between calls.
+Returns a <code>Js.Global.intervalId</code> that can be passed to <code>Js.Global.clearInterval</code> to cancel the timeout.</p><pre><code class="language-res" metastring="example">/* Will count up and print the count to the console every second */
+
+let count = ref(0)
+
+let tick = () =&gt; {
+  count := count.contents + 1
+  Js.log(Belt.Int.toString(count.contents))
+}
+
+Js.Global.setIntervalFloat(tick, 1000.0)
+</code></pre><h2 id="settimeout">setTimeout</h2><pre><code class="language-res" metastring="sig">let setTimeout: (unit =&gt; unit, int) =&gt; timeoutId
+</code></pre><p>Execute a callback after a specified delay (in milliseconds).
+Returns a <code>Js.Global.timeoutId</code> that can be passed to <code>Js.Global.clearTimeout</code> to cancel the timeout.</p><pre><code class="language-res" metastring="example">/* Prints &quot;Timed out!&quot; in the console after one second */
+
+let message = &quot;Timed out!&quot;
+
+Js.Global.setTimeout(() =&gt; Js.log(message), 1000)
+</code></pre><h2 id="settimeoutfloat">setTimeoutFloat</h2><pre><code class="language-res" metastring="sig">let setTimeoutFloat: (unit =&gt; unit, float) =&gt; timeoutId
+</code></pre><p>Execute a callback after a specified delay (in milliseconds).
+Returns a <code>Js.Global.timeoutId</code> that can be passed to <code>Js.Global.clearTimeout</code> to cancel the timeout.</p><pre><code class="language-res" metastring="example">/* Prints &quot;Timed out!&quot; in the console after one second */
+
+let message = &quot;Timed out!&quot;
+
+Js.Global.setTimeoutFloat(() =&gt; Js.log(message), 1000.0)
+</code></pre><h2 id="encodeuri">encodeURI</h2><pre><code class="language-res" metastring="sig">let encodeURI: string =&gt; string
+</code></pre><p>URL-encodes a string.</p><h2 id="decodeuri">decodeURI</h2><pre><code class="language-res" metastring="sig">let decodeURI: string =&gt; string
+</code></pre><p>Decodes a URL-enmcoded string produced by encodeURI.</p><h2 id="encodeuricomponent">encodeURIComponent</h2><pre><code class="language-res" metastring="sig">let encodeURIComponent: string =&gt; string
+</code></pre><p>URL-encodes a string, including characters with special meaning in a URI.</p><h2 id="decodeuricomponent">decodeURIComponent</h2><pre><code class="language-res" metastring="sig">let decodeURIComponent: string =&gt; string
+</code></pre><p>Decodes a URL-enmcoded string produced by encodeURIComponent</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/docs/manual/v9.0.0/api/js/global","query":{},"buildId":"602i-qp0kZ9P4jfYYZO6L","runtimeConfig":{},"nextExport":true,"autoExport":true,"isFallback":false}</script><script nomodule="" src="/_next/static/chunks/polyfills-9def993fe817cc057038.js"></script><script src="/_next/static/chunks/webpack-06b7252a4ff689e08871.js" async=""></script><script src="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" async=""></script><script src="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" async=""></script><script src="/_next/static/chunks/pages/_app-c403ba37fcc2de691b6d.js" async=""></script><script src="/_next/static/chunks/pages/docs/manual/v9.0.0/api/js/global-8169f738cce0101dfd8c.js" async=""></script><script src="/_next/static/602i-qp0kZ9P4jfYYZO6L/_buildManifest.js" async=""></script><script src="/_next/static/602i-qp0kZ9P4jfYYZO6L/_ssgManifest.js" async=""></script><script async="" defer="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script><noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript></body></html>

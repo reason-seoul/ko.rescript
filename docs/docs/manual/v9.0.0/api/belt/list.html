@@ -1,0 +1,300 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/2b269719632b344a478b.css" as="style"/><link rel="stylesheet" href="/_next/static/css/2b269719632b344a478b.css" data-n-g=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/webpack-c49b9de92a7202ac2146.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" as="script"/><link rel="preload" href="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-9e9d9ab67b4ceb7ec93b.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/docs/manual/v9.0.0/api/belt/list-cf3bf260e98e7741822d.js" as="script"/></head><body><div id="__next"><h1 id="list">List</h1><div><p>Collection functions for manipulating the <code>list</code> data structures, a singly-linked list.</p><p><strong>Prefer Array</strong> if you need any of the following:</p><ul><li>Random access of element</li><li>Better interop with JavaScript</li><li>Better memory usage &amp; performance.</li></ul></div><h2 id="ta">t&lt;&#x27;a&gt;</h2><pre><code class="language-res" metastring="prelude">type t&lt;&#x27;a&gt; = list&lt;&#x27;a&gt;
+</code></pre><h2 id="length">length</h2><pre><code class="language-res" metastring="sig">let length: t&lt;&#x27;a&gt; =&gt; int
+</code></pre><p>Returns the length of a list.</p><pre><code class="language-res" metastring="example">Belt.List.length(list{1, 2, 3}) // 3
+</code></pre><h2 id="size">size</h2><pre><code class="language-res" metastring="sig">let size: t&lt;&#x27;a&gt; =&gt; int
+</code></pre><p><strong>See:</strong> list{length}(#length)</p><h2 id="head">head</h2><pre><code class="language-res" metastring="sig">let head: t&lt;&#x27;a&gt; =&gt; option&lt;&#x27;a&gt;
+</code></pre><p>Returns <code>Some(value)</code> where <code>value</code> is the first element in the list, or <code>None</code> if <code>someList</code> is an empty list.</p><pre><code class="language-res" metastring="example">Belt.List.head(list{}) // None
+Belt.List.head(list{1, 2, 3}) // Some(1)
+</code></pre><h2 id="headexn">headExn</h2><pre><code class="language-res" metastring="sig">let headExn: t&lt;&#x27;a&gt; =&gt; &#x27;a
+</code></pre><p>Same as <a href="#head">head</a>, but raises an exception if <code>someList</code> is empty. Use with care.</p><pre><code class="language-res" metastring="example">Belt.List.headExn(list{1, 2, 3}) // 1
+
+Belt.List.headExn(list{}) // Raises an Error
+</code></pre><h2 id="tail">tail</h2><pre><code class="language-res" metastring="sig">let tail: t&lt;&#x27;a&gt; =&gt; option&lt;t&lt;&#x27;a&gt;&gt;
+</code></pre><p>Returns <code>None</code> if <code>someList</code> is empty, otherwise it returns <code>Some(tail)</code> where <code>tail</code> is everything except the first element of <code>someList</code>.</p><pre><code class="language-res" metastring="example">Belt.List.tail(list{1, 2, 3}) // Some(list{2, 3})
+
+Belt.List.tail(list{}) // None
+</code></pre><h2 id="tailexn">tailExn</h2><pre><code class="language-res" metastring="sig">let tailExn: t&lt;&#x27;a&gt; =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Same as <a href="#tail">tail</a>, but raises an exception if <code>someList</code> is empty. Use with care.</p><pre><code class="language-res" metastring="example">Belt.List.tailExn(list{1, 2, 3}) // list{2, 3}
+
+Belt.List.tailExn(list{}) // Raises an Error
+</code></pre><h2 id="add">add</h2><pre><code class="language-res" metastring="sig">let add: (t&lt;&#x27;a&gt;, &#x27;a) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Adds <code>value</code> to the beginning of <code>someList</code>.</p><pre><code class="language-res" metastring="example">Belt.List.add(list{2, 3}, 1) // list{1, 2, 3}
+
+Belt.List.add(list{&quot;World&quot;, &quot;!&quot;}, &quot;Hello&quot;) // list{&quot;Hello&quot;, &quot;World&quot;, &quot;!&quot;}
+</code></pre><h2 id="get">get</h2><pre><code class="language-res" metastring="sig">let get: (t&lt;&#x27;a&gt;, int) =&gt; option&lt;&#x27;a&gt;
+</code></pre><p>Return the nth element in <code>someList</code>, or <code>None</code> if <code>index</code> is larger than the length.</p><pre><code class="language-res" metastring="example">let abc = list{&quot;A&quot;, &quot;B&quot;, &quot;C&quot;}
+
+abc-&gt;Belt.List.get(1) // Some(&quot;B&quot;)
+
+abc-&gt;Belt.List.get(4) // None
+</code></pre><h2 id="getexn">getExn</h2><pre><code class="language-res" metastring="sig">let getExn: (t&lt;&#x27;a&gt;, int) =&gt; &#x27;a
+</code></pre><p>Same as <a href="#get">get</a>, but raises an exception if <code>index</code> is larger than the length. Use with care.</p><pre><code class="language-res" metastring="example">let abc = list{&quot;A&quot;, &quot;B&quot;, &quot;C&quot;}
+
+abc-&gt;Belt.List.getExn(1) // &quot;B&quot;
+
+abc-&gt;Belt.List.getExn(4) // Raises an Error
+</code></pre><h2 id="make">make</h2><pre><code>let make: (int, &#x27;a) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Returns a list of length <code>numItems</code> with each element filled with value <code>v</code>. Returns an empty list if <code>numItems</code> is negative.</p><pre><code class="language-res" metastring="example">Belt.List.make(3, 1) // list{1, 1, 1}
+</code></pre><h2 id="makeby">makeBy</h2><pre><code class="language-res" metastring="sig">let makeBy: (int, int =&gt; &#x27;a) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Return a list of length <code>numItems</code> with element <code>i</code> initialized with <code>f(i)</code>.
+Returns an empty list if <code>numItems</code> is negative.</p><pre><code class="language-res" metastring="example">Belt.List.makeBy(5, i =&gt; i) // list{0, 1, 2, 3, 4}
+
+Belt.List.makeBy(5, i =&gt; i * i) // list{0, 1, 4, 9, 16}
+</code></pre><h2 id="makebyu">makeByU</h2><pre><code class="language-res" metastring="sig">let makeByU: (int, (. int) =&gt; &#x27;a) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Uncurried version of <a href="#makeBy">makeBy</a></p><h2 id="shuffle">shuffle</h2><pre><code class="language-res" metastring="sig">let shuffle: t&lt;&#x27;a&gt; =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Returns a new list in random order.</p><pre><code class="language-res" metastring="example">Belt.List.shuffle(list{1, 2, 3}) // list{2, 1, 3}
+</code></pre><h2 id="drop">drop</h2><pre><code class="language-res" metastring="sig">let drop: (t&lt;&#x27;a&gt;, int) =&gt; option&lt;t&lt;&#x27;a&gt;&gt;
+</code></pre><p>Return a new list, dropping the first <code>n</code> elements. Returns <code>None</code> if <code>someList</code> has fewer than <code>n</code> elements.</p><pre><code class="language-res" metastring="example">list{1, 2, 3}-&gt;Belt.List.drop(2) // Some(list{3})
+
+list{1, 2, 3}-&gt;Belt.List.drop(3) // Some(list{})
+
+list{1, 2, 3}-&gt;Belt.List.drop(4) // None
+</code></pre><h2 id="take">take</h2><pre><code class="language-res" metastring="sig">let take: (t&lt;&#x27;a&gt;, int) =&gt; option&lt;t&lt;&#x27;a&gt;&gt;
+</code></pre><p>Returns a list with the first <code>n</code> elements from <code>someList</code>, or <code>None</code> if <code>someList</code> has fewer than <code>n</code> elements.</p><pre><code class="language-res" metastring="example">list{1, 2, 3}-&gt;Belt.List.take(1) // Some(list{1})
+
+list{1, 2, 3}-&gt;Belt.List.take(2) // Some(list{1, 2})
+
+list{1, 2, 3}-&gt;Belt.List.take(4) // None
+</code></pre><h2 id="splitat">splitAt</h2><pre><code class="language-res" metastring="sig">let splitAt: (t&lt;&#x27;a&gt;, int) =&gt; option&lt;(list&lt;&#x27;a&gt;, list&lt;&#x27;a&gt;)&gt;
+</code></pre><p>Split the list <code>someList</code> at <code>index</code>. Returns <code>None</code> when the length of <code>someList</code> is less than <code>index</code>.</p><pre><code class="language-res" metastring="example">list{&quot;Hello&quot;, &quot;World&quot;}-&gt;Belt.List.splitAt(1) // Some((list{&quot;Hello&quot;}, list{&quot;World&quot;}))
+
+list{0, 1, 2, 3, 4}-&gt;Belt.List.splitAt(2) // Some((list{0, 1}, list{2, 3, 4}))
+</code></pre><h2 id="concat">concat</h2><pre><code class="language-res" metastring="sig">let concat: (t&lt;&#x27;a&gt;, t&lt;&#x27;a&gt;) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Returns the list obtained by adding <code>secondList</code> after <code>firstList</code>.</p><pre><code class="language-res" metastring="example">Belt.List.concat(list{1, 2, 3}, list{4, 5}) // list{1, 2, 3, 4, 5}
+</code></pre><h2 id="concatmany">concatMany</h2><pre><code class="language-res" metastring="sig">let concatMany: array&lt;t&lt;&#x27;a&gt;&gt; =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Returns the list obtained by concatenating all the lists in array <code>a</code>, in order.</p><pre><code class="language-res" metastring="example">Belt.List.concatMany([list{1, 2, 3}, list{}, list{3}]) // list{1, 2, 3, 3}
+</code></pre><h2 id="reverseconcat">reverseConcat</h2><pre><code class="language-res" metastring="sig">let reverseConcat: (t&lt;&#x27;a&gt;, t&lt;&#x27;a&gt;) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Equivalent to writing: <code>concat(reverse(firstList, secondList)</code></p><pre><code class="language-res" metastring="example">Belt.List.reverseConcat(list{1, 2}, list{3, 4}) // list{2, 1, 3, 4}
+</code></pre><h2 id="flatten">flatten</h2><pre><code class="language-res" metastring="sig">let flatten: t&lt;t&lt;&#x27;a&gt;&gt; =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Return the list obtained by concatenating all the lists in list <code>ls</code>, in order.</p><pre><code class="language-res" metastring="example">Belt.List.flatten(list{list{1, 2, 3}, list{}, list{3}}) // list{1, 2, 3, 3}
+</code></pre><h2 id="map">map</h2><pre><code class="language-res" metastring="sig">let map: (t&lt;&#x27;a&gt;, &#x27;a =&gt; &#x27;b) =&gt; t&lt;&#x27;b&gt;
+</code></pre><p>Returns a new list with <code>f</code> applied to each element of <code>someList</code>.</p><pre><code class="language-res" metastring="example">list{1, 2}-&gt;Belt.List.map(x =&gt; x + 1) // list{3, 4}
+</code></pre><h2 id="mapu">mapU</h2><pre><code class="language-res" metastring="sig">let mapU: (t&lt;&#x27;a&gt;, (. &#x27;a) =&gt; &#x27;b) =&gt; t&lt;&#x27;b&gt;
+</code></pre><p>Uncurried version of <a href="#map">map</a>.</p><h2 id="zip">zip</h2><pre><code class="language-res" metastring="sig">let zip: (t&lt;&#x27;a&gt;, t&lt;&#x27;b&gt;) =&gt; t&lt;(&#x27;a, &#x27;b)&gt;
+</code></pre><p>Returns a list of pairs from the two lists with the length of the shorter list.</p><pre><code class="language-res" metastring="example">Belt.List.zip(list{1, 2}, list{3, 4, 5}) // list{(1, 3), (2, 4)}
+</code></pre><h2 id="zipby">zipBy</h2><pre><code class="language-res" metastring="sig">let zipBy: (t&lt;&#x27;a&gt;, t&lt;&#x27;b&gt;, (&#x27;a, &#x27;b) =&gt; &#x27;c) =&gt; t&lt;&#x27;c&gt;
+</code></pre><p><strong>See:</strong> <a href="#zip">zip</a></p><pre><code class="language-res" metastring="example">Belt.List.zipBy(list{1, 2, 3}, list{4, 5}, (a, b) =&gt; 2 * a + b) // list{6, 9}
+</code></pre><h2 id="zipbyu">zipByU</h2><pre><code class="language-res" metastring="sig">let zipByU: (t&lt;&#x27;a&gt;, t&lt;&#x27;b&gt;, (. &#x27;a, &#x27;b) =&gt; &#x27;c) =&gt; t&lt;&#x27;c&gt;
+</code></pre><p>Uncurried version of <a href="#zipBy">zipBy</a>.</p><h2 id="mapwithindex">mapWithIndex</h2><pre><code class="language-res" metastring="sig">let mapWithIndex: (t&lt;&#x27;a&gt;, (int, &#x27;a) =&gt; &#x27;b) =&gt; t&lt;&#x27;b&gt;
+</code></pre><p>Applies <code>f</code> to each element of <code>someList</code>.
+Function <code>f</code> takes two arguments: the index starting from 0 and the element from <code>someList</code>, in that order.</p><pre><code class="language-res" metastring="example">list{1, 2, 3}-&gt;Belt.List.mapWithIndex((index, x) =&gt; index + x) // list{1, 3, 5}
+</code></pre><h2 id="mapwithindexu">mapWithIndexU</h2><pre><code class="language-res" metastring="sig">let mapWithIndexU: (t&lt;&#x27;a&gt;, (. int, &#x27;a) =&gt; &#x27;b) =&gt; t&lt;&#x27;b&gt;
+</code></pre><p>Uncurried version of <a href="#mapWithIndex">mapWithIndex</a>.</p><h2 id="fromarray">fromArray</h2><pre><code class="language-res" metastring="sig">let fromArray: array&lt;&#x27;a&gt; =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Converts the given array to a list.</p><pre><code class="language-res" metastring="example">Belt.List.fromArray([1, 2, 3]) // [1, 2, 3]
+</code></pre><h2 id="toarray">toArray</h2><pre><code class="language-res" metastring="sig">let toArray: t&lt;&#x27;a&gt; =&gt; array&lt;&#x27;a&gt;
+</code></pre><p>Converts the given list to an array.</p><pre><code class="language-res" metastring="example">Belt.List.toArray(list{1, 2, 3}) // [1, 2, 3]
+</code></pre><h2 id="reverse">reverse</h2><pre><code class="language-res" metastring="sig">let reverse: t&lt;&#x27;a&gt; =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Returns a new list whose elements are those of <code>someList</code> in reversed order.</p><pre><code class="language-res" metastring="example">Belt.List.reverse(list{1, 2, 3}) /* list{3, 2, 1} */
+</code></pre><h2 id="mapreverse">mapReverse</h2><pre><code class="language-res" metastring="sig">let mapReverse: (t&lt;&#x27;a&gt;, &#x27;a =&gt; &#x27;b) =&gt; t&lt;&#x27;b&gt;
+</code></pre><p>Equivalent to:</p><pre><code class="language-res">map(someList, f)-&gt;reverse
+</code></pre><pre><code class="language-res" metastring="example">list{3, 4, 5}-&gt;Belt.List.mapReverse(x =&gt; x * x) /* list{25, 16, 9} */
+</code></pre><h2 id="mapreverseu">mapReverseU</h2><pre><code class="language-res" metastring="sig">let mapReverseU: (t&lt;&#x27;a&gt;, (. &#x27;a) =&gt; &#x27;b) =&gt; t&lt;&#x27;b&gt;
+</code></pre><p>Uncurried version of <a href="#mapReverse">mapReverse</a>.</p><h2 id="foreach">forEach</h2><pre><code class="language-res" metastring="sig">let forEach: (t&lt;&#x27;a&gt;, &#x27;a =&gt; &#x27;b) =&gt; unit
+</code></pre><p>Call <code>f</code> on each element of <code>someList</code> from the beginning to end.
+<code>f</code> returns <code>unit</code>, so no new array is created. Use <code>forEach</code> when you are primarily concerned with repetitively creating side effects.</p><pre><code class="language-res" metastring="example">Belt.List.forEach(list{&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}, x =&gt; Js.log(&quot;Item: &quot; ++ x))
+/*
+  prints:
+  Item: a
+  Item: b
+  Item: c
+*/
+</code></pre><h2 id="foreachu">forEachU</h2><pre><code class="language-res" metastring="sig">let forEachU: (t&lt;&#x27;a&gt;, (. &#x27;a) =&gt; &#x27;b) =&gt; unit
+</code></pre><p>Uncurried version of <a href="#forEach">forEach</a>.</p><h2 id="foreachwithindex">forEachWithIndex</h2><pre><code class="language-res" metastring="sig">let forEachWithIndex: (t&lt;&#x27;a&gt;, (int, &#x27;a) =&gt; &#x27;b) =&gt; unit
+</code></pre><p>Call <code>f</code> on each element of <code>someList</code> from beginning to end.
+Function <code>f</code> takes two arguments: the index starting from 0 and the element from <code>someList</code>. <code>f</code> returns <code>unit</code>.</p><pre><code class="language-res" metastring="example">Belt.List.forEachWithIndex(list{&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}, (index, x) =&gt; {
+  Js.log(&quot;Item &quot; ++ Belt.Int.toString(index) ++ &quot; is &quot; ++ x)
+})
+/*
+  prints:
+  Item 0 is a
+  Item 1 is b
+  Item 2 is cc
+*/
+</code></pre><h2 id="foreachwithindexu">forEachWithIndexU</h2><pre><code class="language-res" metastring="sig">let forEachWithIndexU: (t&lt;&#x27;a&gt;, (. int, &#x27;a) =&gt; &#x27;b) =&gt; unit
+</code></pre><p>Uncurried version of <a href="#forEachWithIndex">forEachWithIndex</a>.</p><h2 id="reduce">reduce</h2><pre><code class="language-res" metastring="sig">let reduce: (t&lt;&#x27;a&gt;, &#x27;b, (&#x27;b, &#x27;a) =&gt; &#x27;b) =&gt; &#x27;b
+</code></pre><p>Applies <code>f</code> to each element of <code>someList</code> from beginning to end. Function <code>f</code> has two parameters: the item from the list and an “accumulator”, which starts with a value of <code>initialValue</code>. reduce returns the final value of the accumulator.</p><pre><code class="language-res" metastring="example">list{1, 2, 3, 4}-&gt;Belt.List.reduce(0, (a, b) =&gt; a + b) /* 10 */
+
+/* same as */
+
+list{1, 2, 3, 4}-&gt;Belt.List.reduce(0, (acc, item) =&gt; acc + item) /* 10 */
+</code></pre><h2 id="reduceu">reduceU</h2><pre><code class="language-res" metastring="sig">let reduceU: (t&lt;&#x27;a&gt;, &#x27;b, (. &#x27;b, &#x27;a) =&gt; &#x27;b) =&gt; &#x27;b
+</code></pre><p>Uncurried version of <a href="#reduce">reduce</a>.</p><h2 id="reducewithindex">reduceWithIndex</h2><pre><code class="language-res" metastring="sig">let reduceWithIndex: (t&lt;&#x27;a&gt;, &#x27;b, (&#x27;b, &#x27;a, int) =&gt; &#x27;b) =&gt; &#x27;b
+</code></pre><p>Applies <code>f</code> to each element of <code>someList</code> from beginning to end. Function <code>f</code> has three parameters: the item from the list and an “accumulator”, which starts with a value of <code>initialValue</code> and the index of each element. <code>reduceWithIndex</code> returns the final value of the accumulator.</p><pre><code class="language-res" metastring="example">list{1, 2, 3, 4}-&gt;Belt.List.reduceWithIndex(0, (acc, item, index) =&gt; acc + item + index) /* 16 */
+</code></pre><h2 id="reducewithindexu">reduceWithIndexU</h2><pre><code class="language-res" metastring="sig">let reduceWithIndexU: (t&lt;&#x27;a&gt;, &#x27;b, (. &#x27;b, &#x27;a, int) =&gt; &#x27;b) =&gt; &#x27;b
+</code></pre><p>Uncurried version of <a href="#reduceWithIndex">reduceWithIndex</a>.</p><h2 id="reducereverse">reduceReverse</h2><pre><code class="language-res" metastring="sig">let reduceReverse: (t&lt;&#x27;a&gt;, &#x27;b, (&#x27;b, &#x27;a) =&gt; &#x27;b) =&gt; &#x27;b
+</code></pre><p>Works like <a href="#reduce">reduce</a>, except that function <code>f</code> is applied to each item of <code>someList</code> from the last back to the first.</p><pre><code class="language-res" metastring="example">list{1, 2, 3, 4}-&gt;Belt.List.reduceReverse(0, (a, b) =&gt; a + b) /* 10 */
+
+list{1, 2, 3, 4}-&gt;Belt.List.reduceReverse(10, (a, b) =&gt; a - b) /* 0 */
+
+list{1, 2, 3, 4}-&gt;Belt.List.reduceReverse(list{}, Belt.List.add) // list{1, 2, 3, 4}
+</code></pre><h2 id="reducereverseu">reduceReverseU</h2><pre><code class="language-res" metastring="sig">let reduceReverseU: (t&lt;&#x27;a&gt;, &#x27;b, (&#x27;b, &#x27;a) =&gt; &#x27;b) =&gt; &#x27;b
+</code></pre><p>Uncurried version of <a href="#reduceReverse">reduceReverse</a>.</p><h2 id="mapreverse2">mapReverse2</h2><pre><code class="language-res" metastring="sig">let mapReverse2: (t&lt;&#x27;a&gt;, t&lt;&#x27;b&gt;, (&#x27;a, &#x27;b) =&gt; &#x27;c) =&gt; t&lt;&#x27;c&gt;
+</code></pre><p>Equivalent to: <code>zipBy(xs, ys, f)-&gt;reverse</code></p><pre><code class="language-res" metastring="example">
+Belt.List.mapReverse2(list{1, 2, 3}, list{1, 2}, (a, b) =&gt; a + b) // list{4, 2}
+</code></pre><h2 id="mapreverse2u">mapReverse2U</h2><pre><code class="language-res" metastring="sig">let mapReverse2U: (t&lt;&#x27;a&gt;, t&lt;&#x27;b&gt;, (&#x27;a, &#x27;b) =&gt; &#x27;c) =&gt; t&lt;&#x27;c&gt;
+</code></pre><p>Uncurried version of <a href="#mapReverse2">mapReverse2</a>.</p><h2 id="foreach2">forEach2</h2><pre><code class="language-res" metastring="sig">let forEach2: (t&lt;&#x27;a&gt;, t&lt;&#x27;b&gt;, (&#x27;a, &#x27;b) =&gt; &#x27;c) =&gt; unit
+</code></pre><p>Stops at the length of the shorter list.</p><pre><code class="language-res" metastring="example">Belt.List.forEach2(list{&quot;Z&quot;, &quot;Y&quot;}, list{&quot;A&quot;, &quot;B&quot;, &quot;C&quot;}, (x, y) =&gt; Js.log2(x, y))
+
+/*
+  prints:
+  &quot;Z&quot; &quot;A&quot;
+  &quot;Y&quot; &quot;B&quot;
+*/
+</code></pre><h2 id="foreach2u">forEach2U</h2><pre><code class="language-res" metastring="sig">let forEach2U: (t&lt;&#x27;a&gt;, t&lt;&#x27;b&gt;, (.&#x27;a, &#x27;b) =&gt; &#x27;c) =&gt; unit
+</code></pre><p>Uncurried version of <a href="#forEach2">forEach2</a>.</p><h2 id="reduce2">reduce2</h2><pre><code class="language-res" metastring="sig">let reduce2: (t&lt;&#x27;b&gt;, t&lt;&#x27;c&gt;, &#x27;a, (&#x27;a, &#x27;b, &#x27;c) =&gt; &#x27;a) =&gt; &#x27;a
+</code></pre><p>Applies <code>f</code> to each element of <code>firstList</code> and <code>secondList</code> from beginning to end. Stops with the shorter list. Function <code>f</code> has three parameters: an “accumulator” which starts with a value of <code>initialValue</code>, an item from <code>firstList</code>, and an item from <code>secondList</code>. <code>reduce2</code> returns the final value of the accumulator.</p><pre><code class="language-res" metastring="example">Belt.List.reduce2(list{1, 2, 3}, list{4, 5}, 0, (acc, x, y) =&gt; acc + x * x + y) /* 0 + (1 * 1 + 4) + (2 * 2 + 5) */
+</code></pre><h2 id="reduce2u">reduce2U</h2><pre><code class="language-res" metastring="sig">let reduce2U: (t&lt;&#x27;b&gt;, t&lt;&#x27;c&gt;, &#x27;a, (.&#x27;a, &#x27;b, &#x27;c) =&gt; &#x27;a) =&gt; &#x27;a
+</code></pre><p>Uncurried version of <a href="#reduce2">reduce2</a>.</p><h2 id="reducereverse2">reduceReverse2</h2><pre><code class="language-res" metastring="sig">let reduceReverse2: (t&lt;&#x27;a&gt;, t&lt;&#x27;b&gt;, &#x27;c, (&#x27;c, &#x27;a, &#x27;b) =&gt; &#x27;c) =&gt; &#x27;c
+</code></pre><p>Applies <code>f</code> to each element of <code>firstList</code> and <code>secondList</code> from end to beginning. Stops with the shorter list. Function <code>f</code> has three parameters: an “accumulator” which starts with a value of init, an item from <code>firstList</code>, and an item from <code>secondList</code>. <code>reduce2</code> returns the final value of the accumulator.</p><pre><code class="language-res" metastring="example">Belt.List.reduceReverse2(list{1, 2, 3}, list{4, 5}, 0, (acc, x, y) =&gt; acc + x * x + y) /*  + (1 * 1 + 4) + (2 * 2 + 5) */
+</code></pre><h2 id="reducereverse2u">reduceReverse2U</h2><pre><code class="language-res" metastring="sig">let reduceReverse2U: (t&lt;&#x27;a&gt;, t&lt;&#x27;b&gt;, &#x27;c, (.&#x27;c, &#x27;a, &#x27;b) =&gt; &#x27;c) =&gt; &#x27;c
+</code></pre><p>Uncurried version of <a href="#reduceReverse2">reduceReverse2</a>.</p><h2 id="every">every</h2><pre><code class="language-res" metastring="sig">let every: (t&lt;&#x27;a&gt;, &#x27;a =&gt; bool) =&gt; bool
+</code></pre><p>Returns <code>true</code> if all elements satisfy <code>pred</code>, where <code>pred</code> is a predicate: a function taking an element and returning a bool.</p><pre><code class="language-res" metastring="example">let isBelow10 = value =&gt; value &lt; 10
+
+list{1, 9, 8, 2}-&gt;Belt.List.every(isBelow10) /* true */
+
+list{1, 99, 8, 2}-&gt;Belt.List.every(isBelow10) /* false */
+</code></pre><h2 id="everyu">everyU</h2><pre><code class="language-res" metastring="sig">let everyU: (t&lt;&#x27;a&gt;, (.&#x27;a) =&gt; bool) =&gt; bool
+</code></pre><p>Uncurried version of <a href="#every">every</a>.</p><h2 id="some">some</h2><pre><code class="language-res" metastring="sig">let some: (t&lt;&#x27;a&gt;, &#x27;a =&gt; bool) =&gt; bool
+</code></pre><p>Returns <code>true</code> if at least <em>one</em> of the elements in <code>someList</code> satisfies <code>pred</code>, where <code>pred</code> is a predicate: a function taking an element and returning a bool.</p><pre><code class="language-res" metastring="example">let isAbove100 = value =&gt; value &gt; 100
+
+list{101, 1, 2, 3}-&gt;Belt.List.some(isAbove100) /* true */
+
+list{1, 2, 3, 4}-&gt;Belt.List.some(isAbove100) /* false */
+</code></pre><h2 id="someu">someU</h2><pre><code class="language-res" metastring="sig">let someU: (t&lt;&#x27;a&gt;, (. &#x27;a) =&gt; bool) =&gt; bool
+</code></pre><p>Uncurried version of <a href="#some">some</a>.</p><h2 id="every2">every2</h2><pre><code class="language-res" metastring="sig">let every2: (t&lt;&#x27;a&gt;, t&lt;&#x27;b&gt;, (&#x27;a, &#x27;b) =&gt; bool) =&gt; bool
+</code></pre><p>Returns <code>true</code> if predicate <code>pred(a, b)</code> is <code>true</code> for all pairs of elements up to the shorter length (i.e. <code>min(length(firstList), length(secondList))</code>)</p><pre><code class="language-res" metastring="example">Belt.List.every2(list{1, 2, 3}, list{0, 1}, (a, b) =&gt; a &gt; b) /* true */
+
+Belt.List.every2(list{}, list{1}, (a, b) =&gt; a &gt; b) /* true */
+
+Belt.List.every2(list{2, 3}, list{1}, (a, b) =&gt; a &gt; b) /* true */
+
+Belt.List.every2(list{0, 1}, list{5, 0}, (a, b) =&gt; a &gt; b) /* false */
+</code></pre><h2 id="every2u">every2U</h2><pre><code class="language-res" metastring="sig">let every2U: (t&lt;&#x27;a&gt;, t&lt;&#x27;b&gt;, (. &#x27;a, &#x27;b) =&gt; bool) =&gt; bool
+</code></pre><p>Uncurried version of <a href="#every2">every2</a>.</p><h2 id="some2">some2</h2><pre><code class="language-res" metastring="sig">let some2: (t&lt;&#x27;a&gt;, t&lt;&#x27;b&gt;, (&#x27;a, &#x27;b) =&gt; bool) =&gt; bool
+</code></pre><p>Returns <code>true</code> if predicate <code>pred(a, b)</code> is true for any pair of elements up to the shorter length (i.e. <code>min(length(firstList), length(secondList))</code>)</p><pre><code class="language-res" metastring="example">Belt.List.some2(list{1, 2, 3}, list{0, 1}, (a, b) =&gt; a &gt; b) /* true */
+
+Belt.List.some2(list{}, list{1}, (a, b) =&gt; a &gt; b) /* false */
+
+Belt.List.some2(list{2, 3}, list{1}, (a, b) =&gt; a &gt; b) /* true */
+
+Belt.List.some2(list{0, 1}, list{5, 0}, (a, b) =&gt; a &gt; b) /* true */
+</code></pre><h2 id="some2u">some2U</h2><pre><code class="language-res" metastring="sig">let some2U: (t&lt;&#x27;a&gt;, t&lt;&#x27;b&gt;, (. &#x27;a, &#x27;b) =&gt; bool) =&gt; bool
+</code></pre><p>Uncurried version of <a href="#some2">some2</a>.</p><h2 id="cmpbylength">cmpByLength</h2><pre><code class="language-res" metastring="sig">let cmpByLength: (t&lt;&#x27;a&gt;, t&lt;&#x27;a&gt;) =&gt; int
+</code></pre><pre><code class="language-res">cmpByLength(firstList, secondList)
+</code></pre><p>Compare two lists solely by length. Returns <code>-1</code> if <code>length(firstList)</code> is less than <code>length(secondList)</code>, <code>0</code> if <code>length(firstList)</code> equals <code>length(secondList)</code>, and <code>1</code> if <code>length(firstList)</code> is greater than <code>length(secondList)</code>.</p><pre><code class="language-res" metastring="example">Belt.List.cmpByLength(list{1, 2}, list{3, 4, 5, 6}) /* -1 */
+
+Belt.List.cmpByLength(list{1, 2, 3}, list{4, 5, 6}) /* = 0 */
+
+Belt.List.cmpByLength(list{1, 2, 3, 4}, list{5, 6}) /* = 1 */
+</code></pre><h2 id="cmp">cmp</h2><pre><code class="language-res" metastring="sig">let cmp: (t&lt;&#x27;a&gt;, t&lt;&#x27;a&gt;, (&#x27;a, &#x27;a) =&gt; int) =&gt; int
+</code></pre><p>Compare elements one by one <code>compareFn(a, b)</code>. <code>compareFn</code> returns a negative number if <code>a</code> is &quot;less than&quot; <code>b</code>, zero if <code>a</code> is &quot;equal to&quot; <code>b</code>, a positive number if <code>a</code> is &quot;greater than&quot; <code>b</code>.</p><p>The comparison returns the first non-zero result of <code>compareFn</code>, or zero if <code>compareFn</code> returns zero for all <code>a</code> and <code>b</code>.</p><p>If all items have compared equal, but <code>firstList</code> is exhausted first, return <code>-1</code>. (<code>firstList</code> is shorter).
+If all items have compared equal, but <code>secondList</code> is exhausted first, return <code>1</code> (<code>firstList</code> is longer).</p><pre><code class="language-res" metastring="example">Belt.List.cmp(list{3}, list{3, 7}, (a, b) =&gt; compare(a, b)) /* (-1) */
+
+Belt.List.cmp(list{5, 3}, list{5}, (a, b) =&gt; compare(a, b)) /* 1 */
+
+Belt.List.cmp(list{1, 3, 5}, list{1, 4, 2}, (a, b) =&gt; compare(a, b)) /* (-1) */
+
+Belt.List.cmp(list{1, 3, 5}, list{1, 2, 3}, (a, b) =&gt; compare(a, b)) /* 1 */
+
+Belt.List.cmp(list{1, 3, 5}, list{1, 3, 5}, (a, b) =&gt; compare(a, b)) /* 0 */
+</code></pre><p><strong>Please note:</strong> The total ordering of List is different from Array,
+for Array, we compare the length first and, only if the lengths are equal, elements one by one.
+For lists, we just compare elements one by one.</p><h2 id="cmpu">cmpU</h2><pre><code class="language-res" metastring="sig">let cmpU: (t&lt;&#x27;a&gt;, t&lt;&#x27;a&gt;, (. &#x27;a, &#x27;a) =&gt; int) =&gt; int
+</code></pre><p>Uncurried version of <a href="#cmp">cmp</a>.</p><h2 id="eq">eq</h2><pre><code class="language-res" metastring="sig">let eq: (t&lt;&#x27;a&gt;, t&lt;&#x27;a&gt;, (&#x27;a, &#x27;a) =&gt; bool) =&gt; bool
+</code></pre><p>Check equality of <code>firstList</code> and <code>secondList</code> using <code>eqElem</code> for equality on elements, where <code>eqElem</code> is a function that returns <code>true</code> if items <code>x</code> and <code>y</code> meet some criterion for equality, <code>false</code> otherwise. eq <code>false</code> if length of <code>firstList</code> and <code>secondList</code> are not the same.</p><pre><code class="language-res" metastring="example">Belt.List.eq(list{1, 2, 3}, list{1, 2}, (a, b) =&gt; a == b) /* false */
+
+Belt.List.eq(list{1, 2}, list{1, 2}, (a, b) =&gt; a == b) /* true */
+
+Belt.List.eq(list{1, 2, 3}, list{(-1), (-2), (-3)}, (a, b) =&gt; abs(a) == abs(b)) /* true */
+</code></pre><h2 id="equ">eqU</h2><pre><code class="language-res" metastring="sig">let eqU: (t&lt;&#x27;a&gt;, t&lt;&#x27;a&gt;, (. &#x27;a, &#x27;a) =&gt; bool) =&gt; bool
+</code></pre><p>Uncurried version of <a href="#eqU">eqU</a>.</p><h2 id="has">has</h2><pre><code class="language-res" metastring="sig">let has: (t&lt;&#x27;a&gt;, &#x27;b, (&#x27;a, &#x27;b) =&gt; bool) =&gt; bool
+</code></pre><p>Returns <code>true</code> if the list contains at least one element for which <code>eqFunction(x)</code> returns true.</p><pre><code class="language-res" metastring="example">list{1, 2, 3}-&gt;Belt.List.has(2, (a, b) =&gt; a == b) /* true */
+
+list{1, 2, 3}-&gt;Belt.List.has(4, (a, b) =&gt; a == b) /* false */
+
+list{(-1), (-2), (-3)}-&gt;Belt.List.has(2, (a, b) =&gt; abs(a) == abs(b)) /* true */
+</code></pre><h2 id="hasu">hasU</h2><pre><code class="language-res" metastring="sig">let hasU: (t&lt;&#x27;a&gt;, &#x27;b, (. &#x27;a, &#x27;b) =&gt; bool) =&gt; bool
+</code></pre><p>Uncurried version of <a href="#has">has</a>.</p><h2 id="getby">getBy</h2><pre><code class="language-res" metastring="sig">let getBy: (t&lt;&#x27;a&gt;, &#x27;a =&gt; bool) =&gt; option&lt;&#x27;a&gt;
+</code></pre><p>Returns <code>Some(value)</code> for the first value in <code>someList</code> that satisfies the predicate function <code>pred</code>. Returns <code>None</code> if no element satisfies the function.</p><pre><code class="language-res" metastring="example">Belt.List.getBy(list{1, 4, 3, 2}, x =&gt; x &gt; 3) /* Some(4) */
+
+Belt.List.getBy(list{1, 4, 3, 2}, x =&gt; x &gt; 4) /* None */
+</code></pre><h2 id="getbyu">getByU</h2><pre><code class="language-res" metastring="sig">let getByU: (t&lt;&#x27;a&gt;, (. &#x27;a) =&gt; bool) =&gt; option&lt;&#x27;a&gt;
+</code></pre><p>Uncurried version of <a href="#getBy">getBy</a>.</p><h2 id="keep">keep</h2><pre><code class="language-res" metastring="sig">let keep: (t&lt;&#x27;a&gt;, &#x27;a =&gt; bool) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Returns a list of all elements in <code>someList</code> which satisfy the predicate function <code>pred</code>.</p><pre><code class="language-res" metastring="example">let isEven = x =&gt; mod(x, 2) == 0
+
+Belt.List.keep(list{1, 2, 3, 4}, isEven) /* list{2, 4} */
+
+Belt.List.keep(list{None, Some(2), Some(3), None}, Belt.Option.isSome) /* list{Some(2), Some(3)} */
+</code></pre><h2 id="keepu">keepU</h2><pre><code class="language-res" metastring="sig">let keepU: (t&lt;&#x27;a&gt;, (. &#x27;a) =&gt; bool) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Uncurried version of <a href="#keep">keep</a>.</p><h2 id="filter">filter</h2><pre><code class="language-res" metastring="sig">let filter: (t&lt;&#x27;a&gt;, &#x27;a =&gt; bool) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Returns a list of all elements in <code>someList</code> which satisfy the predicate function <code>pred</code>.</p><pre><code class="language-res" metastring="example">let isEven = x =&gt; mod(x, 2) == 0
+
+Belt.List.filter(list{1, 2, 3, 4}, isEven) /* list{2, 4} */
+
+Belt.List.filter(list{None, Some(2), Some(3), None}, Belt.Option.isSome) /* list{Some(2), Some(3)} */
+</code></pre><h2 id="keepwithindex">keepWithIndex</h2><pre><code class="language-res" metastring="sig">let keepWithIndex: (t&lt;&#x27;a&gt;, (&#x27;a, int) =&gt; bool) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Returns a list of all elements in <code>someList</code> which satisfy the predicate function <code>pred</code>.</p><pre><code class="language-res" metastring="example">let isEven = x =&gt; mod(x, 2) == 0
+
+Belt.List.keepWithIndex(list{1, 2, 3, 4}, (_x, index) =&gt; isEven(index)) /* list{1, 3} */
+</code></pre><h2 id="keepwithindexu">keepWithIndexU</h2><pre><code class="language-res" metastring="sig">let keepWithIndexU: (t&lt;&#x27;a&gt;, (. &#x27;a, int) =&gt; bool) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Uncurried version of <a href="#keepWithIndex">keepWithIndex</a>.</p><h2 id="filterwithindex">filterWithIndex</h2><pre><code class="language-res" metastring="sig">let filterWithIndex: (t&lt;&#x27;a&gt;, (&#x27;a, int) =&gt; bool) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Returns a list of all elements in <code>someList</code> which satisfy the predicate function <code>pred</code>.</p><pre><code class="language-res" metastring="example">let isEven = x =&gt; mod(x, 2) == 0
+
+Belt.List.filterWithIndex(list{1, 2, 3, 4}, (_x, index) =&gt; isEven(index)) /* list{1, 3} */
+</code></pre><h2 id="keepmap">keepMap</h2><pre><code class="language-res" metastring="sig">let keepMap: (t&lt;&#x27;a&gt;, &#x27;a =&gt; option&lt;&#x27;b&gt;) =&gt; t&lt;&#x27;b&gt;
+</code></pre><p>Applies <code>f</code> to each element of <code>someList</code>. If <code>f(x)</code> returns <code>Some(value)</code>, then <code>value</code> is <em>kept</em> in the resulting list.
+If <code>f(x)</code> returns <code>None</code>, the element is <em>not</em> retained in the result.</p><pre><code class="language-res" metastring="example">let isEven = x =&gt; mod(x, 2) == 0
+
+list{1, 2, 3, 4}
+-&gt;Belt.List.keepMap(x =&gt;
+    if (isEven(x)) {
+      Some(x)
+    } else {
+      None
+    }
+  ) /* list{2, 4} */
+
+list{Some(1), Some(2), None}-&gt;Belt.List.keepMap(x =&gt; x) /* list{1, 2} */
+</code></pre><h2 id="keepmapu">keepMapU</h2><pre><code class="language-res" metastring="sig">let keepMapU: (t&lt;&#x27;a&gt;, (. &#x27;a) =&gt; option&lt;&#x27;b&gt;) =&gt; t&lt;&#x27;b&gt;
+</code></pre><p>Uncurried version of <a href="#keepMap">keepMap</a>.</p><h2 id="partition">partition</h2><pre><code class="language-res" metastring="sig">let partition: (t&lt;&#x27;a&gt;, &#x27;a =&gt; bool) =&gt; (t&lt;&#x27;a&gt;, t&lt;&#x27;a&gt;)
+</code></pre><p>Creates a pair of lists; the first list consists of all elements of <code>someList</code> that satisfy the predicate function <code>pred</code>; the second list consists of all elements of <code>someList</code> that <em>do not</em> satisfy `pred.</p><p>In other words:</p><pre><code class="language-res">(elementsThatSatisfies, elementsThatDoesNotSatisfy)
+</code></pre><pre><code class="language-res" metastring="example">Belt.List.partition(list{1, 2, 3, 4}, x =&gt; x &gt; 2) /* (list{3, 4}, list{1, 2}) */
+</code></pre><h2 id="partitionu">partitionU</h2><pre><code class="language-res" metastring="sig">let partitionU: (t&lt;&#x27;a&gt;, (. &#x27;a) =&gt; bool) =&gt; (t&lt;&#x27;a&gt;, t&lt;&#x27;a&gt;)
+</code></pre><p>Uncurried version of <a href="#partition">partition</a>.</p><h2 id="unzip">unzip</h2><pre><code class="language-res" metastring="sig">let unzip: t&lt;(&#x27;a, &#x27;b)&gt; =&gt; (t&lt;&#x27;a&gt;, t&lt;&#x27;b&gt;)
+</code></pre><p>Takes a list of pairs and creates a pair of lists. The first list contains all the first items of the pairs; the second list contains all the second items.</p><pre><code class="language-res" metastring="example">Belt.List.unzip(list{(1, 2), (3, 4)}) /* (list{1, 3}, list{2, 4}) */
+
+Belt.List.unzip(list{(&quot;H&quot;, &quot;W&quot;), (&quot;e&quot;, &quot;o&quot;), (&quot;l&quot;, &quot;r&quot;), (&quot;l&quot;, &quot;l&quot;), (&quot;o&quot;, &quot;d&quot;), (&quot; &quot;, &quot;!&quot;)})
+/* (list{&quot;H&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;, &quot; &quot;}, list{&quot;W&quot;, &quot;o&quot;, &quot;r&quot;, &quot;l&quot;, &quot;d&quot;, &quot;!&quot;}) */
+</code></pre><h2 id="getassoc">getAssoc</h2><pre><code class="language-res" metastring="sig">let getAssoc: (t&lt;(&#x27;a, &#x27;c)&gt;, &#x27;b, (&#x27;a, &#x27;b) =&gt; bool) =&gt; option&lt;&#x27;c&gt;
+</code></pre><p>Return the second element of a pair in <code>someList</code> where the first element equals <code>k</code> as per the predicate function <code>eqFunction</code>, or <code>None</code> if not found.</p><pre><code class="language-res" metastring="example">list{(1, &quot;a&quot;), (2, &quot;b&quot;), (3, &quot;c&quot;)}-&gt;Belt.List.getAssoc(3, (a, b) =&gt; a == b) /* Some(&quot;c&quot;) */
+
+list{(9, &quot;morning&quot;), (15, &quot;afternoon&quot;), (22, &quot;night&quot;)}
+-&gt;Belt.List.getAssoc(15, (k, item) =&gt; k /* 15 */ == item /* 9, 5, 22 */)
+/* Some(&quot;afternoon&quot;) */
+</code></pre><h2 id="getassocu">getAssocU</h2><pre><code class="language-res" metastring="sig">let getAssocU: (t&lt;(&#x27;a, &#x27;c)&gt;, &#x27;b, (. &#x27;a, &#x27;b) =&gt; bool) =&gt; option&lt;&#x27;c&gt;
+</code></pre><p>Uncurried version of <a href="#getAssoc">getAssoc</a>.</p><h2 id="hasassoc">hasAssoc</h2><pre><code class="language-res" metastring="sig">let hasAssoc: (t&lt;(&#x27;a, &#x27;c)&gt;, &#x27;b, (&#x27;a, &#x27;b) =&gt; bool) =&gt; bool
+</code></pre><p>Returns <code>true</code> if there is a pair in <code>someList</code> where the first element equals <code>k</code> as per the predicate function <code>eqFunction</code>.</p><pre><code class="language-res" metastring="example">list{(1, &quot;a&quot;), (2, &quot;b&quot;), (3, &quot;c&quot;)}-&gt;Belt.List.hasAssoc(1, (a, b) =&gt; a == b) /* true */
+
+list{(9, &quot;morning&quot;), (15, &quot;afternoon&quot;), (22, &quot;night&quot;)}
+-&gt;Belt.List.hasAssoc(25, (k, item) =&gt; k /* 25 */ == item /* 9, 5, 22 */) /* false */
+</code></pre><h2 id="hasassocu">hasAssocU</h2><pre><code class="language-res" metastring="sig">let hasAssocU: (t&lt;(&#x27;a, &#x27;c)&gt;, &#x27;b, (. &#x27;a, &#x27;b) =&gt; bool) =&gt; bool
+</code></pre><p>Uncurried version of <a href="#hasAssoc">hasAssoc</a>.</p><h2 id="removeassoc">removeAssoc</h2><pre><code class="language-res" metastring="sig">let removeAssoc: (t&lt;(&#x27;a, &#x27;c)&gt;, &#x27;b, (&#x27;a, &#x27;b) =&gt; bool) =&gt; t&lt;(&#x27;a, &#x27;c)&gt;
+</code></pre><p>Return a list after removing the first pair whose first value is <code>k</code> per the equality predicate <code>eqFunction</code>; if not found, return a new list identical to <code>someList</code>.</p><pre><code class="language-res" metastring="example">list{(1, &quot;a&quot;), (2, &quot;b&quot;), (3, &quot;c&quot;)}-&gt;Belt.List.removeAssoc(1, (a, b) =&gt; a == b) /* list{(2, &quot;b&quot;), (3, &quot;c&quot;)} */
+
+list{(9, &quot;morning&quot;), (15, &quot;afternoon&quot;), (22, &quot;night&quot;)}
+-&gt;Belt.List.removeAssoc(9, (k, item) =&gt; k /* 9 */ == item /* 9, 5, 22 */)
+/* list{(15, &quot;afternoon&quot;), (22, &quot;night&quot;)} */
+</code></pre><h2 id="removeassocu">removeAssocU</h2><pre><code class="language-res" metastring="sig">let removeAssocU: (t&lt;(&#x27;a, &#x27;c)&gt;, &#x27;b, (. &#x27;a, &#x27;b) =&gt; bool) =&gt; t&lt;(&#x27;a, &#x27;c)&gt;
+</code></pre><p>Uncurried version of <a href="#removeAssoc">removeAssoc</a>.</p><h2 id="setassoc">setAssoc</h2><pre><code class="language-res" metastring="sig">let setAssoc: (t&lt;(&#x27;a, &#x27;c)&gt;, &#x27;a, &#x27;c, (&#x27;a, &#x27;a) =&gt; bool) =&gt; t&lt;(&#x27;a, &#x27;c)&gt;
+</code></pre><p>If <code>k</code> exists in <code>someList</code> by satisfying the <code>eqFunction</code> predicate, return a new list with the key and value replaced by the new <code>k</code> and <code>v</code>; otherwise, return a new list with the pair <code>k</code>, <code>v</code> added to the head of <code>someList</code>.</p><pre><code class="language-res" metastring="example">list{(1, &quot;a&quot;), (2, &quot;b&quot;), (3, &quot;c&quot;)}-&gt;Belt.List.setAssoc(2, &quot;x&quot;, (a, b) =&gt; a == b) /* list{(1, &quot;a&quot;), (2, &quot;x&quot;), (3, &quot;c&quot;)} */
+
+list{(1, &quot;a&quot;), (3, &quot;c&quot;)}-&gt;Belt.List.setAssoc(2, &quot;b&quot;, (a, b) =&gt; a == b) /* list{(2, &quot;b&quot;), (1, &quot;a&quot;), (3, &quot;c&quot;)} */
+
+list{(9, &quot;morning&quot;), (3, &quot;morning?!&quot;), (22, &quot;night&quot;)}
+-&gt;Belt.List.setAssoc(15, &quot;afternoon&quot;, (a, b) =&gt; mod(a, 12) == mod(b, 12))
+/* list{(9, &quot;morning&quot;), (15, &quot;afternoon&quot;), (22, &quot;night&quot;)} */
+</code></pre><p><strong>Please note</strong></p><p>In the last example, since: <code>15 mod 12</code> equals <code>3 mod 12</code></p><p>Both the key <em>and</em> the value are replaced in the list.</p><h2 id="setassocu">setAssocU</h2><pre><code class="language-res" metastring="sig">let setAssocU: (t&lt;(&#x27;a, &#x27;c)&gt;, &#x27;a, &#x27;c, (. &#x27;a, &#x27;a) =&gt; bool) =&gt; t&lt;(&#x27;a, &#x27;c)&gt;
+</code></pre><p>Uncurried version of <a href="#setAssoc">setAssoc</a>.</p><h2 id="sort">sort</h2><pre><code class="language-res" metastring="sig">let sort: (t&lt;&#x27;a&gt;, (&#x27;a, &#x27;a) =&gt; int) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Returns a sorted list.</p><pre><code class="language-res" metastring="example">Belt.List.sort(list{5, 4, 9, 3, 7}, (a, b) =&gt; a - b) // list{3, 4, 5, 7, 9}
+</code></pre><h2 id="sortu">sortU</h2><pre><code class="language-res" metastring="sig">let sortU: (t&lt;&#x27;a&gt;, (. &#x27;a, &#x27;a) =&gt; int) =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Uncurried version of <a href="#sort">sort</a>.</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/docs/manual/v9.0.0/api/belt/list","query":{},"buildId":"57i003GrurB9OA8mdo-dW","runtimeConfig":{},"nextExport":true,"autoExport":true,"isFallback":false}</script><script nomodule="" src="/_next/static/chunks/polyfills-9def993fe817cc057038.js"></script><script src="/_next/static/chunks/webpack-c49b9de92a7202ac2146.js" async=""></script><script src="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" async=""></script><script src="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" async=""></script><script src="/_next/static/chunks/pages/_app-9e9d9ab67b4ceb7ec93b.js" async=""></script><script src="/_next/static/chunks/pages/docs/manual/v9.0.0/api/belt/list-cf3bf260e98e7741822d.js" async=""></script><script src="/_next/static/57i003GrurB9OA8mdo-dW/_buildManifest.js" async=""></script><script src="/_next/static/57i003GrurB9OA8mdo-dW/_ssgManifest.js" async=""></script><script async="" defer="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script><noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript></body></html>

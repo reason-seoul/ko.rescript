@@ -1,0 +1,194 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/2b269719632b344a478b.css" as="style"/><link rel="stylesheet" href="/_next/static/css/2b269719632b344a478b.css" data-n-g=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/webpack-c49b9de92a7202ac2146.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" as="script"/><link rel="preload" href="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-9e9d9ab67b4ceb7ec93b.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/docs/manual/v9.0.0/api/belt/map-160ec4f9392251093645.js" as="script"/></head><body><div id="__next"><h1 id="map">Map</h1><p>The top level provides generic immutable map operations.</p><p>It also has three specialized inner modules <code>Belt.Map.Int</code>, <code>Belt.Map.String</code> and <code>Belt.Map.Dict</code>.</p><h2 id="t">t</h2><pre><code class="language-res" metastring="prelude">type t&lt;&#x27;key, &#x27;value, &#x27;identity&gt;
+</code></pre><p><code>&#x27;key</code> is the field type</p><p><code>&#x27;value</code> is the element type</p><p><code>&#x27;identity</code> the identity of the collection</p><h2 id="id">id</h2><pre><code class="language-res" metastring="prelude">type id&lt;&#x27;key, &#x27;id&gt; = Belt_Id.comparable&lt;&#x27;key, &#x27;id&gt;
+</code></pre><p>The identity needed for making an empty map.</p><h2 id="make">make</h2><pre><code class="language-res" metastring="sig">let make: (~id: id&lt;&#x27;k, &#x27;id&gt;) =&gt; t&lt;&#x27;k, &#x27;v, &#x27;id&gt;
+</code></pre><p><code>make(~id)</code> creates a new map by taking in the comparator.</p><pre><code class="language-res" metastring="example">module IntCmp = Belt.Id.MakeComparable({
+  type t = int
+  let cmp = (a, b) =&gt; Pervasives.compare(a, b)
+})
+
+let m = Belt.Map.make(~id=module(IntCmp))
+
+Belt.Map.set(m, 0, &quot;a&quot;)
+</code></pre><h2 id="isempty">isEmpty</h2><pre><code class="language-res" metastring="sig">let isEmpty: t&lt;&#x27;a, &#x27;b, &#x27;c&gt; =&gt; bool
+</code></pre><p><code>isEmpty(m)</code> checks whether a map m is empty.</p><pre><code class="language-res" metastring="example">module IntCmp = Belt.Id.MakeComparable({
+  type t = int
+  let cmp = (a, b) =&gt; Pervasives.compare(a, b)
+})
+
+Belt.Map.isEmpty(Belt.Map.fromArray([(1, &quot;1&quot;)], ~id=module(IntCmp))) == false
+</code></pre><h2 id="has">has</h2><pre><code class="language-res" metastring="sig">let has: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, &#x27;k) =&gt; bool
+</code></pre><p><code>has(m, k)</code> checks whether <code>m</code> has the key <code>k</code>.</p><pre><code class="language-res" metastring="example">module IntCmp = Belt.Id.MakeComparable({
+  type t = int
+  let cmp = (a, b) =&gt; Pervasives.compare(a, b)
+})
+
+Belt.Map.has(Belt.Map.fromArray([(1, &quot;1&quot;)], ~id=module(IntCmp)), 1) == true
+</code></pre><h2 id="cmpu">cmpU</h2><pre><code class="language-res" metastring="sig">let cmpU: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (. &#x27;v, &#x27;v) =&gt; int) =&gt; int
+</code></pre><h2 id="cmp">cmp</h2><pre><code class="language-res" metastring="sig">let cmp: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (&#x27;v, &#x27;v) =&gt; int) =&gt; int
+</code></pre><p><code>cmp(m0, m1, vcmp);</code></p><p>Total ordering of map given total ordering of value function.</p><p>It will compare size first and each element following the order one by one.</p><h2 id="eq">eq</h2><pre><code class="language-res" metastring="sig">let eqU: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (. &#x27;v, &#x27;v) =&gt; bool) =&gt; bool
+</code></pre><p><code>eq(m1, m2, veq)</code> tests whether the maps <code>m1</code> and <code>m2</code> are equal, that is, contain equal keys and associate them with equal data. <code>veq</code> is the equality predicate used to compare the data associated with the keys.</p><h2 id="eq-1">eq</h2><pre><code class="language-res" metastring="sig">let eq: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (&#x27;v, &#x27;v) =&gt; bool) =&gt; bool
+</code></pre><h2 id="findfirstbyu">findFirstByU</h2><pre><code class="language-res" metastring="sig">let findFirstByU: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (. &#x27;k, &#x27;v) =&gt; bool) =&gt; option&lt;(&#x27;k, &#x27;v)&gt;
+</code></pre><h2 id="findfirstby">findFirstBy</h2><pre><code class="language-res" metastring="sig">let findFirstBy: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (&#x27;k, &#x27;v) =&gt; bool) =&gt; option&lt;(&#x27;k, &#x27;v)&gt;
+</code></pre><p><code>findFirstBy(m, p)</code> uses function <code>f</code> to find the first key value pair to match predicate <code>p</code>.</p><pre><code class="language-res" metastring="example">module IntCmp = Belt.Id.MakeComparable({
+  type t = int
+  let cmp = (a, b) =&gt; Pervasives.compare(a, b)
+})
+
+let s0 = Belt.Map.fromArray(~id=module(IntCmp), [(4, &quot;4&quot;), (1, &quot;1&quot;), (2, &quot;2&quot;), (3, &quot;&quot;)])
+
+Belt.Map.findFirstBy(s0, (k, v) =&gt; k == 4) /* (4, &quot;4&quot;) */
+</code></pre><h2 id="foreachu">forEachU</h2><pre><code class="language-res" metastring="sig">let forEachU: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (. &#x27;k, &#x27;v) =&gt; unit) =&gt; unit
+</code></pre><h2 id="foreach">forEach</h2><pre><code class="language-res" metastring="sig">let forEach: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (&#x27;k, &#x27;v) =&gt; unit) =&gt; unit
+</code></pre><p><code>forEach(m, f)</code> applies <code>f</code> to all bindings in map <code>m</code>. <code>f</code> receives the <code>&#x27;k</code> as first argument, and the associated value as second argument. The bindings are passed to <code>f</code> in increasing order with respect to the ordering over the type of the keys.</p><pre><code class="language-res" metastring="example">module IntCmp = Belt.Id.MakeComparable({
+  type t = int
+  let cmp = (a, b) =&gt; Pervasives.compare(a, b)
+})
+
+let s0 = Belt.Map.fromArray(~id=module(IntCmp), [(4, &quot;4&quot;), (1, &quot;1&quot;), (2, &quot;2&quot;), (3, &quot;&quot;)])
+
+let acc = ref(list{})
+
+Belt.Map.forEach(s0, (k, v) =&gt; acc := list{(k, v), ...acc.contents})
+
+acc.contents == list{(4, &quot;4&quot;), (3, &quot;3&quot;), (2, &quot;2&quot;), (1, &quot;1&quot;)}
+</code></pre><h2 id="reduceu">reduceU</h2><pre><code class="language-res" metastring="sig">let reduceU: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, &#x27;acc, (. &#x27;acc, &#x27;k, &#x27;v) =&gt; &#x27;acc) =&gt; &#x27;acc
+</code></pre><h2 id="reduce">reduce</h2><pre><code class="language-res" metastring="sig">let reduce: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, &#x27;acc, (&#x27;acc, &#x27;k, &#x27;v) =&gt; &#x27;acc) =&gt; &#x27;acc
+</code></pre><p><code>reduce(m, a, f)</code> computes <code>(f(kN, dN) ... (f(k1, d1, a))...)</code>, where <code>k1 ... kN</code> are the keys of all bindings in m (in increasing order), and <code>d1 ... dN</code> are the associated data.</p><pre><code class="language-res" metastring="example">module IntCmp = Belt.Id.MakeComparable({
+  type t = int
+  let cmp = (a, b) =&gt; Pervasives.compare(a, b)
+})
+
+let s0 = Belt.Map.fromArray(~id=module(IntCmp), [(4, &quot;4&quot;), (1, &quot;1&quot;), (2, &quot;2&quot;), (3, &quot;3&quot;)])
+
+Belt.Map.reduce(s0, list{}, (acc, k, v) =&gt; list{
+  (k, v),
+  ...acc,
+}) /* [(4, &quot;4&quot;), (3, &quot;3&quot;), (2, &quot;2&quot;), (1, &quot;1&quot;), 0] */
+</code></pre><h2 id="everyu">everyU</h2><pre><code class="language-res" metastring="sig">let everyU: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (. &#x27;k, &#x27;v) =&gt; bool) =&gt; bool
+</code></pre><h2 id="every">every</h2><pre><code class="language-res" metastring="sig">let every: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (&#x27;k, &#x27;v) =&gt; bool) =&gt; bool
+</code></pre><p><code>every(m, p)</code> checks if all the bindings of the map satisfy the predicate <code>p</code>. Order unspecified</p><h2 id="someu">someU</h2><pre><code class="language-res" metastring="sig">let someU: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (. &#x27;k, &#x27;v) =&gt; bool) =&gt; bool
+</code></pre><h2 id="some">some</h2><pre><code class="language-res" metastring="sig">let some: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (&#x27;k, &#x27;v) =&gt; bool) =&gt; bool
+</code></pre><p><code>some(m, p)</code> checks if at least one binding of the map satisfy the predicate <code>p</code>. Order unspecified</p><h2 id="size">size</h2><pre><code class="language-res" metastring="sig">let size: t&lt;&#x27;k, &#x27;v, &#x27;id&gt; =&gt; int
+</code></pre><p><code>size(s)</code></p><pre><code class="language-res" metastring="example">module IntCmp = Belt.Id.MakeComparable({
+  type t = int
+  let cmp = (a, b) =&gt; Pervasives.compare(a, b)
+})
+
+Belt.Map.size(Belt.Map.fromArray([(2, &quot;2&quot;), (2, &quot;1&quot;), (3, &quot;3&quot;)], ~id=module(IntCmp))) == 2
+</code></pre><h2 id="toarray">toArray</h2><pre><code class="language-res" metastring="sig">let toArray: t&lt;&#x27;k, &#x27;v, &#x27;id&gt; =&gt; array&lt;(&#x27;k, &#x27;v)&gt;
+</code></pre><p><code>toArray(s)</code></p><pre><code class="language-res" metastring="example">module IntCmp = Belt.Id.MakeComparable({
+  type t = int
+  let cmp = (a, b) =&gt; Pervasives.compare(a, b)
+})
+
+Belt.Map.toArray(Belt.Map.fromArray([(2, &quot;2&quot;), (1, &quot;1&quot;), (3, &quot;3&quot;)], ~id=module(IntCmp))) == [
+    (1, &quot;1&quot;),
+    (2, &quot;2&quot;),
+    (3, &quot;3&quot;),
+  ]
+</code></pre><h2 id="tolist">toList</h2><pre><code class="language-res" metastring="sig">let toList: t&lt;&#x27;k, &#x27;v, &#x27;id&gt; =&gt; list&lt;(&#x27;k, &#x27;v)&gt;
+</code></pre><p>In increasing order.</p><p>See <code>Belt.Map.toArray</code></p><h2 id="fromarray">fromArray</h2><pre><code class="language-res" metastring="sig">let fromArray: (array&lt;(&#x27;k, &#x27;v)&gt;, ~id: id&lt;&#x27;k, &#x27;id&gt;) =&gt; t&lt;&#x27;k, &#x27;v, &#x27;id&gt;
+</code></pre><p><code>fromArray(kvs, ~id);</code></p><pre><code class="language-res" metastring="example">module IntCmp = Belt.Id.MakeComparable({
+  type t = int
+  let cmp = (a, b) =&gt; Pervasives.compare(a, b)
+})
+
+Belt.Map.toArray(Belt.Map.fromArray([(2, &quot;2&quot;), (1, &quot;1&quot;), (3, &quot;3&quot;)], ~id=module(IntCmp))) == [
+    (1, &quot;1&quot;),
+    (2, &quot;2&quot;),
+    (3, &quot;3&quot;),
+  ]
+</code></pre><h2 id="keystoarray">keysToArray</h2><pre><code class="language-res" metastring="sig">let keysToArray: t&lt;&#x27;k, &#x27;v, &#x27;id&gt; =&gt; array&lt;&#x27;k&gt;
+</code></pre><p><code>keysToArray(s);</code></p><pre><code class="language-res" metastring="example">module IntCmp = Belt.Id.MakeComparable({
+  type t = int
+  let cmp = (a, b) =&gt; Pervasives.compare(a, b)
+})
+
+Belt.Map.keysToArray(Belt.Map.fromArray([(2, &quot;2&quot;), (1, &quot;1&quot;), (3, &quot;3&quot;)], ~id=module(IntCmp))) == [
+    1,
+    2,
+    3,
+  ]
+</code></pre><h2 id="valuestoarray">valuesToArray</h2><pre><code class="language-res" metastring="sig">let valuesToArray: t&lt;&#x27;k, &#x27;v, &#x27;id&gt; =&gt; array&lt;&#x27;v&gt;
+</code></pre><p><code>valuesToArray(s);</code></p><pre><code class="language-res" metastring="example">module IntCmp = Belt.Id.MakeComparable({
+  type t = int
+  let cmp = (a, b) =&gt; Pervasives.compare(a, b)
+})
+
+Belt.Map.valuesToArray(
+  Belt.Map.fromArray([(2, &quot;2&quot;), (1, &quot;1&quot;), (3, &quot;3&quot;)], ~id=module(IntCmp)),
+) == [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]
+</code></pre><h2 id="minkey">minKey</h2><pre><code class="language-res" metastring="sig">let minKey: t&lt;&#x27;k, &#x27;a, &#x27;b&gt; =&gt; option&lt;&#x27;k&gt;
+</code></pre><p><code>minKey(s)</code> returns the minimum key, None if not exist.</p><h2 id="minkeyundefined">minKeyUndefined</h2><pre><code class="language-res" metastring="sig">let minKeyUndefined: t&lt;&#x27;k, &#x27;a, &#x27;b&gt; =&gt; Js.undefined&lt;&#x27;k&gt;
+</code></pre><p>See <code>Belt.Map.minKey</code></p><h2 id="maxkey">maxKey</h2><pre><code class="language-res" metastring="sig">let maxKey: t&lt;&#x27;k, &#x27;a, &#x27;b&gt; =&gt; option&lt;&#x27;k&gt;
+</code></pre><p><code>maxKey(s)</code> returns the maximum key, None if not exist.</p><h2 id="maxkeyundefined">maxKeyUndefined</h2><pre><code class="language-res" metastring="sig">let maxKeyUndefined: t&lt;&#x27;k, &#x27;a, &#x27;b&gt; =&gt; Js.undefined&lt;&#x27;k&gt;
+</code></pre><p>See <code>Belt.Map.maxKey</code></p><h2 id="minimum">minimum</h2><pre><code class="language-res" metastring="sig">let minimum: t&lt;&#x27;k, &#x27;v, &#x27;a&gt; =&gt; option&lt;(&#x27;k, &#x27;v)&gt;
+</code></pre><p><code>minimum(s)</code> returns the minimum key value pair, None if not exist</p><h2 id="minundefined">minUndefined</h2><pre><code class="language-res" metastring="sig">let minUndefined: t&lt;&#x27;k, &#x27;v, &#x27;a&gt; =&gt; Js.undefined&lt;(&#x27;k, &#x27;v)&gt;
+</code></pre><p>See <code>Belt.Map.minimum</code></p><h2 id="maximum">maximum</h2><pre><code class="language-res" metastring="sig">let maximum: t&lt;&#x27;k, &#x27;v, &#x27;a&gt; =&gt; option&lt;(&#x27;k, &#x27;v)&gt;
+</code></pre><p><code>maximum(s)</code> returns the maximum key value pair, None if not exist.</p><h2 id="maxundefined">maxUndefined</h2><pre><code class="language-res" metastring="sig">let maxUndefined: t&lt;&#x27;k, &#x27;v, &#x27;a&gt; =&gt; Js.undefined&lt;(&#x27;k, &#x27;v)&gt;
+</code></pre><p>See <code>Belt.Map.maximum</code></p><h2 id="get">get</h2><pre><code class="language-res" metastring="sig">let get: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, &#x27;k) =&gt; option&lt;&#x27;v&gt;
+</code></pre><p><code>get(s, k)</code></p><pre><code class="language-res" metastring="example">module IntCmp = Belt.Id.MakeComparable({
+  type t = int
+  let cmp = (a, b) =&gt; Pervasives.compare(a, b)
+})
+
+Belt.Map.get(Belt.Map.fromArray([(2, &quot;2&quot;), (1, &quot;1&quot;), (3, &quot;3&quot;)], ~id=module(IntCmp)), 2) ==
+  Some(&quot;2&quot;)
+
+Belt.Map.get(Belt.Map.fromArray([(2, &quot;2&quot;), (1, &quot;1&quot;), (3, &quot;3&quot;)], ~id=module(IntCmp)), 2) == None
+</code></pre><h2 id="getundefined">getUndefined</h2><pre><code class="language-res" metastring="sig">let getUndefined: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, &#x27;k) =&gt; Js.undefined&lt;&#x27;v&gt;
+</code></pre><p>See <code>Belt.Map.get</code></p><p>Returns <code>undefined</code> when not found</p><h2 id="getwithdefault">getWithDefault</h2><pre><code class="language-res" metastring="sig">let getWithDefault: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, &#x27;k, &#x27;v) =&gt; &#x27;v
+</code></pre><p><code>getWithDefault(s, k, default)</code></p><p>See <code>Belt.Map.get</code></p><p>Returns default when <code>k</code> is not found.</p><h2 id="getexn">getExn</h2><pre><code class="language-res" metastring="sig">let getExn: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, &#x27;k) =&gt; &#x27;v
+</code></pre><p><code>getExn(s, k)</code></p><p>See <code>Belt.Map.getExn</code></p><p>raise when <code>k</code> not exist</p><h2 id="remove">remove</h2><pre><code class="language-res" metastring="sig">let remove: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, &#x27;k) =&gt; t&lt;&#x27;k, &#x27;v, &#x27;id&gt;
+</code></pre><p><code>remove(m, x)</code> when <code>x</code> is not in <code>m</code>, <code>m</code> is returned reference unchanged.</p><pre><code class="language-res" metastring="example">module IntCmp = Belt.Id.MakeComparable({
+  type t = int
+  let cmp = (a, b) =&gt; Pervasives.compare(a, b)
+})
+
+let s0 = Belt.Map.fromArray([(2, &quot;2&quot;), (1, &quot;1&quot;), (3, &quot;3&quot;)], ~id=module(IntCmp))
+
+let s1 = Belt.Map.remove(s0, 1)
+
+let s2 = Belt.Map.remove(s1, 1)
+
+s1 === s2
+
+Belt.Map.keysToArray(s1) == [2, 3]
+</code></pre><h2 id="removemany">removeMany</h2><pre><code class="language-res" metastring="sig">let removeMany: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, array&lt;&#x27;k&gt;) =&gt; t&lt;&#x27;k, &#x27;v, &#x27;id&gt;
+</code></pre><p><code>removeMany(s, xs)</code></p><p>Removing each of <code>xs</code> to <code>s</code>, note unlike <code>Belt.Map.remove</code>, the reference of return value might be changed even if none in <code>xs</code> exists <code>s</code>.</p><h2 id="set">set</h2><pre><code class="language-res" metastring="sig">let set: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, &#x27;k, &#x27;v) =&gt; t&lt;&#x27;k, &#x27;v, &#x27;id&gt;
+</code></pre><p><code>set(m, x, y)</code> returns a map containing the same bindings as <code>m</code>, with a new binding of <code>x</code> to <code>y</code>. If <code>x</code> was already bound in <code>m</code>, its previous binding disappears.</p><pre><code class="language-res" metastring="example">module IntCmp = Belt.Id.MakeComparable({
+  type t = int
+  let cmp = (a, b) =&gt; Pervasives.compare(a, b)
+})
+
+let s0 = Belt.Map.fromArray([(2, &quot;2&quot;), (1, &quot;1&quot;), (3, &quot;3&quot;)], ~id=module(IntCmp))
+
+let s1 = Belt.Map.set(s0, 2, &quot;3&quot;)
+
+Belt.Map.valuesToArray(s1) == [&quot;1&quot;, &quot;3&quot;, &quot;3&quot;]
+</code></pre><h2 id="updateu">updateU</h2><pre><code class="language-res" metastring="sig">let updateU: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, &#x27;k, (. option&lt;&#x27;v&gt;) =&gt; option&lt;&#x27;v&gt;) =&gt; t&lt;&#x27;k, &#x27;v, &#x27;id&gt;
+</code></pre><h2 id="update">update</h2><pre><code class="language-res" metastring="sig">let update: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, &#x27;k, option&lt;&#x27;v&gt; =&gt; option&lt;&#x27;v&gt;) =&gt; t&lt;&#x27;k, &#x27;v, &#x27;id&gt;
+</code></pre><p><code>update(m, x, f)</code> returns a map containing the same bindings as <code>m</code>, except for the binding of <code>x</code>. Depending on the value of <code>y</code> where <code>y</code> is <code>f(get(m, x))</code>, the binding of <code>x</code> is added, removed or updated. If <code>y</code> is <code>None</code>, the binding is removed if it exists; otherwise, if <code>y</code> is <code>Some(z)</code> then <code>x</code> is associated to <code>z</code> in the resulting map.</p><h2 id="mergemany">mergeMany</h2><pre><code class="language-res" metastring="sig">let mergeMany: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, array&lt;(&#x27;k, &#x27;v)&gt;) =&gt; t&lt;&#x27;k, &#x27;v, &#x27;id&gt;
+</code></pre><p><code>mergeMany(s, xs)</code></p><p>Adding each of <code>xs</code> to <code>s</code>, note unlike <code>add</code>, the reference of return value might be changed even if all values in <code>xs</code> exist <code>s</code>.</p><h2 id="mergeu">mergeU</h2><pre><code class="language-res" metastring="sig">let mergeU: (
+  t&lt;&#x27;k, &#x27;v, &#x27;id&gt;,
+  t&lt;&#x27;k, &#x27;v2, &#x27;id&gt;,
+  (. &#x27;k, option&lt;&#x27;v&gt;, option&lt;&#x27;v2&gt;) =&gt; option&lt;&#x27;v3&gt;,
+) =&gt; t&lt;&#x27;k, &#x27;v3, &#x27;id&gt;
+</code></pre><h2 id="merge">merge</h2><pre><code class="language-res" metastring="sig">let merge: (
+  t&lt;&#x27;k, &#x27;v, &#x27;id&gt;,
+  t&lt;&#x27;k, &#x27;v2, &#x27;id&gt;,
+  (&#x27;k, option&lt;&#x27;v&gt;, option&lt;&#x27;v2&gt;) =&gt; option&lt;&#x27;v3&gt;,
+) =&gt; t&lt;&#x27;k, &#x27;v3, &#x27;id&gt;
+</code></pre><p><code>merge(m1, m2, f)</code> computes a map whose keys is a subset of keys of <code>m1</code> and of <code>m2</code>. The presence of each such binding, and the corresponding value, is determined with the function <code>f</code>.</p><h2 id="keepu">keepU</h2><pre><code class="language-res" metastring="sig">let keepU: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (. &#x27;k, &#x27;v) =&gt; bool) =&gt; t&lt;&#x27;k, &#x27;v, &#x27;id&gt;
+</code></pre><h2 id="keep">keep</h2><pre><code class="language-res" metastring="sig">let keep: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (&#x27;k, &#x27;v) =&gt; bool) =&gt; t&lt;&#x27;k, &#x27;v, &#x27;id&gt;
+</code></pre><p><code>keep(m, p)</code> returns the map with all the bindings in m that satisfy predicate <code>p</code>.</p><h2 id="partitionu">partitionU</h2><pre><code class="language-res" metastring="sig">let partitionU: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (. &#x27;k, &#x27;v) =&gt; bool) =&gt; (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, t&lt;&#x27;k, &#x27;v, &#x27;id&gt;)
+</code></pre><h2 id="partition">partition</h2><pre><code class="language-res" metastring="sig">let partition: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (&#x27;k, &#x27;v) =&gt; bool) =&gt; (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, t&lt;&#x27;k, &#x27;v, &#x27;id&gt;)
+</code></pre><p><code>partition(m, p)</code> returns a pair of maps <code>(m1, m2)</code>, where <code>m1</code> contains all the bindings of <code>s</code> that satisfy the predicate <code>p</code>, and <code>m2</code> is the map with all the bindings of <code>s</code> that do not satisfy <code>p</code>.</p><h2 id="split">split</h2><pre><code class="language-res" metastring="sig">let split: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, &#x27;k) =&gt; ((t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, t&lt;&#x27;k, &#x27;v, &#x27;id&gt;), option&lt;&#x27;v&gt;)
+</code></pre><p><code>split(x, m)</code> returns a tuple <code>(l, r)</code>, data, where <code>l</code> is the map with all the bindings of <code>m</code> whose &#x27;k is strictly less than <code>x</code>; <code>r</code> is the map with all the bindings of m whose &#x27;k is strictly greater than <code>x</code>; <code>data</code> is <code>None</code> if <code>m</code> contains no binding for <code>x</code>, or <code>Some(v)</code> if <code>m</code> binds <code>v</code> to <code>x</code>.</p><h2 id="mapu">mapU</h2><pre><code class="language-res" metastring="sig">let mapU: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (. &#x27;v) =&gt; &#x27;v2) =&gt; t&lt;&#x27;k, &#x27;v2, &#x27;id&gt;
+</code></pre><h2 id="map-1">map</h2><pre><code class="language-res" metastring="sig">let map: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, &#x27;v =&gt; &#x27;v2) =&gt; t&lt;&#x27;k, &#x27;v2, &#x27;id&gt;
+</code></pre><p><code>map(m, f) returns a map with same domain as</code>m<code>, where the associated value</code>a<code>of all bindings of</code>m<code>has been replaced by the result of the application of</code>f<code>to</code>a<code>. The bindings are passed to</code>f` in increasing order with respect to the ordering over the type of the keys.</p><h2 id="mapwithkeyu">mapWithKeyU</h2><pre><code class="language-res" metastring="sig">let mapWithKeyU: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (. &#x27;k, &#x27;v) =&gt; &#x27;v2) =&gt; t&lt;&#x27;k, &#x27;v2, &#x27;id&gt;
+</code></pre><h2 id="mapwithkey">mapWithKey</h2><pre><code class="language-res" metastring="sig">let mapWithKey: (t&lt;&#x27;k, &#x27;v, &#x27;id&gt;, (&#x27;k, &#x27;v) =&gt; &#x27;v2) =&gt; t&lt;&#x27;k, &#x27;v2, &#x27;id&gt;
+</code></pre><p><code>mapWithKey(m, f)</code></p><p>The same as <code>Belt.Map.map</code> except that <code>f</code> is supplied with one more argument: the key.</p><h2 id="getdata">getData</h2><pre><code class="language-res" metastring="sig">let getData: t&lt;&#x27;k, &#x27;v, &#x27;id&gt; =&gt; Belt_MapDict.t&lt;&#x27;k, &#x27;v, &#x27;id&gt;
+</code></pre><p><code>getData(s0)</code></p><p>Advanced usage only</p><p>Returns the raw data (detached from comparator), but its type is still manifested, so that user can pass identity directly without boxing.</p><h2 id="getid">getId</h2><pre><code class="language-res" metastring="sig">let getId: t&lt;&#x27;k, &#x27;v, &#x27;id&gt; =&gt; id&lt;&#x27;k, &#x27;id&gt;
+</code></pre><p>Advanced usage only</p><p>Returns the identity of s0.</p><h2 id="packiddata">packIdData</h2><pre><code class="language-res" metastring="sig">let packIdData: (~id: id&lt;&#x27;k, &#x27;id&gt;, ~data: Belt_MapDict.t&lt;&#x27;k, &#x27;v, &#x27;id&gt;) =&gt; t&lt;&#x27;k, &#x27;v, &#x27;id&gt;
+</code></pre><p><code>packIdData(~id, ~data)</code></p><p>Advanced usage only</p><p>Returns the packed collection.</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/docs/manual/v9.0.0/api/belt/map","query":{},"buildId":"57i003GrurB9OA8mdo-dW","runtimeConfig":{},"nextExport":true,"autoExport":true,"isFallback":false}</script><script nomodule="" src="/_next/static/chunks/polyfills-9def993fe817cc057038.js"></script><script src="/_next/static/chunks/webpack-c49b9de92a7202ac2146.js" async=""></script><script src="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" async=""></script><script src="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" async=""></script><script src="/_next/static/chunks/pages/_app-9e9d9ab67b4ceb7ec93b.js" async=""></script><script src="/_next/static/chunks/pages/docs/manual/v9.0.0/api/belt/map-160ec4f9392251093645.js" async=""></script><script src="/_next/static/57i003GrurB9OA8mdo-dW/_buildManifest.js" async=""></script><script src="/_next/static/57i003GrurB9OA8mdo-dW/_ssgManifest.js" async=""></script><script async="" defer="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script><noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript></body></html>

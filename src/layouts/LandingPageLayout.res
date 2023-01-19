@@ -108,19 +108,21 @@ exports.Button = Button;`,
           <div className="hidden md:block">
             <img
               className="absolute z-0 left-0 top-0 -ml-10 -mt-6"
-              src="static/lp/grid.svg"
+              src="./static/lp/grid.svg"
               style={ReactDOM.Style.make(~height="24rem", ~width="24rem", ())}
             />
-            <img className="absolute z-0 left-0 top-0 -ml-10 mt-10" src="static/lp/illu_left.png" />
+            <img
+              className="absolute z-0 left-0 top-0 -ml-10 mt-10" src="./static/lp/illu_left.png"
+            />
           </div>
           <div className="hidden md:block">
             <img
               className="absolute z-0 right-0 bottom-0 -mb-10 mt-24 -mr-10"
-              src="static/lp/grid.svg"
+              src="./static/lp/grid.svg"
               style={ReactDOM.Style.make(~height="24rem", ~width="24rem", ())}
             />
             <img
-              className="absolute z-3 right-0 bottom-0 -mr-2 mb-10" src="static/lp/illu_right.png"
+              className="absolute z-3 right-0 bottom-0 -mr-2 mb-10" src="./static/lp/illu_right.png"
             />
           </div>
         </div>
@@ -332,7 +334,7 @@ module MainUSP = {
             <img
               className="absolute z-1 bottom-0 right-0 -mb-12 -mr-12"
               style={ReactDOM.Style.make(~maxWidth="20rem", ())}
-              src="static/lp/grid2.svg"
+              src="./static/lp/grid2.svg"
             />
           </div>
         </div>
@@ -440,9 +442,9 @@ module OtherSellingPoints = {
             className="w-full "
             imgClassName="w-full h-[25.9rem] object-cover rounded-lg"
             imgSrcs={[
-              "static/lp/community-3.jpg",
-              "static/lp/community-2.jpg",
-              "static/lp/community-1.jpg",
+              "./static/lp/community-3.jpg",
+              "./static/lp/community-2.jpg",
+              "./static/lp/community-1.jpg",
             ]}
           />
           <h3 className="hl-3 text-gray-20 mt-4 mb-2">
@@ -464,7 +466,7 @@ ReScript 커뮤니티에 참여하세요! 단순성, 속도 및 실용성에 대
         <div className="col-span-4 lg:row-start-1">
           <img
             className="w-full rounded-lg border-2 border-turtle-dark"
-            src="static/lp/editor-tooling-1.jpg"
+            src="./static/lp/editor-tooling-1.jpg"
           />
           <h3 className="hl-3 text-gray-20 mt-6 mb-2"> {React.string(`기발한 툴링`)} </h3>
           <p className="body-md text-gray-40">
@@ -475,7 +477,7 @@ ReScript 커뮤니티에 참여하세요! 단순성, 속도 및 실용성에 대
         <div className="col-span-4 lg:row-start-2">
           <img
             className="w-full rounded-lg border-2 border-fire-30"
-            src="static/lp/easy-to-unadopt.jpg"
+            src="./static/lp/easy-to-unadopt.jpg"
           />
           <h3 className="hl-3 text-gray-20 mt-6 mb-2">
             {React.string(`제한없는 간단한 적용`)}
@@ -516,7 +518,7 @@ module TrustedBy = {
       <div
         className="mt-10 max-w-320 overflow-hidden opacity-50"
         style={ReactDOM.Style.make(~maxHeight="6rem", ())}>
-        <img className="w-full h-full" src="static/lp/grid.svg" />
+        <img className="w-full h-full" src="./static/lp/grid.svg" />
       </div>
     </section>
   }
@@ -532,25 +534,25 @@ module CuratedResources = {
 
   let cards = [
     {
-      imgSrc: "static/ic_manual@2x.png",
+      imgSrc: "./static/ic_manual@2x.png",
       title: React.string("Language Manual"),
       descr: "기본 문법 탐색: ReScript의 모든 언어 기능에 대한 참조 문서",
       href: "/docs/manual/latest/introduction",
     },
     {
-      imgSrc: "static/ic_rescript_react@2x.png",
+      imgSrc: "./static/ic_rescript_react@2x.png",
       title: React.string("ReScript + React"),
       descr: "전 세계의 사용자들이 이용하는 ReactJS를 위한 1급 바인딩들",
       href: "/docs/react/latest/introduction",
     },
     {
-      imgSrc: "static/ic_manual@2x.png",
+      imgSrc: "./static/ic_manual@2x.png",
       title: React.string("Gradually Adopt ReScript"),
       descr: "현 프로젝트에서 ReScript 사용을 시작하는 방법에 대해 배워보세요. 전부를 이해할 필요는 없습니다. 먼저 사용해 보세요!",
       href: "/docs/manual/latest/installation#integrate-into-an-existing-js-project",
     },
     {
-      imgSrc: "static/ic_gentype@2x.png",
+      imgSrc: "./static/ic_gentype@2x.png",
       title: React.string("TypeScript Integration"),
       descr: "이미 가지고 있는 TypeScript 코드베이스에서 ReScript를 통합하는 방법을 알아보세요.",
       href: "/docs/gentype/latest/introduction",
@@ -559,7 +561,7 @@ module CuratedResources = {
 
   let templates = [
     {
-      imgSrc: "static/nextjs_starter_logo.svg",
+      imgSrc: "./static/nextjs_starter_logo.svg",
       title: <>
         <div> {React.string("ReScript & ")} </div>
         <div className="text-gray-40"> {React.string("NextJS")} </div>
@@ -569,7 +571,7 @@ module CuratedResources = {
     },
     /*
     {
-      imgSrc: "static/vitejs_starter_logo.svg",
+      imgSrc: "./static/vitejs_starter_logo.svg",
       title: <>
         <div> {React.string("ReScript & ")} </div>
         <div style={ReactDOM.Style.make(~color="#6571FB", ())}> {React.string("ViteJS")} </div>
@@ -578,7 +580,7 @@ module CuratedResources = {
       href: "/",
     },
     {
-      imgSrc: "static/nodejs_starter_logo.svg",
+      imgSrc: "./static/nodejs_starter_logo.svg",
       title: <>
         <div> {React.string("ReScript & ")} </div>
         <div className="text-gray-40" style={ReactDOM.Style.make(~color="#699D65", ())}>

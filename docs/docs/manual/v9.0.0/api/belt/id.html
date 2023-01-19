@@ -1,0 +1,52 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/2b269719632b344a478b.css" as="style"/><link rel="stylesheet" href="/_next/static/css/2b269719632b344a478b.css" data-n-g=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/webpack-c49b9de92a7202ac2146.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" as="script"/><link rel="preload" href="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-9e9d9ab67b4ceb7ec93b.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/docs/manual/v9.0.0/api/belt/id-69005ed737ffdb766792.js" as="script"/></head><body><div id="__next"><h1 id="id">Id</h1><div><p>Provide utilities to create identified comparators or hashes for data
+structures used below.</p><p>It creates a unique identifier per module of functions so that different data
+structures with slightly different comparison functions won&#x27;t mix.</p></div><h2 id="hash">hash</h2><pre><code class="language-res" metastring="sig">type hash&lt;&#x27;a, &#x27;id&gt;
+</code></pre><p>Its runtime represenation is a hash function, but signed with a type parameter, so that different hash functions type mismatch.</p><h2 id="eq">eq</h2><pre><code class="language-res" metastring="sig">type eq&lt;&#x27;a, &#x27;id&gt;
+</code></pre><p>Its runtime represenation is an eq function, but signed with a type parameter, so that different hash functions type mismatch.</p><h2 id="cmp">cmp</h2><pre><code class="language-res" metastring="sig">type cmp&lt;&#x27;a, &#x27;id&gt;
+</code></pre><p>Its runtime representation is a cmp function, but signed with a type parameter, so that different hash functions type mismatch.</p><h2 id="comparable">Comparable</h2><pre><code class="language-res" metastring="prelude">module type Comparable = {
+  type identity
+
+  type t
+
+  let cmp: Belt.Id.cmp&lt;t, identity&gt;
+}
+</code></pre><h2 id="comparable-1">comparable</h2><pre><code class="language-res" metastring="sig">type comparable&lt;&#x27;key,&#x27;id&gt; =
+  module(Belt.Id.Comparable with type identity = &#x27;id and type t = &#x27;key)
+</code></pre><p>is a module of functions, here it only includes cmp.</p><p>Unlike normal functions, when created, it comes with a unique identity (guaranteed by the type system).</p><p>It can be created using function <code>Belt_Id.comparableU</code> or <code>Belt_Id.comparable</code>.</p><p>The idea of a unique identity when created is that it makes sure two sets would type mismatch if they use different comparison function</p><h2 id="makecomparableu">MakeComparableU</h2><pre><code class="language-res" metastring="sig">module MakeComparableU: (M: {
+  type t
+  let cmp: (. t, t) =&gt; int
+}) =&gt; Comparable with type t = M.t
+</code></pre><h2 id="makecomparable">MakeComparable</h2><pre><code class="language-res" metastring="sig">module MakeComparable: (M: {
+  type t
+  let cmp: (t, t) =&gt; int
+}) =&gt; Comparable with type t = M.t
+</code></pre><h2 id="comparableu">comparableU</h2><pre><code class="language-res" metastring="sig">let comparableU: (~cmp: (. &#x27;a, &#x27;a) =&gt; int) =&gt;
+  module(Belt.Id.Comparable with type t = &#x27;a)
+</code></pre><h2 id="comparable-2">comparable</h2><pre><code class="language-res" metastring="sig">type comparable&lt;&#x27;key, &#x27;id&gt; =
+  module(Belt.Id.Comparable with type identity = &#x27;id and type t = &#x27;key)
+</code></pre><h2 id="hashable">Hashable</h2><pre><code class="language-res" metastring="prelude">module type Hashable = {
+  type identity
+
+  type t
+
+  let hash: Belt.Id.hash&lt;t, identity&gt;
+
+  let eq: Belt.Id.eq&lt;t, identity&gt;
+}
+</code></pre><h2 id="hashable-1">hashable</h2><pre><code class="language-res" metastring="sig">type hashable&lt;&#x27;key, &#x27;id&gt; =
+  module(Belt.Id.Hashable with type identity = &#x27;id and type t = &#x27;key)
+</code></pre><p>is a module of functions, here it only includes hash, eq.</p><p>Unlike normal functions, when created, it comes with a unique identity (guaranteed by the type system).</p><p>It can be created using function <code>Belt_Id.hashableU</code> or <code>Belt_Id.hashable</code>.</p><p>The idea of a unique identity when created is that it makes sure two hash sets would type mismatch if they use different comparison function.</p><h2 id="makehashableu">MakeHashableU</h2><pre><code class="language-res" metastring="sig">module MakeHashableU: (M: {
+  type t
+  let hash: (. t) =&gt; int
+  let eq: (. t, t) =&gt; bool
+}) =&gt; Hashable with type t = M.t
+</code></pre><h2 id="makehashable">MakeHashable</h2><pre><code class="language-res" metastring="sig">module MakeHashable: (M: {
+  type t
+  let hash: t =&gt; int
+  let eq: (t, t) =&gt; bool
+}) =&gt; Hashable with type t = M.t
+</code></pre><h2 id="hashableu">hashableU</h2><pre><code class="language-res" metastring="sig">let hashableU: (~hash: (. &#x27;a) =&gt; int, ~eq: (. &#x27;a, &#x27;a) =&gt; bool) =&gt;
+  module(Belt.Id.Hashable with type t = &#x27;a)
+</code></pre><h2 id="hashable-2">hashable</h2><pre><code class="language-res" metastring="sig">let hashable: (~hash: &#x27;a =&gt; int, ~eq: (&#x27;a, &#x27;a) =&gt; bool) =&gt;
+  module(Belt.Id.Hashable with type t = &#x27;a)
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/docs/manual/v9.0.0/api/belt/id","query":{},"buildId":"57i003GrurB9OA8mdo-dW","runtimeConfig":{},"nextExport":true,"autoExport":true,"isFallback":false}</script><script nomodule="" src="/_next/static/chunks/polyfills-9def993fe817cc057038.js"></script><script src="/_next/static/chunks/webpack-c49b9de92a7202ac2146.js" async=""></script><script src="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" async=""></script><script src="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" async=""></script><script src="/_next/static/chunks/pages/_app-9e9d9ab67b4ceb7ec93b.js" async=""></script><script src="/_next/static/chunks/pages/docs/manual/v9.0.0/api/belt/id-69005ed737ffdb766792.js" async=""></script><script src="/_next/static/57i003GrurB9OA8mdo-dW/_buildManifest.js" async=""></script><script src="/_next/static/57i003GrurB9OA8mdo-dW/_ssgManifest.js" async=""></script><script async="" defer="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script><noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript></body></html>

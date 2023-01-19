@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+  <rss version="2.0">
+    <channel>
+      <title>ReScript Blog</title>
+      <link>https://rescript-lang.org</link>
+      <description></description>
+      <language>en</language>
+      <lastBuildDate>Thu, 25 Aug 2022 06:00:00 GMT</lastBuildDate>
+
+        <item>
+          <title> <![CDATA[ReScript 10.0]]></title>
+          <link> https://rescript-lang.org/blog/release-10-0-0 </link>
+          <guid> https://rescript-lang.org/blog/release-10-0-0 </guid>
+          <description>
+            <![CDATA[The first community powered release.
+]]>
+          </description>
+          <pubDate>Thu, 25 Aug 2022 06:00:00 GMT</pubDate>
+        </item>
+
+        <item>
+          <title> <![CDATA[Roadmap 2021 & New Landing Page]]></title>
+          <link> https://rescript-lang.org/blog/roadmap-2021-and-new-landing-page </link>
+          <guid> https://rescript-lang.org/blog/roadmap-2021-and-new-landing-page </guid>
+          <description>
+            <![CDATA[Announcing our roadmap for 2021 / 2022, release cycle plans and new landing page.
+]]>
+          </description>
+          <pubDate>Fri, 25 Jun 2021 06:00:00 GMT</pubDate>
+        </item>
+
+        <item>
+          <title> <![CDATA[ReScript 9.1]]></title>
+          <link> https://rescript-lang.org/blog/release-9-1 </link>
+          <guid> https://rescript-lang.org/blog/release-9-1 </guid>
+          <description>
+            <![CDATA[Featuring a new npm package, a CLI revamp, polymorphic variant interop and object cleanup.
+]]>
+          </description>
+          <pubDate>Fri, 07 May 2021 06:00:00 GMT</pubDate>
+        </item>
+
+        <item>
+          <title> <![CDATA[The ReScript Association]]></title>
+          <link> https://rescript-lang.org/blog/rescript-association-rebranding </link>
+          <guid> https://rescript-lang.org/blog/rescript-association-rebranding </guid>
+          <description>
+            <![CDATA[After the rebranding of ReScript, its Reason Association has now followed through to become the ReScript Association.
+]]>
+          </description>
+          <pubDate>Wed, 03 Mar 2021 06:00:00 GMT</pubDate>
+        </item>
+
+        <item>
+          <title> <![CDATA[ReScript 9.0]]></title>
+          <link> https://rescript-lang.org/blog/release-9-0 </link>
+          <guid> https://rescript-lang.org/blog/release-9-0 </guid>
+          <description>
+            <![CDATA[Featuring a new external stdlib configuration, some syntax improvements and a small breaking change for nested records.
+]]>
+          </description>
+          <pubDate>Tue, 09 Feb 2021 06:00:00 GMT</pubDate>
+        </item>
+
+        <item>
+          <title> <![CDATA[ReScript 8.4]]></title>
+          <link> https://rescript-lang.org/blog/release-8-4 </link>
+          <guid> https://rescript-lang.org/blog/release-8-4 </guid>
+          <description>
+            <![CDATA[bsb improvements
+]]>
+          </description>
+          <pubDate>Mon, 07 Dec 2020 06:00:00 GMT</pubDate>
+        </item>
+
+        <item>
+          <title> <![CDATA[Editor Plugin for VSCode and Vim Officially Released!]]></title>
+          <link> https://rescript-lang.org/blog/editor-support-release-1-0 </link>
+          <guid> https://rescript-lang.org/blog/editor-support-release-1-0 </guid>
+          <description>
+            <![CDATA[Type hints, jump to definition, error diagnostics, and more.
+]]>
+          </description>
+          <pubDate>Thu, 26 Nov 2020 06:00:00 GMT</pubDate>
+        </item>
+
+        <item>
+          <title> <![CDATA[Editor Support, Custom Operators and More]]></title>
+          <link> https://rescript-lang.org/blog/editor-support-custom-operators-and-more </link>
+          <guid> https://rescript-lang.org/blog/editor-support-custom-operators-and-more </guid>
+          <description>
+            <![CDATA[Update on what we're doing around the end of 2020 and early next year.
+]]>
+          </description>
+          <pubDate>Tue, 17 Nov 2020 06:00:00 GMT</pubDate>
+        </item>
+
+        <item>
+          <title> <![CDATA[What's new in ReScript 8.3 (Part 1)]]></title>
+          <link> https://rescript-lang.org/blog/release-8-3 </link>
+          <guid> https://rescript-lang.org/blog/release-8-3 </guid>
+          
+          <pubDate>Fri, 25 Sep 2020 06:00:00 GMT</pubDate>
+        </item>
+
+        <item>
+          <title> <![CDATA[What's new in ReScript 8.3 (Part 2)]]></title>
+          <link> https://rescript-lang.org/blog/release-8-3-2 </link>
+          <guid> https://rescript-lang.org/blog/release-8-3-2 </guid>
+          
+          <pubDate>Sat, 26 Sep 2020 06:00:00 GMT</pubDate>
+        </item>
+    </channel>
+  </rss>

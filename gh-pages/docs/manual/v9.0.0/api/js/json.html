@@ -1,0 +1,100 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/2b269719632b344a478b.css" as="style"/><link rel="stylesheet" href="/_next/static/css/2b269719632b344a478b.css" data-n-g=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/webpack-06b7252a4ff689e08871.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" as="script"/><link rel="preload" href="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-c403ba37fcc2de691b6d.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/docs/manual/v9.0.0/api/js/json-3ad8f7fc818ce946ec70.js" as="script"/></head><body><div id="__next"><h1 id="json">Json</h1><div><p>Provide utilities for JSON.</p></div><h2 id="t">t</h2><pre><code class="language-res" metastring="prelude">type t
+</code></pre><p>The JSON data structure.</p><h2 id="kind">kind</h2><pre><code class="language-res" metastring="prelude">type rec kind&lt;&#x27;a&gt; =
+  | String: kind&lt;Js_string.t&gt;
+  | Number: kind&lt;float&gt;
+  | Object: kind&lt;Js_dict.t&lt;t&gt;&gt;
+  | Array: kind&lt;array&lt;t&gt;&gt;
+  | Boolean: kind&lt;bool&gt;
+  | Null: kind&lt;Js_types.null_val&gt;
+</code></pre><p>Underlying type of a JSON value.</p><h2 id="tagged_t">tagged_t</h2><pre><code class="language-res" metastring="prelude">type tagged_t =
+  | JSONFalse
+  | JSONTrue
+  | JSONNull
+  | JSONString(string)
+  | JSONNumber(float)
+  | JSONObject(Js_dict.t&lt;t&gt;)
+  | JSONArray(array&lt;t&gt;)
+</code></pre><h2 id="classify">classify</h2><pre><code class="language-res" metastring="sig">let classify: t =&gt; tagged_t
+</code></pre><h2 id="test">test</h2><pre><code class="language-res" metastring="sig">let test: (&#x27;a, kind&lt;&#x27;b&gt;) =&gt; bool
+</code></pre><p><code>test(v, kind)</code> returns <code>true</code> if <code>v</code> is of <code>kind</code>.</p><h2 id="decodestring">decodeString</h2><pre><code class="language-res" metastring="sig">let decodeString: t =&gt; option&lt;Js_string.t&gt;
+</code></pre><p><code>decodeString(json)</code> returns <code>Some(s)</code> if <code>json</code> is a <code>string</code>, <code>None</code> otherwise.</p><h2 id="decodenumber">decodeNumber</h2><pre><code class="language-res" metastring="sig">let decodeNumber: t =&gt; option&lt;float&gt;
+</code></pre><p><code>decodeNumber(json)</code> returns <code>Some(n)</code> if <code>json</code> is a <code>number</code>, <code>None</code> otherwise.</p><h2 id="decodeobject">decodeObject</h2><pre><code class="language-res" metastring="sig">let decodeObject: t =&gt; option&lt;Js_dict.t&lt;t&gt;&gt;
+</code></pre><p><code>decodeObject(json)</code> returns <code>Some(o)</code> if <code>json</code> is an <code>object</code>, <code>None</code> otherwise.</p><h2 id="decodearray">decodeArray</h2><pre><code class="language-res" metastring="sig">let decodeArray: t =&gt; option&lt;array&lt;t&gt;&gt;
+</code></pre><p><code>decodeArray(json)</code> returns <code>Some(a)</code> if <code>json</code> is an <code>array</code>, <code>None</code> otherwise.</p><h2 id="decodeboolean">decodeBoolean</h2><pre><code class="language-res" metastring="sig">let decodeBoolean: t =&gt; option&lt;bool&gt;
+</code></pre><p><code>decodeBoolean(json)</code> returns <code>Some(b)</code> if <code>json</code> is a <code>boolean</code>, <code>None</code> otherwise.</p><h2 id="decodenull">decodeNull</h2><pre><code class="language-res" metastring="sig">let decodeNull: t =&gt; option&lt;Js_null.t&lt;&#x27;a&gt;&gt;
+</code></pre><p><code>decodeNull(json)</code> returns <code>Some(null)</code> if <code>json</code> is a <code>null</code>, <code>None</code> otherwise.</p><h2 id="null">null</h2><pre><code class="language-res" metastring="sig">let null: t
+</code></pre><p><code>null</code> is the singleton null JSON value.</p><h2 id="string">string</h2><pre><code class="language-res" metastring="sig">let string: string =&gt; t
+</code></pre><p><code>string(s)</code> makes a JSON string of the <code>string</code> <code>s</code>.</p><h2 id="number">number</h2><pre><code class="language-res" metastring="sig">let number: float =&gt; t
+</code></pre><p><code>number(n)</code> makes a JSON number of the <code>float</code> <code>n</code>.</p><h2 id="boolean">boolean</h2><pre><code class="language-res" metastring="sig">let boolean: bool =&gt; t
+</code></pre><p><code>boolean(b)</code> makes a JSON boolean of the <code>bool</code> <code>b</code>.</p><h2 id="object_">object_</h2><pre><code class="language-res" metastring="sig">let object_: Js_dict.t&lt;t&gt; =&gt; t
+</code></pre><p><code>object_(dict)</code> makes a JSON object of the <code>Js.Dict.t</code> <code>dict</code>.</p><h2 id="array">array</h2><pre><code class="language-res" metastring="sig">let array: array&lt;t&gt; =&gt; t
+</code></pre><p><code>array_(a)</code> makes a JSON array of the <code>Js.Json.t</code> array <code>a</code>.</p><h2 id="stringarray">stringArray</h2><pre><code class="language-res" metastring="sig">let stringArray: array&lt;string&gt; =&gt; t
+</code></pre><p><code>stringArray(a)</code> makes a JSON array of the <code>string</code> array <code>a</code>.</p><h2 id="numberarray">numberArray</h2><pre><code class="language-res" metastring="sig">let numberArray: array&lt;float&gt; =&gt; t
+</code></pre><p><code>numberArray(a)</code> makes a JSON array of the <code>float</code> array <code>a</code>.</p><h2 id="booleanarray">booleanArray</h2><pre><code class="language-res" metastring="sig">let booleanArray: array&lt;bool&gt; =&gt; t
+</code></pre><p><code>booleanArray(a)</code> makes a JSON array of the <code>bool</code> array <code>a</code>.</p><h2 id="objectarray">objectArray</h2><pre><code class="language-res" metastring="sig">let objectArray: array&lt;Js_dict.t&lt;t&gt;&gt; =&gt; t
+</code></pre><p><code>objectArray(a) makes a JSON array of the </code>JsDict.t<code>array</code>a`.</p><h2 id="parseexn">parseExn</h2><pre><code class="language-res" metastring="sig">let parseExn: string =&gt; t
+</code></pre><p><code>parseExn(s)</code> parses the <code>string</code> <code>s</code> into a JSON data structure.
+Returns a JSON data structure.
+Raises <code>SyntaxError</code> if the given string is not a valid JSON. Note: <code>SyntaxError</code> is a JavaScript exception.</p><pre><code class="language-res" metastring="example">/* parse a simple JSON string */
+
+let json = try Js.Json.parseExn(` &quot;hello&quot; `) catch {
+| _ =&gt; failwith(&quot;Error parsing JSON string&quot;)
+}
+
+switch Js.Json.classify(json) {
+| Js.Json.JSONString(value) =&gt; Js.log(value)
+| _ =&gt; failwith(&quot;Expected a string&quot;)
+}
+</code></pre><pre><code class="language-res" metastring="example">/* parse a complex JSON string */
+
+let getIds = s =&gt; {
+  let json = try Js.Json.parseExn(s) catch {
+  | _ =&gt; failwith(&quot;Error parsing JSON string&quot;)
+  }
+
+  switch Js.Json.classify(json) {
+  | Js.Json.JSONObject(value) =&gt;
+    /* In this branch, compiler infer value : Js.Json.t Js.Dict.t */
+    switch Js.Dict.get(value, &quot;ids&quot;) {
+    | Some(ids) =&gt;
+      switch Js.Json.classify(ids) {
+      | Js.Json.JSONArray(ids) =&gt; /* In this branch compiler infer ids : Js.Json.t array */
+        ids
+      | _ =&gt; failwith(&quot;Expected an array&quot;)
+      }
+    | None =&gt; failwith(&quot;Expected an `ids` property&quot;)
+    }
+  | _ =&gt; failwith(&quot;Expected an object&quot;)
+  }
+}
+
+/* prints `1, 2, 3` */
+Js.log(getIds(` { &quot;ids&quot; : [1, 2, 3 ] } `))
+</code></pre><h2 id="stringify">stringify</h2><pre><code class="language-res" metastring="sig">let stringify: t =&gt; string
+</code></pre><p><code>stringify(json)</code> formats the JSON data structure as a <code>string</code>.
+Returns the string representation of a given JSON data structure.</p><pre><code class="language-res" metastring="example">/* Creates and stringifies a simple JS object */
+
+{
+  let dict = Js.Dict.empty()
+  Js.Dict.set(dict, &quot;name&quot;, Js.Json.string(&quot;John Doe&quot;))
+  Js.Dict.set(dict, &quot;age&quot;, Js.Json.number(30.0))
+  Js.Dict.set(dict, &quot;likes&quot;, Js.Json.stringArray([&quot;bucklescript&quot;, &quot;ocaml&quot;, &quot;js&quot;]))
+
+  Js.log(Js.Json.stringify(Js.Json.object_(dict)))
+}
+</code></pre><h2 id="stringifywithspace">stringifyWithSpace</h2><pre><code class="language-res" metastring="sig">let stringifyWithSpace: (t, int) =&gt; string
+</code></pre><p><code>stringify(json)</code> formats the JSON data structure as a <code>string</code>.
+Returns the string representation of a given JSON data structure with spacing.</p><pre><code class="language-res" metastring="example">/* Creates and stringifies a simple JS object with spacing */
+
+{
+  let dict = Js.Dict.empty()
+  Js.Dict.set(dict, &quot;name&quot;, Js.Json.string(&quot;John Doe&quot;))
+  Js.Dict.set(dict, &quot;age&quot;, Js.Json.number(30.0))
+  Js.Dict.set(dict, &quot;likes&quot;, Js.Json.stringArray([&quot;bucklescript&quot;, &quot;ocaml&quot;, &quot;js&quot;]))
+
+  Js.log(Js.Json.stringifyWithSpace(Js.Json.object_(dict), 2))
+}
+</code></pre><h2 id="stringifyany">stringifyAny</h2><pre><code class="language-res" metastring="sig">let stringifyAny: &#x27;a =&gt; option&lt;string&gt;
+</code></pre><p><code>stringifyAny(value)</code> formats any value into a JSON string.</p><pre><code class="language-res" metastring="example">/* prints `[&quot;hello&quot;, &quot;world&quot;]` */
+Js.log(Js.Json.stringifyAny([&quot;hello&quot;, &quot;world&quot;]))
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/docs/manual/v9.0.0/api/js/json","query":{},"buildId":"602i-qp0kZ9P4jfYYZO6L","runtimeConfig":{},"nextExport":true,"autoExport":true,"isFallback":false}</script><script nomodule="" src="/_next/static/chunks/polyfills-9def993fe817cc057038.js"></script><script src="/_next/static/chunks/webpack-06b7252a4ff689e08871.js" async=""></script><script src="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" async=""></script><script src="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" async=""></script><script src="/_next/static/chunks/pages/_app-c403ba37fcc2de691b6d.js" async=""></script><script src="/_next/static/chunks/pages/docs/manual/v9.0.0/api/js/json-3ad8f7fc818ce946ec70.js" async=""></script><script src="/_next/static/602i-qp0kZ9P4jfYYZO6L/_buildManifest.js" async=""></script><script src="/_next/static/602i-qp0kZ9P4jfYYZO6L/_ssgManifest.js" async=""></script><script async="" defer="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script><noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript></body></html>

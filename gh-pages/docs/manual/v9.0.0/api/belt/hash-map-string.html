@@ -1,0 +1,106 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/2b269719632b344a478b.css" as="style"/><link rel="stylesheet" href="/_next/static/css/2b269719632b344a478b.css" data-n-g=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/webpack-06b7252a4ff689e08871.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" as="script"/><link rel="preload" href="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-c403ba37fcc2de691b6d.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/docs/manual/v9.0.0/api/belt/hash-map-string-c17c948916f5c7d8042b.js" as="script"/></head><body><div id="__next"><h1 id="hashmapstring">HashMapString</h1><div><p>Specalized when key type is <code>string</code>, more efficient than the generic type</p></div><h2 id="key">key</h2><pre><code class="language-res" metastring="prelude">type key = string
+</code></pre><p>Type of the <code>Belt.HashMap.String</code> key.</p><h2 id="t">t</h2><pre><code class="language-res" metastring="prelude">type t&lt;&#x27;b&gt;
+</code></pre><p>Type of the <code>Belt.HashMap.String</code>.</p><h2 id="make">make</h2><pre><code class="language-res" metastring="sig">let make: (~hintSize: int) =&gt; t&lt;&#x27;b&gt;
+</code></pre><p><code>make(~hintSize=10)</code> creates a new hash map by taking the <code>hintSize</code>.</p><pre><code class="language-res" metastring="example">let hMap = Belt.HashMap.String.make(~hintSize=10)
+
+Belt.HashMap.String.set(hMap, &quot;key1&quot;, &quot;a&quot;)
+</code></pre><h2 id="clear">clear</h2><pre><code class="language-res" metastring="sig">let clear: t&lt;&#x27;b&gt; =&gt; unit
+</code></pre><p>Clears a hash table.</p><pre><code class="language-res" metastring="example">let hMap = Belt.HashMap.String.fromArray([(&quot;1&quot;, &quot;1&quot;)])
+Belt.HashMap.String.clear(hMap)
+Belt.HashMap.String.isEmpty(hMap) == true
+</code></pre><h2 id="isempty">isEmpty</h2><pre><code class="language-res" metastring="sig">let isEmpty: t&lt;&#x27;a&gt; =&gt; bool
+</code></pre><p><code>isEmpty(m)</code> checks whether a hash map is empty.</p><pre><code class="language-res" metastring="example">let hMap = Belt.HashMap.String.fromArray([(&quot;1&quot;, &quot;1&quot;)])
+Belt.HashMap.String.isEmpty(hMap) == false
+</code></pre><h2 id="set">set</h2><pre><code class="language-res" metastring="sig">let set: (t&lt;&#x27;a&gt;, key, &#x27;a) =&gt; unit
+</code></pre><p><code>set(tbl, k, v)</code> if <code>k</code> does not exist, add the binding <code>k,v</code>, otherwise, update the old value with the new <code>v</code>.</p><pre><code class="language-res" metastring="example">let hMap = Belt.HashMap.String.fromArray([(&quot;2&quot;, &quot;2&quot;)])
+
+Belt.HashMap.String.set(hMap, &quot;1&quot;, &quot;1&quot;)
+
+Belt.HashMap.String.valuesToArray(hMap) == [&quot;1&quot;, &quot;2&quot;]
+</code></pre><h2 id="copy">copy</h2><pre><code class="language-res" metastring="sig">let copy: t&lt;&#x27;a&gt; =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Creates copy of a hash map.</p><pre><code class="language-res" metastring="example">let hMap1 = Belt.HashMap.String.fromArray([(&quot;1&quot;, &quot;1&quot;), (&quot;2&quot;, &quot;2&quot;)])
+let hMap2 = Belt.HashMap.String.copy(hMap1)
+
+Belt.HashMap.String.set(hMap2, &quot;2&quot;, &quot;3&quot;)
+
+Belt.HashMap.String.get(hMap1, &quot;2&quot;) != Belt.HashMap.String.get(hMap2, &quot;2&quot;)
+</code></pre><h2 id="get">get</h2><pre><code class="language-res" metastring="sig">let get: (t&lt;&#x27;a&gt;, key) =&gt; option&lt;&#x27;a&gt;
+</code></pre><p>Returns value bound under specific key. If values not exist returns <code>None</code>.</p><pre><code class="language-res" metastring="example">let hMap = Belt.HashMap.String.make(~hintSize=10)
+Belt.HashMap.String.set(hMap, &quot;1&quot;, &quot;value1&quot;)
+
+Belt.HashMap.String.get(hMap, &quot;1&quot;) == Some(&quot;value1&quot;)
+Belt.HashMap.String.get(hMap, &quot;2&quot;) == None
+</code></pre><h2 id="has">has</h2><pre><code class="language-res" metastring="sig">let has: (t&lt;&#x27;b&gt;, key) =&gt; bool
+</code></pre><p>Checks if <code>x</code> is bound in <code>tbl</code>.</p><pre><code class="language-res" metastring="example">let hMap = Belt.HashMap.String.make(~hintSize=10)
+Belt.HashMap.String.set(hMap, &quot;1&quot;, &quot;value1&quot;)
+
+Belt.HashMap.String.has(hMap, &quot;1&quot;) == true
+Belt.HashMap.String.has(hMap, &quot;2&quot;) == false
+</code></pre><h2 id="remove">remove</h2><pre><code class="language-res" metastring="sig">let remove: (t&lt;&#x27;a&gt;, key) =&gt; unit
+</code></pre><p>If bound exists, removes it from the hash map.</p><pre><code class="language-res" metastring="example">let hMap = Belt.HashMap.String.make(~hintSize=10)
+Belt.HashMap.String.set(hMap, &quot;1&quot;, &quot;value1&quot;)
+Belt.HashMap.String.remove(hMap, &quot;1&quot;)
+Belt.HashMap.String.has(hMap, &quot;1&quot;) == false
+</code></pre><h2 id="foreachu">forEachU</h2><pre><code class="language-res" metastring="sig">let forEachU: (t&lt;&#x27;b&gt;, (. key, &#x27;b) =&gt; unit) =&gt; unit
+</code></pre><p>Same as <a href="##forEach">forEach</a> but takes uncurried functon.</p><h2 id="foreach">forEach</h2><pre><code class="language-res" metastring="sig">let forEach: (t&lt;&#x27;b&gt;, (key, &#x27;b) =&gt; unit) =&gt; unit
+</code></pre><p><code>forEach(tbl, f)</code> applies <code>f</code> to all bindings in table <code>tbl</code>. <code>f</code> receives the key as first argument, and the associated value as second argument. Each binding is presented exactly once to <code>f</code>.</p><pre><code class="language-res" metastring="example">let hMap = Belt.HashMap.String.make(~hintSize=10)
+Belt.HashMap.String.set(hMap, &quot;1&quot;, &quot;value1&quot;)
+Belt.HashMap.String.forEach(hMap, (key, value) =&gt; Js.log2(key, value))
+// prints (&quot;1&quot;, &quot;value1&quot;)
+</code></pre><h2 id="reduceu">reduceU</h2><pre><code class="language-res" metastring="sig">let reduceU: (t&lt;&#x27;b&gt;, &#x27;c, (. &#x27;c, key, &#x27;b) =&gt; &#x27;c) =&gt; &#x27;c
+</code></pre><p>Same as <a href="##reduce">reduce</a> but takes uncurried functon.</p><h2 id="reduce">reduce</h2><pre><code class="language-res" metastring="sig">let reduce: (t&lt;&#x27;b&gt;, &#x27;c, (&#x27;c, key, &#x27;b) =&gt; &#x27;c) =&gt; &#x27;c
+</code></pre><p><code>reduce(tbl, init, f)</code> computes <code>(f(kN, dN) ... (f(k1, d1, init))...)</code>, where <code>k1 ... kN</code> are the keys of all bindings in <code>tbl</code>, and <code>d1 ... dN</code> are the associated values. Each binding is presented exactly once to <code>f</code>.</p><p>The order in which the bindings are passed to <code>f</code> is unspecified. However, if the table contains several bindings for the same key, they are passed to <code>f</code> in reverse order of introduction, that is, the most recent binding is passed first.</p><pre><code class="language-res" metastring="example">let hMap = Belt.HashMap.String.make(~hintSize=10)
+Belt.HashMap.String.set(hMap, &quot;1&quot;, &quot;value1&quot;)
+Belt.HashMap.String.set(hMap, &quot;2&quot;, &quot;value2&quot;)
+
+Belt.HashMap.String.reduce(hMap, &quot;&quot;, (acc, key, value) =&gt;
+  acc ++ (&quot;, &quot; ++ value)
+) == &quot;value1, value2&quot;
+</code></pre><h2 id="keepmapinplaceu">keepMapInPlaceU</h2><pre><code class="language-res" metastring="sig">let keepMapInPlaceU: (t&lt;&#x27;a&gt;, (. key, &#x27;a) =&gt; option&lt;&#x27;a&gt;) =&gt; unit
+</code></pre><p>Same as <a href="##keepMapInPlace">keepMapInPlace</a> but takes uncurried functon.</p><h2 id="keepmapinplace">keepMapInPlace</h2><pre><code class="language-res" metastring="sig">let keepMapInPlace: (t&lt;&#x27;a&gt;, (key, &#x27;a) =&gt; option&lt;&#x27;a&gt;) =&gt; unit
+</code></pre><p>Filters out values for which function <code>f</code> returned <code>None</code>.</p><pre><code class="language-res" metastring="example">let hMap = Belt.HashMap.String.make(~hintSize=10)
+Belt.HashMap.String.set(hMap, &quot;1&quot;, &quot;value1&quot;)
+Belt.HashMap.String.set(hMap, &quot;2&quot;, &quot;value2&quot;)
+
+Belt.HashMap.String.keepMapInPlace(hMap, (key, value) =&gt; key == &quot;1&quot; ? None : Some(value))
+</code></pre><h2 id="size">size</h2><pre><code class="language-res" metastring="sig">let size: t&lt;&#x27;a&gt; =&gt; int
+</code></pre><p><code>size(tbl)</code> returns the number of bindings in <code>tbl</code>. It takes constant time.</p><pre><code class="language-res" metastring="example">let hMap = Belt.HashMap.String.make(~hintSize=10)
+Belt.HashMap.String.set(hMap, &quot;1&quot;, &quot;value1&quot;)
+Belt.HashMap.String.set(hMap, &quot;2&quot;, &quot;value2&quot;)
+
+Belt.HashMap.String.size(hMap) == 2
+</code></pre><h2 id="toarray">toArray</h2><pre><code class="language-res" metastring="sig">let toArray: t&lt;&#x27;a&gt; =&gt; array&lt;(key, &#x27;a)&gt;
+</code></pre><p>Returns array of key value pairs.</p><pre><code class="language-res" metastring="example">let hMap = Belt.HashMap.String.make(~hintSize=10)
+Belt.HashMap.String.set(hMap, &quot;1&quot;, &quot;value1&quot;)
+Belt.HashMap.String.set(hMap, &quot;2&quot;, &quot;value2&quot;)
+
+Belt.HashMap.String.toArray(hMap) == [(&quot;1&quot;, &quot;value1&quot;), (&quot;2&quot;, &quot;value2&quot;)]
+</code></pre><h2 id="keystoarray">keysToArray</h2><pre><code class="language-res" metastring="sig">let keysToArray: t&lt;&#x27;a&gt; =&gt; array&lt;key&gt;
+</code></pre><p>Returns array of keys.</p><pre><code class="language-res" metastring="example">let hMap = Belt.HashMap.String.make(~hintSize=10)
+Belt.HashMap.String.set(hMap, &quot;1&quot;, &quot;value1&quot;)
+Belt.HashMap.String.set(hMap, &quot;2&quot;, &quot;value2&quot;)
+
+Belt.HashMap.String.keysToArray(hMap) == [&quot;1&quot;, &quot;2&quot;]
+</code></pre><h2 id="valuestoarray">valuesToArray</h2><pre><code class="language-res" metastring="sig">let valuesToArray: t&lt;&#x27;a&gt; =&gt; array&lt;&#x27;a&gt;
+</code></pre><p>Returns array of values.</p><pre><code class="language-res" metastring="example">let hMap = Belt.HashMap.String.make(~hintSize=10)
+Belt.HashMap.String.set(hMap, &quot;1&quot;, &quot;value1&quot;)
+Belt.HashMap.String.set(hMap, &quot;2&quot;, &quot;value2&quot;)
+
+Belt.HashMap.String.valuesToArray(hMap) == [&quot;value1&quot;, &quot;value2&quot;]
+</code></pre><h2 id="fromarray">fromArray</h2><pre><code class="language-res" metastring="sig">let fromArray: array&lt;(key, &#x27;a)&gt; =&gt; t&lt;&#x27;a&gt;
+</code></pre><p>Creates new hash map from array of pairs.</p><p>Returns array of values.</p><pre><code class="language-res" metastring="example">let hMap = Belt.HashMap.String.fromArray([(&quot;1&quot;, &quot;value1&quot;), (&quot;2&quot;, &quot;value2&quot;)])
+Belt.HashMap.String.toArray(hMap) == [(&quot;1&quot;, &quot;value1&quot;), (&quot;2&quot;, &quot;value2&quot;)]
+</code></pre><h2 id="mergemany">mergeMany</h2><pre><code class="language-res" metastring="sig">let mergeMany: (t&lt;&#x27;a&gt;, array&lt;(key, &#x27;a)&gt;) =&gt; unit
+</code></pre><p>Merges many key value pairs into hash map.</p><pre><code class="language-res" metastring="example">let hMap = Belt.HashMap.String.make(~hintSize=10)
+Belt.HashMap.String.mergeMany(hMap, [(&quot;1&quot;, &quot;value1&quot;), (&quot;2&quot;, &quot;value2&quot;)])
+</code></pre><h2 id="getbuckethistogram">getBucketHistogram</h2><pre><code class="language-res" metastring="sig">let getBucketHistogram: t&lt;&#x27;a&gt; =&gt; array&lt;int&gt;
+</code></pre><pre><code class="language-res" metastring="example">let hMap = Belt.HashMap.String.make(~hintSize=10)
+Belt.HashMap.String.set(hMap, &quot;1&quot;, &quot;1&quot;)
+
+Belt.HashMap.String.getBucketHistogram(hMap)
+</code></pre><h2 id="logstats">logStats</h2><pre><code class="language-res" metastring="sig">let logStats: t&lt;&#x27;a&gt; =&gt; unit
+</code></pre><pre><code class="language-res" metastring="example">let hMap = Belt.HashMap.String.make(~hintSize=10)
+Belt.HashMap.String.set(hMap, &quot;1&quot;, &quot;1&quot;)
+
+Belt.HashMap.String.logStats(hMap)
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/docs/manual/v9.0.0/api/belt/hash-map-string","query":{},"buildId":"602i-qp0kZ9P4jfYYZO6L","runtimeConfig":{},"nextExport":true,"autoExport":true,"isFallback":false}</script><script nomodule="" src="/_next/static/chunks/polyfills-9def993fe817cc057038.js"></script><script src="/_next/static/chunks/webpack-06b7252a4ff689e08871.js" async=""></script><script src="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" async=""></script><script src="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" async=""></script><script src="/_next/static/chunks/pages/_app-c403ba37fcc2de691b6d.js" async=""></script><script src="/_next/static/chunks/pages/docs/manual/v9.0.0/api/belt/hash-map-string-c17c948916f5c7d8042b.js" async=""></script><script src="/_next/static/602i-qp0kZ9P4jfYYZO6L/_buildManifest.js" async=""></script><script src="/_next/static/602i-qp0kZ9P4jfYYZO6L/_ssgManifest.js" async=""></script><script async="" defer="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script><noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript></body></html>

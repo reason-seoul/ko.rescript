@@ -1,0 +1,69 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/2b269719632b344a478b.css" as="style"/><link rel="stylesheet" href="/_next/static/css/2b269719632b344a478b.css" data-n-g=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/webpack-06b7252a4ff689e08871.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" as="script"/><link rel="preload" href="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-c403ba37fcc2de691b6d.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/docs/manual/v9.0.0/api/js/re-1a2197588bf53915a5af.js" as="script"/></head><body><div id="__next"><h1 id="re">Re</h1><div><p>Provide bindings to JS regular expressions (RegExp).</p></div><h2 id="t">t</h2><pre><code class="language-res" metastring="prelude">type t
+</code></pre><p>The RegExp object.</p><h2 id="result">result</h2><pre><code class="language-res" metastring="prelude">type result
+</code></pre><p>The result of a executing a RegExp on a string.</p><h2 id="captures">captures</h2><pre><code class="language-res" metastring="sig">let captures: result =&gt; array&lt;Js.nullable&lt;string&gt;&gt;
+</code></pre><p>An <code>array</code> of the match and captures, the first is the full match and the remaining are the substring captures.</p><h2 id="matches">matches</h2><pre><code class="language-res" metastring="sig">let matches: result =&gt; array&lt;string&gt;
+</code></pre><p>Deprecated. Use captures instead.
+An <code>array</code> of the matches, the first is the full match and the remaining are the substring matches.</p><h2 id="index">index</h2><pre><code class="language-res" metastring="sig">let index: result =&gt; int
+</code></pre><p>0-based index of the match in the input string.</p><h2 id="input">input</h2><pre><code class="language-res" metastring="sig">let input: result =&gt; string
+</code></pre><p>The original input string.</p><h2 id="fromstring">fromString</h2><pre><code class="language-res" metastring="sig">let fromString: string =&gt; t
+</code></pre><p>Constructs a RegExp object (Js.Re.t) from a <code>string</code>.
+Regex literals <code>%re(&quot;/.../&quot;)</code> should generally be preferred, but <code>fromString</code> is useful when you need to dynamically construct a regex using strings, exactly like when you do so in JavaScript.</p><pre><code class="language-res" metastring="example">let firstReScriptFileExtension = (filename, content) =&gt; {
+  let result = Js.Re.fromString(filename ++ &quot;\.(res|resi)&quot;)-&gt;Js.Re.exec_(content)
+  switch result {
+  | Some(r) =&gt; Js.Nullable.toOption(Js.Re.captures(r)[1])
+  | None =&gt; None
+  }
+}
+
+// outputs &quot;res&quot;
+firstReScriptFileExtension(&quot;School&quot;, &quot;School.res School.resi Main.js School.bs.js&quot;)
+</code></pre><h2 id="fromstringwithflags">fromStringWithFlags</h2><pre><code class="language-res" metastring="sig">let fromStringWithFlags: (string, ~flags: string) =&gt; t
+</code></pre><p>Constructs a RegExp object (<code>Js.Re.t</code>) from a string with the given flags.
+See <code>Js.Re.fromString</code>.</p><p>Valid flags:</p><p>g global
+i ignore case
+m multiline
+u unicode (es2015)
+y sticky (es2015)</p><h2 id="flags">flags</h2><pre><code class="language-res" metastring="sig">let flags: t =&gt; string
+</code></pre><p>Returns the enabled flags as a string.</p><h2 id="global">global</h2><pre><code class="language-res" metastring="sig">let global: t =&gt; bool
+</code></pre><p>Returns a <code>bool</code> indicating whether the global flag is set.</p><h2 id="ignorecase">ignoreCase</h2><pre><code class="language-res" metastring="sig">let ignoreCase: t =&gt; bool
+</code></pre><p>Returns a <code>bool</code> indicating whether the ignoreCase flag is set.</p><h2 id="lastindex">lastIndex</h2><pre><code class="language-res" metastring="sig">let lastIndex: t =&gt; int
+</code></pre><p>Returns the index where the next match will start its search.
+This property will be modified when the RegExp object is used, if the global (&quot;g&quot;) flag is set.</p><pre><code class="language-res" metastring="example">let re = %re(&quot;/ab*/g&quot;)
+let str = &quot;abbcdefabh&quot;
+
+let break = ref(false)
+while !break.contents {
+  switch Js.Re.exec_(re, str) {
+  | Some(result) =&gt; Js.Nullable.iter(Js.Re.captures(result)[0], (. match_) =&gt; {
+      let next = Belt.Int.toString(Js.Re.lastIndex(re))
+      Js.log(&quot;Found &quot; ++ (match_ ++ (&quot;. Next match starts at &quot; ++ next)))
+    })
+  | None =&gt; break := true
+  }
+}
+</code></pre><h2 id="setlastindex">setLastIndex</h2><pre><code class="language-res" metastring="sig">let setLastIndex: (t, int) =&gt; unit
+</code></pre><p>Sets the index at which the next match will start its search from.</p><h2 id="multiline">multiline</h2><pre><code class="language-res" metastring="sig">let multiline: t =&gt; bool
+</code></pre><p>Returns a <code>bool</code> indicating whether the multiline flag is set.</p><h2 id="source">source</h2><pre><code class="language-res" metastring="sig">let source: t =&gt; string
+</code></pre><p>Returns the pattern as a <code>string</code>.</p><h2 id="sticky">sticky</h2><pre><code class="language-res" metastring="sig">let sticky: t =&gt; bool
+</code></pre><p>Returns a <code>bool</code> indicating whether the sticky flag is set.</p><h2 id="unicode">unicode</h2><pre><code class="language-res" metastring="sig">let unicode: t =&gt; bool
+</code></pre><p>Returns a <code>bool</code> indicating whether the unicode flag is set.</p><h2 id="exec_">exec<!-- -->_</h2><pre><code class="language-res" metastring="sig">let exec_: (t, string) =&gt; option&lt;result&gt;
+</code></pre><p>Executes a search on a given string using the given RegExp object.
+Returns <code>Some(Js.Re.result)</code> if a match is found, <code>None</code> otherwise.</p><pre><code class="language-res" metastring="example">/* Match &quot;quick brown&quot; followed by &quot;jumps&quot;, ignoring characters in between
+ * Remember &quot;brown&quot; and &quot;jumps&quot;
+ * Ignore case
+ */
+
+let re = %re(&quot;/quick\s(brown).+?(jumps)/ig&quot;)
+let result = Js.Re.exec_(re, &quot;The Quick Brown Fox Jumps Over The Lazy Dog&quot;)
+</code></pre><h2 id="exec">exec</h2><pre><code class="language-res" metastring="sig">let exec: (string, t) =&gt; option&lt;result&gt;
+</code></pre><p>Deprecated. please use <code>Js.Re.exec_</code> instead.</p><h2 id="test_">test<!-- -->_</h2><pre><code class="language-res" metastring="sig">let test_: (t, string) =&gt; bool
+</code></pre><p>Tests whether the given RegExp object will match a given <code>string</code>.
+Returns true if a match is found, false otherwise.</p><pre><code class="language-res" metastring="example">/* A simple implementation of Js.String.startsWith */
+
+let str = &quot;hello world!&quot;
+
+let startsWith = (target, substring) =&gt; Js.Re.fromString(&quot;^&quot; ++ substring)-&gt;Js.Re.test_(target)
+
+Js.log(str-&gt;startsWith(&quot;hello&quot;)) /* prints &quot;true&quot; */
+</code></pre><h2 id="test">test</h2><pre><code class="language-res" metastring="sig">let test: (string, t) =&gt; bool
+</code></pre><p>Deprecated. please use <code>Js.Re.test_</code> instead.</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/docs/manual/v9.0.0/api/js/re","query":{},"buildId":"602i-qp0kZ9P4jfYYZO6L","runtimeConfig":{},"nextExport":true,"autoExport":true,"isFallback":false}</script><script nomodule="" src="/_next/static/chunks/polyfills-9def993fe817cc057038.js"></script><script src="/_next/static/chunks/webpack-06b7252a4ff689e08871.js" async=""></script><script src="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" async=""></script><script src="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" async=""></script><script src="/_next/static/chunks/pages/_app-c403ba37fcc2de691b6d.js" async=""></script><script src="/_next/static/chunks/pages/docs/manual/v9.0.0/api/js/re-1a2197588bf53915a5af.js" async=""></script><script src="/_next/static/602i-qp0kZ9P4jfYYZO6L/_buildManifest.js" async=""></script><script src="/_next/static/602i-qp0kZ9P4jfYYZO6L/_ssgManifest.js" async=""></script><script async="" defer="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script><noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript></body></html>

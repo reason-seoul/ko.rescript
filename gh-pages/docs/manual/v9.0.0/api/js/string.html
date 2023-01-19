@@ -1,0 +1,237 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/2b269719632b344a478b.css" as="style"/><link rel="stylesheet" href="/_next/static/css/2b269719632b344a478b.css" data-n-g=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/webpack-06b7252a4ff689e08871.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" as="script"/><link rel="preload" href="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-c403ba37fcc2de691b6d.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/docs/manual/v9.0.0/api/js/string-7fa1afc0e3ca77237cbf.js" as="script"/></head><body><div id="__next"><h1 id="string">String</h1><div><p>Provide bindings to JS string. Optimized for pipe-last.</p></div><h2 id="t">t</h2><pre><code class="language-res" metastring="prelude">type t = string
+</code></pre><h2 id="make">make</h2><pre><code class="language-res" metastring="sig">let make: &#x27;a =&gt; t
+</code></pre><p><code>make(value)</code> converts the given value to a <code>string</code>.</p><pre><code class="language-res" metastring="example">Js.String2.make(3.5) == &quot;3.5&quot;
+Js.String2.make([1, 2, 3]) == &quot;1,2,3&quot;
+</code></pre><h2 id="fromcharcode">fromCharCode</h2><pre><code class="language-res" metastring="sig">let fromCharCode: int =&gt; t
+</code></pre><p><code>fromCharCode(n)</code> creates a <code>string</code> containing the character corresponding to that number; <code>n</code> ranges from 0 to 65535.
+If out of range, the lower 16 bits of the value are used. Thus, <code>fromCharCode(0x1F63A)</code> gives the same result as <code>fromCharCode(0xF63A)</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode"><code>String.fromCharCode</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String2.fromCharCode(65) == &quot;A&quot;
+Js.String2.fromCharCode(0x3c8) == `ψ`
+Js.String2.fromCharCode(0xd55c) == `한`
+Js.String2.fromCharCode(-64568) == `ψ`
+</code></pre><h2 id="fromcharcodemany">fromCharCodeMany</h2><pre><code class="language-res" metastring="sig">let fromCharCodeMany: array&lt;int&gt; =&gt; t
+</code></pre><p><code>fromCharCodeMany([n1, n2, n3])</code> creates a <code>string</code> from the characters corresponding to the given numbers, using the same rules as <code>fromCharCode</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode"><code>String.fromCharCode</code></a> on MDN.</p><h2 id="fromcodepoint">fromCodePoint</h2><pre><code class="language-res" metastring="sig">let fromCodePoint: int =&gt; t
+</code></pre><p><code>fromCodePoint(n)</code> creates a <code>string</code> containing the character corresponding to that numeric code point.
+If the number is not a valid code point, it raises <code>RangeError</code>.
+Thus, <code>fromCodePoint(0x1F63A)</code> will produce a correct value, unlike <code>fromCharCode(0x1F63A)</code>, and <code>fromCodePoint(-5)</code> will raise a <code>RangeError</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCodePoint"><code>String.fromCodePoint</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String2.fromCodePoint(65) == &quot;A&quot;
+Js.String2.fromCodePoint(0x3c8) == `ψ`
+Js.String2.fromCodePoint(0xd55c) == `한`
+Js.String2.fromCodePoint(0x1f63a) == `😺`
+</code></pre><h2 id="fromcodepointmany">fromCodePointMany</h2><pre><code class="language-res" metastring="sig">let fromCodePointMany: array&lt;int&gt; =&gt; t
+</code></pre><p><code>fromCodePointMany([n1, n2, n3])</code> creates a <code>string</code> from the characters corresponding to the given code point numbers, using the same rules as <code>fromCodePoint</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCodePoint"><code>String.fromCodePoint</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String2.fromCodePointMany([0xd55c, 0xae00, 0x1f63a]) == `한글😺`
+</code></pre><h2 id="length">length</h2><pre><code class="language-res" metastring="sig">let length: t =&gt; int
+</code></pre><p><code>length(s)</code> returns the length of the given <code>string</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length"><code>String.length</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String2.length(&quot;abcd&quot;) == 4
+</code></pre><h2 id="get">get</h2><pre><code class="language-res" metastring="sig">let get: (t, int) =&gt; t
+</code></pre><p><code>get(s, n)</code> returns as a <code>string</code> the character at the given index number.
+If <code>n</code> is out of range, this function returns <code>undefined</code>, so at some point this function may be modified to return <code>option(string)</code>.</p><pre><code class="language-res" metastring="example">Js.String2.get(&quot;Reason&quot;, 0) == &quot;R&quot;
+Js.String2.get(&quot;Reason&quot;, 4) == &quot;o&quot;
+Js.String2.get(`Rẽasöń`, 5) == `ń`
+</code></pre><h2 id="charat">charAt</h2><pre><code class="language-res" metastring="sig">let charAt: (int, t) =&gt; t
+</code></pre><p><code>charAt(n, s)</code> gets the character at index <code>n</code> within string <code>s</code>.
+If <code>n</code> is negative or greater than the length of <code>s</code>, it returns the empty string.
+If the string contains characters outside the range \u0000-\uffff, it will return the first 16-bit value at that position in the string. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt"><code>String.charAt</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.charAt(0, &quot;Reason&quot;) == &quot;R&quot;
+Js.String.charAt(12, &quot;Reason&quot;) == &quot;&quot;
+Js.String.charAt(5, `Rẽasöń`) == `ń`
+</code></pre><h2 id="charcodeat">charCodeAt</h2><pre><code class="language-res" metastring="sig">let charCodeAt: (int, t) =&gt; float
+</code></pre><p><code>charCodeAt(n, s)</code> returns the character code at position <code>n</code> in string <code>s</code>; the result is in the range 0-65535, unlke <code>codePointAt</code>, so it will not work correctly for characters with code points greater than or equal to 0x10000.
+The return type is <code>float</code> because this function returns NaN if <code>n</code> is less than zero or greater than the length of the string. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt"><code>String.charCodeAt</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.charCodeAt(0, `😺`) == 0xd83d-&gt;Belt.Int.toFloat
+Js.String.codePointAt(0, `😺`) == Some(0x1f63a)
+</code></pre><h2 id="codepointat">codePointAt</h2><pre><code class="language-res" metastring="sig">let codePointAt: (int, t) =&gt; option&lt;int&gt;
+</code></pre><p><code>codePointAt(n, s)</code> returns the code point at position <code>n</code> within string <code>s</code> as a <code>Some(value)</code>.
+The return value handles code points greater than or equal to 0x10000.
+If there is no code point at the given position, the function returns <code>None</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt"><code>String.codePointAt</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.codePointAt(1, `¿😺?`) == Some(0x1f63a)
+Js.String.codePointAt(5, &quot;abc&quot;) == None
+</code></pre><h2 id="concat">concat</h2><pre><code class="language-res" metastring="sig">let concat: (t, t) =&gt; t
+</code></pre><p><code>concat(append, original)</code> returns a new <code>string</code> with <code>append</code> added after <code>original</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/concat"><code>String.concat</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.concat(&quot;bell&quot;, &quot;cow&quot;) == &quot;cowbell&quot;
+</code></pre><h2 id="concatmany">concatMany</h2><pre><code class="language-res" metastring="sig">let concatMany: (array&lt;t&gt;, t) =&gt; t
+</code></pre><p><code>concat(arr, original)</code> returns a new <code>string</code> consisting of each item of an array of strings added to the <code>original</code> string. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/concat"><code>String.concat</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.concatMany([&quot;2nd&quot;, &quot;3rd&quot;, &quot;4th&quot;], &quot;1st&quot;) == &quot;1st2nd3rd4th&quot;
+</code></pre><h2 id="endswith">endsWith</h2><pre><code class="language-res" metastring="sig">let endsWith: (t, t) =&gt; bool
+</code></pre><p>ES2015: <code>endsWith(substr, str)</code> returns <code>true</code> if the <code>str</code> ends with <code>substr</code>, <code>false</code> otherwise. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith"><code>String.endsWith</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.endsWith(&quot;Script&quot;, &quot;BuckleScript&quot;) == true
+Js.String.endsWith(&quot;Script&quot;, &quot;BuckleShoes&quot;) == false
+</code></pre><h2 id="endswithfrom">endsWithFrom</h2><pre><code class="language-res" metastring="sig">let endsWithFrom: (t, int, t) =&gt; bool
+</code></pre><p><code>endsWithFrom(ending, len, str)</code> returns <code>true</code> if the first len characters of <code>str</code> end with <code>ending</code>, <code>false</code> otherwise.
+If <code>len</code> is greater than or equal to the length of <code>str</code>, then it works like <code>endsWith</code>. (Honestly, this should have been named endsWithAt, but oh well.) See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith"><code>String.endsWith</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.endsWithFrom(&quot;cd&quot;, 4, &quot;abcd&quot;) == true
+Js.String.endsWithFrom(&quot;cd&quot;, 3, &quot;abcde&quot;) == false
+Js.String.endsWithFrom(&quot;cde&quot;, 99, &quot;abcde&quot;) == true
+Js.String.endsWithFrom(&quot;ple&quot;, 7, &quot;example.dat&quot;) == true
+</code></pre><h2 id="includes">includes</h2><pre><code class="language-res" metastring="sig">let includes: (t, t) =&gt; bool
+</code></pre><p>ES2015: <code>includes(searchValue, str)</code> returns <code>true</code> if <code>searchValue</code> is found anywhere within <code>str</code>, false otherwise. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes"><code>String.includes</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.includes(&quot;gram&quot;, &quot;programmer&quot;) == true
+Js.String.includes(&quot;er&quot;, &quot;programmer&quot;) == true
+Js.String.includes(&quot;pro&quot;, &quot;programmer&quot;) == true
+Js.String.includes(&quot;xyz&quot;, &quot;programmer.dat&quot;) == false
+</code></pre><h2 id="includesfrom">includesFrom</h2><pre><code class="language-res" metastring="sig">let includesFrom: (t, int, t) =&gt; bool
+</code></pre><p>ES2015: <code>includes(searchValue start, str)</code> returns <code>true</code> if <code>searchValue</code> is found anywhere within <code>str</code> starting at character number <code>start</code> (where 0 is the first character), <code>false</code> otherwise. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes"><code>String.includes</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.includesFrom(&quot;gram&quot;, 1, &quot;programmer&quot;) == true
+Js.String.includesFrom(&quot;gram&quot;, 4, &quot;programmer&quot;) == false
+Js.String.includesFrom(`한`, 1, `대한민국`) == true
+</code></pre><h2 id="indexof">indexOf</h2><pre><code class="language-res" metastring="sig">let indexOf: (t, t) =&gt; int
+</code></pre><p>ES2015: <code>indexOf(searchValue, str)</code> returns the position at which <code>searchValue</code> was first found within <code>str</code>, or -1 if <code>searchValue</code> is not in <code>str</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf"><code>String.indexOf</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.indexOf(&quot;ok&quot;, &quot;bookseller&quot;) == 2
+Js.String.indexOf(&quot;sell&quot;, &quot;bookseller&quot;) == 4
+Js.String.indexOf(&quot;ee&quot;, &quot;beekeeper&quot;) == 1
+Js.String.indexOf(&quot;xyz&quot;, &quot;bookseller&quot;) == -1
+</code></pre><h2 id="indexoffrom">indexOfFrom</h2><pre><code class="language-res" metastring="sig">let indexOfFrom: (t, t, int) =&gt; int
+</code></pre><p><code>indexOfFrom(searchValue, start, str)</code> returns the position at which <code>searchValue</code> was found within <code>str</code> starting at character position <code>start</code>, or -1 if <code>searchValue</code> is not found in that portion of <code>str</code>.
+The return value is relative to the beginning of the string, no matter where the search started from. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf"><code>String.indexOf</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.indexOfFrom(&quot;ok&quot;, 1, &quot;bookseller&quot;) == 2
+Js.String.indexOfFrom(&quot;sell&quot;, 2, &quot;bookseller&quot;) == 4
+Js.String.indexOfFrom(&quot;sell&quot;, 5, &quot;bookseller&quot;) == -1
+</code></pre><h2 id="lastindexof">lastIndexOf</h2><pre><code class="language-res" metastring="sig">let lastIndexOf: (t, t) =&gt; int
+</code></pre><p><code>lastIndexOf(searchValue, str)</code> returns the position of the last occurrence of <code>searchValue</code> within <code>str</code>, searching backwards from the end of the string.
+Returns -1 if <code>searchValue</code> is not in <code>str</code>. The return value is always relative to the beginning of the string. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/lastIndexOf"><code>String.lastIndexOf</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.lastIndexOf(&quot;ok&quot;, &quot;bookseller&quot;) == 2
+Js.String.lastIndexOf(&quot;ee&quot;, &quot;beekeeper&quot;) == 4
+Js.String.lastIndexOf(&quot;xyz&quot;, &quot;abcdefg&quot;) == -1
+</code></pre><h2 id="lastindexoffrom">lastIndexOfFrom</h2><pre><code class="language-res" metastring="sig">let lastIndexOfFrom: (t, int, t) =&gt; int
+</code></pre><p><code>lastIndexOfFrom(searchValue, start, str)</code> returns the position of the last occurrence of <code>searchValue</code> within <code>str</code>, searching backwards from the given start position.
+Returns -1 if <code>searchValue</code> is not in <code>str</code>. The return value is always relative to the beginning of the string. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/lastIndexOf"><code>String.lastIndexOf</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.lastIndexOfFrom(&quot;ok&quot;, 6, &quot;bookseller&quot;) == 2
+Js.String.lastIndexOfFrom(&quot;ee&quot;, 8, &quot;beekeeper&quot;) == 4
+Js.String.lastIndexOfFrom(&quot;ee&quot;, 3, &quot;beekeeper&quot;) == 1
+Js.String.lastIndexOfFrom(&quot;xyz&quot;, 4, &quot;abcdefg&quot;) == -1
+</code></pre><h2 id="localecompare">localeCompare</h2><pre><code class="language-res" metastring="sig">let localeCompare: (t, t) =&gt; float
+</code></pre><p><code>localeCompare(comparison, reference)</code> returns</p><ul><li>a negative value if reference comes before comparison in sort order</li><li>zero if reference and comparison have the same sort order</li><li>a positive value if reference comes after comparison in sort order</li></ul><p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare"><code>String.localeCompare</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.localeCompare(&quot;ant&quot;, &quot;zebra&quot;) &gt; 0.0
+Js.String.localeCompare(&quot;zebra&quot;, &quot;ant&quot;) &lt; 0.0
+Js.String.localeCompare(&quot;cat&quot;, &quot;cat&quot;) == 0.0
+Js.String.localeCompare(&quot;cat&quot;, &quot;CAT&quot;) &gt; 0.0
+</code></pre><h2 id="match">match</h2><pre><code class="language-res" metastring="sig">let match_: (Js_re.t, t) =&gt; option&lt;array&lt;t&gt;&gt;
+</code></pre><p><code>match(regexp, str)</code> matches a <code>string</code> against the given <code>regexp</code>. If there is no match, it returns <code>None</code>. For regular expressions without the g modifier, if there is a match, the return value is <code>Some(array)</code> where the array contains:</p><ul><li>The entire matched string</li><li>Any capture groups if the regexp had parentheses
+For regular expressions with the g modifier, a matched expression returns <code>Some(array)</code> with all the matched substrings and no capture groups. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match"><code>String.match</code></a> on MDN.</li></ul><pre><code class="language-res" metastring="example">Js.String.match_(%re(&quot;/b[aeiou]t/&quot;), &quot;The better bats&quot;) == Some([&quot;bet&quot;])
+Js.String.match_(%re(&quot;/b[aeiou]t/g&quot;), &quot;The better bats&quot;) == Some([&quot;bet&quot;, &quot;bat&quot;])
+Js.String.match_(%re(&quot;/(\d+)-(\d+)-(\d+)/&quot;), &quot;Today is 2018-04-05.&quot;) ==
+  Some([&quot;2018-04-05&quot;, &quot;2018&quot;, &quot;04&quot;, &quot;05&quot;])
+Js.String.match_(%re(&quot;/b[aeiou]g/&quot;), &quot;The large container.&quot;) == None
+</code></pre><h2 id="normalize">normalize</h2><pre><code class="language-res" metastring="sig">let normalize: t =&gt; t
+</code></pre><p><code>normalize(str)</code> returns the normalized Unicode string using Normalization Form Canonical (NFC) Composition.
+Consider the character ã, which can be represented as the single codepoint \u00e3 or the combination of a lower case letter A \u0061 and a combining tilde \u0303.
+Normalization ensures that both can be stored in an equivalent binary representation. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize"><code>String.normalize</code></a> on MDN. See also <a href="https://unicode.org/reports/tr15/">Unicode technical report #15</a> for details.</p><h2 id="normalizebyform">normalizeByForm</h2><pre><code class="language-res" metastring="sig">let normalizeByForm: (t, t) =&gt; t
+</code></pre><p>ES2015: <code>normalize(form, str)</code> returns the normalized Unicode string using the specified form of normalization, which may be one of:</p><ul><li>&quot;NFC&quot; — Normalization Form Canonical Composition.</li><li>&quot;NFD&quot; — Normalization Form Canonical Decomposition.</li><li>&quot;NFKC&quot; — Normalization Form Compatibility Composition.</li><li>&quot;NFKD&quot; — Normalization Form Compatibility Decomposition.</li></ul><p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize"><code>String.normalize</code></a> on MDN. See also <a href="https://unicode.org/reports/tr15/">Unicode technical report #15</a> for details.</p><h2 id="repeat">repeat</h2><pre><code class="language-res" metastring="sig">let repeat: (t, int) =&gt; t
+</code></pre><p><code>repeat(n, str)</code> returns a <code>string</code> that consists of <code>n</code> repetitions of <code>str</code>. Raises <code>RangeError</code> if <code>n</code> is negative. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat"><code>String.repeat</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.repeat(3, &quot;ha&quot;) == &quot;hahaha&quot;
+Js.String.repeat(0, &quot;empty&quot;) == &quot;&quot;
+</code></pre><h2 id="replace">replace</h2><pre><code class="language-res" metastring="sig">let replace: (t, t, t) =&gt; t
+</code></pre><p>ES2015: <code>replace(substr, newSubstr, str)</code> returns a new <code>string</code> which is identical to <code>str</code> except with the first matching instance of <code>substr</code> replaced by <code>newSubstr</code>.
+<code>substr</code> is treated as a verbatim string to match, not a regular expression. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace"><code>String.replace</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.replace(&quot;old&quot;, &quot;new&quot;, &quot;old string&quot;) == &quot;new string&quot;
+Js.String.replace(&quot;the&quot;, &quot;this&quot;, &quot;the cat and the dog&quot;) == &quot;this cat and the dog&quot;
+</code></pre><h2 id="replacebyre">replaceByRe</h2><pre><code class="language-res" metastring="sig">let replaceByRe: (Js_re.t, t, t) =&gt; t
+</code></pre><p><code>replaceByRe(regex, replacement, str)</code> returns a new <code>string</code> where occurrences matching regex have been replaced by <code>replacement</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace"><code>String.replace</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.replaceByRe(%re(&quot;/[aeiou]/g&quot;), &quot;x&quot;, &quot;vowels be gone&quot;) == &quot;vxwxls bx gxnx&quot;
+Js.String.replaceByRe(%re(&quot;/(\w+) (\w+)/&quot;), &quot;$2, $1&quot;, &quot;Juan Fulano&quot;) == &quot;Fulano, Juan&quot;
+</code></pre><h2 id="unsafereplaceby0">unsafeReplaceBy0</h2><pre><code class="language-res" metastring="sig">let unsafeReplaceBy0: (Js_re.t, (t, int, t) =&gt; t, t) =&gt; t
+</code></pre><p>Returns a new <code>string</code> with some or all matches of a pattern with no capturing parentheses replaced by the value returned from the given function.
+The function receives as its parameters the matched string, the offset at which the match begins, and the whole string being matched. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace"><code>String.replace</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let str = &quot;beautiful vowels&quot;
+let re = %re(&quot;/[aeiou]/g&quot;)
+let matchFn = (matchPart, _offset, _wholeString) =&gt; Js.String.toUpperCase(matchPart)
+
+Js.String.unsafeReplaceBy0(re, matchFn, str) == &quot;bEAUtIfUl vOwEls&quot;
+</code></pre><h2 id="unsafereplaceby1">unsafeReplaceBy1</h2><pre><code class="language-res" metastring="sig">let unsafeReplaceBy1: (Js_re.t, (t, t, int, t) =&gt; t, t) =&gt; t
+</code></pre><p>Returns a new <code>string</code> with some or all matches of a pattern with one set of capturing parentheses replaced by the value returned from the given function.
+The function receives as its parameters the matched string, the captured string, the offset at which the match begins, and the whole string being matched. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace"><code>String.replace</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let str = &quot;Jony is 40&quot;
+let re = %re(&quot;/(Jony is )\d+/g&quot;)
+let matchFn = (_match, part1, _offset, _wholeString) =&gt; {
+  part1 ++ &quot;41&quot;
+}
+
+Js.String.unsafeReplaceBy1(re, matchFn, str) == &quot;Jony is 41&quot;
+</code></pre><h2 id="unsafereplaceby2">unsafeReplaceBy2</h2><pre><code class="language-res" metastring="sig">let unsafeReplaceBy2: (Js_re.t, (t, t, t, int, t) =&gt; t, t) =&gt; t
+</code></pre><p>Returns a new <code>string</code> with some or all matches of a pattern with two sets of capturing parentheses replaced by the value returned from the given function.
+The function receives as its parameters the matched string, the captured strings, the offset at which the match begins, and the whole string being matched. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace"><code>String.replace</code></a> on MDN.</p><pre><code class="language-res" metastring="example">let str = &quot;7 times 6&quot;
+let re = %re(&quot;/(\d+) times (\d+)/&quot;)
+let matchFn = (_match, p1, p2, _offset, _wholeString) =&gt; {
+  switch (Belt.Int.fromString(p1), Belt.Int.fromString(p2)) {
+  | (Some(x), Some(y)) =&gt; Belt.Int.toString(x * y)
+  | _ =&gt; &quot;???&quot;
+  }
+}
+
+Js.String.unsafeReplaceBy2(re, matchFn, str) == &quot;42&quot;
+</code></pre><h2 id="unsafereplaceby3">unsafeReplaceBy3</h2><pre><code class="language-res" metastring="sig">let unsafeReplaceBy3: (Js_re.t, (t, t, t, t, int, t) =&gt; t, t) =&gt; t
+</code></pre><p>Returns a new <code>string</code> with some or all matches of a pattern with three sets of capturing parentheses replaced by the value returned from the given function.
+The function receives as its parameters the matched string, the captured strings, the offset at which the match begins, and the whole string being matched. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace"><code>String.replace</code></a> on MDN.</p><h2 id="search">search</h2><pre><code class="language-res" metastring="sig">let search: (Js_re.t, t) =&gt; int
+</code></pre><p><code>search(regexp, str)</code> returns the starting position of the first match of <code>regexp</code> in the given <code>str</code>, or -1 if there is no match. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search"><code>String.search</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.search(%re(&quot;/\d+/&quot;), &quot;testing 1 2 3&quot;) == 8
+Js.String.search(%re(&quot;/\d+/&quot;), &quot;no numbers&quot;) == -1
+</code></pre><h2 id="slice">slice</h2><pre><code class="language-res" metastring="sig">let slice: (~from: int, ~to_: int, t) =&gt; t
+</code></pre><p><code>slice(from:n1, to_:n2, str)</code> returns the substring of <code>str</code> starting at character <code>n1</code> up to but not including <code>n2</code>.</p><ul><li>If either <code>n1</code> or <code>n2</code> is negative, then it is evaluated as <code>length(str - n1)</code> or <code>length(str - n2)</code>.</li><li>If <code>n2</code> is greater than the length of <code>str</code>, then it is treated as <code>length(str)</code>.</li><li>If <code>n1</code> is greater than <code>n2</code>, slice returns the empty string.</li></ul><p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice"><code>String.slice</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.slice(~from=2, ~to_=5, &quot;abcdefg&quot;) == &quot;cde&quot;
+Js.String.slice(~from=2, ~to_=9, &quot;abcdefg&quot;) == &quot;cdefg&quot;
+Js.String.slice(~from=-4, ~to_=-2, &quot;abcdefg&quot;) == &quot;de&quot;
+Js.String.slice(~from=5, ~to_=1, &quot;abcdefg&quot;) == &quot;&quot;
+</code></pre><h2 id="slicetoend">sliceToEnd</h2><pre><code class="language-res" metastring="sig">let sliceToEnd: (~from: int, t) =&gt; t
+</code></pre><p><code>sliceToEnd(str, from:n)</code> returns the substring of <code>str</code> starting at character <code>n</code> to the end of the string.</p><ul><li>If <code>n</code> is negative, then it is evaluated as <code>length(str - n)</code>.</li><li>If <code>n</code> is greater than the length of <code>str</code>, then sliceToEnd returns the empty string.</li></ul><p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice"><code>String.slice</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.sliceToEnd(~from=4, &quot;abcdefg&quot;) == &quot;efg&quot;
+Js.String.sliceToEnd(~from=-2, &quot;abcdefg&quot;) == &quot;fg&quot;
+Js.String.sliceToEnd(~from=7, &quot;abcdefg&quot;) == &quot;&quot;
+</code></pre><h2 id="split">split</h2><pre><code class="language-res" metastring="sig">let split: (t, t) =&gt; array&lt;t&gt;
+</code></pre><p><code>split(delimiter, str)</code> splits the given <code>str</code> at every occurrence of <code>delimiter</code> and returns an array of the resulting substrings. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split"><code>String.split</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.split(&quot;-&quot;, &quot;2018-01-02&quot;) == [&quot;2018&quot;, &quot;01&quot;, &quot;02&quot;]
+Js.String.split(&quot;,&quot;, &quot;a,b,,c&quot;) == [&quot;a&quot;, &quot;b&quot;, &quot;&quot;, &quot;c&quot;]
+Js.String.split(&quot;::&quot;, &quot;good::bad as great::awful&quot;) == [&quot;good&quot;, &quot;bad as great&quot;, &quot;awful&quot;]
+Js.String.split(&quot;;&quot;, &quot;has-no-delimiter&quot;) == [&quot;has-no-delimiter&quot;]
+</code></pre><h2 id="splitatmost">splitAtMost</h2><pre><code class="language-res" metastring="sig">let splitAtMost: (t, ~limit: int, t) =&gt; array&lt;t&gt;
+</code></pre><p><code>splitAtMost(delimiter, ~limit:n, str)</code> splits the given <code>str</code> at every occurrence of <code>delimiter</code> and returns an array of the first <code>n</code> resulting substrings.
+If <code>n</code> is negative or greater than the number of substrings, the array will contain all the substrings. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split"><code>String.split</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.splitAtMost(&quot;/&quot;, ~limit=3, &quot;ant/bee/cat/dog/elk&quot;) == [&quot;ant&quot;, &quot;bee&quot;, &quot;cat&quot;]
+Js.String.splitAtMost(&quot;/&quot;, ~limit=0, &quot;ant/bee/cat/dog/elk&quot;) == []
+Js.String.splitAtMost(&quot;/&quot;, ~limit=9, &quot;ant/bee/cat/dog/elk&quot;) == [&quot;ant&quot;, &quot;bee&quot;, &quot;cat&quot;, &quot;dog&quot;, &quot;elk&quot;]
+</code></pre><h2 id="splitlimited">splitLimited</h2><pre><code class="language-res" metastring="sig">let splitLimited: (t, int, t) =&gt; array&lt;t&gt;
+</code></pre><p>Deprecated - Please use splitAtMost.</p><h2 id="splitbyre">splitByRe</h2><pre><code class="language-res" metastring="sig">let splitByRe: (Js_re.t, t) =&gt; array&lt;option&lt;t&gt;&gt;
+</code></pre><p><code>splitByRe(regex, str)</code> splits the given <code>str</code> at every occurrence of <code>regex</code> and returns an array of the resulting substrings. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split"><code>String.split</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.splitByRe(%re(&quot;/\s*[,;]\s*/&quot;), &quot;art; bed , cog ;dad&quot;) == [
+    Some(&quot;art&quot;),
+    Some(&quot;bed&quot;),
+    Some(&quot;cog&quot;),
+    Some(&quot;dad&quot;),
+  ]
+</code></pre><h2 id="splitbyreatmost">splitByReAtMost</h2><pre><code class="language-res" metastring="sig">let splitByReAtMost: (Js_re.t, ~limit: int, t) =&gt; array&lt;option&lt;t&gt;&gt;
+</code></pre><p><code>splitByReAtMost(regex, ~limit:n, str)</code> splits the given <code>str</code> at every occurrence of <code>regex</code> and returns an array of the first <code>n</code> resulting substrings.
+If <code>n</code> is negative or greater than the number of substrings, the array will contain all the substrings. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split"><code>String.split</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.splitByReAtMost(%re(&quot;/\s*:\s*/&quot;), ~limit=3, &quot;one: two: three: four&quot;) == [
+    Some(&quot;one&quot;),
+    Some(&quot;two&quot;),
+    Some(&quot;three&quot;),
+  ]
+
+Js.String.splitByReAtMost(%re(&quot;/\s*:\s*/&quot;), ~limit=0, &quot;one: two: three: four&quot;) == []
+
+Js.String.splitByReAtMost(%re(&quot;/\s*:\s*/&quot;), ~limit=8, &quot;one: two: three: four&quot;) == [
+    Some(&quot;one&quot;),
+    Some(&quot;two&quot;),
+    Some(&quot;three&quot;),
+    Some(&quot;four&quot;),
+  ]
+</code></pre><h2 id="splitregexplimited">splitRegexpLimited</h2><pre><code class="language-res" metastring="sig">let splitRegexpLimited: (Js_re.t, int, t) =&gt; array&lt;t&gt;
+</code></pre><p>Deprecated - Please use splitByReAtMost.</p><h2 id="startswith">startsWith</h2><pre><code class="language-res" metastring="sig">let startsWith: (t, t) =&gt; bool
+</code></pre><p>ES2015: <code>startsWith(substr, str)</code> returns <code>true</code> if the <code>str</code> starts with <code>substr</code>, <code>false</code> otherwise. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith"><code>String.startsWith</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.startsWith(&quot;Buckle&quot;, &quot;BuckleScript&quot;) == true
+Js.String.startsWith(&quot;&quot;, &quot;BuckleScript&quot;) == true
+Js.String.startsWith(&quot;Buckle&quot;, &quot;JavaScript&quot;) == false
+</code></pre><h2 id="startswithfrom">startsWithFrom</h2><pre><code class="language-res" metastring="sig">let startsWithFrom: (t, int, t) =&gt; bool
+</code></pre><p>ES2015: <code>startsWithFrom(substr, n, str)</code> returns <code>true</code> if the <code>str</code> starts with <code>substr</code> starting at position <code>n</code>, false otherwise.
+If <code>n</code> is negative, the search starts at the beginning of <code>str</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith"><code>String.startsWith</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.startsWithFrom(&quot;kle&quot;, 3, &quot;BuckleScript&quot;) == true
+Js.String.startsWithFrom(&quot;&quot;, 3, &quot;BuckleScript&quot;) == true
+Js.String.startsWithFrom(&quot;Buckle&quot;, 2, &quot;JavaScript&quot;) == false
+</code></pre><h2 id="substr">substr</h2><pre><code class="language-res" metastring="sig">let substr: (~from: int, t) =&gt; t
+</code></pre><p><code>substr(~from:n, str)</code> returns the substring of <code>str</code> from position <code>n</code> to the end of the string.</p><ul><li>If <code>n</code> is less than zero, the starting position is the length of <code>str - n</code>.</li><li>If <code>n</code> is greater than or equal to the length of <code>str</code>, returns the empty string.</li></ul><p>JavaScript’s <code>String.substr()</code> is a legacy function. When possible, use <code>substring()</code> instead. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr"><code>String.substr</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.substr(~from=3, &quot;abcdefghij&quot;) == &quot;defghij&quot;
+Js.String.substr(~from=-3, &quot;abcdefghij&quot;) == &quot;hij&quot;
+Js.String.substr(~from=12, &quot;abcdefghij&quot;) == &quot;&quot;
+</code></pre><h2 id="substratmost">substrAtMost</h2><pre><code class="language-res" metastring="sig">let substrAtMost: (~from: int, ~length: int, t) =&gt; t
+</code></pre><p><code>substrAtMost(~from: pos, ~length: n, str)</code> returns the substring of <code>str</code> of length <code>n</code> starting at position <code>pos</code>.</p><ul><li>If <code>pos</code> is less than zero, the starting position is the length of <code>str - pos</code>.</li><li>If <code>pos</code> is greater than or equal to the length of <code>str</code>, returns the empty string.</li><li>If <code>n</code> is less than or equal to zero, returns the empty string.</li></ul><p>JavaScript’s <code>String.substr()</code> is a legacy function. When possible, use <code>substring()</code> instead. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr"><code>String.substr</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.substrAtMost(~from=3, ~length=4, &quot;abcdefghij&quot;) == &quot;defg&quot;
+Js.String.substrAtMost(~from=-3, ~length=4, &quot;abcdefghij&quot;) == &quot;hij&quot;
+Js.String.substrAtMost(~from=12, ~length=2, &quot;abcdefghij&quot;) == &quot;&quot;
+</code></pre><h2 id="substring">substring</h2><pre><code class="language-res" metastring="sig">let substring: (~from: int, ~to_: int, t) =&gt; t
+</code></pre><p><code>substring(~from: start, ~to_: finish, str)</code> returns characters <code>start</code> up to but not including finish from <code>str</code>.</p><ul><li>If <code>start</code> is less than zero, it is treated as zero.</li><li>If <code>finish</code> is zero or negative, the empty string is returned.</li><li>If <code>start</code> is greater than <code>finish</code>, the <code>start</code> and <code>finish</code> points are swapped.</li></ul><p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring"><code>String.substring</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.substring(~from=3, ~to_=6, &quot;playground&quot;) == &quot;ygr&quot;
+Js.String.substring(~from=6, ~to_=3, &quot;playground&quot;) == &quot;ygr&quot;
+Js.String.substring(~from=4, ~to_=12, &quot;playground&quot;) == &quot;ground&quot;
+</code></pre><h2 id="substringtoend">substringToEnd</h2><pre><code class="language-res" metastring="sig">let substringToEnd: (~from: int, t) =&gt; t
+</code></pre><p><code>substringToEnd(~from: start, str)</code> returns the substring of <code>str</code> from position <code>start</code> to the end.</p><ul><li>If <code>start</code> is less than or equal to zero, the entire string is returned.</li><li>If <code>start</code> is greater than or equal to the length of <code>str</code>, the empty string is returned.</li></ul><p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring"><code>String.substring</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.substringToEnd(~from=4, &quot;playground&quot;) == &quot;ground&quot;
+Js.String.substringToEnd(~from=-3, &quot;playground&quot;) == &quot;playground&quot;
+Js.String.substringToEnd(~from=12, &quot;playground&quot;) == &quot;&quot;
+</code></pre><h2 id="tolowercase">toLowerCase</h2><pre><code class="language-res" metastring="sig">let toLowerCase: t =&gt; t
+</code></pre><p><code>toLowerCase(str)</code> converts <code>str</code> to lower case using the locale-insensitive case mappings in the Unicode Character Database.
+Notice that the conversion can give different results depending upon context, for example with the Greek letter sigma, which has two different lower case forms; one when it is the last character in a string and another when it is not. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase"><code>String.toLowerCase</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.toLowerCase(&quot;ABC&quot;) == &quot;abc&quot;
+Js.String.toLowerCase(`ΣΠ`) == `σπ`
+Js.String.toLowerCase(`ΠΣ`) == `πς`
+</code></pre><h2 id="tolocalelowercase">toLocaleLowerCase</h2><pre><code class="language-res" metastring="sig">let toLocaleLowerCase: t =&gt; t
+</code></pre><p><code>toLocaleLowerCase(str)</code> converts <code>str</code> to lower case using the current locale. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase"><code>String.toLocaleLowerCase</code></a> on MDN.</p><h2 id="touppercase">toUpperCase</h2><pre><code class="language-res" metastring="sig">let toUpperCase: t =&gt; t
+</code></pre><p><code>toUpperCase(str)</code> converts <code>str</code> to upper case using the locale-insensitive case mappings in the Unicode Character Database.
+Notice that the conversion can expand the number of letters in the result; for example the German ß capitalizes to two Ses in a row. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase"><code>String.toUpperCase</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.toUpperCase(&quot;abc&quot;) == &quot;ABC&quot;
+Js.String.toUpperCase(`Straße`) == `STRASSE`
+Js.String.toUpperCase(`πς`) == `ΠΣ`
+</code></pre><h2 id="tolocaleuppercase">toLocaleUpperCase</h2><pre><code class="language-res" metastring="sig">let toLocaleUpperCase: t =&gt; t
+</code></pre><p><code>toLocaleUpperCase(str)</code> converts <code>str</code> to upper case using the current locale. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleUpperCase"><code>String.to:LocaleUpperCase</code></a> on MDN.</p><h2 id="trim">trim</h2><pre><code class="language-res" metastring="sig">let trim: t =&gt; t
+</code></pre><p><code>trim(str)</code> returns a string that is <code>str</code> with whitespace stripped from both ends. Internal whitespace is not removed. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim"><code>String.trim</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.trim(&quot;   abc def   &quot;) == &quot;abc def&quot;
+Js.String.trim(&quot;\n\r\t abc def \n\n\t\r &quot;) == &quot;abc def&quot;
+</code></pre><h2 id="anchor">anchor</h2><pre><code class="language-res" metastring="sig">let anchor: (t, t) =&gt; t
+</code></pre><p><code>anchor(anchorName, anchorText)</code> creates a string with an HTML <code>&lt;a&gt;</code> element with name attribute of <code>anchorName</code> and <code>anchorText</code> as its content. Please do not use this method, as it has been removed from the relevant web standards. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/anchor"><code>String.anchor</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.anchor(&quot;page1&quot;, &quot;Page One&quot;) == &quot;&lt;a name=\&quot;page1\&quot;&gt;Page One&lt;/a&gt;&quot;
+</code></pre><h2 id="link">link</h2><pre><code class="language-res" metastring="sig">let link: (t, t) =&gt; t
+</code></pre><p>ES2015: <code>link(urlText, linkText)</code> creates a string with an HTML <code>&lt;a&gt;</code> element with href attribute of <code>urlText</code> and <code>linkText</code> as its content. Please do not use this method, as it has been removed from the relevant web standards. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/link"><code>String.link</code></a> on MDN.</p><pre><code class="language-res" metastring="example">Js.String.link(&quot;page2.html&quot;, &quot;Go to page two&quot;) == &quot;&lt;a href=\&quot;page2.html\&quot;&gt;Go to page two&lt;/a&gt;&quot;
+</code></pre><h2 id="casttoarraylike">castToArrayLike</h2><pre><code class="language-res" metastring="sig">let castToArrayLike: t =&gt; Js_array2.array_like&lt;t&gt;
+</code></pre><p>Casts its argument to an <code>array_like</code> entity that can be processed by functions such as <code>Js.Array2.fromMap()</code></p><pre><code class="language-res" metastring="example">let s = &quot;abcde&quot;
+let arr = Js.Array2.fromMap(Js.String.castToArrayLike(s), x =&gt; x)
+arr == [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;]
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/docs/manual/v9.0.0/api/js/string","query":{},"buildId":"602i-qp0kZ9P4jfYYZO6L","runtimeConfig":{},"nextExport":true,"autoExport":true,"isFallback":false}</script><script nomodule="" src="/_next/static/chunks/polyfills-9def993fe817cc057038.js"></script><script src="/_next/static/chunks/webpack-06b7252a4ff689e08871.js" async=""></script><script src="/_next/static/chunks/framework-23118dcc1b886e5b49be.js" async=""></script><script src="/_next/static/chunks/main-82e7c4d3c08582bd58e0.js" async=""></script><script src="/_next/static/chunks/pages/_app-c403ba37fcc2de691b6d.js" async=""></script><script src="/_next/static/chunks/pages/docs/manual/v9.0.0/api/js/string-7fa1afc0e3ca77237cbf.js" async=""></script><script src="/_next/static/602i-qp0kZ9P4jfYYZO6L/_buildManifest.js" async=""></script><script src="/_next/static/602i-qp0kZ9P4jfYYZO6L/_ssgManifest.js" async=""></script><script async="" defer="" src="https://scripts.simpleanalyticscdn.com/latest.js"></script><noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript></body></html>

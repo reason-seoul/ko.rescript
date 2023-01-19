@@ -4,18 +4,17 @@ module Intro = {
     <section className="flex justify-center">
       <div className="max-w-1060 flex flex-col items-center px-5 sm:px-8 lg:box-content">
         <h1 className="hl-title text-center max-w-[53rem]">
-          {React.string("来自未来的快速、简单、")}
+          {React.string(`빠르고, 단순하고, 온전한 타입의`)}
           <br />
-          {React.string("完全类型化的 JavaScript")}
+          {React.string(`미래에서 온 JavaScript`)}
         </h1>
         <h2 className="body-lg text-center text-gray-60 my-4 max-w-[40rem]">
-          {React.string(`ReScript 是一门健壮的类型化语言，可以编译成高效易读的 JavaScript。`)}
-          <br />
-          {React.string(`它的编译工具链快如闪电，可轻松应对任意规模的代码库。`)}
+          {React.string(`ReScript는 강력한 타입의 언어로 효율적이며 가독성 높은 JavaScript로 컴파일됩니다.
+          함께 제공되는 번개처럼 빠른 툴체인을 통해 어떠한 크기의 코드베이스도 컴파일해낼 수 있습니다.`)}
         </h2>
         <div className="mt-4 mb-2">
-          <Next.Link href="/docs-cn/manual/latest/installation" passHref={true}>
-            <Button> {React.string("快速开始")} </Button>
+          <Next.Link href="/docs/manual/latest/installation" passHref={true}>
+            <Button> {React.string(`시작하기`)} </Button>
           </Next.Link>
         </div>
       </div>
@@ -78,7 +77,7 @@ exports.Button = Button;`,
             <div className="md:w-1/2">
               <div
                 className="body-sm text-gray-40 text-center py-3 sm:rounded-t-lg md:rounded-tl-lg bg-gray-100">
-                {React.string("编写 ReScript 程序")}
+                {React.string(`ReScript로 작성하면`)}
               </div>
               <pre className="text-14 px-8 pt-6 pb-12 whitespace-pre-wrap">
                 {HighlightJs.renderHLJS(~darkmode=true, ~code=example.res, ~lang="res", ())}
@@ -88,7 +87,7 @@ exports.Button = Button;`,
             <div className="md:w-1/2 ">
               <div
                 className="body-sm text-gray-40 py-3 text-center md:border-l border-gray-80 bg-gray-100 sm:rounded-tr-lg">
-                {React.string("编译为 JavaScript")}
+                {React.string(`JavaScript로 컴파일됩니다.`)}
               </div>
               <pre
                 className="text-14 px-8 pt-6 pb-14 md:border-l border-gray-80 whitespace-pre-wrap">
@@ -101,7 +100,7 @@ exports.Button = Button;`,
             <Next.Link href={`/try?code=${LzString.compressToEncodedURIComponent(example.res)}}`}>
               <a
                 className="captions md:px-0 border-b border-gray-40 hover:border-gray-60 text-gray-60">
-                {React.string("在工作台中编辑此代码")}
+                {React.string(`플레이그라운드에서 이 예제 편집하기`)}
               </a>
             </Next.Link>
           </div>
@@ -109,21 +108,19 @@ exports.Button = Button;`,
           <div className="hidden md:block">
             <img
               className="absolute z-0 left-0 top-0 -ml-10 -mt-6"
-              src="/static/lp/grid.svg"
+              src="static/lp/grid.svg"
               style={ReactDOM.Style.make(~height="24rem", ~width="24rem", ())}
             />
-            <img
-              className="absolute z-0 left-0 top-0 -ml-10 mt-10" src="/static/lp/illu_left.png"
-            />
+            <img className="absolute z-0 left-0 top-0 -ml-10 mt-10" src="static/lp/illu_left.png" />
           </div>
           <div className="hidden md:block">
             <img
               className="absolute z-0 right-0 bottom-0 -mb-10 mt-24 -mr-10"
-              src="/static/lp/grid.svg"
+              src="static/lp/grid.svg"
               style={ReactDOM.Style.make(~height="24rem", ~width="24rem", ())}
             />
             <img
-              className="absolute z-3 right-0 bottom-0 -mr-2 mb-10" src="/static/lp/illu_right.png"
+              className="absolute z-3 right-0 bottom-0 -mr-2 mb-10" src="static/lp/illu_right.png"
             />
           </div>
         </div>
@@ -239,14 +236,13 @@ module QuickInstall = {
     @react.component
     let make = () => {
       <div className="w-full max-w-[400px]">
-        <h2 className="hl-3 lg:mt-12"> {React.string("快速安装")} </h2>
+        <h2 className="hl-3 lg:mt-12"> {React.string(`빠른 설치`)} </h2>
         <div className="captions x text-gray-40 mb-2 mt-1">
-          {React.string(
-            "你可以通过 npm 或 yarn 将 ReScript 快速添加到现有的 JavaScript 代码库中：",
-          )}
+          {React.string(`기존 JavaScript 코드베이스에서 npm 또는 yarn을 이용해 ReScript를 빠르게 추가할 수 있습니다.`)}
         </div>
         <div className="w-full space-y-2">
-          {copyBox("npm install rescript")} {copyBox("npx rescript init .")}
+          {copyBox("npm install rescript")}
+          {copyBox("npx rescript init .")}
         </div>
       </div>
     }
@@ -258,22 +254,19 @@ module QuickInstall = {
       <div className="max-w-1060 flex flex-col w-full px-5 md:px-8 lg:px-8 lg:box-content ">
         //---Textblock on the left side---
         <div className="relative max-w-[28rem]">
-          <p
+          <h2
             className="relative z-1 space-y-12 text-gray-80 font-semibold text-24 md:text-32 leading-2">
-            {React.string(`在强大的类型化语言中`)}
-            <br />
             <span className="bg-fire-5 rounded-lg border border-fire-10 p-1 ">
-              {React.string(`发挥 JavaScript 的全部力量`)}
+              {React.string(`JavaScript의 모든 기능을`)}
             </span>
-            <br />
-            {React.string(`而不必担心 \`any\` 类型。`)}
-          </p>
+            {React.string(`\`any(어떤)\` 타입을 쓰던 걱정 없이, 강력한 타입의 언어로 누리세요.`)}
+          </h2>
         </div>
         //spacing between columns
         <div className="w-full mt-12 md:flex flex-col lg:flex-row md:justify-between ">
           <p
             className="relative z-1 text-gray-80 font-semibold text-24 md:text-32 leading-2 max-w-[32rem]">
-            {React.string(`ReScript 可用于交付并维护具有良好 UI 和 UX 的关键产品。`)}
+            {React.string(`ReScript는 UI 및 UX가 우수한 미션 크리티컬한 제품을 출시하고 관리하는 데 사용됩니다.`)}
           </p>
           <div
             className="mt-16 lg:mt-0 self-end" style={ReactDOM.Style.make(~maxWidth="25rem", ())}>
@@ -328,7 +321,7 @@ module MainUSP = {
           //image (right)
           <div className="relative mt-10 lg:mt-0">
             <div
-              className="relative w-full z-2 bg-gray-90 rounded-lg flex md:mt-0 items-center justify-center rounded-lg"
+              className="relative w-full z-2 bg-gray-90 rounded-lg flex md:mt-0 items-center justify-center"
               style={ReactDOM.Style.make(
                 ~maxWidth="35rem",
                 ~boxShadow="0px 4px 55px 0px rgba(230,72,79,0.10)",
@@ -339,7 +332,7 @@ module MainUSP = {
             <img
               className="absolute z-1 bottom-0 right-0 -mb-12 -mr-12"
               style={ReactDOM.Style.make(~maxWidth="20rem", ())}
-              src="/static/lp/grid2.svg"
+              src="static/lp/grid2.svg"
             />
           </div>
         </div>
@@ -363,22 +356,22 @@ module MainUSP = {
 
   let item1 =
     <Item
-      caption="快速而简洁"
-      title={React.string("Web 领域最快的构建系统")}
+      caption="빠르고 심플함"
+      title={React.string(`웹에서 가장 빠른 빌드 시스템`)}
       media={<video
         className="rounded-lg" controls={true} poster={"/static/lp/fast-build-preview.jpg"}>
         <source src="https://assets-17077.kxcdn.com/videos/fast-build-3.mp4" type_="video/mp4" />
       </video>}
       paragraph={<>
         <p>
-          {React.string(`ReScript 对任意规模代码库的反馈迭代速度和一致性十分关注。
-          你可以重构代码、拉取复杂的更改，或者随心所欲地切换到特性分支。
-          这里没有迟缓的 CI 构建、无效的缓存、错误的类型提示或消耗内存的语言服务器来拖累你。`)}
+          {React.string(`ReScript는 어떠한 크기의 코드베이스에서도 일관되게 빠른 피드백 루프를 제공하기 위해 노력합니다.
+      자유롭게 코드를 리팩토링하고, 복잡한 변경 사항을 가져오고, 기능 브랜치를 전환하세요.
+      느린 CI 빌드, 오래된 캐시 문제, 잘못된 타입 힌트, 과도한 메모리 사용으로 개발이 느려지는 일은 없습니다.`)}
         </p>
         <p className="mt-6">
-          <Next.Link href="/docs-cn/manual/latest/build-performance" passHref={true}>
+          <Next.Link href="/docs/manual/latest/build-performance" passHref={true}>
             <Button size={Button.Small} kind={Button.PrimaryBlue}>
-              {React.string("了解更多")}
+              {React.string(`더 알아보기`)}
             </Button>
           </Next.Link>
         </p>
@@ -387,28 +380,28 @@ module MainUSP = {
 
   let item2 =
     <Item
-      caption="健壮的类型系统"
+      caption="강력한 타입 시스템"
       title={<span
         className="text-transparent bg-clip-text bg-gradient-to-r from-berry-dark-50 to-fire-50">
-        {React.string("更好的类型")}
+        {React.string(`더 나은 타이핑`)}
       </span>}
       media={<video
         className="rounded-lg" controls={true} poster={"/static/lp/type-better-preview.jpg"}>
         <source src="https://assets-17077.kxcdn.com/videos/type-better-3.mp4" type_="video/mp4" />
       </video>}
       polygonDirection=Up
-      paragraph={React.string(`每一个 ReScript 应用程序都是完全类型化的，这能为您程序中的任何值提供可靠的类型信息。为了清晰和方便调试，我们优先考虑简单类型而非复杂类型。
-      ReScript 中没有 \`any\`，没有魔法类型，更没有意料之外的 “undefined”。
-      `)}
+      paragraph={React.string(`모든 ReScript 앱은 완전히 타이핑되어 여러분의 프로그램에 어떤 값이 주어지더라도 안전한 타입 정보를 제공합니다.
+      우리는 명확하고 쉬운 디버깅을 위해 복잡한 타입보다는 단순한 타입을 우선시합니다.
+      어떤 종류의 \`any\`도, 어려운 타입도, \`undefined\` 같은 당황스러움도 없습니다.`)}
     />
 
   let item3 =
     <Item
-      caption="无缝集成"
+      caption="매끄럽게 진행되는 통합"
       title={<>
-        <span className="text-orange-dark"> {React.string("你所熟悉的 JS 生态")} </span>
+        <span className="text-orange-dark"> {React.string(`JS에 친숙한 생태계를`)} </span>
         <br />
-        {React.string("就在你的指尖")}
+        {React.string(`바로 사용해보세요.`)}
       </>}
       media={<video
         className="rounded-lg" controls={true} poster={"/static/lp/interop-example-preview.jpg"}>
@@ -416,9 +409,9 @@ module MainUSP = {
           src="https://assets-17077.kxcdn.com/videos/interop-example-2.mp4" type_="video/mp4"
         />
       </video>}
-      paragraph={React.string(`你可以使用任何来自 JavaScript 的库，
-      将 ReScript 库导出到 JavaScript，以及自动生成 TypeScript 类型。
-      就像你从未离开过 JavaScript 最好的那一部分。`)}
+      paragraph={React.string(`어떠한 JavaScript 라이브러리도 사용할 수 있고,
+      ReScript 라이브러리를 JavaScript로 내보낼 수도 있습니다. 그리고 자동으로 TypeScript 타입을 생성할 수도 있습니다.
+      마치 JavaScript의 좋은 점은 하나도 잃어버리지 않은 기분일 겁니다.`)}
     />
 
   @react.component
@@ -426,7 +419,9 @@ module MainUSP = {
     <section
       className="w-full bg-gray-90 overflow-hidden"
       style={ReactDOM.Style.make(~minHeight="37rem", ())}>
-      item1 item2 item3
+      item1
+      item2
+      item3
     </section>
   }
 }
@@ -445,24 +440,22 @@ module OtherSellingPoints = {
             className="w-full "
             imgClassName="w-full h-[25.9rem] object-cover rounded-lg"
             imgSrcs={[
-              "/static/lp/community-3.jpg",
-              "/static/lp/community-2.jpg",
-              "/static/lp/community-1.jpg",
+              "static/lp/community-3.jpg",
+              "static/lp/community-2.jpg",
+              "static/lp/community-1.jpg",
             ]}
           />
           <h3 className="hl-3 text-gray-20 mt-4 mb-2">
-            {React.string(`一个总是能帮你把事情搞定的程序员社区`)}
+            {React.string(`작업 완료를 중요시하는 프로그래머 커뮤니티`)}
           </h3>
           <p className="body-md text-gray-40">
-            {React.string(`没有坚实的社区基础，任何语言都不可能流行。
-            如果库的作者滥用类型，那么再强大的类型系统也没有用。
-            如果所有的库都很慢，那么性能优势就无法体现。
-            加入 ReScript 社区 —— 一群深切关注简单性、速度和实用性的公司和个人在这里等你。`)}
+            {React.string(`기반을 잡아주는 견고한 공동체 없이는 어떤 언어도 대중화될 수 없습니다. 훌륭한 타입 시스템도 라이브러리 개발자들이 남용한다면 유용하지 않을 것이고, 모든 라이브러리가 느려지면 퍼포먼스 성능이 표시되지 않을 것입니다.
+ReScript 커뮤니티에 참여하세요! 단순성, 속도 및 실용성에 대해 깊은 관심을 가진 기업 및 개인들의 모임입니다.`)}
           </p>
           <div className="mt-6">
             <Button
               href="https://forum.rescript-lang.org" size={Button.Small} kind={Button.PrimaryBlue}>
-              {React.string("加入我们的论坛")}
+              {React.string(`포럼에 참여하기`)}
             </Button>
           </div>
         </div>
@@ -471,30 +464,24 @@ module OtherSellingPoints = {
         <div className="col-span-4 lg:row-start-1">
           <img
             className="w-full rounded-lg border-2 border-turtle-dark"
-            src="/static/lp/editor-tooling-1.jpg"
+            src="static/lp/editor-tooling-1.jpg"
           />
-          <h3 className="hl-3 text-gray-20 mt-6 mb-2">
-            {React.string(`所有工具开箱即用`)}
-          </h3>
+          <h3 className="hl-3 text-gray-20 mt-6 mb-2"> {React.string(`기발한 툴링`)} </h3>
           <p className="body-md text-gray-40">
-            {React.string(`一个内置的格式化工具，内存友好的 VSCode 和 Vim 插件
-            和一个稳定且不需要太多额外配置的类型系统和编译器。
-            ReScript 为你带来了构建可靠的 JavaScript、Node 和 ReactJS 应用所需的所有工具。`)}
+            {React.string(`내장된 포맷 도구, 메모리 친화적인 VSCode와 Vim 플러그인, 많은 추가 구성이 필요하지 않은 안정적인 타입 시스템 및 컴파일러입니다. ReScript는 신뢰할 수 있는 JavaScript, Node 및 ReactJS 응용프로그램을 구축하는 데 필요한 모든 도구를 제공합니다.`)}
           </p>
         </div>
         // Item 3
         <div className="col-span-4 lg:row-start-2">
           <img
             className="w-full rounded-lg border-2 border-fire-30"
-            src="/static/lp/easy-to-unadopt.jpg"
+            src="static/lp/easy-to-unadopt.jpg"
           />
           <h3 className="hl-3 text-gray-20 mt-6 mb-2">
-            {React.string(`很容易适配 —— 没有任何限制`)}
+            {React.string(`제한없는 간단한 적용`)}
           </h3>
           <p className="body-md text-gray-40">
-            {React.string(`ReScript 在实现的时候就考虑了渐进式适配。
-            如果你想回到普通的 JavaScript，只需删除所有源文件并保留其干净的 JavaScript 编译结果即可。
-            你可以告诉您的同事，无论是否使用 ReScript，您的项目都会正常运作。`)}
+            {React.string(`ReScript는 점진적인 적용을 염두에 두고 만들어졌습니다. 만약 일반 JavaScript로 돌아가고 싶다면, 모든 소스 파일을 제거하고 깨끗한 JavaScript 컴파일 결과를 유지하면 됩니다. ReScript가 있든 없든 프로젝트는 계속 정상적으로 작동할 것이라고 동료들에게 말할 수 있을 것입니다!`)}
           </p>
         </div>
         // </div>
@@ -508,7 +495,7 @@ module TrustedBy = {
   let make = () => {
     <section className="mt-20">
       <h3 className="hl-1 text-gray-80 text-center max-w-576 mx-auto">
-        {React.string("信任我们的用户")}
+        {React.string(`사용자들의 신뢰`)}
       </h3>
       <div
         className="flex flex-wrap mx-4 gap-8 justify-center items-center max-w-xl lg:mx-auto mt-16 ">
@@ -529,7 +516,7 @@ module TrustedBy = {
       <div
         className="mt-10 max-w-320 overflow-hidden opacity-50"
         style={ReactDOM.Style.make(~maxHeight="6rem", ())}>
-        <img className="w-full h-full" src="/static/lp/grid.svg" />
+        <img className="w-full h-full" src="static/lp/grid.svg" />
       </div>
     </section>
   }
@@ -545,44 +532,44 @@ module CuratedResources = {
 
   let cards = [
     {
-      imgSrc: "/static/ic_manual@2x.png",
-      title: React.string("语言手册"),
-      descr: "查阅基础知识：所有的语言特性的参考指南",
-      href: "/docs-cn/manual/latest/introduction",
+      imgSrc: "static/ic_manual@2x.png",
+      title: React.string("Language Manual"),
+      descr: "기본 문법 탐색: ReScript의 모든 언어 기능에 대한 참조 문서",
+      href: "/docs/manual/latest/introduction",
     },
     {
-      imgSrc: "/static/ic_rescript_react@2x.png",
+      imgSrc: "static/ic_rescript_react@2x.png",
       title: React.string("ReScript + React"),
-      descr: "全世界的用户都在使用 ReactJS 的一等公民绑定。",
+      descr: "전 세계의 사용자들이 이용하는 ReactJS를 위한 1급 바인딩들",
       href: "/docs/react/latest/introduction",
     },
     {
-      imgSrc: "/static/ic_manual@2x.png",
-      title: React.string("渐进式适配 ReScript"),
-      descr: "了解如何在你当前的项目中开始使用 ReScript。买之前先试试！",
-      href: "/docs-cn/manual/latest/installation#集成到已有的-js-项目中",
+      imgSrc: "static/ic_manual@2x.png",
+      title: React.string("Gradually Adopt ReScript"),
+      descr: "현 프로젝트에서 ReScript 사용을 시작하는 방법에 대해 배워보세요. 전부를 이해할 필요는 없습니다. 먼저 사용해 보세요!",
+      href: "/docs/manual/latest/installation#integrate-into-an-existing-js-project",
     },
     {
-      imgSrc: "/static/ic_gentype@2x.png",
-      title: React.string("集成到 TypeScript"),
-      descr: "了解如何在你现有的 TypeScript 代码库中集成 ReScript。",
+      imgSrc: "static/ic_gentype@2x.png",
+      title: React.string("TypeScript Integration"),
+      descr: "이미 가지고 있는 TypeScript 코드베이스에서 ReScript를 통합하는 방법을 알아보세요.",
       href: "/docs/gentype/latest/introduction",
     },
   ]
 
   let templates = [
     {
-      imgSrc: "/static/nextjs_starter_logo.svg",
+      imgSrc: "static/nextjs_starter_logo.svg",
       title: <>
         <div> {React.string("ReScript & ")} </div>
         <div className="text-gray-40"> {React.string("NextJS")} </div>
       </>,
-      descr: "可以从我们的 NextJS 启动模板开始。",
+      descr: "NextJS 스타터 템플릿으로 시작하세요.",
       href: "https://github.com/ryyppy/rescript-nextjs-template",
     },
     /*
     {
-      imgSrc: "/static/vitejs_starter_logo.svg",
+      imgSrc: "static/vitejs_starter_logo.svg",
       title: <>
         <div> {React.string("ReScript & ")} </div>
         <div style={ReactDOM.Style.make(~color="#6571FB", ())}> {React.string("ViteJS")} </div>
@@ -591,7 +578,7 @@ module CuratedResources = {
       href: "/",
     },
     {
-      imgSrc: "/static/nodejs_starter_logo.svg",
+      imgSrc: "static/nodejs_starter_logo.svg",
       title: <>
         <div> {React.string("ReScript & ")} </div>
         <div className="text-gray-40" style={ReactDOM.Style.make(~color="#699D65", ())}>
@@ -611,14 +598,14 @@ module CuratedResources = {
       <div
         className="mb-10 max-w-1280 flex flex-col justify-center items-center mx-5 md:mx-8 lg:mx-auto">
         <div className="body-sm md:body-lg text-gray-40 w-40 mb-4 xs:w-auto text-center">
-          {React.string("快来尝试一下 ReScript 吧！")}
+          {React.string("ReScript 시작하기")}
         </div>
-        <h2 className="hl-1 text-gray-20 text-center"> {React.string("精选资源")} </h2>
+        <h2 className="hl-1 text-gray-20 text-center"> {React.string("엄선된 자료들")} </h2>
       </div>
       <div className="px-5 md:px-8 max-w-1280 mx-auto my-20">
         <div
           className="body-lg text-center z-2 relative text-gray-40 max-w-[12rem] mx-auto bg-gray-100">
-          {React.string("指引和文档")}
+          {React.string("설명 가이드와 문서들")}
         </div>
         <hr className="bg-gray-80 h-px border-0 relative top-[-12px]" />
       </div>
@@ -645,7 +632,7 @@ module CuratedResources = {
         <div className="px-5 md:px-8 max-w-1280 mx-auto my-20">
           <div
             className="body-lg text-center z-2 relative text-gray-40 w-[8rem] mx-auto bg-gray-100">
-            {React.string("项目模板")}
+            {React.string("템플릿")}
           </div>
           <hr className="bg-gray-80 h-px border-0 relative top-[-12px]" />
         </div>
@@ -685,10 +672,10 @@ let make = (~components=Markdown.default, ~children) => {
 
   <>
     <Meta
-      title="ReScript 编程语言"
+      title="ReScript 프로그래밍 언어"
       description="Fast, Simple, Fully Typed JavaScript from the Future"
       keywords=["ReScript", "rescriptlang", "JavaScript", "JS", "TypeScript"]
-      ogImage="/static/Art-3-rescript-launch.jpg"
+      ogImage="static/Art-3-rescript-launch.jpg"
     />
     <div className="mt-4 xs:mt-16">
       <div className="text-gray-80 text-18">
@@ -699,7 +686,9 @@ let make = (~components=Markdown.default, ~children) => {
               <Mdx.Provider components>
                 <div className="">
                   <div className="w-full">
-                    <div className="mt-16 md:mt-32 lg:mt-40 mb-12"> <Intro /> </div>
+                    <div className="mt-16 md:mt-32 lg:mt-40 mb-12">
+                      <Intro />
+                    </div>
                     <PlaygroundHero />
                     <QuickInstall />
                     <MainUSP />

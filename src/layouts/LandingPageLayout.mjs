@@ -24,15 +24,15 @@ function LandingPageLayout$Intro(Props) {
                   className: "max-w-1060 flex flex-col items-center px-5 sm:px-8 lg:box-content"
                 }, React.createElement("h1", {
                       className: "hl-title text-center max-w-[53rem]"
-                    }, "来自未来的快速、简单、", React.createElement("br", undefined), "完全类型化的 JavaScript"), React.createElement("h2", {
+                    }, "빠르고, 단순하고, 온전한 타입의", React.createElement("br", undefined), "미래에서 온 JavaScript"), React.createElement("h2", {
                       className: "body-lg text-center text-gray-60 my-4 max-w-[40rem]"
-                    }, "ReScript 是一门健壮的类型化语言，可以编译成高效易读的 JavaScript。", React.createElement("br", undefined), "它的编译工具链快如闪电，可轻松应对任意规模的代码库。"), React.createElement("div", {
+                    }, "ReScript는 강력한 타입의 언어로 효율적이며 가독성 높은 JavaScript로 컴파일됩니다.\n          함께 제공되는 번개처럼 빠른 툴체인을 통해 어떠한 크기의 코드베이스도 컴파일해낼 수 있습니다."), React.createElement("div", {
                       className: "mt-4 mb-2"
                     }, React.createElement(Next.Link.make, {
-                          href: "/docs-cn/manual/latest/installation",
+                          href: "/docs/manual/latest/installation",
                           passHref: true,
                           children: React.createElement(Button.make, {
-                                children: "快速开始"
+                                children: "시작하기"
                               })
                         }))));
 }
@@ -59,19 +59,19 @@ function LandingPageLayout$PlaygroundHero(Props) {
                               className: "md:w-1/2"
                             }, React.createElement("div", {
                                   className: "body-sm text-gray-40 text-center py-3 sm:rounded-t-lg md:rounded-tl-lg bg-gray-100"
-                                }, "编写 ReScript 程序"), React.createElement("pre", {
+                                }, "ReScript로 작성하면"), React.createElement("pre", {
                                   className: "text-14 px-8 pt-6 pb-12 whitespace-pre-wrap"
                                 }, HighlightJs.renderHLJS(undefined, true, example.res, "res", undefined))), React.createElement("div", {
                               className: "md:w-1/2 "
                             }, React.createElement("div", {
                                   className: "body-sm text-gray-40 py-3 text-center md:border-l border-gray-80 bg-gray-100 sm:rounded-tr-lg"
-                                }, "编译为 JavaScript"), React.createElement("pre", {
+                                }, "JavaScript로 컴파일됩니다."), React.createElement("pre", {
                                   className: "text-14 px-8 pt-6 pb-14 md:border-l border-gray-80 whitespace-pre-wrap"
                                 }, HighlightJs.renderHLJS(undefined, true, example.js, "js", undefined)))), React.createElement("div", undefined, React.createElement(Next.Link.make, {
                               href: "/try?code=" + LzString.compressToEncodedURIComponent(example.res) + "}",
                               children: React.createElement("a", {
                                     className: "captions md:px-0 border-b border-gray-40 hover:border-gray-60 text-gray-60"
-                                  }, "在工作台中编辑此代码")
+                                  }, "플레이그라운드에서 이 예제 편집하기")
                             })), React.createElement("div", {
                           className: "hidden md:block"
                         }, React.createElement("img", {
@@ -80,10 +80,10 @@ function LandingPageLayout$PlaygroundHero(Props) {
                                 height: "24rem",
                                 width: "24rem"
                               },
-                              src: "/static/lp/grid.svg"
+                              src: "static/lp/grid.svg"
                             }), React.createElement("img", {
                               className: "absolute z-0 left-0 top-0 -ml-10 mt-10",
-                              src: "/static/lp/illu_left.png"
+                              src: "static/lp/illu_left.png"
                             })), React.createElement("div", {
                           className: "hidden md:block"
                         }, React.createElement("img", {
@@ -92,10 +92,10 @@ function LandingPageLayout$PlaygroundHero(Props) {
                                 height: "24rem",
                                 width: "24rem"
                               },
-                              src: "/static/lp/grid.svg"
+                              src: "static/lp/grid.svg"
                             }), React.createElement("img", {
                               className: "absolute z-3 right-0 bottom-0 -mr-2 mb-10",
-                              src: "/static/lp/illu_right.png"
+                              src: "static/lp/illu_right.png"
                             })))));
 }
 
@@ -192,9 +192,9 @@ function LandingPageLayout$QuickInstall$Instructions(Props) {
               className: "w-full max-w-[400px]"
             }, React.createElement("h2", {
                   className: "hl-3 lg:mt-12"
-                }, "快速安装"), React.createElement("div", {
+                }, "빠른 설치"), React.createElement("div", {
                   className: "captions x text-gray-40 mb-2 mt-1"
-                }, "你可以通过 npm 或 yarn 将 ReScript 快速添加到现有的 JavaScript 代码库中："), React.createElement("div", {
+                }, "기존 JavaScript 코드베이스에서 npm 또는 yarn을 이용해 ReScript를 빠르게 추가할 수 있습니다."), React.createElement("div", {
                   className: "w-full space-y-2"
                 }, copyBox("npm install rescript"), copyBox("npx rescript init .")));
 }
@@ -206,15 +206,15 @@ function LandingPageLayout$QuickInstall(Props) {
                   className: "max-w-1060 flex flex-col w-full px-5 md:px-8 lg:px-8 lg:box-content "
                 }, React.createElement("div", {
                       className: "relative max-w-[28rem]"
-                    }, React.createElement("p", {
+                    }, React.createElement("h2", {
                           className: "relative z-1 space-y-12 text-gray-80 font-semibold text-24 md:text-32 leading-2"
-                        }, "在强大的类型化语言中", React.createElement("br", undefined), React.createElement("span", {
+                        }, React.createElement("span", {
                               className: "bg-fire-5 rounded-lg border border-fire-10 p-1 "
-                            }, "发挥 JavaScript 的全部力量"), React.createElement("br", undefined), "而不必担心 \`any\` 类型。")), React.createElement("div", {
+                            }, "JavaScript의 모든 기능을"), "\`any(어떤)\` 타입을 쓰던 걱정 없이, 강력한 타입의 언어로 누리세요.")), React.createElement("div", {
                       className: "w-full mt-12 md:flex flex-col lg:flex-row md:justify-between "
                     }, React.createElement("p", {
                           className: "relative z-1 text-gray-80 font-semibold text-24 md:text-32 leading-2 max-w-[32rem]"
-                        }, "ReScript 可用于交付并维护具有良好 UI 和 UX 的关键产品。"), React.createElement("div", {
+                        }, "ReScript는 UI 및 UX가 우수한 미션 크리티컬한 제품을 출시하고 관리하는 데 사용됩니다."), React.createElement("div", {
                           className: "mt-16 lg:mt-0 self-end",
                           style: {
                             maxWidth: "25rem"
@@ -250,7 +250,7 @@ function LandingPageLayout$MainUSP$Item(Props) {
                             }, paragraph))), React.createElement("div", {
                       className: "relative mt-10 lg:mt-0"
                     }, React.createElement("div", {
-                          className: "relative w-full z-2 bg-gray-90 rounded-lg flex md:mt-0 items-center justify-center rounded-lg",
+                          className: "relative w-full z-2 bg-gray-90 rounded-lg flex md:mt-0 items-center justify-center",
                           style: {
                             maxWidth: "35rem",
                             boxShadow: "0px 4px 55px 0px rgba(230,72,79,0.10)"
@@ -260,7 +260,7 @@ function LandingPageLayout$MainUSP$Item(Props) {
                           style: {
                             maxWidth: "20rem"
                           },
-                          src: "/static/lp/grid2.svg"
+                          src: "static/lp/grid2.svg"
                         }))), React.createElement("svg", {
                   className: "md:hidden absolute z-1 w-full h-full bottom-0 left-0 " + polyColor + "",
                   preserveAspectRatio: "none",
@@ -279,8 +279,8 @@ function LandingPageLayout$MainUSP$Item(Props) {
 }
 
 var item1 = React.createElement(LandingPageLayout$MainUSP$Item, {
-      caption: "快速而简洁",
-      title: "Web 领域最快的构建系统",
+      caption: "빠르고 심플함",
+      title: "웹에서 가장 빠른 빌드 시스템",
       media: React.createElement("video", {
             className: "rounded-lg",
             controls: true,
@@ -289,24 +289,24 @@ var item1 = React.createElement(LandingPageLayout$MainUSP$Item, {
                 src: "https://assets-17077.kxcdn.com/videos/fast-build-3.mp4",
                 type: "video/mp4"
               })),
-      paragraph: React.createElement(React.Fragment, undefined, React.createElement("p", undefined, "ReScript 对任意规模代码库的反馈迭代速度和一致性十分关注。\n          你可以重构代码、拉取复杂的更改，或者随心所欲地切换到特性分支。\n          这里没有迟缓的 CI 构建、无效的缓存、错误的类型提示或消耗内存的语言服务器来拖累你。"), React.createElement("p", {
+      paragraph: React.createElement(React.Fragment, undefined, React.createElement("p", undefined, "ReScript는 어떠한 크기의 코드베이스에서도 일관되게 빠른 피드백 루프를 제공하기 위해 노력합니다.\n      자유롭게 코드를 리팩토링하고, 복잡한 변경 사항을 가져오고, 기능 브랜치를 전환하세요.\n      느린 CI 빌드, 오래된 캐시 문제, 잘못된 타입 힌트, 과도한 메모리 사용으로 개발이 느려지는 일은 없습니다."), React.createElement("p", {
                 className: "mt-6"
               }, React.createElement(Next.Link.make, {
-                    href: "/docs-cn/manual/latest/build-performance",
+                    href: "/docs/manual/latest/build-performance",
                     passHref: true,
                     children: React.createElement(Button.make, {
                           kind: /* PrimaryBlue */1,
                           size: /* Small */0,
-                          children: "了解更多"
+                          children: "더 알아보기"
                         })
                   })))
     });
 
 var item2 = React.createElement(LandingPageLayout$MainUSP$Item, {
-      caption: "健壮的类型系统",
+      caption: "강력한 타입 시스템",
       title: React.createElement("span", {
             className: "text-transparent bg-clip-text bg-gradient-to-r from-berry-dark-50 to-fire-50"
-          }, "更好的类型"),
+          }, "더 나은 타이핑"),
       media: React.createElement("video", {
             className: "rounded-lg",
             controls: true,
@@ -316,14 +316,14 @@ var item2 = React.createElement(LandingPageLayout$MainUSP$Item, {
                 type: "video/mp4"
               })),
       polygonDirection: /* Up */0,
-      paragraph: "每一个 ReScript 应用程序都是完全类型化的，这能为您程序中的任何值提供可靠的类型信息。为了清晰和方便调试，我们优先考虑简单类型而非复杂类型。\n      ReScript 中没有 \`any\`，没有魔法类型，更没有意料之外的 “undefined”。\n      "
+      paragraph: "모든 ReScript 앱은 완전히 타이핑되어 여러분의 프로그램에 어떤 값이 주어지더라도 안전한 타입 정보를 제공합니다.\n      우리는 명확하고 쉬운 디버깅을 위해 복잡한 타입보다는 단순한 타입을 우선시합니다.\n      어떤 종류의 \`any\`도, 어려운 타입도, \`undefined\` 같은 당황스러움도 없습니다."
     });
 
 var item3 = React.createElement(LandingPageLayout$MainUSP$Item, {
-      caption: "无缝集成",
+      caption: "매끄럽게 진행되는 통합",
       title: React.createElement(React.Fragment, undefined, React.createElement("span", {
                 className: "text-orange-dark"
-              }, "你所熟悉的 JS 生态"), React.createElement("br", undefined), "就在你的指尖"),
+              }, "JS에 친숙한 생태계를"), React.createElement("br", undefined), "바로 사용해보세요."),
       media: React.createElement("video", {
             className: "rounded-lg",
             controls: true,
@@ -332,7 +332,7 @@ var item3 = React.createElement(LandingPageLayout$MainUSP$Item, {
                 src: "https://assets-17077.kxcdn.com/videos/interop-example-2.mp4",
                 type: "video/mp4"
               })),
-      paragraph: "你可以使用任何来自 JavaScript 的库，\n      将 ReScript 库导出到 JavaScript，以及自动生成 TypeScript 类型。\n      就像你从未离开过 JavaScript 最好的那一部分。"
+      paragraph: "어떠한 JavaScript 라이브러리도 사용할 수 있고,\n      ReScript 라이브러리를 JavaScript로 내보낼 수도 있습니다. 그리고 자동으로 TypeScript 타입을 생성할 수도 있습니다.\n      마치 JavaScript의 좋은 점은 하나도 잃어버리지 않은 기분일 겁니다."
     });
 
 function LandingPageLayout$MainUSP(Props) {
@@ -355,40 +355,40 @@ function LandingPageLayout$OtherSellingPoints(Props) {
                           className: "w-full ",
                           imgClassName: "w-full h-[25.9rem] object-cover rounded-lg",
                           imgSrcs: [
-                            "/static/lp/community-3.jpg",
-                            "/static/lp/community-2.jpg",
-                            "/static/lp/community-1.jpg"
+                            "static/lp/community-3.jpg",
+                            "static/lp/community-2.jpg",
+                            "static/lp/community-1.jpg"
                           ]
                         }), React.createElement("h3", {
                           className: "hl-3 text-gray-20 mt-4 mb-2"
-                        }, "一个总是能帮你把事情搞定的程序员社区"), React.createElement("p", {
+                        }, "작업 완료를 중요시하는 프로그래머 커뮤니티"), React.createElement("p", {
                           className: "body-md text-gray-40"
-                        }, "没有坚实的社区基础，任何语言都不可能流行。\n            如果库的作者滥用类型，那么再强大的类型系统也没有用。\n            如果所有的库都很慢，那么性能优势就无法体现。\n            加入 ReScript 社区 —— 一群深切关注简单性、速度和实用性的公司和个人在这里等你。"), React.createElement("div", {
+                        }, "기반을 잡아주는 견고한 공동체 없이는 어떤 언어도 대중화될 수 없습니다. 훌륭한 타입 시스템도 라이브러리 개발자들이 남용한다면 유용하지 않을 것이고, 모든 라이브러리가 느려지면 퍼포먼스 성능이 표시되지 않을 것입니다.\nReScript 커뮤니티에 참여하세요! 단순성, 속도 및 실용성에 대해 깊은 관심을 가진 기업 및 개인들의 모임입니다."), React.createElement("div", {
                           className: "mt-6"
                         }, React.createElement(Button.make, {
                               href: "https://forum.rescript-lang.org",
                               kind: /* PrimaryBlue */1,
                               size: /* Small */0,
-                              children: "加入我们的论坛"
+                              children: "포럼에 참여하기"
                             }))), React.createElement("div", {
                       className: "col-span-4 lg:row-start-1"
                     }, React.createElement("img", {
                           className: "w-full rounded-lg border-2 border-turtle-dark",
-                          src: "/static/lp/editor-tooling-1.jpg"
+                          src: "static/lp/editor-tooling-1.jpg"
                         }), React.createElement("h3", {
                           className: "hl-3 text-gray-20 mt-6 mb-2"
-                        }, "所有工具开箱即用"), React.createElement("p", {
+                        }, "기발한 툴링"), React.createElement("p", {
                           className: "body-md text-gray-40"
-                        }, "一个内置的格式化工具，内存友好的 VSCode 和 Vim 插件\n            和一个稳定且不需要太多额外配置的类型系统和编译器。\n            ReScript 为你带来了构建可靠的 JavaScript、Node 和 ReactJS 应用所需的所有工具。")), React.createElement("div", {
+                        }, "내장된 포맷 도구, 메모리 친화적인 VSCode와 Vim 플러그인, 많은 추가 구성이 필요하지 않은 안정적인 타입 시스템 및 컴파일러입니다. ReScript는 신뢰할 수 있는 JavaScript, Node 및 ReactJS 응용프로그램을 구축하는 데 필요한 모든 도구를 제공합니다.")), React.createElement("div", {
                       className: "col-span-4 lg:row-start-2"
                     }, React.createElement("img", {
                           className: "w-full rounded-lg border-2 border-fire-30",
-                          src: "/static/lp/easy-to-unadopt.jpg"
+                          src: "static/lp/easy-to-unadopt.jpg"
                         }), React.createElement("h3", {
                           className: "hl-3 text-gray-20 mt-6 mb-2"
-                        }, "很容易适配 —— 没有任何限制"), React.createElement("p", {
+                        }, "제한없는 간단한 적용"), React.createElement("p", {
                           className: "body-md text-gray-40"
-                        }, "ReScript 在实现的时候就考虑了渐进式适配。\n            如果你想回到普通的 JavaScript，只需删除所有源文件并保留其干净的 JavaScript 编译结果即可。\n            你可以告诉您的同事，无论是否使用 ReScript，您的项目都会正常运作。"))));
+                        }, "ReScript는 점진적인 적용을 염두에 두고 만들어졌습니다. 만약 일반 JavaScript로 돌아가고 싶다면, 모든 소스 파일을 제거하고 깨끗한 JavaScript 컴파일 결과를 유지하면 됩니다. ReScript가 있든 없든 프로젝트는 계속 정상적으로 작동할 것이라고 동료들에게 말할 수 있을 것입니다!"))));
 }
 
 function LandingPageLayout$TrustedBy(Props) {
@@ -396,7 +396,7 @@ function LandingPageLayout$TrustedBy(Props) {
               className: "mt-20"
             }, React.createElement("h3", {
                   className: "hl-1 text-gray-80 text-center max-w-576 mx-auto"
-                }, "信任我们的用户"), React.createElement("div", {
+                }, "사용자들의 신뢰"), React.createElement("div", {
                   className: "flex flex-wrap mx-4 gap-8 justify-center items-center max-w-xl lg:mx-auto mt-16 "
                 }, OurUsers.companies.map(function (company) {
                       var renderedCompany = React.createElement("a", {
@@ -416,43 +416,43 @@ function LandingPageLayout$TrustedBy(Props) {
                   }
                 }, React.createElement("img", {
                       className: "w-full h-full",
-                      src: "/static/lp/grid.svg"
+                      src: "static/lp/grid.svg"
                     })));
 }
 
 var cards = [
   {
-    imgSrc: "/static/ic_manual@2x.png",
-    title: "语言手册",
-    descr: "查阅基础知识：所有的语言特性的参考指南",
-    href: "/docs-cn/manual/latest/introduction"
+    imgSrc: "static/ic_manual@2x.png",
+    title: "Language Manual",
+    descr: "기본 문법 탐색: ReScript의 모든 언어 기능에 대한 참조 문서",
+    href: "/docs/manual/latest/introduction"
   },
   {
-    imgSrc: "/static/ic_rescript_react@2x.png",
+    imgSrc: "static/ic_rescript_react@2x.png",
     title: "ReScript + React",
-    descr: "全世界的用户都在使用 ReactJS 的一等公民绑定。",
+    descr: "전 세계의 사용자들이 이용하는 ReactJS를 위한 1급 바인딩들",
     href: "/docs/react/latest/introduction"
   },
   {
-    imgSrc: "/static/ic_manual@2x.png",
-    title: "渐进式适配 ReScript",
-    descr: "了解如何在你当前的项目中开始使用 ReScript。买之前先试试！",
-    href: "/docs-cn/manual/latest/installation#集成到已有的-js-项目中"
+    imgSrc: "static/ic_manual@2x.png",
+    title: "Gradually Adopt ReScript",
+    descr: "현 프로젝트에서 ReScript 사용을 시작하는 방법에 대해 배워보세요. 전부를 이해할 필요는 없습니다. 먼저 사용해 보세요!",
+    href: "/docs/manual/latest/installation#integrate-into-an-existing-js-project"
   },
   {
-    imgSrc: "/static/ic_gentype@2x.png",
-    title: "集成到 TypeScript",
-    descr: "了解如何在你现有的 TypeScript 代码库中集成 ReScript。",
+    imgSrc: "static/ic_gentype@2x.png",
+    title: "TypeScript Integration",
+    descr: "이미 가지고 있는 TypeScript 코드베이스에서 ReScript를 통합하는 방법을 알아보세요.",
     href: "/docs/gentype/latest/introduction"
   }
 ];
 
 var templates = [{
-    imgSrc: "/static/nextjs_starter_logo.svg",
+    imgSrc: "static/nextjs_starter_logo.svg",
     title: React.createElement(React.Fragment, undefined, React.createElement("div", undefined, "ReScript & "), React.createElement("div", {
               className: "text-gray-40"
             }, "NextJS")),
-    descr: "可以从我们的 NextJS 启动模板开始。",
+    descr: "NextJS 스타터 템플릿으로 시작하세요.",
     href: "https://github.com/ryyppy/rescript-nextjs-template"
   }];
 
@@ -463,13 +463,13 @@ function LandingPageLayout$CuratedResources(Props) {
                   className: "mb-10 max-w-1280 flex flex-col justify-center items-center mx-5 md:mx-8 lg:mx-auto"
                 }, React.createElement("div", {
                       className: "body-sm md:body-lg text-gray-40 w-40 mb-4 xs:w-auto text-center"
-                    }, "快来尝试一下 ReScript 吧！"), React.createElement("h2", {
+                    }, "ReScript 시작하기"), React.createElement("h2", {
                       className: "hl-1 text-gray-20 text-center"
-                    }, "精选资源")), React.createElement("div", {
+                    }, "엄선된 자료들")), React.createElement("div", {
                   className: "px-5 md:px-8 max-w-1280 mx-auto my-20"
                 }, React.createElement("div", {
                       className: "body-lg text-center z-2 relative text-gray-40 max-w-[12rem] mx-auto bg-gray-100"
-                    }, "指引和文档"), React.createElement("hr", {
+                    }, "설명 가이드와 문서들"), React.createElement("hr", {
                       className: "bg-gray-80 h-px border-0 relative top-[-12px]"
                     })), React.createElement("div", undefined, React.createElement("div", {
                       className: "grid grid-flow-col grid-cols-2 grid-rows-2 lg:grid-cols-4 lg:grid-rows-1 gap-2 md:gap-4 lg:gap-8 max-w-1280 px-5 md:px-8 mx-auto"
@@ -492,7 +492,7 @@ function LandingPageLayout$CuratedResources(Props) {
                       className: "px-5 md:px-8 max-w-1280 mx-auto my-20"
                     }, React.createElement("div", {
                           className: "body-lg text-center z-2 relative text-gray-40 w-[8rem] mx-auto bg-gray-100"
-                        }, "项目模板"), React.createElement("hr", {
+                        }, "템플릿"), React.createElement("hr", {
                           className: "bg-gray-80 h-px border-0 relative top-[-12px]"
                         })), React.createElement("div", {
                       className: "grid grid-flow-col grid-cols-2 lg:grid-cols-3 lg:grid-rows-1 gap-2 md:gap-4 lg:gap-8 max-w-1280 px-5 md:px-8 mx-auto"
@@ -528,8 +528,8 @@ function LandingPageLayout(Props) {
                     "TypeScript"
                   ],
                   description: "Fast, Simple, Fully Typed JavaScript from the Future",
-                  title: "ReScript 编程语言",
-                  ogImage: "/static/Art-3-rescript-launch.jpg"
+                  title: "ReScript 프로그래밍 언어",
+                  ogImage: "static/Art-3-rescript-launch.jpg"
                 }), React.createElement("div", {
                   className: "mt-4 xs:mt-16"
                 }, React.createElement("div", {

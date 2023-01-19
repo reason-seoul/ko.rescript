@@ -80,10 +80,10 @@ function LandingPageLayout$PlaygroundHero(Props) {
                                 height: "24rem",
                                 width: "24rem"
                               },
-                              src: "static/lp/grid.svg"
+                              src: "./static/lp/grid.svg"
                             }), React.createElement("img", {
                               className: "absolute z-0 left-0 top-0 -ml-10 mt-10",
-                              src: "static/lp/illu_left.png"
+                              src: "./static/lp/illu_left.png"
                             })), React.createElement("div", {
                           className: "hidden md:block"
                         }, React.createElement("img", {
@@ -92,10 +92,10 @@ function LandingPageLayout$PlaygroundHero(Props) {
                                 height: "24rem",
                                 width: "24rem"
                               },
-                              src: "static/lp/grid.svg"
+                              src: "./static/lp/grid.svg"
                             }), React.createElement("img", {
                               className: "absolute z-3 right-0 bottom-0 -mr-2 mb-10",
-                              src: "static/lp/illu_right.png"
+                              src: "./static/lp/illu_right.png"
                             })))));
 }
 
@@ -260,7 +260,7 @@ function LandingPageLayout$MainUSP$Item(Props) {
                           style: {
                             maxWidth: "20rem"
                           },
-                          src: "static/lp/grid2.svg"
+                          src: "./static/lp/grid2.svg"
                         }))), React.createElement("svg", {
                   className: "md:hidden absolute z-1 w-full h-full bottom-0 left-0 " + polyColor + "",
                   preserveAspectRatio: "none",
@@ -355,9 +355,9 @@ function LandingPageLayout$OtherSellingPoints(Props) {
                           className: "w-full ",
                           imgClassName: "w-full h-[25.9rem] object-cover rounded-lg",
                           imgSrcs: [
-                            "static/lp/community-3.jpg",
-                            "static/lp/community-2.jpg",
-                            "static/lp/community-1.jpg"
+                            "./static/lp/community-3.jpg",
+                            "./static/lp/community-2.jpg",
+                            "./static/lp/community-1.jpg"
                           ]
                         }), React.createElement("h3", {
                           className: "hl-3 text-gray-20 mt-4 mb-2"
@@ -374,7 +374,7 @@ function LandingPageLayout$OtherSellingPoints(Props) {
                       className: "col-span-4 lg:row-start-1"
                     }, React.createElement("img", {
                           className: "w-full rounded-lg border-2 border-turtle-dark",
-                          src: "static/lp/editor-tooling-1.jpg"
+                          src: "./static/lp/editor-tooling-1.jpg"
                         }), React.createElement("h3", {
                           className: "hl-3 text-gray-20 mt-6 mb-2"
                         }, "기발한 툴링"), React.createElement("p", {
@@ -383,7 +383,7 @@ function LandingPageLayout$OtherSellingPoints(Props) {
                       className: "col-span-4 lg:row-start-2"
                     }, React.createElement("img", {
                           className: "w-full rounded-lg border-2 border-fire-30",
-                          src: "static/lp/easy-to-unadopt.jpg"
+                          src: "./static/lp/easy-to-unadopt.jpg"
                         }), React.createElement("h3", {
                           className: "hl-3 text-gray-20 mt-6 mb-2"
                         }, "제한없는 간단한 적용"), React.createElement("p", {
@@ -416,31 +416,31 @@ function LandingPageLayout$TrustedBy(Props) {
                   }
                 }, React.createElement("img", {
                       className: "w-full h-full",
-                      src: "static/lp/grid.svg"
+                      src: "./static/lp/grid.svg"
                     })));
 }
 
 var cards = [
   {
-    imgSrc: "static/ic_manual@2x.png",
+    imgSrc: "./static/ic_manual@2x.png",
     title: "Language Manual",
     descr: "기본 문법 탐색: ReScript의 모든 언어 기능에 대한 참조 문서",
     href: "/docs/manual/latest/introduction"
   },
   {
-    imgSrc: "static/ic_rescript_react@2x.png",
+    imgSrc: "./static/ic_rescript_react@2x.png",
     title: "ReScript + React",
     descr: "전 세계의 사용자들이 이용하는 ReactJS를 위한 1급 바인딩들",
     href: "/docs/react/latest/introduction"
   },
   {
-    imgSrc: "static/ic_manual@2x.png",
+    imgSrc: "./static/ic_manual@2x.png",
     title: "Gradually Adopt ReScript",
     descr: "현 프로젝트에서 ReScript 사용을 시작하는 방법에 대해 배워보세요. 전부를 이해할 필요는 없습니다. 먼저 사용해 보세요!",
     href: "/docs/manual/latest/installation#integrate-into-an-existing-js-project"
   },
   {
-    imgSrc: "static/ic_gentype@2x.png",
+    imgSrc: "./static/ic_gentype@2x.png",
     title: "TypeScript Integration",
     descr: "이미 가지고 있는 TypeScript 코드베이스에서 ReScript를 통합하는 방법을 알아보세요.",
     href: "/docs/gentype/latest/introduction"
@@ -448,7 +448,7 @@ var cards = [
 ];
 
 var templates = [{
-    imgSrc: "static/nextjs_starter_logo.svg",
+    imgSrc: "./static/nextjs_starter_logo.svg",
     title: React.createElement(React.Fragment, undefined, React.createElement("div", undefined, "ReScript & "), React.createElement("div", {
               className: "text-gray-40"
             }, "NextJS")),

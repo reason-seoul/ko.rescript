@@ -45,15 +45,15 @@ function DocsOverview$default(Props) {
     ],
     [
       "언어적 특징",
-      "/docs/manual/" + version$1 + "/overview"
+      "/docs-ko/manual/" + version$1 + "/overview"
     ],
     [
       "JS 인터롭",
-      "/docs/manual/" + version$1 + "/embed-raw-javascript"
+      "/docs-ko/manual/" + version$1 + "/embed-raw-javascript"
     ],
     [
       "빌드 시스템",
-      "/docs/manual/" + version$1 + "/build-overview"
+      "/docs-ko/manual/" + version$1 + "/build-overview"
     ]
   ];
   var ecosystem = [
@@ -100,7 +100,7 @@ function DocsOverview$default(Props) {
   return React.createElement(React.Fragment, undefined, React.createElement("div", undefined, versionSelect, React.createElement("div", {
                       className: "mb-6"
                     }), React.createElement(Markdown.H1.make, {
-                      children: "文档"
+                      children: "공식 문서"
                     })), React.createElement("div", {
                   className: "grid grid-cols-1 xs:grid-cols-2 gap-8"
                 }, React.createElement(DocsOverview$Card, {

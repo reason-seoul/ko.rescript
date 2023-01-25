@@ -28,9 +28,9 @@ let default = (~showVersionSelect=true) => {
 
   let languageManual = [
     ("언어 소개", j`/docs-ko/manual/$version/introduction`),
-    ("언어적 특징", j`/docs/manual/$version/overview`),
-    ("JS 인터롭", j`/docs/manual/$version/embed-raw-javascript`),
-    ("빌드 시스템", j`/docs/manual/$version/build-overview`),
+    ("언어적 특징", j`/docs-ko/manual/$version/overview`),
+    ("JS 인터롭", j`/docs-ko/manual/$version/embed-raw-javascript`),
+    ("빌드 시스템", j`/docs-ko/manual/$version/build-overview`),
   ]
 
   let ecosystem = [
@@ -66,7 +66,7 @@ let default = (~showVersionSelect=true) => {
     <div>
       versionSelect
       <div className="mb-6" />
-      <Markdown.H1> {React.string("文档")} </Markdown.H1>
+      <Markdown.H1> {React.string("공식 문서")} </Markdown.H1>
     </div>
     <div className="grid grid-cols-1 xs:grid-cols-2 gap-8">
       <Card title="언어 매뉴얼" hrefs=languageManual />

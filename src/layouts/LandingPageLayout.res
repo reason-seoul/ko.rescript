@@ -265,7 +265,7 @@ module QuickInstall = {
               {React.string(`JavaScript의 모든 기능을`)}
             </span>
             <br />
-            {React.string(`\`any(어떤)\` 타입을 쓰던`)}
+            {React.string(`\`any(어떤)\` 타입으로 쓰던`)}
             <br />
             {React.string(`걱정 없이 강력한 타입의 언어로 누리세요.`)}
           </h2>

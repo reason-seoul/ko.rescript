@@ -210,7 +210,7 @@ function LandingPageLayout$QuickInstall(Props) {
                           className: "relative z-1 space-y-12 text-gray-80 font-semibold text-24 md:text-32 leading-2"
                         }, React.createElement("span", {
                               className: "bg-fire-5 rounded-lg border border-fire-10 p-1 "
-                            }, "JavaScript의 모든 기능을"), React.createElement("br", undefined), "\`any(어떤)\` 타입을 쓰던", React.createElement("br", undefined), "걱정 없이 강력한 타입의 언어로 누리세요.")), React.createElement("div", {
+                            }, "JavaScript의 모든 기능을"), React.createElement("br", undefined), "\`any(어떤)\` 타입으로 쓰던", React.createElement("br", undefined), "걱정 없이 강력한 타입의 언어로 누리세요.")), React.createElement("div", {
                       className: "w-full mt-12 md:flex flex-col lg:flex-row md:justify-between "
                     }, React.createElement("p", {
                           className: "relative z-1 text-gray-80 font-semibold text-24 md:text-32 leading-2 max-w-[32rem]"

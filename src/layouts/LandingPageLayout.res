@@ -103,7 +103,7 @@ exports.Button = Button;`,
             <Next.Link href={`/try?code=${LzString.compressToEncodedURIComponent(example.res)}}`}>
               <a
                 className="captions md:px-0 border-b border-gray-40 hover:border-gray-60 text-gray-60">
-                {React.string(`플레이그라운드에서 이 예제 편집하기`)}
+                {React.string(`플레이 그라운드에서 위의 예제 편집하기`)}
               </a>
             </Next.Link>
           </div>

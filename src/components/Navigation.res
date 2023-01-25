@@ -191,7 +191,7 @@ module DocsSection = {
       {
         imgSrc: "/static/ic_gentype@2x.png",
         title: "GenType",
-        description: "매끄러운 TypeScript 인터그레이션과 Flow 인터그레이션",
+        description: "매끄럽게 진행되는 TypeScript 인터그레이션과 Flow 인터그레이션",
         href: "/docs/gentype/latest/introduction",
         isActive: url => {
           switch url.base {
@@ -286,9 +286,9 @@ module DocsSection = {
                 <LinkCard
                   icon
                   active
-                  title="Packages"
+                  title="패키지 모음"
                   href="/packages"
-                  description="Explore third party libraries and bindings"
+                  description="써드 파티 라이브러리 및 바인딩 탐색하기"
                 />
               }
               let syntaxLookupLink = {
@@ -305,12 +305,15 @@ module DocsSection = {
                   icon
                   title="문법 검색기"
                   href="/syntax-lookup"
-                  description="모든 문법을 검색할 수 있습니다."
+                  description="모든 문법 검색하기"
                   active
                 />
               }
 
-              <> syntaxLookupLink </>
+              <>
+                packageLink
+                syntaxLookupLink
+              </>
             }
           </div>
         </div>
@@ -336,20 +339,20 @@ module DocsSection = {
 
     <div
       className="relative w-full bg-white pb-32 min-h-full sm:pb-0 text-gray-60 text-14 rounded-bl-xl rounded-br-xl">
-      // <div className={"flex justify-center w-full py-2 border-b border-gray-10"}>
-      //   <div className="px-4 w-full space-x-2 max-w-1280 ">
-      //     <VersionSelect
-      //       availableVersions=Constants.allManualVersions onChange=onVersionChange version
-      //     />
-      //     {switch version {
-      //     | "latest" =>
-      //       <span className="text-gray-40 text-12">
-      //         {React.string("This is the latest docs version")}
-      //       </span>
-      //     | _ => React.null
-      //     }}
-      //   </div>
-      // </div>
+      <div className={"flex justify-center w-full py-2 border-b border-gray-10"}>
+        <div className="px-4 w-full space-x-2 max-w-1280 ">
+          <VersionSelect
+            availableVersions=Constants.allManualVersions onChange=onVersionChange version
+          />
+          {switch version {
+          | "latest" =>
+            <span className="text-gray-40 text-12">
+              {React.string("최신 문서 버전을 보고 계십니다.")}
+            </span>
+          | _ => React.null
+          }}
+        </div>
+      </div>
       <div className="flex justify-center">
         <div className="w-full sm:grid sm:grid-cols-3 max-w-1280">
           languageManualColumn

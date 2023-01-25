@@ -1,12 +1,12 @@
 {
-  "概览": [
+  "개요": [
     "introduction",
     "installation",
     "editor-plugins",
     "migrate-from-bucklescript-reason",
     "try"
   ],
-  "语言特性": [
+  "언어적 특징": [
     "overview",
     "let-binding",
     "type",
@@ -33,10 +33,10 @@
     "unboxed",
     "reserved-keywords"
   ],
-  "高级特性": [
+  "심화 기능": [
     "extensible-variant"
   ],
-  "JavaScript 互操作": [
+  "JavaScript 인터롭": [
     "interop-cheatsheet",
     "embed-raw-javascript",
     "shared-data-types",
@@ -52,7 +52,7 @@
     "browser-support-polyfills",
     "libraries"
   ],
-  "构建系统": [
+  "빌드 시스템": [
     "build-overview",
     "build-configuration",
     "build-configuration-schema",
@@ -62,10 +62,10 @@
     "build-performance",
     "warning-numbers"
   ],
-  "指引": [
+  "가이드": [
     "converting-from-js"
   ],
-  "补充": [
+  "그 외": [
     "newcomer-examples",
     "project-structure",
     "faq"

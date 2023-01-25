@@ -71,7 +71,7 @@ function LandingPageLayout$PlaygroundHero(Props) {
                               href: "/try?code=" + LzString.compressToEncodedURIComponent(example.res) + "}",
                               children: React.createElement("a", {
                                     className: "captions md:px-0 border-b border-gray-40 hover:border-gray-60 text-gray-60"
-                                  }, "플레이그라운드에서 이 예제 편집하기")
+                                  }, "플레이 그라운드에서 위의 예제 편집하기")
                             })), React.createElement("div", {
                           className: "hidden md:block"
                         }, React.createElement("img", {

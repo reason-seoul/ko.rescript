@@ -16,23 +16,34 @@ var allManualVersions = [
   ]
 ];
 
+var allReactVersions = [
+  [
+    "latest",
+    "v0.11.0"
+  ],
+  [
+    "v0.10.0",
+    "v0.10.0"
+  ]
+];
+
 function languageManual(version) {
   return [
           [
-            "概览",
-            "/docs-cn/manual/" + version + "/introduction"
+            "언어 소개",
+            "/docs/manual/" + version + "/introduction"
           ],
           [
-            "语言特性",
-            "/docs-cn/manual/" + version + "/overview"
+            "언어적 특징",
+            "/docs/manual/" + version + "/overview"
           ],
           [
-            "与 JS 互操作",
-            "/docs-cn/manual/" + version + "/embed-raw-javascript"
+            "JS 인터롭",
+            "/docs/manual/" + version + "/embed-raw-javascript"
           ],
           [
-            "构建系统",
-            "/docs-cn/manual/" + version + "/build-overview"
+            "빌드 시스템",
+            "/docs/manual/" + version + "/build-overview"
           ]
         ];
 }
@@ -63,6 +74,7 @@ var tools = [[
 
 export {
   allManualVersions ,
+  allReactVersions ,
   languageManual ,
   ecosystem ,
   tools ,

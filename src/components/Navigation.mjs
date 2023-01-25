@@ -12,6 +12,7 @@ import * as DocSearch from "./DocSearch.mjs";
 import * as Belt_Array from "rescript/lib/es6/belt_Array.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as ReactDOMStyle from "@rescript/react/src/ReactDOMStyle.mjs";
+import * as VersionSelect from "./VersionSelect.mjs";
 
 var link = "no-underline block text-inherit hover:cursor-pointer hover:text-fire-30 text-gray-40 mb-px";
 
@@ -143,6 +144,7 @@ function Navigation$DocsSection(Props) {
           return version._0;
         }
       });
+  var setVersion = match[1];
   var version = match[0];
   var languageManual = Constants.languageManual(version);
   var documentation = [
@@ -193,7 +195,7 @@ function Navigation$DocsSection(Props) {
     {
       imgSrc: "/static/ic_gentype@2x.png",
       title: "GenType",
-      description: "매끄러운 TypeScript 인터그레이션과 Flow 인터그레이션",
+      description: "매끄럽게 진행되는 TypeScript 인터그레이션과 Flow 인터그레이션",
       href: "/docs/gentype/latest/introduction",
       isActive: (function (url) {
           var match = url.base;
@@ -285,10 +287,10 @@ function Navigation$DocsSection(Props) {
     var match$2 = match$1[0];
     active = match$2 === "packages" ? true : false;
   }
-  React.createElement(Navigation$DocsSection$LinkCard, {
+  var packageLink = React.createElement(Navigation$DocsSection$LinkCard, {
         icon: icon,
-        title: "Packages",
-        description: "Explore third party libraries and bindings",
+        title: "패키지 모음",
+        description: "써드 파티 라이브러리 및 바인딩 탐색하기",
         href: "/packages",
         active: active
       });
@@ -309,7 +311,7 @@ function Navigation$DocsSection(Props) {
   var syntaxLookupLink = React.createElement(Navigation$DocsSection$LinkCard, {
         icon: icon$1,
         title: "문법 검색기",
-        description: "모든 문법을 검색할 수 있습니다.",
+        description: "모든 문법 검색하기",
         href: "/syntax-lookup",
         active: active$1
       });
@@ -324,10 +326,41 @@ function Navigation$DocsSection(Props) {
                 className: "text-12 font-medium text-gray-100 tracking-wide uppercase subpixel-antialiased"
               }, "더 알아보기"), React.createElement("div", {
                 className: "mt-6"
-              }, React.createElement(React.Fragment, undefined, syntaxLookupLink))));
+              }, React.createElement(React.Fragment, undefined, packageLink, syntaxLookupLink))));
+  var onVersionChange = function (evt) {
+    evt.preventDefault();
+    var version = evt.target.value;
+    var match = url.base;
+    if (match.length === 2) {
+      var match$1 = match[0];
+      if (match$1 === "docs") {
+        var match$2 = match[1];
+        if (match$2 === "manual") {
+          var targetUrl = "/" + (url.base.join("/") + ("/" + (version + ("/" + url.pagepath.join("/")))));
+          Next.Router.push(router, targetUrl);
+        }
+        
+      }
+      
+    }
+    Curry._1(setVersion, (function (param) {
+            return version;
+          }));
+  };
+  var tmp = version === "latest" ? React.createElement("span", {
+          className: "text-gray-40 text-12"
+        }, "최신 문서 버전을 보고 계십니다.") : null;
   return React.createElement("div", {
               className: "relative w-full bg-white pb-32 min-h-full sm:pb-0 text-gray-60 text-14 rounded-bl-xl rounded-br-xl"
             }, React.createElement("div", {
+                  className: "flex justify-center w-full py-2 border-b border-gray-10"
+                }, React.createElement("div", {
+                      className: "px-4 w-full space-x-2 max-w-1280 "
+                    }, React.createElement(VersionSelect.make, {
+                          onChange: onVersionChange,
+                          version: version,
+                          availableVersions: Constants.allManualVersions
+                        }), tmp)), React.createElement("div", {
                   className: "flex justify-center"
                 }, React.createElement("div", {
                       className: "w-full sm:grid sm:grid-cols-3 max-w-1280"

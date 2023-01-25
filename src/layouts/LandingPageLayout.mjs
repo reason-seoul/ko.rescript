@@ -363,7 +363,7 @@ function LandingPageLayout$OtherSellingPoints(Props) {
                           className: "hl-3 text-gray-20 mt-4 mb-2"
                         }, "작업 완료를 중요시하는 프로그래머 커뮤니티"), React.createElement("p", {
                           className: "body-md text-gray-40"
-                        }, "기반을 잡아주는 견고한 공동체 없이는 어떤 언어도 대중화될 수 없습니다. 훌륭한 타입 시스템도 라이브러리 개발자들이 남용한다면 유용하지 않을 것이고, 모든 라이브러리가 느려지면 퍼포먼스 성능이 표시되지 않을 것입니다.\nReScript 커뮤니티에 참여하세요! 단순성, 속도 및 실용성에 대해 깊은 관심을 가진 기업 및 개인들의 모임입니다."), React.createElement("div", {
+                        }, "기반을 잡아주는 든든한 커뮤니티 없이는 어떤 언어도 대중화될 수 없습니다. 훌륭한 타입 시스템도 라이브러리 개발자들이 남용한다면 유용하지 않을 것이고, 모든 라이브러리가 느려지면 퍼포먼스 성능이 표시되지 않을 것입니다.\nReScript 커뮤니티에 참여하세요! 단순성, 속도 및 실용성에 대해 깊은 관심을 가진 기업 및 개인들의 모임입니다."), React.createElement("div", {
                           className: "mt-6"
                         }, React.createElement(Button.make, {
                               href: "https://forum.rescript-lang.org",

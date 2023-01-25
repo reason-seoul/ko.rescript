@@ -1,10 +1,10 @@
 {
-  "概览": [
+  "개요": [
     "introduction",
     "getting-started",
     "usage"
   ],
-  "进阶": [
+  "심화": [
     "supported-types"
   ]
 }

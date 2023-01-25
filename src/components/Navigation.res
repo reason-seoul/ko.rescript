@@ -142,7 +142,9 @@ module DocsSection = {
       if isAbsolute {
         <a href rel="noopener noreferrer" className=""> content </a>
       } else {
-        <Next.Link href> <a className=""> content </a> </Next.Link>
+        <Next.Link href>
+          <a className=""> content </a>
+        </Next.Link>
       }
     }
   }
@@ -164,12 +166,12 @@ module DocsSection = {
     let documentation = [
       {
         imgSrc: "/static/ic_manual@2x.png",
-        title: "语言手册",
-        description: "所有的语言特性的参考指南",
-        href: `/docs-cn/manual/${version}/introduction`,
+        title: "언어 매뉴얼",
+        description: "모든 언어 기능에 대한 참조 문서",
+        href: `/docs-ko/manual/${version}/introduction`,
         isActive: url => {
           switch url.base {
-          | ["docs-cn", "manual"] => true
+          | ["docs", "manual"] => true
           | _ => false
           }
         },
@@ -177,7 +179,7 @@ module DocsSection = {
       {
         imgSrc: "/static/ic_rescript_react@2x.png",
         title: "ReScript & React",
-        description: "ReactJS 的一等公民绑定",
+        description: "ReactJS를 위한 1급 바인딩 모음",
         href: "/docs/react/latest/introduction",
         isActive: url => {
           switch url.base {
@@ -189,7 +191,7 @@ module DocsSection = {
       {
         imgSrc: "/static/ic_gentype@2x.png",
         title: "GenType",
-        description: "无缝衔接 TypeScript & Flow 集成",
+        description: "매끄럽게 진행되는 TypeScript 인터그레이션과 Flow 인터그레이션",
         href: "/docs/gentype/latest/introduction",
         isActive: url => {
           switch url.base {
@@ -201,7 +203,7 @@ module DocsSection = {
       {
         imgSrc: "/static/ic_reanalyze@2x.png",
         title: "Reanalyze",
-        description: "死代码消除 & 停机分析",
+        description: "데드 코드 제거 & Termination 분석",
         href: "https://github.com/reason-association/reanalyze",
         isActive: _ => {
           false
@@ -214,7 +216,7 @@ module DocsSection = {
         <div>
           <div
             className="text-12 font-medium text-gray-100 tracking-wide uppercase subpixel-antialiased">
-            {React.string("快速跳转")}
+            {React.string("자주 찾는 링크")}
           </div>
           <div>
             <ul className="space-y-2 ml-2 mt-6">
@@ -230,7 +232,9 @@ module DocsSection = {
 
                 <li key=text>
                   <span className="text-fire mr-2"> {React.string(`-`)} </span>
-                  <Link href> <a className=linkClass> {React.string(text)} </a> </Link>
+                  <Link href>
+                    <a className=linkClass> {React.string(text)} </a>
+                  </Link>
                 </li>
               })
               ->React.array}
@@ -244,7 +248,7 @@ module DocsSection = {
         <div className="w-full pb-16" style={ReactDOM.Style.make(~maxWidth="19.625rem", ())}>
           <div
             className="text-12 font-medium text-gray-100 tracking-wide uppercase subpixel-antialiased">
-            {React.string("Documentation")}
+            {React.string("문서 목차")}
           </div>
           <div>
             <div className="mt-6">
@@ -265,7 +269,7 @@ module DocsSection = {
         <div className="w-full" style={ReactDOM.Style.make(~maxWidth="19.625rem", ())}>
           <div
             className="text-12 font-medium text-gray-100 tracking-wide uppercase subpixel-antialiased">
-            {React.string("Exploration")}
+            {React.string("더 알아보기")}
           </div>
           <div className="mt-6">
             {
@@ -282,9 +286,9 @@ module DocsSection = {
                 <LinkCard
                   icon
                   active
-                  title="Packages"
+                  title="패키지 모음"
                   href="/packages"
-                  description="Explore third party libraries and bindings"
+                  description="써드 파티 라이브러리 및 바인딩 탐색하기"
                 />
               }
               let syntaxLookupLink = {
@@ -299,14 +303,17 @@ module DocsSection = {
 
                 <LinkCard
                   icon
-                  title="语法查找"
+                  title="문법 검색기"
                   href="/syntax-lookup"
-                  description="探索所有语法结构"
+                  description="모든 문법 검색하기"
                   active
                 />
               }
 
-              <> syntaxLookupLink </>
+              <>
+                packageLink
+                syntaxLookupLink
+              </>
             }
           </div>
         </div>
@@ -332,23 +339,25 @@ module DocsSection = {
 
     <div
       className="relative w-full bg-white pb-32 min-h-full sm:pb-0 text-gray-60 text-14 rounded-bl-xl rounded-br-xl">
-      // <div className={"flex justify-center w-full py-2 border-b border-gray-10"}>
-      //   <div className="px-4 w-full space-x-2 max-w-1280 ">
-      //     <VersionSelect
-      //       availableVersions=Constants.allManualVersions onChange=onVersionChange version
-      //     />
-      //     {switch version {
-      //     | "latest" =>
-      //       <span className="text-gray-40 text-12">
-      //         {React.string("This is the latest docs version")}
-      //       </span>
-      //     | _ => React.null
-      //     }}
-      //   </div>
-      // </div>
+      <div className={"flex justify-center w-full py-2 border-b border-gray-10"}>
+        <div className="px-4 w-full space-x-2 max-w-1280 ">
+          <VersionSelect
+            availableVersions=Constants.allManualVersions onChange=onVersionChange version
+          />
+          {switch version {
+          | "latest" =>
+            <span className="text-gray-40 text-12">
+              {React.string("최신 문서 버전을 보고 계십니다.")}
+            </span>
+          | _ => React.null
+          }}
+        </div>
+      </div>
       <div className="flex justify-center">
         <div className="w-full sm:grid sm:grid-cols-3 max-w-1280">
-          languageManualColumn ecosystemColumn quickReferenceColumn
+          languageManualColumn
+          ecosystemColumn
+          quickReferenceColumn
         </div>
       </div>
       <img
@@ -367,35 +376,32 @@ module MobileNav = {
     let extLink = "block hover:cursor-pointer hover:text-white text-gray-60"
     <div className="border-gray-80 border-t">
       <ul>
-        <li className=base> <DocSearch.Textbox id="docsearch-mobile" /> </li>
+        <li className=base>
+          <DocSearch.Textbox id="docsearch-mobile" />
+        </li>
         <li className=base>
           <Link href="/try">
             <a className={linkOrActiveLink(~target="/try", ~route)}>
-              {React.string("工作台")}
+              {React.string("플레이 그라운드")}
             </a>
           </Link>
         </li>
         <li className=base>
           <Link href="/blog">
             <a className={linkOrActiveLinkSubroute(~target="/blog", ~route)}>
-              {React.string("Blog")}
+              {React.string("블로그")}
             </a>
           </Link>
         </li>
-        /*
-         <li className=base>
-           <Link href="/community">
-             <a className={linkOrActiveLink(~target="/community", ~route)}>
-               {React.string("Community")}
-             </a>
-           </Link>
-         </li>
- */
         <li className=base>
-          <a
-            href="https://twitter.com/rescriptlang"
-            rel="noopener noreferrer"
-            className=extLink>
+          <Link href="/community">
+            <a className={linkOrActiveLink(~target="/community", ~route)}>
+              {React.string("커뮤니티")}
+            </a>
+          </Link>
+        </li>
+        <li className=base>
+          <a href="https://twitter.com/rescriptlang" rel="noopener noreferrer" className=extLink>
             {React.string("Twitter")}
           </a>
         </li>
@@ -423,7 +429,7 @@ let make = (~fixed=true, ~overlayState: (bool, (bool => bool) => unit)) => {
 
   let (collapsibles, setCollapsibles) = React.useState(_ => [
     {
-      title: "文档",
+      title: "공식 문서",
       href: "/docs/manual/latest/api",
       isActiveRoute: route => {
         let url = Url.parse(route)
@@ -494,7 +500,7 @@ let make = (~fixed=true, ~overlayState: (bool, (bool => bool) => unit)) => {
     setCollapsibles(prev => {
       Belt.Array.keepMap(prev, next => {
         if next.title === id {
-          Some({...next, state: state})
+          Some({...next, state})
         } else {
           None
         }
@@ -537,31 +543,31 @@ let make = (~fixed=true, ~overlayState: (bool, (bool => bool) => unit)) => {
             className="flex ml-10 space-x-5 w-full max-w-320"
             style={ReactDOMStyle.make(~maxWidth="26rem", ())}>
             {collapsibleElements->React.array}
-            <Link href="/docs-cn/manual/latest/api">
+            <Link href="/docs/manual/latest/api">
               <a className={linkOrActiveApiSubroute(~route)}> {React.string("API")} </a>
             </Link>
             <Link href="/try">
               <a className={"hidden xs:block " ++ linkOrActiveLink(~target="/try", ~route)}>
-                {React.string("工作台")}
+                {React.string("플레이 그라운드")}
               </a>
             </Link>
-            // <Link href="/blog">
-            //   <a
-            //     className={"hidden xs:block " ++ linkOrActiveLinkSubroute(~target="/blog", ~route)}>
-            //     {React.string("Blog")}
-            //   </a>
-            // </Link>
-            // <Link href="/community">
-            //   <a className={"hidden xs:block " ++ linkOrActiveLink(~target="/community", ~route)}>
-            //     {React.string("Community")}
-            //   </a>
-            // </Link>
+            <Link href="/blog">
+              <a
+                className={"hidden xs:block " ++ linkOrActiveLinkSubroute(~target="/blog", ~route)}>
+                {React.string("블로그")}
+              </a>
+            </Link>
+            <Link href="/community">
+              <a className={"hidden xs:block " ++ linkOrActiveLink(~target="/community", ~route)}>
+                {React.string("커뮤니티")}
+              </a>
+            </Link>
           </div>
           <div className="hidden md:flex items-center">
-            <div className="hidden sm:block mr-6"> <DocSearch /> </div>
-            <a
-
-              href=githubHref rel="noopener noreferrer" className={"mr-5 " ++ link}>
+            <div className="hidden sm:block mr-6">
+              <DocSearch />
+            </div>
+            <a href=githubHref rel="noopener noreferrer" className={"mr-5 " ++ link}>
               <Icon.GitHub className="w-6 h-6 opacity-50 hover:opacity-100" />
             </a>
             <a
@@ -584,7 +590,9 @@ let make = (~fixed=true, ~overlayState: (bool, (bool => bool) => unit)) => {
           resetCollapsibles()
           toggleOverlay()
         }}>
-        <Icon.DrawerDots className={"h-1 w-auto block " ++ (isOverlayOpen ? "text-fire" : "text-gray-60")} />
+        <Icon.DrawerDots
+          className={"h-1 w-auto block " ++ (isOverlayOpen ? "text-fire" : "text-gray-60")}
+        />
       </button>
       /* Mobile overlay */
       <div

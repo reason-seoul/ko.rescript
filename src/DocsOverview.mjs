@@ -40,23 +40,27 @@ function DocsOverview$default(Props) {
   var version$1 = typeof version === "number" ? "latest" : version._0;
   var languageManual = [
     [
-      "概览",
-      " /docs-cn/manual/" + version$1 + "/introduction"
+      "언어 소개",
+      "/docs-ko/manual/" + version$1 + "/introduction"
     ],
     [
-      "语言特性",
-      "/docs-cn/manual/" + version$1 + "/overview"
+      "언어적 특징",
+      "/docs-ko/manual/" + version$1 + "/overview"
     ],
     [
-      "与 JS 互操作",
-      "/docs-cn/manual/" + version$1 + "/embed-raw-javascript"
+      "JS 인터롭",
+      "/docs-ko/manual/" + version$1 + "/embed-raw-javascript"
     ],
     [
-      "构建系统",
-      "/docs-cn/manual/" + version$1 + "/build-overview"
+      "빌드 시스템",
+      "/docs-ko/manual/" + version$1 + "/build-overview"
     ]
   ];
   var ecosystem = [
+    [
+      "Package Index",
+      "/packages"
+    ],
     [
       "rescript-react",
       "/docs/react/latest/introduction"
@@ -71,9 +75,10 @@ function DocsOverview$default(Props) {
     ]
   ];
   var tools = [[
-      "语法查找",
+      "문법 검색기",
       "/syntax-lookup"
     ]];
+  var versionSelect;
   if (showVersionSelect) {
     var onChange = function (evt) {
       evt.preventDefault();
@@ -82,24 +87,30 @@ function DocsOverview$default(Props) {
       var targetUrl = "/" + (url.base.join("/") + ("/" + (version + ("/" + url.pagepath.join("/")))));
       Next.Router.push(router, targetUrl);
     };
-    React.createElement("div", {
+    versionSelect = React.createElement("div", {
           className: "text-fire"
         }, React.createElement(VersionSelect.make, {
               onChange: onChange,
               version: version$1,
               availableVersions: Constants.allManualVersions
             }));
+  } else {
+    versionSelect = null;
   }
-  return React.createElement(React.Fragment, undefined, React.createElement("div", {
+  return React.createElement(React.Fragment, undefined, React.createElement("div", undefined, versionSelect, React.createElement("div", {
+                      className: "mb-6"
+                    }), React.createElement(Markdown.H1.make, {
+                      children: "공식 문서"
+                    })), React.createElement("div", {
                   className: "grid grid-cols-1 xs:grid-cols-2 gap-8"
                 }, React.createElement(DocsOverview$Card, {
-                      title: "语言手册",
+                      title: "언어 매뉴얼",
                       hrefs: languageManual
                     }), React.createElement(DocsOverview$Card, {
-                      title: "生态系统",
+                      title: "생태계",
                       hrefs: ecosystem
                     }), React.createElement(DocsOverview$Card, {
-                      title: "工具",
+                      title: "언어 툴",
                       hrefs: tools
                     })));
 }

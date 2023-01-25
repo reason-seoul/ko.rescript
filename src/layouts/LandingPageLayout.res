@@ -11,8 +11,9 @@ module Intro = {
           {React.string(`미래에서 온 JavaScript`)}
         </h1>
         <h2 className="body-lg text-center text-gray-60 my-4 max-w-[40rem]">
-          {React.string(`ReScript는 강력한 타입의 언어로 효율적이며 가독성 높은 JavaScript로 컴파일됩니다.
-          함께 제공되는 번개처럼 빠른 툴체인을 통해 어떠한 크기의 코드베이스도 컴파일해낼 수 있습니다.`)}
+          {React.string(`ReScript는 강력한 타입의 언어로 효율적이며 가독성 높은 JavaScript로 컴파일`)}
+          <br />
+          {React.string(`됩니다. 함께 제공되는 번개처럼 빠른 툴체인을 통해 어떠한 크기의 코드베이스도 컴파일해낼 수 있습니다.`)}
         </h2>
         <div className="mt-4 mb-2">
           <Next.Link href="/docs/manual/latest/installation" passHref={true}>
@@ -102,7 +103,7 @@ exports.Button = Button;`,
             <Next.Link href={`/try?code=${LzString.compressToEncodedURIComponent(example.res)}}`}>
               <a
                 className="captions md:px-0 border-b border-gray-40 hover:border-gray-60 text-gray-60">
-                {React.string(`플레이그라운드에서 이 예제 편집하기`)}
+                {React.string(`플레이 그라운드에서 위의 예제 편집하기`)}
               </a>
             </Next.Link>
           </div>
@@ -263,7 +264,10 @@ module QuickInstall = {
             <span className="bg-fire-5 rounded-lg border border-fire-10 p-1 ">
               {React.string(`JavaScript의 모든 기능을`)}
             </span>
-            {React.string(`\`any(어떤)\` 타입을 쓰던 걱정 없이, 강력한 타입의 언어로 누리세요.`)}
+            <br />
+            {React.string(`\`any(어떤)\` 타입으로 쓰던`)}
+            <br />
+            {React.string(`걱정 없이 강력한 타입의 언어로 누리세요.`)}
           </h2>
         </div>
         //spacing between columns
@@ -272,7 +276,9 @@ module QuickInstall = {
             className="relative z-1 text-gray-80 font-semibold text-24 md:text-32 leading-2 max-w-[32rem]">
             {React.string(`ReScript는 UI 및 UX가 우수한`)}
             <br />
-            {React.string(`미션 크리티컬한 제품을 출시하고 관리하는 데 사용됩니다.`)}
+            {React.string(`미션 크리티컬한 제품을`)}
+            <br />
+            {React.string(`출시하고 관리하는 데 사용됩니다.`)}
           </p>
           <div
             className="mt-16 lg:mt-0 self-end" style={ReactDOM.Style.make(~maxWidth="25rem", ())}>

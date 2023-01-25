@@ -12,6 +12,7 @@ import * as DocSearch from "./DocSearch.mjs";
 import * as Belt_Array from "rescript/lib/es6/belt_Array.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as ReactDOMStyle from "@rescript/react/src/ReactDOMStyle.mjs";
+import * as VersionSelect from "./VersionSelect.mjs";
 
 var link = "no-underline block text-inherit hover:cursor-pointer hover:text-fire-30 text-gray-40 mb-px";
 
@@ -143,21 +144,22 @@ function Navigation$DocsSection(Props) {
           return version._0;
         }
       });
+  var setVersion = match[1];
   var version = match[0];
   var languageManual = Constants.languageManual(version);
   var documentation = [
     {
       imgSrc: "/static/ic_manual@2x.png",
-      title: "语言手册",
-      description: "所有的语言特性的参考指南",
-      href: "/docs-cn/manual/" + version + "/introduction",
+      title: "언어 매뉴얼",
+      description: "모든 언어 기능에 대한 참조 문서",
+      href: "/docs-ko/manual/" + version + "/introduction",
       isActive: (function (url) {
           var match = url.base;
           if (match.length !== 2) {
             return false;
           }
           var match$1 = match[0];
-          if (match$1 !== "docs-cn") {
+          if (match$1 !== "docs") {
             return false;
           }
           var match$2 = match[1];
@@ -171,7 +173,7 @@ function Navigation$DocsSection(Props) {
     {
       imgSrc: "/static/ic_rescript_react@2x.png",
       title: "ReScript & React",
-      description: "ReactJS 的一等公民绑定",
+      description: "ReactJS를 위한 1급 바인딩 모음",
       href: "/docs/react/latest/introduction",
       isActive: (function (url) {
           var match = url.base;
@@ -193,7 +195,7 @@ function Navigation$DocsSection(Props) {
     {
       imgSrc: "/static/ic_gentype@2x.png",
       title: "GenType",
-      description: "无缝衔接 TypeScript & Flow 集成",
+      description: "매끄럽게 진행되는 TypeScript 인터그레이션과 Flow 인터그레이션",
       href: "/docs/gentype/latest/introduction",
       isActive: (function (url) {
           var match = url.base;
@@ -215,7 +217,7 @@ function Navigation$DocsSection(Props) {
     {
       imgSrc: "/static/ic_reanalyze@2x.png",
       title: "Reanalyze",
-      description: "死代码消除 & 停机分析",
+      description: "데드 코드 제거 & Termination 분석",
       href: "https://github.com/reason-association/reanalyze",
       isActive: (function (param) {
           return false;
@@ -226,7 +228,7 @@ function Navigation$DocsSection(Props) {
         className: "flex px-4 sm:justify-center border-r border-gray-10 pt-8 pb-10"
       }, React.createElement("div", undefined, React.createElement("div", {
                 className: "text-12 font-medium text-gray-100 tracking-wide uppercase subpixel-antialiased"
-              }, "快速跳转"), React.createElement("div", undefined, React.createElement("ul", {
+              }, "자주 찾는 링크"), React.createElement("div", undefined, React.createElement("ul", {
                     className: "space-y-2 ml-2 mt-6"
                   }, languageManual.map(function (item) {
                         var href = item[1];
@@ -252,7 +254,7 @@ function Navigation$DocsSection(Props) {
             }
           }, React.createElement("div", {
                 className: "text-12 font-medium text-gray-100 tracking-wide uppercase subpixel-antialiased"
-              }, "Documentation"), React.createElement("div", undefined, React.createElement("div", {
+              }, "문서 목차"), React.createElement("div", undefined, React.createElement("div", {
                     className: "mt-6"
                   }, documentation.map(function (item) {
                         var title = item.title;
@@ -285,10 +287,10 @@ function Navigation$DocsSection(Props) {
     var match$2 = match$1[0];
     active = match$2 === "packages" ? true : false;
   }
-  React.createElement(Navigation$DocsSection$LinkCard, {
+  var packageLink = React.createElement(Navigation$DocsSection$LinkCard, {
         icon: icon,
-        title: "Packages",
-        description: "Explore third party libraries and bindings",
+        title: "패키지 모음",
+        description: "써드 파티 라이브러리 및 바인딩 탐색하기",
         href: "/packages",
         active: active
       });
@@ -308,8 +310,8 @@ function Navigation$DocsSection(Props) {
           }));
   var syntaxLookupLink = React.createElement(Navigation$DocsSection$LinkCard, {
         icon: icon$1,
-        title: "语法查找",
-        description: "探索所有语法结构",
+        title: "문법 검색기",
+        description: "모든 문법 검색하기",
         href: "/syntax-lookup",
         active: active$1
       });
@@ -322,12 +324,43 @@ function Navigation$DocsSection(Props) {
             }
           }, React.createElement("div", {
                 className: "text-12 font-medium text-gray-100 tracking-wide uppercase subpixel-antialiased"
-              }, "Exploration"), React.createElement("div", {
+              }, "더 알아보기"), React.createElement("div", {
                 className: "mt-6"
-              }, React.createElement(React.Fragment, undefined, syntaxLookupLink))));
+              }, React.createElement(React.Fragment, undefined, packageLink, syntaxLookupLink))));
+  var onVersionChange = function (evt) {
+    evt.preventDefault();
+    var version = evt.target.value;
+    var match = url.base;
+    if (match.length === 2) {
+      var match$1 = match[0];
+      if (match$1 === "docs") {
+        var match$2 = match[1];
+        if (match$2 === "manual") {
+          var targetUrl = "/" + (url.base.join("/") + ("/" + (version + ("/" + url.pagepath.join("/")))));
+          Next.Router.push(router, targetUrl);
+        }
+        
+      }
+      
+    }
+    Curry._1(setVersion, (function (param) {
+            return version;
+          }));
+  };
+  var tmp = version === "latest" ? React.createElement("span", {
+          className: "text-gray-40 text-12"
+        }, "최신 문서 버전을 보고 계십니다.") : null;
   return React.createElement("div", {
               className: "relative w-full bg-white pb-32 min-h-full sm:pb-0 text-gray-60 text-14 rounded-bl-xl rounded-br-xl"
             }, React.createElement("div", {
+                  className: "flex justify-center w-full py-2 border-b border-gray-10"
+                }, React.createElement("div", {
+                      className: "px-4 w-full space-x-2 max-w-1280 "
+                    }, React.createElement(VersionSelect.make, {
+                          onChange: onVersionChange,
+                          version: version,
+                          availableVersions: Constants.allManualVersions
+                        }), tmp)), React.createElement("div", {
                   className: "flex justify-center"
                 }, React.createElement("div", {
                       className: "w-full sm:grid sm:grid-cols-3 max-w-1280"
@@ -356,14 +389,21 @@ function Navigation$MobileNav(Props) {
                           href: "/try",
                           children: React.createElement("a", {
                                 className: linkOrActiveLink("/try", route)
-                              }, "工作台")
+                              }, "플레이 그라운드")
                         })), React.createElement("li", {
                       className: base
                     }, React.createElement(Next.Link.make, {
                           href: "/blog",
                           children: React.createElement("a", {
                                 className: linkOrActiveLinkSubroute("/blog", route)
-                              }, "Blog")
+                              }, "블로그")
+                        })), React.createElement("li", {
+                      className: base
+                    }, React.createElement(Next.Link.make, {
+                          href: "/community",
+                          children: React.createElement("a", {
+                                className: linkOrActiveLink("/community", route)
+                              }, "커뮤니티")
                         })), React.createElement("li", {
                       className: base
                     }, React.createElement("a", {
@@ -394,7 +434,7 @@ function Navigation(Props) {
   var route = router.route;
   var match = React.useState(function () {
         return [{
-                  title: "文档",
+                  title: "공식 문서",
                   children: React.createElement(Navigation$DocsSection, {}),
                   isActiveRoute: (function (route) {
                       var url = Url.parse(route);
@@ -545,7 +585,7 @@ function Navigation(Props) {
                                 maxWidth: "26rem"
                               }
                             }, collapsibleElements, React.createElement(Next.Link.make, {
-                                  href: "/docs-cn/manual/latest/api",
+                                  href: "/docs/manual/latest/api",
                                   children: React.createElement("a", {
                                         className: linkOrActiveApiSubroute(route)
                                       }, "API")
@@ -553,7 +593,17 @@ function Navigation(Props) {
                                   href: "/try",
                                   children: React.createElement("a", {
                                         className: "hidden xs:block " + linkOrActiveLink("/try", route)
-                                      }, "工作台")
+                                      }, "플레이 그라운드")
+                                }), React.createElement(Next.Link.make, {
+                                  href: "/blog",
+                                  children: React.createElement("a", {
+                                        className: "hidden xs:block " + linkOrActiveLinkSubroute("/blog", route)
+                                      }, "블로그")
+                                }), React.createElement(Next.Link.make, {
+                                  href: "/community",
+                                  children: React.createElement("a", {
+                                        className: "hidden xs:block " + linkOrActiveLink("/community", route)
+                                      }, "커뮤니티")
                                 })), React.createElement("div", {
                               className: "hidden md:flex items-center"
                             }, React.createElement("div", {

@@ -26,7 +26,7 @@ function LandingPageLayout$Intro(Props) {
                       className: "hl-title text-center max-w-[53rem]"
                     }, "빠르고, 단순하고,", React.createElement("br", undefined), "온전한 타입의", React.createElement("br", undefined), "미래에서 온 JavaScript"), React.createElement("h2", {
                       className: "body-lg text-center text-gray-60 my-4 max-w-[40rem]"
-                    }, "ReScript는 강력한 타입의 언어로 효율적이며 가독성 높은 JavaScript로 컴파일됩니다.\n          함께 제공되는 번개처럼 빠른 툴체인을 통해 어떠한 크기의 코드베이스도 컴파일해낼 수 있습니다."), React.createElement("div", {
+                    }, "ReScript는 강력한 타입의 언어로 효율적이며 가독성 높은 JavaScript로 컴파일", React.createElement("br", undefined), "됩니다. 함께 제공되는 번개처럼 빠른 툴체인을 통해 어떠한 크기의 코드베이스도 컴파일해낼 수 있습니다."), React.createElement("div", {
                       className: "mt-4 mb-2"
                     }, React.createElement(Next.Link.make, {
                           href: "/docs/manual/latest/installation",
@@ -71,7 +71,7 @@ function LandingPageLayout$PlaygroundHero(Props) {
                               href: "/try?code=" + LzString.compressToEncodedURIComponent(example.res) + "}",
                               children: React.createElement("a", {
                                     className: "captions md:px-0 border-b border-gray-40 hover:border-gray-60 text-gray-60"
-                                  }, "플레이그라운드에서 이 예제 편집하기")
+                                  }, "플레이 그라운드에서 위의 예제 편집하기")
                             })), React.createElement("div", {
                           className: "hidden md:block"
                         }, React.createElement("img", {
@@ -210,11 +210,11 @@ function LandingPageLayout$QuickInstall(Props) {
                           className: "relative z-1 space-y-12 text-gray-80 font-semibold text-24 md:text-32 leading-2"
                         }, React.createElement("span", {
                               className: "bg-fire-5 rounded-lg border border-fire-10 p-1 "
-                            }, "JavaScript의 모든 기능을"), "\`any(어떤)\` 타입을 쓰던 걱정 없이, 강력한 타입의 언어로 누리세요.")), React.createElement("div", {
+                            }, "JavaScript의 모든 기능을"), React.createElement("br", undefined), "\`any(어떤)\` 타입으로 쓰던", React.createElement("br", undefined), "걱정 없이 강력한 타입의 언어로 누리세요.")), React.createElement("div", {
                       className: "w-full mt-12 md:flex flex-col lg:flex-row md:justify-between "
                     }, React.createElement("p", {
                           className: "relative z-1 text-gray-80 font-semibold text-24 md:text-32 leading-2 max-w-[32rem]"
-                        }, "ReScript는 UI 및 UX가 우수한", React.createElement("br", undefined), "미션 크리티컬한 제품을 출시하고 관리하는 데 사용됩니다."), React.createElement("div", {
+                        }, "ReScript는 UI 및 UX가 우수한", React.createElement("br", undefined), "미션 크리티컬한 제품을", React.createElement("br", undefined), "출시하고 관리하는 데 사용됩니다."), React.createElement("div", {
                           className: "mt-16 lg:mt-0 self-end",
                           style: {
                             maxWidth: "25rem"

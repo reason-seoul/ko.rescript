@@ -1476,10 +1476,10 @@ function Playground$ControlPanel$ShareButton(Props) {
     
   };
   var match$1 = match[0] ? [
-      "已被复制到剪切板！",
+      "클립보드에 복사했습니다!",
       "bg-turtle-dark border-turtle-dark"
     ] : [
-      "复制共享链接",
+      "링크로 공유하기",
       " bg-sky body-xs active:bg-sky-70 border-sky-70"
     ];
   return React.createElement(React.Fragment, undefined, React.createElement("button", {
@@ -1543,7 +1543,7 @@ function Playground$ControlPanel(Props) {
     children = React.createElement(React.Fragment, undefined, React.createElement("div", {
               className: "mr-2"
             }, React.createElement(Playground$ControlPanel$Button, {
-                  children: "格式化",
+                  children: "포맷",
                   onClick: onFormatClick
                 })), React.createElement(Playground$ControlPanel$ShareButton, {
               createShareLink: createShareLink,

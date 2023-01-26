@@ -1,7 +1,7 @@
 module Intro = {
   @react.component
   let make = () => {
-    <section className="flex justify-center">
+    <section className="flex justify-center word-keep-all">
       <div className="max-w-1060 flex flex-col items-center px-5 sm:px-8 lg:box-content">
         <h1 className="hl-title text-center max-w-[53rem]">
           {React.string(`빠르고, 단순하고,`)}
@@ -11,9 +11,7 @@ module Intro = {
           {React.string(`미래에서 온 JavaScript`)}
         </h1>
         <h2 className="body-lg text-center text-gray-60 my-4 max-w-[40rem]">
-          {React.string(`ReScript는 강력한 타입의 언어로 효율적이며 가독성 높은 JavaScript로 컴파일`)}
-          <br />
-          {React.string(`됩니다. 함께 제공되는 번개처럼 빠른 툴체인을 통해 어떠한 크기의 코드베이스도 컴파일해낼 수 있습니다.`)}
+          {React.string(`ReScript는 강력한 타입의 언어로 효율적이며 가독성 높은 JavaScript로 컴파일됩니다. 함께 제공되는 번개처럼 빠른 툴체인을 통해 어떠한 크기의 코드베이스도 컴파일해낼 수 있습니다.`)}
         </h2>
         <div className="mt-4 mb-2">
           <Next.Link href="/docs/manual/latest/installation" passHref={true}>
@@ -70,7 +68,7 @@ exports.Button = Button;`,
     let (example, _setExample) = React.useState(_ => examples->Js.Array2.unsafe_get(0))
 
     //Playground Section & Background
-    <section className="relative mt-20 bg-gray-10">
+    <section className="relative mt-20 bg-gray-10 word-keep-all">
       <div className="relative flex justify-center w-full">
         <div className="relative w-full pt-6 pb-8 sm:px-8 md:px-16 max-w-[1400px]">
           // Playground widget
@@ -240,7 +238,7 @@ module QuickInstall = {
     }
     @react.component
     let make = () => {
-      <div className="w-full max-w-[400px]">
+      <div className="w-full max-w-[400px] word-keep-all">
         <h2 className="hl-3 lg:mt-12"> {React.string(`빠른 설치`)} </h2>
         <div className="captions x text-gray-40 mb-2 mt-1">
           {React.string(`기존 JavaScript 코드베이스에서 npm 또는 yarn을 이용해 ReScript를 빠르게 추가할 수 있습니다.`)}
@@ -255,30 +253,23 @@ module QuickInstall = {
 
   @react.component
   let make = () => {
-    <section className="my-32 sm:px-4 sm:flex sm:justify-center">
+    <section className="my-32 sm:px-4 sm:flex sm:justify-center word-keep-all">
       <div className="max-w-1060 flex flex-col w-full px-5 md:px-8 lg:px-8 lg:box-content ">
         //---Textblock on the left side---
         <div className="relative max-w-[28rem]">
           <h2
             className="relative z-1 space-y-12 text-gray-80 font-semibold text-24 md:text-32 leading-2">
             <span className="bg-fire-5 rounded-lg border border-fire-10 p-1 ">
-              {React.string(`JavaScript의 모든 기능을`)}
+              {React.string(`JavaScript의 모든 기능`)}
             </span>
-            <br />
-            {React.string(`\`any(어떤)\` 타입으로 쓰던`)}
-            <br />
-            {React.string(`걱정 없이 강력한 타입의 언어로 누리세요.`)}
+            {React.string(`을 \`any(어떤)\` 타입으로 쓰던 걱정 없이 강력한 타입의 언어로 누리세요.`)}
           </h2>
         </div>
         //spacing between columns
         <div className="w-full mt-12 md:flex flex-col lg:flex-row md:justify-between ">
           <p
             className="relative z-1 text-gray-80 font-semibold text-24 md:text-32 leading-2 max-w-[32rem]">
-            {React.string(`ReScript는 UI 및 UX가 우수한`)}
-            <br />
-            {React.string(`미션 크리티컬한 제품을`)}
-            <br />
-            {React.string(`출시하고 관리하는 데 사용됩니다.`)}
+            {React.string(`ReScript는 UI 및 UX가 우수한 미션 크리티컬한 제품을 출시하고 관리하는 데 사용됩니다.`)}
           </p>
           <div
             className="mt-16 lg:mt-0 self-end" style={ReactDOM.Style.make(~maxWidth="25rem", ())}>
@@ -319,7 +310,7 @@ module MainUSP = {
       }
 
       <div
-        className="relative flex justify-center w-full bg-gray-90 px-5 sm:px-8 lg:px-14 overflow-hidden">
+        className="relative flex justify-center w-full bg-gray-90 px-5 sm:px-8 lg:px-14 overflow-hidden word-keep-all">
         // Content
         <div
           className="relative max-w-1060 z-3 flex flex-wrap justify-center lg:justify-between pb-16 pt-20 md:pb-20 md:pt-32 lg:pb-40 md:space-x-4 w-full">
@@ -415,9 +406,9 @@ module MainUSP = {
     <Item
       caption="매끄럽게 진행되는 인터그레이션"
       title={<>
-        <span className="text-orange-dark"> {React.string(`JS에 친숙한 생태계를`)} </span>
+        <span className="text-orange-dark"> {React.string(`JS에 친숙한 생태계`)} </span>
         <br />
-        {React.string(`바로 사용해보세요.`)}
+        {React.string(`를 바로 사용해보세요.`)}
       </>}
       media={<video
         className="rounded-lg" controls={true} poster={"/static/lp/interop-example-preview.jpg"}>
@@ -447,7 +438,7 @@ module OtherSellingPoints = {
   let make = () => {
     <section
       className="flex justify-center w-full bg-gray-90 border-t border-gray-80
-            px-4 sm:px-8 lg:px-16 pt-24 pb-20 ">
+            px-4 sm:px-8 lg:px-16 pt-24 pb-20 word-keep-all">
       //defines the grid
       <div className="max-w-1060 grid grid-cols-4 md:grid-cols-10 grid-rows-2 gap-8">
         //Large Item
@@ -561,7 +552,11 @@ module CuratedResources = {
     },
     {
       imgSrc: "/static/ic_manual@2x.png",
-      title: React.string("점진적으로 ReScript 적용하기"),
+      title: <>
+        <div className="word-keep-all">
+          {React.string("점진적으로 ReScript 적용하기")}
+        </div>
+      </>,
       descr: "현 프로젝트에서 ReScript 사용을 시작하는 방법에 대해 배워보세요. 전부를 이해할 필요는 없습니다. 먼저 사용해 보세요!",
       href: "/docs/manual/latest/installation#integrate-into-an-existing-js-project",
     },
@@ -630,7 +625,7 @@ module CuratedResources = {
       //container for guides
       <div>
         <div
-          className="grid grid-flow-col grid-cols-2 grid-rows-2 lg:grid-cols-4 lg:grid-rows-1 gap-2 md:gap-4 lg:gap-8 max-w-1280 px-5 md:px-8 mx-auto">
+          className="grid grid-flow-col grid-cols-2 grid-rows-2 lg:grid-cols-4 lg:grid-rows-1 gap-2 md:gap-4 lg:gap-8 max-w-1280 px-5 md:px-8 mx-auto word-keep-all">
           {cards
           ->Belt.Array.mapWithIndex((i, card) =>
             <Next.Link key={Belt.Int.toString(i)} href={card.href}>
@@ -662,7 +657,9 @@ module CuratedResources = {
               className="hover:bg-gray-80 bg-gray-90 px-5 pb-8 relative rounded-xl min-w-[200px]">
               <img className="h-12 absolute mt-5" src=card.imgSrc />
               <h5 className="text-gray-10 hl-4 mt-32 h-12"> {card.title} </h5>
-              <div className="text-gray-40 mt-4 body-sm"> {React.string(card.descr)} </div>
+              <div className="text-gray-40 mt-4 body-sm word-keep-all">
+                {React.string(card.descr)}
+              </div>
             </a>
           )
           ->React.array}

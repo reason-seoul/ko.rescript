@@ -70,7 +70,7 @@ let make = (~components=Markdown.default, ~children) => {
         Toc.header: header["name"],
         href: "#" ++ header["href"],
       })
-      {Toc.title: title, entries: entries}
+      {Toc.title, entries}
     })
   }
 
@@ -85,7 +85,7 @@ let make = (~components=Markdown.default, ~children) => {
   let prefix = list{
     {
       open Url
-      {name: "文档", href: "/docs/" ++ version}
+      {name: "Docs", href: "/docs/" ++ version}
     },
     {
       open Url

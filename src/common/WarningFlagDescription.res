@@ -84,10 +84,7 @@ let numericCn = [
   (6, "函数调用时省略忽略了标签"),
   (8, "部分匹配：部分模式未被匹配到"),
   (9, "记录模式中有未被匹配到的字段"),
-  (
-    10,
-    "序列左侧的表达式的类型不为\"unit\"（也不为函数，请看5号警告）",
-  ),
+  (10, "序列左侧的表达式的类型不为\"unit\"（也不为函数，请看5号警告）"),
   (11, "模式匹配中有冗余的分支（不会被用到的分支）"),
   (12, "模式匹配中有冗余的子模式"),
   (14, "字符串常量中有非法的转义字符"),
@@ -189,18 +186,22 @@ let lookupAll = (): array<(string, string)> => {
   let router = Next.Router.useRouter()
   let url = router.route->Url.parse
   let lang = whichLang(url)
-  numeric->Belt.Array.map(
-    ((num, desc)) => (
-      Belt.Int.toString(num),
-      switch lang {
-      | English => desc
-      | Chinese => switch getDescription(num, numericCn) {
-        | Some(desc) => desc
-        | None => desc
-        }
+  numeric->Belt.Array.map(((num, desc)) => (
+    Belt.Int.toString(num),
+    switch lang {
+    | English => desc
+    | Chinese =>
+      switch getDescription(num, numericCn) {
+      | Some(desc) => desc
+      | None => desc
       }
-    )
-  )
+    | Korean =>
+      switch getDescription(num, numeric) {
+      | Some(desc) => desc
+      | None => desc
+      }
+    },
+  ))
 }
 
 // str: a...z or a string number, returns (numStr, description)
@@ -289,7 +290,7 @@ module Parser = {
           Js.Array2.push(ret, token)->ignore
           ParseModifier
         } else {
-          ParseFlag({modifier: modifier, acc: acc ++ cur})
+          ParseFlag({modifier, acc: acc ++ cur})
         }
       }
 

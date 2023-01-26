@@ -253,7 +253,7 @@ function make(props) {
                     exit = 1;
                 }
                 break;
-            case "docs-cn" :
+            case "docs-ko" :
                 var match$7 = base[1];
                 if (match$7 === "manual") {
                   var pagepath$1 = url.pagepath;
@@ -269,7 +269,7 @@ function make(props) {
                     var exit$5 = 0;
                     if (match$9 === 1) {
                       return React.createElement(ApiOverviewLayout.Docs.make, {
-                                  lang: /* Chinese */1,
+                                  lang: /* Korean */2,
                                   children: content
                                 });
                     }
@@ -320,7 +320,7 @@ function make(props) {
                   if (exit$4 === 2) {
                     if (version$1 === 0) {
                       return React.createElement(ManualDocsLayout.Latest.make, {
-                                  lang: /* Chinese */1,
+                                  lang: /* Korean */2,
                                   frontmatter: component.frontmatter,
                                   children: content
                                 });

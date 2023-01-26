@@ -6,14 +6,15 @@ import unified from "unified";
 import markdown from "remark-parse";
 import matter from "gray-matter";
 import stringify from "remark-stringify";
-import slug from 'remark-slug';
+import slug from "remark-slug";
 import glob from "glob";
 import path from "path";
 import fs from "fs";
-import { URL } from 'url';
+import { URL } from "url";
 
-const pathname = new URL('.', import.meta.url).pathname;
-const __dirname = process.platform !== 'win32' ? pathname : pathname.substring(1)
+const pathname = new URL(".", import.meta.url).pathname;
+const __dirname =
+  process.platform !== "win32" ? pathname : pathname.substring(1);
 
 // orderArr: ["introduction", "overview",,...]
 const orderFiles = (filepaths, orderArr) => {
@@ -32,7 +33,9 @@ const orderFiles = (filepaths, orderArr) => {
     // may happen e.g. due to invalid file paths within
     // sidebar json
     if (filepath == null) {
-      throw new Error(`Cannot find file for "${name}". Does it exist in the pages folder?`);
+      throw new Error(
+        `Cannot find file for "${name}". Does it exist in the pages folder?`
+      );
     }
   });
 
@@ -49,14 +52,14 @@ const collapseHeaderChildren = (children) => {
     else if (node.value == null) {
       return acc;
     }
-    return acc + node.value
+    return acc + node.value;
   }, "");
-}
+};
 
-const headers = options => (tree, file) => {
+const headers = (options) => (tree, file) => {
   const headers = [];
   let mainHeader;
-  tree.children.forEach(child => {
+  tree.children.forEach((child) => {
     if (child.type === "heading" && child.depth === 1) {
       if (child.children.length > 0) {
         mainHeader = collapseHeaderChildren(child.children);
@@ -115,15 +118,17 @@ const processFile = (filepath, sidebarJson = {}) => {
   return dataset;
 };
 
-const createTOC = (result, useEncode=false) => {
+const createTOC = (result, useEncode = false) => {
   // Currently we reorder the data to a map, the key is
   // reflected as the router pathname, as defined by the
   // NextJS router
   return result.reduce((acc, data) => {
     let { title, headers, category, id } = data;
     if (useEncode) {
-      headers = headers.map(header =>
-        ({ "name": header.name, "href": encodeURI(header.href) }))
+      headers = headers.map((header) => ({
+        name: header.name,
+        href: encodeURI(header.href),
+      }));
     }
     acc["/" + data.href] = {
       id,
@@ -138,13 +143,19 @@ const createTOC = (result, useEncode=false) => {
 
 const createLatestManualToc = () => {
   const MD_DIR = path.join(__dirname, "../pages/docs/manual/latest");
-  const SIDEBAR_JSON = path.join(__dirname, "../data/sidebar_manual_latest.json");
-  const TARGET_FILE = path.join(__dirname, "../index_data/manual_latest_toc.json");
+  const SIDEBAR_JSON = path.join(
+    __dirname,
+    "../data/sidebar_manual_latest.json"
+  );
+  const TARGET_FILE = path.join(
+    __dirname,
+    "../index_data/manual_latest_toc.json"
+  );
 
   const sidebarJson = JSON.parse(fs.readFileSync(SIDEBAR_JSON));
 
   const FILE_ORDER = Object.values(sidebarJson).reduce((acc, items) => {
-    return acc.concat(items)
+    return acc.concat(items);
   }, []);
 
   const files = glob.sync(`${MD_DIR}/*.?(js|md?(x))`);
@@ -158,13 +169,45 @@ const createLatestManualToc = () => {
 
 const createLatestManualCnToc = () => {
   const MD_DIR = path.join(__dirname, "../pages/docs-cn/manual/latest");
-  const SIDEBAR_JSON = path.join(__dirname, "../data/sidebar_manual_latest.json");
-  const TARGET_FILE = path.join(__dirname, "../index_data/manual_latest_toc_cn.json");
+  const SIDEBAR_JSON = path.join(
+    __dirname,
+    "../data/sidebar_manual_latest.json"
+  );
+  const TARGET_FILE = path.join(
+    __dirname,
+    "../index_data/manual_latest_toc_cn.json"
+  );
 
   const sidebarJson = JSON.parse(fs.readFileSync(SIDEBAR_JSON));
 
   const FILE_ORDER = Object.values(sidebarJson).reduce((acc, items) => {
-    return acc.concat(items)
+    return acc.concat(items);
+  }, []);
+
+  const files = glob.sync(`${MD_DIR}/*.?(js|md?(x))`);
+  const ordered = orderFiles(files, FILE_ORDER);
+
+  const result = ordered.map((filepath) => processFile(filepath, sidebarJson));
+  const toc = createTOC(result, true);
+
+  fs.writeFileSync(TARGET_FILE, JSON.stringify(toc), "utf8");
+};
+
+const createLatestManualKoToc = () => {
+  const MD_DIR = path.join(__dirname, "../pages/docs-ko/manual/latest");
+  const SIDEBAR_JSON = path.join(
+    __dirname,
+    "../data/sidebar_manual_latest.json"
+  );
+  const TARGET_FILE = path.join(
+    __dirname,
+    "../index_data/manual_latest_toc_ko.json"
+  );
+
+  const sidebarJson = JSON.parse(fs.readFileSync(SIDEBAR_JSON));
+
+  const FILE_ORDER = Object.values(sidebarJson).reduce((acc, items) => {
+    return acc.concat(items);
   }, []);
 
   const files = glob.sync(`${MD_DIR}/*.?(js|md?(x))`);
@@ -178,7 +221,10 @@ const createLatestManualCnToc = () => {
 
 const createReasonCompilerToc = () => {
   const MD_DIR = path.join(__dirname, "../pages/docs/reason-compiler/latest");
-  const TARGET_FILE = path.join(__dirname, "../index_data/reason_compiler_toc.json");
+  const TARGET_FILE = path.join(
+    __dirname,
+    "../index_data/reason_compiler_toc.json"
+  );
 
   const files = glob.sync(`${MD_DIR}/*.md?(x)`);
   const result = files.map(processFile);
@@ -190,12 +236,15 @@ const createReasonCompilerToc = () => {
 const createV900ManualToc = () => {
   const MD_DIR = path.join(__dirname, "../pages/docs/manual/v9.0.0");
   const SIDEBAR_JSON = path.join(__dirname, "../data/sidebar_manual_v900.json");
-  const TARGET_FILE = path.join(__dirname, "../index_data/manual_v900_toc.json");
+  const TARGET_FILE = path.join(
+    __dirname,
+    "../index_data/manual_v900_toc.json"
+  );
 
   const sidebarJson = JSON.parse(fs.readFileSync(SIDEBAR_JSON));
 
   const FILE_ORDER = Object.values(sidebarJson).reduce((acc, items) => {
-    return acc.concat(items)
+    return acc.concat(items);
   }, []);
 
   const files = glob.sync(`${MD_DIR}/*.?(js|md?(x))`);
@@ -210,12 +259,15 @@ const createV900ManualToc = () => {
 const createV800ManualToc = () => {
   const MD_DIR = path.join(__dirname, "../pages/docs/manual/v8.0.0");
   const SIDEBAR_JSON = path.join(__dirname, "../data/sidebar_manual_v800.json");
-  const TARGET_FILE = path.join(__dirname, "../index_data/manual_v800_toc.json");
+  const TARGET_FILE = path.join(
+    __dirname,
+    "../index_data/manual_v800_toc.json"
+  );
 
   const sidebarJson = JSON.parse(fs.readFileSync(SIDEBAR_JSON));
 
   const FILE_ORDER = Object.values(sidebarJson).reduce((acc, items) => {
-    return acc.concat(items)
+    return acc.concat(items);
   }, []);
 
   const files = glob.sync(`${MD_DIR}/*.?(js|md?(x))`);
@@ -227,16 +279,21 @@ const createV800ManualToc = () => {
   fs.writeFileSync(TARGET_FILE, JSON.stringify(toc), "utf8");
 };
 
-
 const createReactToc = () => {
   const MD_DIR = path.join(__dirname, "../pages/docs/react/latest");
-  const SIDEBAR_JSON = path.join(__dirname, "../data/sidebar_react_latest.json");
-  const TARGET_FILE = path.join(__dirname, "../index_data/react_latest_toc.json");
+  const SIDEBAR_JSON = path.join(
+    __dirname,
+    "../data/sidebar_react_latest.json"
+  );
+  const TARGET_FILE = path.join(
+    __dirname,
+    "../index_data/react_latest_toc.json"
+  );
 
   const sidebarJson = JSON.parse(fs.readFileSync(SIDEBAR_JSON));
 
   const FILE_ORDER = Object.values(sidebarJson).reduce((acc, items) => {
-    return acc.concat(items)
+    return acc.concat(items);
   }, []);
 
   const files = glob.sync(`${MD_DIR}/*.md?(x)`);
@@ -250,13 +307,19 @@ const createReactToc = () => {
 
 const createGenTypeToc = () => {
   const MD_DIR = path.join(__dirname, "../pages/docs/gentype/latest");
-  const SIDEBAR_JSON = path.join(__dirname, "../data/sidebar_gentype_latest.json");
-  const TARGET_FILE = path.join(__dirname, "../index_data/gentype_latest_toc.json");
+  const SIDEBAR_JSON = path.join(
+    __dirname,
+    "../data/sidebar_gentype_latest.json"
+  );
+  const TARGET_FILE = path.join(
+    __dirname,
+    "../index_data/gentype_latest_toc.json"
+  );
 
   const sidebarJson = JSON.parse(fs.readFileSync(SIDEBAR_JSON));
 
   const FILE_ORDER = Object.values(sidebarJson).reduce((acc, items) => {
-    return acc.concat(items)
+    return acc.concat(items);
   }, []);
 
   const files = glob.sync(`${MD_DIR}/*.?(js|md?(x))`);
@@ -276,7 +339,7 @@ const createCommunityToc = () => {
   const sidebarJson = JSON.parse(fs.readFileSync(SIDEBAR_JSON));
 
   const FILE_ORDER = Object.values(sidebarJson).reduce((acc, items) => {
-    return acc.concat(items)
+    return acc.concat(items);
   }, []);
 
   const files = glob.sync(`${MD_DIR}/*.?(js|md?(x))`);
@@ -312,3 +375,4 @@ createReactToc();
 createGenTypeToc();
 createCommunityToc();
 createLatestManualCnToc();
+createLatestManualKoToc();

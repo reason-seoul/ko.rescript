@@ -171,7 +171,7 @@ module DocsSection = {
         href: `/docs-ko/manual/${version}/introduction`,
         isActive: url => {
           switch url.base {
-          | ["docs", "manual"] => true
+          | ["docs-ko", "manual"] => true
           | _ => false
           }
         },

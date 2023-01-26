@@ -24,7 +24,7 @@ function ReactDocsLayout(Props) {
   var version = url.version;
   var version$1 = typeof version === "number" ? "latest" : version._0;
   var breadcrumbs_0 = {
-    name: "文档",
+    name: "Docs",
     href: "/docs/latest"
   };
   var breadcrumbs_1 = {

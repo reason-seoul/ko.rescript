@@ -159,7 +159,7 @@ function Navigation$DocsSection(Props) {
             return false;
           }
           var match$1 = match[0];
-          if (match$1 !== "docs") {
+          if (match$1 !== "docs-ko") {
             return false;
           }
           var match$2 = match[1];

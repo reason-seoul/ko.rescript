@@ -15,17 +15,19 @@ const pragma = `
 /* @jsxFrag mdx.Fragment */
 `;
 
-
 // This is used to inject some "Edit" link reference
 // so we can point our users to the correct resource
 // on github for editing
-let PROJECT_DIR = path.join(__dirname, "..")
-const EDIT_PREFIX = "https://github.com/reason-association/rescript-lang.org/blob/master/"
-const EDIT_PREFIX_CN = "https://github.com/rescript-idea/rescript-lang.org-chinese-translation/tree/chinese-translation/"
+let PROJECT_DIR = path.join(__dirname, "..");
+const EDIT_PREFIX =
+  "https://github.com/reason-association/rescript-lang.org/blob/master/";
+const EDIT_PREFIX_CN =
+  "https://github.com/rescript-idea/rescript-lang.org-chinese-translation/tree/chinese-translation/";
+const EDIT_PREFIX_KO = "https://github.com/green-labs/ko.rescript/blob/main/";
 function createEditHref(filepath) {
   let rel = path.relative(PROJECT_DIR, filepath);
-  if (filepath.includes("docs-cn")){
-    return EDIT_PREFIX_CN + rel;
+  if (filepath.includes("docs-ko")) {
+    return EDIT_PREFIX_KO + rel;
   }
   return EDIT_PREFIX + rel;
 }
@@ -33,7 +35,7 @@ function createEditHref(filepath) {
 const loader = async function(raw) {
   const callback = this.async();
   const options = Object.assign({}, getOptions(this), {
-    filepath: this.resourcePath
+    filepath: this.resourcePath,
   });
 
   let result;

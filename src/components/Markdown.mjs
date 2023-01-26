@@ -17,7 +17,7 @@ import * as ParseNumericRangeJs from "../ffi/parse-numeric-range.js";
 function Markdown$P(Props) {
   var children = Props.children;
   return React.createElement("p", {
-              className: "md-p md:leading-5 tracking-[-0.015em] text-gray-80 md:text-16"
+              className: "md-p md:leading-5 tracking-[-0.015em] text-gray-80 md:text-16 word-keep-all"
             }, children);
 }
 

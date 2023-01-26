@@ -19,14 +19,14 @@ import * as ImageGallery from "../components/ImageGallery.mjs";
 
 function LandingPageLayout$Intro(Props) {
   return React.createElement("section", {
-              className: "flex justify-center"
+              className: "flex justify-center word-keep-all"
             }, React.createElement("div", {
                   className: "max-w-1060 flex flex-col items-center px-5 sm:px-8 lg:box-content"
                 }, React.createElement("h1", {
                       className: "hl-title text-center max-w-[53rem]"
                     }, "빠르고, 단순하고,", React.createElement("br", undefined), "온전한 타입의", React.createElement("br", undefined), "미래에서 온 JavaScript"), React.createElement("h2", {
                       className: "body-lg text-center text-gray-60 my-4 max-w-[40rem]"
-                    }, "ReScript는 강력한 타입의 언어로 효율적이며 가독성 높은 JavaScript로 컴파일", React.createElement("br", undefined), "됩니다. 함께 제공되는 번개처럼 빠른 툴체인을 통해 어떠한 크기의 코드베이스도 컴파일해낼 수 있습니다."), React.createElement("div", {
+                    }, "ReScript는 강력한 타입의 언어로 효율적이며 가독성 높은 JavaScript로 컴파일됩니다. 함께 제공되는 번개처럼 빠른 툴체인을 통해 어떠한 크기의 코드베이스도 컴파일해낼 수 있습니다."), React.createElement("div", {
                       className: "mt-4 mb-2"
                     }, React.createElement(Next.Link.make, {
                           href: "/docs/manual/latest/installation",
@@ -48,7 +48,7 @@ function LandingPageLayout$PlaygroundHero(Props) {
       });
   var example = match[0];
   return React.createElement("section", {
-              className: "relative mt-20 bg-gray-10"
+              className: "relative mt-20 bg-gray-10 word-keep-all"
             }, React.createElement("div", {
                   className: "relative flex justify-center w-full"
                 }, React.createElement("div", {
@@ -189,7 +189,7 @@ function copyBox(text) {
 
 function LandingPageLayout$QuickInstall$Instructions(Props) {
   return React.createElement("div", {
-              className: "w-full max-w-[400px]"
+              className: "w-full max-w-[400px] word-keep-all"
             }, React.createElement("h2", {
                   className: "hl-3 lg:mt-12"
                 }, "빠른 설치"), React.createElement("div", {
@@ -201,7 +201,7 @@ function LandingPageLayout$QuickInstall$Instructions(Props) {
 
 function LandingPageLayout$QuickInstall(Props) {
   return React.createElement("section", {
-              className: "my-32 sm:px-4 sm:flex sm:justify-center"
+              className: "my-32 sm:px-4 sm:flex sm:justify-center word-keep-all"
             }, React.createElement("div", {
                   className: "max-w-1060 flex flex-col w-full px-5 md:px-8 lg:px-8 lg:box-content "
                 }, React.createElement("div", {
@@ -210,11 +210,11 @@ function LandingPageLayout$QuickInstall(Props) {
                           className: "relative z-1 space-y-12 text-gray-80 font-semibold text-24 md:text-32 leading-2"
                         }, React.createElement("span", {
                               className: "bg-fire-5 rounded-lg border border-fire-10 p-1 "
-                            }, "JavaScript의 모든 기능을"), React.createElement("br", undefined), "\`any(어떤)\` 타입으로 쓰던", React.createElement("br", undefined), "걱정 없이 강력한 타입의 언어로 누리세요.")), React.createElement("div", {
+                            }, "JavaScript의 모든 기능"), "을 \`any(어떤)\` 타입으로 쓰던 걱정 없이 강력한 타입의 언어로 누리세요.")), React.createElement("div", {
                       className: "w-full mt-12 md:flex flex-col lg:flex-row md:justify-between "
                     }, React.createElement("p", {
                           className: "relative z-1 text-gray-80 font-semibold text-24 md:text-32 leading-2 max-w-[32rem]"
-                        }, "ReScript는 UI 및 UX가 우수한", React.createElement("br", undefined), "미션 크리티컬한 제품을", React.createElement("br", undefined), "출시하고 관리하는 데 사용됩니다."), React.createElement("div", {
+                        }, "ReScript는 UI 및 UX가 우수한 미션 크리티컬한 제품을 출시하고 관리하는 데 사용됩니다."), React.createElement("div", {
                           className: "mt-16 lg:mt-0 self-end",
                           style: {
                             maxWidth: "25rem"
@@ -234,7 +234,7 @@ function LandingPageLayout$MainUSP$Item(Props) {
   var polyPointsMobile = polygonDirection ? "0,100 100,100 100,70 0,80" : "0,100 100,100 100,78 0,72";
   var polyColor = polygonDirection ? "text-fire-30" : "text-fire";
   return React.createElement("div", {
-              className: "relative flex justify-center w-full bg-gray-90 px-5 sm:px-8 lg:px-14 overflow-hidden"
+              className: "relative flex justify-center w-full bg-gray-90 px-5 sm:px-8 lg:px-14 overflow-hidden word-keep-all"
             }, React.createElement("div", {
                   className: "relative max-w-1060 z-3 flex flex-wrap justify-center lg:justify-between pb-16 pt-20 md:pb-20 md:pt-32 lg:pb-40 md:space-x-4 w-full"
                 }, React.createElement("div", {
@@ -323,7 +323,7 @@ var item3 = React.createElement(LandingPageLayout$MainUSP$Item, {
       caption: "매끄럽게 진행되는 인터그레이션",
       title: React.createElement(React.Fragment, undefined, React.createElement("span", {
                 className: "text-orange-dark"
-              }, "JS에 친숙한 생태계를"), React.createElement("br", undefined), "바로 사용해보세요."),
+              }, "JS에 친숙한 생태계"), React.createElement("br", undefined), "를 바로 사용해보세요."),
       media: React.createElement("video", {
             className: "rounded-lg",
             controls: true,
@@ -346,7 +346,7 @@ function LandingPageLayout$MainUSP(Props) {
 
 function LandingPageLayout$OtherSellingPoints(Props) {
   return React.createElement("section", {
-              className: "flex justify-center w-full bg-gray-90 border-t border-gray-80\n            px-4 sm:px-8 lg:px-16 pt-24 pb-20 "
+              className: "flex justify-center w-full bg-gray-90 border-t border-gray-80\n            px-4 sm:px-8 lg:px-16 pt-24 pb-20 word-keep-all"
             }, React.createElement("div", {
                   className: "max-w-1060 grid grid-cols-4 md:grid-cols-10 grid-rows-2 gap-8"
                 }, React.createElement("div", {
@@ -435,7 +435,9 @@ var cards = [
   },
   {
     imgSrc: "/static/ic_manual@2x.png",
-    title: "점진적으로 ReScript 적용하기",
+    title: React.createElement(React.Fragment, undefined, React.createElement("div", {
+              className: "word-keep-all"
+            }, "점진적으로 ReScript 적용하기")),
     descr: "현 프로젝트에서 ReScript 사용을 시작하는 방법에 대해 배워보세요. 전부를 이해할 필요는 없습니다. 먼저 사용해 보세요!",
     href: "/docs/manual/latest/installation#integrate-into-an-existing-js-project"
   },
@@ -472,7 +474,7 @@ function LandingPageLayout$CuratedResources(Props) {
                     }, "설명 가이드와 문서들"), React.createElement("hr", {
                       className: "bg-gray-80 h-px border-0 relative top-[-12px]"
                     })), React.createElement("div", undefined, React.createElement("div", {
-                      className: "grid grid-flow-col grid-cols-2 grid-rows-2 lg:grid-cols-4 lg:grid-rows-1 gap-2 md:gap-4 lg:gap-8 max-w-1280 px-5 md:px-8 mx-auto"
+                      className: "grid grid-flow-col grid-cols-2 grid-rows-2 lg:grid-cols-4 lg:grid-rows-1 gap-2 md:gap-4 lg:gap-8 max-w-1280 px-5 md:px-8 mx-auto word-keep-all"
                     }, Belt_Array.mapWithIndex(cards, (function (i, card) {
                             return React.createElement(Next.Link.make, {
                                         href: card.href,
@@ -507,7 +509,7 @@ function LandingPageLayout$CuratedResources(Props) {
                                           }), React.createElement("h5", {
                                             className: "text-gray-10 hl-4 mt-32 h-12"
                                           }, card.title), React.createElement("div", {
-                                            className: "text-gray-40 mt-4 body-sm"
+                                            className: "text-gray-40 mt-4 body-sm word-keep-all"
                                           }, card.descr));
                           })))));
 }

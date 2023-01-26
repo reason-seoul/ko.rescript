@@ -4,7 +4,9 @@
 module P = {
   @react.component
   let make = (~children) =>
-    <p className="md-p md:leading-5 tracking-[-0.015em] text-gray-80 md:text-16"> children </p>
+    <p className="md-p md:leading-5 tracking-[-0.015em] text-gray-80 md:text-16 word-keep-all">
+      children
+    </p>
 }
 
 // Used for hero like introduction text in

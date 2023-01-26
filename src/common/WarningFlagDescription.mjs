@@ -482,11 +482,19 @@ function lookupAll(param) {
                 var desc = param[1];
                 var num = param[0];
                 var tmp;
-                if (lang) {
-                  var desc$1 = getDescription(num, numericCn);
-                  tmp = desc$1 !== undefined ? desc$1 : desc;
-                } else {
-                  tmp = desc;
+                switch (lang) {
+                  case /* English */0 :
+                      tmp = desc;
+                      break;
+                  case /* Chinese */1 :
+                      var desc$1 = getDescription(num, numericCn);
+                      tmp = desc$1 !== undefined ? desc$1 : desc;
+                      break;
+                  case /* Korean */2 :
+                      var desc$2 = getDescription(num, numeric);
+                      tmp = desc$2 !== undefined ? desc$2 : desc;
+                      break;
+                  
                 }
                 return [
                         String(num),

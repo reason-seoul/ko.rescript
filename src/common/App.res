@@ -99,12 +99,13 @@ let make = (props: props): React.element => {
       | _ => React.null
       }
     }
-  | {base: ["docs-cn", "manual"], pagepath, version} =>
+  | {base: ["docs-ko", "manual"], pagepath, version} =>
     switch Belt.Array.get(pagepath, 0) {
-    | Some("api") => switch version {
+    | Some("api") =>
+      switch version {
       | Latest =>
         switch (Belt.Array.length(pagepath), Belt.Array.get(pagepath, 1)) {
-        | (1, _) => <ApiOverviewLayout.Docs lang=Chinese> content </ApiOverviewLayout.Docs>
+        | (1, _) => <ApiOverviewLayout.Docs lang=Korean> content </ApiOverviewLayout.Docs>
         | (2, Some("js")) => <JsDocsLayout.Prose> content </JsDocsLayout.Prose>
         | (2, Some("belt")) => <BeltDocsLayout.Prose> content </BeltDocsLayout.Prose>
         | (_, Some("js")) => <JsDocsLayout.Docs> content </JsDocsLayout.Docs>
@@ -117,7 +118,7 @@ let make = (props: props): React.element => {
     | _ =>
       switch version {
       | Latest =>
-        <ManualDocsLayout.Latest lang=Chinese frontmatter={component->frontmatter}>
+        <ManualDocsLayout.Latest lang=Korean frontmatter={component->frontmatter}>
           content
         </ManualDocsLayout.Latest>
       | _ => React.null

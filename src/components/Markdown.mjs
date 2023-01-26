@@ -143,7 +143,7 @@ function Markdown$Anchor(Props) {
   var router = Next.Router.useRouter(undefined);
   var url = Url.parse(router.route);
   var lang = LangUtil.whichLang(url);
-  var id$1 = lang ? encodeURI(id) : id;
+  var id$1 = lang !== 0 ? encodeURI(id) : id;
   var style = {
     position: "absolute",
     top: "-7rem"

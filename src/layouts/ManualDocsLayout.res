@@ -8,6 +8,11 @@ module LatestCnLayout = DocsLayout.Make({
   let tocData: SidebarLayout.Toc.raw = %raw("require('index_data/manual_latest_toc_cn.json')")
 })
 
+module LatestKoLayout = DocsLayout.Make({
+  // Structure defined by `scripts/extract-tocs.js`
+  let tocData: SidebarLayout.Toc.raw = %raw("require('index_data/manual_latest_toc_ko.json')")
+})
+
 module V800Layout = DocsLayout.Make({
   // Structure defined by `scripts/extract-tocs.js`
   let tocData: SidebarLayout.Toc.raw = %raw("require('index_data/manual_v800_toc.json')")
@@ -33,21 +38,21 @@ module Latest = {
     }
 
     let title = switch lang {
-      | LangUtil.English => "Language Manual"
-      | LangUtil.Chinese => "语言手册"
-    } 
-
+    | LangUtil.English => "Language Manual"
+    | LangUtil.Chinese => "语言手册"
+    | LangUtil.Korean => "언어 매뉴얼"
+    }
 
     let breadcrumbs = list{
       {
         open Url
-        {name: "文档", href: "/docs/" ++ version}
+        {name: "공식 문서", href: "/docs/" ++ version}
       },
       {
         open Url
         {
           name: title,
-          href: "/docs-cn/manual/" ++ (version ++ "/introduction"),
+          href: "/docs-ko/manual/" ++ (version ++ "/introduction"),
         }
       },
     }
@@ -79,6 +84,18 @@ module Latest = {
         breadcrumbs>
         children
       </LatestCnLayout>
+    | Korean =>
+      <LatestKoLayout
+        theme=#Reason
+        components
+        version
+        title
+        metaTitleCategory="ReScript 언어 매뉴얼"
+        availableVersions=Constants.allManualVersions
+        ?frontmatter
+        breadcrumbs>
+        children
+      </LatestKoLayout>
     }
   }
 }
@@ -100,13 +117,13 @@ module V900 = {
     let breadcrumbs = list{
       {
         open Url
-        {name: "文档", href: "/docs/" ++ version}
+        {name: "Docs", href: "/docs/" ++ version}
       },
       {
         open Url
         {
-          name: "语言手册",
-          href: "/docs-cn/manual/" ++ (version ++ "/introduction"),
+          name: "Language Manual",
+          href: "/docs/manual/" ++ (version ++ "/introduction"),
         }
       },
     }
@@ -144,13 +161,13 @@ module V800 = {
     let breadcrumbs = list{
       {
         open Url
-        {name: "文档", href: "/docs/" ++ version}
+        {name: "Docs", href: "/docs/" ++ version}
       },
       {
         open Url
         {
-          name: "语言手册",
-          href: "/docs-cn/manual/" ++ (version ++ "/introduction"),
+          name: "Language Manual",
+          href: "/docs/manual/" ++ (version ++ "/introduction"),
         }
       },
     }
@@ -203,7 +220,8 @@ module V800 = {
       availableVersions=Constants.allManualVersions
       ?frontmatter
       breadcrumbs>
-      warnBanner children
+      warnBanner
+      children
     </V800Layout>
   }
 }

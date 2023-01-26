@@ -3,10 +3,14 @@
 import * as Caml_array from "rescript/lib/es6/caml_array.js";
 
 function langDocBase(lang) {
-  if (lang) {
-    return "docs-cn";
-  } else {
-    return "docs";
+  switch (lang) {
+    case /* English */0 :
+        return "docs";
+    case /* Chinese */1 :
+        return "docs-cn";
+    case /* Korean */2 :
+        return "docs-ko";
+    
   }
 }
 
@@ -15,10 +19,13 @@ function whichLang(url) {
     return /* English */0;
   }
   var match = Caml_array.get(url.base, 0);
-  if (match === "docs-cn") {
-    return /* Chinese */1;
-  } else {
-    return /* English */0;
+  switch (match) {
+    case "docs-cn" :
+        return /* Chinese */1;
+    case "docs-ko" :
+        return /* Korean */2;
+    default:
+      return /* English */0;
   }
 }
 

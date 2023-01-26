@@ -20,16 +20,22 @@ var LatestCnLayout = DocsLayout.Make({
       tocData: tocData$1
     });
 
-var tocData$2 = (require('index_data/manual_v800_toc.json'));
+var tocData$2 = (require('index_data/manual_latest_toc_ko.json'));
 
-var V800Layout = DocsLayout.Make({
+var LatestKoLayout = DocsLayout.Make({
       tocData: tocData$2
     });
 
-var tocData$3 = (require('index_data/manual_v900_toc.json'));
+var tocData$3 = (require('index_data/manual_v800_toc.json'));
+
+var V800Layout = DocsLayout.Make({
+      tocData: tocData$3
+    });
+
+var tocData$4 = (require('index_data/manual_v900_toc.json'));
 
 var V900Layout = DocsLayout.Make({
-      tocData: tocData$3
+      tocData: tocData$4
     });
 
 function ManualDocsLayout$Latest(Props) {
@@ -44,15 +50,27 @@ function ManualDocsLayout$Latest(Props) {
   var url = Url.parse(route);
   var version = url.version;
   var version$1 = typeof version === "number" ? "latest" : version._0;
-  var title = lang ? "语言手册" : "Language Manual";
+  var title;
+  switch (lang) {
+    case /* English */0 :
+        title = "Language Manual";
+        break;
+    case /* Chinese */1 :
+        title = "语言手册";
+        break;
+    case /* Korean */2 :
+        title = "언어 매뉴얼";
+        break;
+    
+  }
   var breadcrumbs_0 = {
-    name: "文档",
+    name: "공식 문서",
     href: "/docs/" + version$1
   };
   var breadcrumbs_1 = {
     hd: {
       name: title,
-      href: "/docs-cn/manual/" + (version$1 + "/introduction")
+      href: "/docs-ko/manual/" + (version$1 + "/introduction")
     },
     tl: /* [] */0
   };
@@ -61,35 +79,53 @@ function ManualDocsLayout$Latest(Props) {
     tl: breadcrumbs_1
   };
   var version$2 = "latest";
-  if (lang) {
-    var tmp = {
-      breadcrumbs: breadcrumbs,
-      title: title,
-      metaTitleCategory: "ReScript 语言手册",
-      version: version$2,
-      components: components,
-      theme: "Reason",
-      children: children
-    };
-    if (frontmatter !== undefined) {
-      tmp.frontmatter = Caml_option.valFromOption(frontmatter);
-    }
-    return React.createElement(LatestCnLayout.make, tmp);
+  switch (lang) {
+    case /* English */0 :
+        var tmp = {
+          breadcrumbs: breadcrumbs,
+          title: title,
+          metaTitleCategory: "ReScript Language Manual",
+          version: version$2,
+          availableVersions: Constants.allManualVersions,
+          components: components,
+          theme: "Reason",
+          children: children
+        };
+        if (frontmatter !== undefined) {
+          tmp.frontmatter = Caml_option.valFromOption(frontmatter);
+        }
+        return React.createElement(LatestLayout.make, tmp);
+    case /* Chinese */1 :
+        var tmp$1 = {
+          breadcrumbs: breadcrumbs,
+          title: title,
+          metaTitleCategory: "ReScript 语言手册",
+          version: version$2,
+          components: components,
+          theme: "Reason",
+          children: children
+        };
+        if (frontmatter !== undefined) {
+          tmp$1.frontmatter = Caml_option.valFromOption(frontmatter);
+        }
+        return React.createElement(LatestCnLayout.make, tmp$1);
+    case /* Korean */2 :
+        var tmp$2 = {
+          breadcrumbs: breadcrumbs,
+          title: title,
+          metaTitleCategory: "ReScript 언어 매뉴얼",
+          version: version$2,
+          availableVersions: Constants.allManualVersions,
+          components: components,
+          theme: "Reason",
+          children: children
+        };
+        if (frontmatter !== undefined) {
+          tmp$2.frontmatter = Caml_option.valFromOption(frontmatter);
+        }
+        return React.createElement(LatestKoLayout.make, tmp$2);
+    
   }
-  var tmp$1 = {
-    breadcrumbs: breadcrumbs,
-    title: title,
-    metaTitleCategory: "ReScript Language Manual",
-    version: version$2,
-    availableVersions: Constants.allManualVersions,
-    components: components,
-    theme: "Reason",
-    children: children
-  };
-  if (frontmatter !== undefined) {
-    tmp$1.frontmatter = Caml_option.valFromOption(frontmatter);
-  }
-  return React.createElement(LatestLayout.make, tmp$1);
 }
 
 var Latest = {
@@ -107,13 +143,13 @@ function ManualDocsLayout$V900(Props) {
   var version = url.version;
   var version$1 = typeof version === "number" ? "latest" : version._0;
   var breadcrumbs_0 = {
-    name: "文档",
+    name: "Docs",
     href: "/docs/" + version$1
   };
   var breadcrumbs_1 = {
     hd: {
-      name: "语言手册",
-      href: "/docs-cn/manual/" + (version$1 + "/introduction")
+      name: "Language Manual",
+      href: "/docs/manual/" + (version$1 + "/introduction")
     },
     tl: /* [] */0
   };
@@ -152,13 +188,13 @@ function ManualDocsLayout$V800(Props) {
   var version = url.version;
   var version$1 = typeof version === "number" ? "latest" : version._0;
   var breadcrumbs_0 = {
-    name: "文档",
+    name: "Docs",
     href: "/docs/" + version$1
   };
   var breadcrumbs_1 = {
     hd: {
-      name: "语言手册",
-      href: "/docs-cn/manual/" + (version$1 + "/introduction")
+      name: "Language Manual",
+      href: "/docs/manual/" + (version$1 + "/introduction")
     },
     tl: /* [] */0
   };
@@ -209,6 +245,7 @@ var V800 = {
 export {
   LatestLayout ,
   LatestCnLayout ,
+  LatestKoLayout ,
   V800Layout ,
   V900Layout ,
   Latest ,

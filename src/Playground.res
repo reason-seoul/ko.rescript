@@ -183,7 +183,7 @@ module Statusbar = {
     | Comp(Success({warnings})) =>
       let warningNum = Belt.Array.length(warnings)
       if warningNum === 0 {
-        (okClass, "Compiled successfully")
+        (okClass, "성공적으로 컴파일되었습니다.")
       } else {
         (warnClass, "Compiled with " ++ (Belt.Int.toString(warningNum) ++ " Warning(s)"))
       }
@@ -357,7 +357,7 @@ module ResultPane = {
         ->React.array
       | WarningFlagErr({msg}) =>
         <div>
-          {React.string("There are some issues with your compiler flag configuration:")}
+          {React.string("컴파일러 플래그 설정에 문제가 있습니다:")}
           {React.string(msg)}
         </div>
       }
@@ -422,7 +422,7 @@ module ResultPane = {
       <div>
         <PreWrap>
           {React.string(
-            "The compiler bundle API returned a result that couldn't be interpreted. Please open an issue on our ",
+            "컴파일러 번들 API에서 해석할 수 없는 결과를 반환했습니다. 다음에서 이에 대한 이슈를 제기해 주세요. ",
           )}
           <Markdown.A href="https://github.com/rescript-association/rescript-lang.org/issues">
             {React.string("issue tracker")}
@@ -437,7 +437,7 @@ module ResultPane = {
         </div>
         <div className="mt-4">
           <PreWrap>
-            <span className=subheader> {React.string("Received JSON payload:")} </span>
+            <span className=subheader> {React.string("JSON payload 수신됨:")} </span>
             <div> {Util.Json.prettyStringify(json)->React.string} </div>
           </PreWrap>
         </div>
@@ -445,7 +445,7 @@ module ResultPane = {
     | Nothing =>
       let syntax = Api.Lang.toString(targetLang)
       <PreWrap>
-        {React.string(j`This playground is now running on compiler version $compilerVersion with $syntax syntax`)}
+        {React.string(j`이 플레이 그라운드는 $syntax 문법을 가진 $compilerVersion 컴파일러 버전에서 실행되고 있습니다.`)}
       </PreWrap>
     }
 
@@ -467,7 +467,7 @@ module ResultPane = {
     | Comp(Success({warnings})) =>
       let warningNum = Belt.Array.length(warnings)
       if warningNum === 0 {
-        (okClass, "Compiled successfully")
+        (okClass, "성공적으로 컴파일되었습니다.")
       } else {
         (warnClass, "Compiled with " ++ (Belt.Int.toString(warningNum) ++ " Warning(s)"))
       }
@@ -1165,7 +1165,10 @@ module ControlPanel = {
 
       let (text, className) = switch state {
       | Init => ("링크로 공유하기", " bg-sky body-xs active:bg-sky-70 border-sky-70")
-      | CopySuccess => ("클립보드에 복사했습니다!", "bg-turtle-dark border-turtle-dark")
+      | CopySuccess => (
+          "클립보드에 복사되었습니다!",
+          "bg-turtle-dark border-turtle-dark",
+        )
       }
 
       <>
@@ -1188,8 +1191,8 @@ module ControlPanel = {
   ) => {
     let router = Next.Router.useRouter()
     let children = switch state {
-    | Init => React.string("Initializing...")
-    | SwitchingCompiler(_, _, _) => React.string("Switching Compiler...")
+    | Init => React.string("초기화 중...")
+    | SwitchingCompiler(_, _, _) => React.string("컴파일러 전환 중...")
     | Compiling(ready, _)
     | Ready(ready) =>
       let onFormatClick = evt => {
@@ -1341,8 +1344,8 @@ module OutputPanel = {
         compilerVersion=ready.selected.compilerVersion
         result=ready.result
       />
-    | SetupFailed(msg) => <div> {React.string("Setup failed: " ++ msg)} </div>
-    | Init => <div> {React.string("Initalizing Playground...")} </div>
+    | SetupFailed(msg) => <div> {React.string("셋업 실패: " ++ msg)} </div>
+    | Init => <div> {React.string("플레이 그라운드 초기화 중...")} </div>
     }
 
     let settingsPane = switch compilerState {
@@ -1353,8 +1356,8 @@ module OutputPanel = {
       let setConfig = config => compilerDispatch(UpdateConfig(config))
 
       <Settings readyState=ready dispatch=compilerDispatch editorCode setConfig config />
-    | SetupFailed(msg) => <div> {React.string("Setup failed: " ++ msg)} </div>
-    | Init => <div> {React.string("Initalizing Playground...")} </div>
+    | SetupFailed(msg) => <div> {React.string("셋업 실패: " ++ msg)} </div>
+    | Init => <div> {React.string("플레이 그라운드 초기화 중...")} </div>
     }
 
     let prevSelected = React.useRef(0)

@@ -235,7 +235,7 @@ function renderTitle(targetLang, result) {
           var warningNum = result$1._0.warnings.length;
           match = warningNum === 0 ? [
               okClass,
-              "Compiled successfully"
+              "성공적으로 컴파일되었습니다."
             ] : [
               warnClass,
               "Compiled with " + (String(warningNum) + " Warning(s)")
@@ -382,7 +382,7 @@ function renderResult(focusedRowCol, targetLang, compilerVersion, result) {
   if (typeof result === "number") {
     var syntax = RescriptCompilerApi.Lang.toString(targetLang);
     return React.createElement(Playground$ResultPane$PreWrap, {
-                children: "This playground is now running on compiler version " + compilerVersion + " with " + syntax + " syntax"
+                children: "이 플레이 그라운드는 " + syntax + " 문법을 가진 " + compilerVersion + " 컴파일러 버전에서 실행되고 있습니다."
               });
   }
   if (result.TAG === /* Conv */0) {
@@ -452,7 +452,7 @@ function renderResult(focusedRowCol, targetLang, compilerVersion, result) {
                                         }, compactErrorLine(isHighlighted(focusedRowCol, details), match[0], details));
                             }));
             case /* WarningFlagErr */3 :
-                return React.createElement("div", undefined, "There are some issues with your compiler flag configuration:", result$2._0.msg);
+                return React.createElement("div", undefined, "컴파일러 플래그 설정에 문제가 있습니다:", result$2._0.msg);
             default:
               return Belt_Array.mapWithIndex(filterHighlightedLocMsgs(focusedRowCol, result$2._0), (function (i, locMsg) {
                             return React.createElement("div", {
@@ -494,7 +494,7 @@ function renderResult(focusedRowCol, targetLang, compilerVersion, result) {
   var subheader = "font-bold text-gray-40 text-16";
   return React.createElement("div", undefined, React.createElement(Playground$ResultPane$PreWrap, {
                   children: null
-                }, "The compiler bundle API returned a result that couldn't be interpreted. Please open an issue on our ", React.createElement(Markdown.A.make, {
+                }, "컴파일러 번들 API에서 해석할 수 없는 결과를 반환했습니다. 다음에서 이에 대한 이슈를 제기해 주세요. ", React.createElement(Markdown.A.make, {
                       href: "https://github.com/rescript-association/rescript-lang.org/issues",
                       children: "issue tracker"
                     }), "."), React.createElement("div", {
@@ -509,7 +509,7 @@ function renderResult(focusedRowCol, targetLang, compilerVersion, result) {
                       children: null
                     }, React.createElement("span", {
                           className: subheader
-                        }, "Received JSON payload:"), React.createElement("div", undefined, Util.Json.prettyStringify(json)))));
+                        }, "JSON payload 수신됨:"), React.createElement("div", undefined, Util.Json.prettyStringify(json)))));
 }
 
 function renderTitle$1(result) {
@@ -592,7 +592,7 @@ function renderTitle$1(result) {
           var warningNum = result$1._0.warnings.length;
           match = warningNum === 0 ? [
               okClass,
-              "Compiled successfully"
+              "성공적으로 컴파일되었습니다."
             ] : [
               warnClass,
               "Compiled with " + (String(warningNum) + " Warning(s)")
@@ -1476,7 +1476,7 @@ function Playground$ControlPanel$ShareButton(Props) {
     
   };
   var match$1 = match[0] ? [
-      "클립보드에 복사했습니다!",
+      "클립보드에 복사되었습니다!",
       "bg-turtle-dark border-turtle-dark"
     ] : [
       "링크로 공유하기",
@@ -1497,14 +1497,14 @@ function Playground$ControlPanel(Props) {
   var children;
   var exit = 0;
   if (typeof state === "number") {
-    children = "Initializing...";
+    children = "초기화 중...";
   } else {
     switch (state.TAG | 0) {
       case /* SetupFailed */0 :
           children = null;
           break;
       case /* SwitchingCompiler */1 :
-          children = "Switching Compiler...";
+          children = "컴파일러 전환 중...";
           break;
       case /* Ready */2 :
       case /* Compiling */3 :
@@ -1705,9 +1705,9 @@ function Playground$OutputPanel(Props) {
       }, resultPane, codeElement);
   var errorPane;
   if (typeof compilerState === "number") {
-    errorPane = React.createElement("div", undefined, "Initalizing Playground...");
+    errorPane = React.createElement("div", undefined, "플레이 그라운드 초기화 중...");
   } else if (compilerState.TAG === /* SetupFailed */0) {
-    errorPane = React.createElement("div", undefined, "Setup failed: " + compilerState._0);
+    errorPane = React.createElement("div", undefined, "셋업 실패: " + compilerState._0);
   } else {
     var ready$2 = compilerState._0;
     errorPane = React.createElement(Playground$ResultPane, {
@@ -1718,9 +1718,9 @@ function Playground$OutputPanel(Props) {
   }
   var settingsPane;
   if (typeof compilerState === "number") {
-    settingsPane = React.createElement("div", undefined, "Initalizing Playground...");
+    settingsPane = React.createElement("div", undefined, "플레이 그라운드 초기화 중...");
   } else if (compilerState.TAG === /* SetupFailed */0) {
-    settingsPane = React.createElement("div", undefined, "Setup failed: " + compilerState._0);
+    settingsPane = React.createElement("div", undefined, "셋업 실패: " + compilerState._0);
   } else {
     var ready$3 = compilerState._0;
     var config = ready$3.selected.config;

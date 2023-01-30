@@ -5,7 +5,7 @@
 이 프로젝트에서 번역된 부분은 후에 [crowdin.com](https://crowdin.com/project/rescript-lang)으로 옮겨서 진행될 예정입니다 ([참고](https://forum.rescript-lang.org/t/translation-project-rescript-lang-org/4022)). 조금 더 많은 분이 쉽게 번역에 참여해 주시길 바라며 현 깃헙 레포를 만들게 되었습니다. 
 현 사이트는 리스크립트 중국어 번역팀의 원문 사이트 레포 포크를 기반으로 만들어졌습니다. 
 
-The next Korean-translated version of the rescript-lang.org website. See inside of pages/docs-ko for translation. This repo is inspired by and a fork of https://github.com/rescript-idea/rescript-lang.org-chinese-translation - thank you! 
+The next Korean-translated version of the rescript-lang.org website. See inside of pages/docs-ko for translation. This repo is inspired by and a fork of [rescript-idea/rescript-lang.org-chinese-translation](https://github.com/rescript-idea/rescript-lang.org-chinese-translation) - thank you! 
 
 
 - 번역 대상의 문서들은 [`pages/docs-ko`](https://github.com/green-labs/ko.rescript/tree/main/pages/docs-ko) 안에 있습니다. 

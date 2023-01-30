@@ -1,167 +1,50 @@
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
+# 📖리스크립트 한국어 2023’ 판📖 
 
-<a href="https://simpleanalytics.com/rescript-lang.org?utm_source=rescript-lang.org&utm_content=badge" referrerpolicy="origin" target="_blank"><img src="https://simpleanalyticsbadge.com/rescript-lang.org?counter=true" loading="lazy" referrerpolicy="no-referrer" crossorigin="anonymous" /></a>
+🚀[ko-rescript.pages.dev](https://ko-rescript.pages.dev/)🚀
 
-# rescript-lang.org
+이 프로젝트에서 번역된 부분은 후에 [crowdin.com](https://crowdin.com/project/rescript-lang)으로 옮겨서 진행될 예정입니다 ([참고](https://forum.rescript-lang.org/t/translation-project-rescript-lang-org/4022)). 조금 더 많은 분이 쉽게 번역에 참여해 주시길 바라며 현 깃헙 레포를 만들게 되었습니다. 
+현 사이트는 리스크립트 중국어 번역팀의 원문 사이트 레포 포크를 기반으로 만들어졌습니다. 
 
-This is the official documentation platform for the [ReScript](https://rescript-lang.org) programming language.
+The next Korean-translated version of the rescript-lang.org website. See inside of [`pages/docs-ko`](https://github.com/green-labs/ko.rescript/tree/main/pages/docs-ko) for translation. This repo is inspired by and a fork of [rescript-idea/rescript-lang.org-chinese-translation](https://github.com/rescript-idea/rescript-lang.org-chinese-translation) - thank you! 
 
-**In case you want to report a technical issue, please refer to the appropriate repository:**
-- [rescript-compiler](https://github.com/rescript-lang/rescript-compiler): The compiler and build system
-- [rescript-syntax](https://github.com/rescript-lang/syntax): The ReScript syntax
 
-**In case you are missing some specific documentation:**
-- Some language / compiler feature may not be documented yet
-- Create an issue to let us know what you are missing
-- In case you want to contribute missing docs, please refer to our [Contribution section](#contributing)
+- 번역 대상의 문서들은 [`pages/docs-ko`](https://github.com/green-labs/ko.rescript/tree/main/pages/docs-ko) 안에 있습니다. 
+- 대상의 원문은 [`pages/docs`](https://github.com/green-labs/ko.rescript/tree/main/pages/docs) 안을 참고해 주세요. 
+- [`manual/latest`](https://github.com/green-labs/ko.rescript/tree/main/pages/docs-ko/manual/latest) ➡️ [`react/latest`](https://github.com/green-labs/ko.rescript/tree/main/pages/docs-ko/react/latest) 의 순서로 번역 진행 예정입니다. 
+- 마크다운 문서 작성법은 이곳 ([영](https://docs.github.com/ko/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) & [한](https://gist.github.com/ihoneymon/652be052a0727ad59601)) 을 참조해 주세요.
+- 로컬호스트에서의 구현을 위한 셋업은 [이곳](https://github.com/rescript-association/rescript-lang.org#setup)을 참조해 주세요. 
 
-## System Requirements
+   
+<br/> 
 
-- `node@12.22.1` or higher (for ES6 module compat)
-- `npm@7` (package-lock v2)
 
-## Setup
+## 🔔번역 시 참고해 주세요.
+- 원문 사이트의 번역 페이지의 [기준](https://rescript-lang.org/community/translations#:~:text=If%20you%20decide%20to%20translate%20our%20resources%2C%20please%20make%20sure%20to%20follow%20SEO%20best%20practises%20and%20most%20importantly%2C%20add%20canonical%20references%20to%20point%20to%20the%20original%20source%2C%20otherwise%20we%20might%20get%20mixed%20results%20with%20SEO%20/%20google%20search.)을 따라 `canonical URL`을 지켜주세요.
+- 번역 과정 보존을 쉽게 하기 위해 영어 원문은 코멘트 `<!-- … -->` 화 시켜주세요. 
+- 위의 항목들이 잘 이해가 되지 않는다면, 이미 번역된 파일을 참고하시길 바랍니다. ([예](https://raw.githubusercontent.com/green-labs/ko.rescript/main/pages/docs-ko/manual/latest/introduction.mdx)) 
+- 의문점이 있다면 언제든지 [이슈](https://github.com/green-labs/ko.rescript/issues)를 열어주세요. [디스코드](https://discord.com/channels/717436122480902225/724992917889876008)도 열려 있습니다. 
 
-```sh
-# For first time clone / build (install dependencies)
-npm i
+   
 
-# Only needed for initial clone (or content H2 changes)
-npm run update-index
 
-# Initial build
-npx rescript
+### ✍️문체
+- 어투는 딱딱하지 않은 경어를 사용합니다.
+- `You`는 `여러분`으로 번역합니다.
+  - 당신 (❌)
+  - 여러분 (⭕)
+- 사용자가 검색 시에 더 용이하도록, 언어의 이름과 같은 용어는 영어 그대로 표시합니다. 
+   - 예) JavaScript(⭕), 자바스크립트(❌)
+- 생소한 표현은 음차와 영어를 병기합니다.
+   - 예) 정수 덧셈(Integer Addition) 
+- `parameter`는 `매개변수`로, `argument`는 `인자`로 번역합니다. argument는 인수와 인자 둘 다 표기할 수 있으나, 현 레포 번역에서 통일하기 위해 정한 점입니다. 
+   - 인수(❌)
+   - labeled argument - 이름있는 인자
+   
+<br/>  
+   
 
-# Build the index data
-npm run update-index
+## 🛸교정에 참여해 주세요.
+- 좋은 번역을 위해서는 교정(proofread) 과정이 필요합니다. 이를 위해 [이슈](https://github.com/green-labs/ko.rescript/issues?q=is%3Aopen+is%3Aissue+label%3Aproofread)란에 교정이 필요한 부분들을 `proofread` 태그를 붙여 두었습니다. 
+- 번역 문서를 읽을 때 오역 또는 오탈자 등을 발견하였다면, 자유롭게 [PR](https://github.com/green-labs/ko.rescript/pulls)을 올려주세요.
+- 번역 시에 교정이 필요하다 생각되는 부분들을 [이슈](https://github.com/green-labs/ko.rescript/issues) 등록해주세요. 
 
-# In a new tab
-npm run dev
-
-open localhost:3000
-```
-
-In case you want to run ReScript in watchmode:
-
-```sh
-npx rescript build -w
-```
-
-## Build Index Data
-
-We are parsing our content for specific index data (such as, all interesting
-search terms we need for searching inside the `Belt` docs). You can create your
-index by running following command:
-
-```sh
-npm run update-index
-```
-
-All the index data is stored in `index_data`, but will not be tracked by git.
-Make sure to build the index after a fresh clone, otherwise Next might not
-build specific pages (file `index_data/x.json` not found).
-
-## Project Structure Overview
-
-- `data`: Contains hand-curated data, such as sidebar ordering, blog data, etc
-- `index_data`: Contains generated data, usually generated by scripts like `scripts/extract-tocs.js`
-- `compilers`: Contains a subdirectory with independently installed ReScript compilers, to be able to compile / test examples with different ReScript versions
-- `misc_docs`: Contains `pages` independent resources that are embedded in miscellaneous pages (e.g. for the syntax lookup)
-- `pages`: All Next pages. Those are written in JS / MDX, some pages are re-exporting ReScript based pages from the `src/` directory.
-- `styles`: Contains all extra CSS that cannot be expressed with Tailwind
-- `src`: Contains all ReScript related code for the UI. Within `src`, you will also find all ReScript based Next pages that are re-exported in the `pages` directory
-  - `/bindings`: (Zero-cost) bindings to JS libraries / apis
-  - `/common`: ReScript modules that are neither `bindings`, nor `components`
-  - `/components`: ReScript / React components used by multiple pages
-  - `/ffi`: (to be deprecated) Plain JS that some ReScript code binds to (use `raw` statements for that)
-  - `/layouts`: All Next layouts used in our pages. Check out `src/common/App.res` for mapping layouts to routes
-- `plugins`: Contains plugins for all kinds of things: HighlightJS, MDX, webpack loader, etc.
-- `scripts`: Contains a mix of JS / ReScript based scripts that do all kind of code generation / code introspection logic
-- `tailwind.config.js`: Contains our Tailwind configuration for all the low level design tokens
-
-## Run Tests
-
-### Markdown Codeblock Tests
-
-We check the validity of our code examples marked with:
-- `` ```res example `` (ReScript code snippet)
-- `` ```res sig `` (signature)
-- `` ```res prelude `` (ReScript code snippet available for all subsequent code snippets)
-
-Run the checks with:
-
-```sh
-node scripts/test-examples.mjs
-```
-
-### Markdown Hyperlink Tests
-
-We are also verifying markdown href links to relative resources (via
-`[text](url)` syntax) with our `scripts/test-hrefs.js` script. Here is a short
-explanation on how the href testing works:
-
-Domain relative links, such as `/docs/manual/latest`, `./introduction`,
-`introduction`, `/docs/foo/introduction.md` will be verified. That means the
-tester will check if given path exists in the `pages` directory.
-
-If there are any anchor refs, such as `/docs/manual#test`, then the anchor will
-be ignored for the specific file path check. If there are any hrefs with `.md`,
-`.mdx` or `.html` file extension, then those will be stripped before the check
-happens (the markdown renderer drops file extensions on relative links as
-well).
-
-External hrefs, such as `https://www.hello.world`, `//www.hello.world` will NOT be
-checked since they are assumed to be external resources.
-
-Here is an example on how to run the tests:
-
-```sh
-# Tests all files
-node scripts/test-hrefs.mjs
-
-# Or just a subset (glob pattern)
-node scripts/test-hrefs.mjs "pages/docs/manual/**/*.mdx"
-```
-
-### Continous Integration
-
-Always make sure to run `npm test` before pushing any content, otherwise our CI
-might trigger a failure warning. Failing branches are very unlikely to be merged.
-
-## Design / UX
-
-Design mockups can be found
-[here](https://xd.adobe.com/spec/1cd19c3a-a0bb-4f93-4e11-725589888696-6ae0/grid/).
-
-Be aware that some screen designs might still be work in progress, if you have
-any design / UX questions, either comment directly on the design tool as guest,
-or open an issue.
-
-## Useful commands
-
-Build CSS seperately via `npx postcss` (useful for debugging)
-
-```sh
-# Devmode
-npx postcss styles/main.css -o test.css
-
-# Production
-NODE_ENV=production npx postcss styles/main.css -o test.css
-```
-
-## Writing Blog Posts
-
-In case you are a blog author, please refer to our [guide on writing blog posts](https://rescript-lang.org/blogpost-guide).
-
-## How to Add Your Company Logo to Our Front Page
-
-In case your company is a user of ReScript and wants to be displayed on our front page ("Trusted by our users" section), do the following:
-
-- Get your logo as a black / white `.svg` version and use `#979AAD` as a fill color (check out the existing logos on our front page).
-- Put your logo into the [`public/static/lp`](./public/static/lp) folder; the file should be named after your company.
-- Open [src/common/OurUsers.res](./src/common/OurUsers.res) and add your info
-- Commit, push, and open a PR.
-
-### Contributing
-
-Please make sure to first read and comply to our [Code of Conduct](CODE_OF_CONDUCT.md) and check out our [CONTRIBUTING.md](CONTRIBUTING.md) file to learn how to get started with our contribution process!

@@ -1,18 +1,32 @@
 ---
-title: "Primitive Types"
+title: "원시 타입"
 description: "Primitive Data Types in ReScript"
 canonical: "/docs/manual/latest/primitive-types"
 ---
 
+<!--
 # Primitive Types
+-->
+# 원시 타입(Primitive Types)
 
+<!--
 ReScript comes with the familiar primitive types like `string`, `int`, `float`, etc.
+-->
+
+ReScript는 `string`, `int`, `float` 등과 같은 친숙한 원시 타입을 제공합니다.
 
 <!-- TODO: doc unit -->
 
+<!--
 ## String
+-->
+## 문자열(String)
 
+<!--
 ReScript `string`s are delimited using **double** quotes (single quotes are reserved for the character type below).
+-->
+
+ReScript 문자열, 즉, `string` 타입은 **큰 따옴표**를 사용합니다(작은 따옴표는 아래 문자 타입에서 설명합니다).
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -28,7 +42,11 @@ var multilineGreeting = "Hello\n world!";
 
 </CodeTab>
 
+<!--
 To concatenate strings, use `++`:
+-->
+
+문자열을 이어 붙이려면 `++`를 사용합니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -41,14 +59,28 @@ var greetings = "Hello world!";
 
 </CodeTab>
 
+<!--
 ### String Interpolation
+-->
+### 문자열 보간
 
+<!--
 There's a special syntax for string that allows
+-->
 
+다음은 문자열에 허용되는 특수한 문법입니다.
+
+<!--
 - multiline string just like before
 - no special character escaping
 - Interpolation
 - Proper unicode handling
+-->
+
+- 이전과 같은 멀티라인 문자열
+- 이스케이프 없는 특수 문자 사용
+- 보간
+- 올바른 유니코드 처리
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -69,9 +101,17 @@ var greeting = "Hello\nWorld\n👋\n" + name + "\n";
 
 </CodeTab>
 
+<!--
 This is just like JavaScript's backtick string interpolation, except without needing to escape special characters.
+-->
 
+이는 특수 문자를 이스케이프할 필요가 없다는 점을 제외하고는 JavaScript의 백틱(`) 문자열 보간법과 같습니다.
+
+<!--
 For interpolation, you'll have to convert the binding (`name` in the example) into a string if it isn't one. If you want the interpolation to implicitly convert a binding into a string, prepend a `j`:
+-->
+
+문자열 보간을 위해서, 바인딩(위의 예제에서는 `name`)이 문자열이 아닌 경우 바인딩을 문자열로 변환해야 합니다. 보간을 통해 바인딩을 문자열로 암시적으로 변환하려면 앞에 다음과 같이 `j`를 추가하세요.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -85,25 +125,58 @@ var message = "Today I am " + 10 + " years old.";
 
 </CodeTab>
 
+<!--
 ### Usage
+-->
+### 사용법
 
+<!--
 See the familiar `Js.String` API in the [API docs](api/js/string). Since a ReScript string maps to a JavaScript string, you can mix & match the string operations in both standard libraries.
+-->
 
+[API docs](api/js/string)에 설명된 `Js.String`API를 사용합니다. ReScript 문자열은 JavaScript 문자열에 대응되므로 두 표준 라이브러리에서 문자열 관련 작업을 혼합하고 매칭시킬 수 있습니다.
+
+<!--
 ### Tips & Tricks
+-->
+### 사용 팁과 트릭
 
-**You have a good type system now**! In an untyped language, you'd often overload the meaning of string by using it as:
+<!--
+**You have a good type system now!** In an untyped language, you'd often overload the meaning of string by using it as:
+-->
 
+**여러분은 지금 즈음 좋은 타입 시스템을 가지고 있을 것입니다!** 타입이 없는 언어에서는, 다음과 같이 문자열의 의미를 과부하 시키는 경우가 허다합니다.  
+
+<!--
 - a unique id: `var BLUE_COLOR = "blue"`
 - an identifier into a data structure: `var BLUE = "blue" var RED = "red" var colors = [BLUE, RED]`
 - the name of an object field: `person["age"] = 24`
 - an enum: `if (audio.canPlayType() === 'probably') {...}` [(ಠ_ಠ)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canPlayType#Return_value)
 - other crazy patterns you'll soon find horrible, after getting used to ReScript's alternatives.
+-->
 
+- 유니크 id：`var BLUE_COLOR = "blue"`
+- 데이터 구조 식별자：`var BLUE = "blue" var RED = "red" var colors = [BLUE, RED]`
+- 객체 필드의 이름을 문자열로 접근：`person["age"] = 24`
+- enum처럼 쓰는 경우：`if (audio.canPlayType() === 'probably') {...}` [(ಠ_ಠ)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canPlayType#Return_value)
+- 그 외 ReScript의 대안에 익숙해지면 곧 알게 될 다른 말도 안 되는 사용법
+
+<!--
 The more you overload the poor string type, the less the type system (or a teammate) can help you! ReScript provides concise, fast and maintainable types & data structures alternatives to the use-cases above (e.g. variants, in a later section).
+-->
 
+JavaScript와 같은 언어의 열악한 문자열 타입에 과부하가 걸릴수록 타입 시스템(또는 팀 동료)에게서 도움 받기 힘들 것 입니다! ReScript는 위의 좋지 못한 문자열 사용 사례에 대해 간결하고 빠르고 유지 가능한 타입 및 자료 구조를 제공합니다. (추가 설명은 배리언트 섹션을 참고하세요)
+
+<!--
 ## Char
+-->
+## 문자(Char)
 
+<!--
 ReScript has a type for a string with a single letter:
+-->
+
+ReScript는 다음과 같이 단일 문자 타입을 가지고 있습니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -116,13 +189,28 @@ var firstLetterOfAlphabet = /* "a" */97;
 
 </CodeTab>
 
+<!--
 **Note**: Char doesn't support Unicode or UTF-8 and is therefore not recommended.
+-->
 
+**주의**: 문자 타입은 유니코드 또는 UTF-8을 지원하지 않기 때문에 추천하지 않습니다.
+
+<!--
 To convert a String to a Char, use `String.get("a", 0)`. To convert a Char to a String, use `String.make(1, 'a')`.
+-->
 
-## Regular Expression
+문자열을 문자로 변환할 때에는 `String.get("a", 0)`를 사용하고, 문자를 문자열로 만들기 위해서는 `String.make(1, 'a')`를 사용합니다.
 
+<!--
+Regular Expression
+-->
+## 정규 표현식
+
+<!--
 ReScript regular expressions compile cleanly to their JavaScript counterpart:
+-->
+
+ReScript 정규 표현식은 대응하는 JavaScript에 맞게 깔끔하게 컴파일됩니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -135,37 +223,94 @@ var r = /b/g;
 
 </CodeTab>
 
+<!--
 A regular expression like the above has the type `Js.Re.t`. The [Js.Re](api/js/re) module contains the regular expression helpers you have seen in JS.
+-->
 
+위와 같은 정규 표현식의 타입은 `Js.Re.t`입니다. [Js.Re](api/js/re) 모듈 메뉴얼에는 JavaScript에서 볼 수 있는 정규 표현식 보조 기능이 포함되어 있습니다.
+
+<!--
 ## Boolean
+-->
+## 불리언(Boolean)
 
+<!--
 A ReScript boolean has the type `bool` and can be either `true` or `false`. Common operations:
+-->
 
+ReScript 불리언의 타입은 `bool`이고, `true` 또는 `false`가 될 수 있습니다. 일반 연산자로 다음과 같은 것들이 있습니다. 
+
+<!--
 - `&&`: logical and.
 - `||`: logical or.
 - `!`: logical not.
 - `<=`, `>=`, `<`, `>`
-- `==`: structural equal, compares data structures deeply: `(1, 2) == (1, 2)` is `true`. Convenient, but use with caution.
+- `==`: structural equal, compares data structures deeply. `(1, 2) == (1, 2)` is `true`. Convenient, but use with caution.
 - `===`: referential equal, compares shallowly. `(1, 2) === (1, 2)` is `false`. `let myTuple = (1, 2); myTuple === myTuple` is `true`.
 - `!=`: structural unequal.
 - `!==`: referential unequal.
+-->
 
+- `&&`: 그리고(and)
+- `||`: 또는(or)
+- `!`: 부정(not)
+- `<=`, `>=`, `<`, `>`
+- `==`: 구조적 동등성, 심층적인 자료 구조 비교. `(1, 2) == (1, 2)`는 `true`. 편리하지만 사용에 주의해야 합니다.
+- `===`: 참조 동등성, 얕은 비교. `(1, 2) === (1, 2)`는 `false`. `let myTuple = (1, 2); myTuple === myTuple`은 `true`.
+- `!=`: 구조적 비동등.
+- `!==`: 참조 비동등.
+
+<!--
 ReScript's `true/false` compiles into a JavaScript `true/false`.
+-->
 
+ReScript의 `true/false`는 JavaScript `true/false`로 컴파일됩니다.
+
+<!--
 ## Integers
+-->
+## 정수
 
+<!--
 32-bits, truncated when necessary. We provide the usual operations on them: `+`, `-`, `*`, `/`, etc. See [Js.Int](api/js/int) for helper functions.
+-->
 
+
+32비트 범위를 가지며, 만일 범위를 넘는 경우에 잘립니다. ReScript는 `+`，`-`，`*`，`/`등의 일반적인 연산자를 제공합니다. [Js.Int](api/js/int)에서 더 자세히 나와 있습니다. 
+
+<!--
 **Be careful when you bind to JavaScript numbers!** Since ReScript integers have a much smaller range than JavaScript numbers, data might get lost when dealing with large numbers. In those cases, it’s much safer to bind the numbers as **floats**. Be extra mindful of this when binding to JavaScript Dates and their epoch time.
+-->
 
+**JavaScript의 number를 바인딩할 때는 주의해야 합니다!** ReScript 정수는 JavaScript 숫자보다 범위가 훨씬 작기 때문에  32비트 이상의 정수는 잘릴 수 있습니다. JS number를 바인딩할 때(특히, JavaScript Dates와 epoch time에) **floats** 사용을 권장합니다.
+
+<!--
 To improve readability, you may place underscores in the middle of numeric literals such as `1_000_000`. Note that underscores can be placed anywhere within a number, not just every three digits.
+-->
 
+가독성을 향상시키기 위해 `1_000_000`과 같은 숫자 리터럴 가운데에 밑줄을 넣을 수 있습니다. 밑줄은 세 자리마다가 아닌 숫자 내의 어디에나 임의의 위치에 배치할 수 있습니다.
+
+<!--
 ## Floats
+-->
+## 부동 소수점(Floats)
 
+<!--
 Float requires other operators: `+.`, `-.`, `*.`, `/.`, etc. Like `0.5 +. 0.6`. See [Js.Float](api/js/float) for helper functions.
+-->
 
+플로트에는 `+.`，`-.`，`*.`，`/.` 등의 다른 연산자가 필요합니다. 예를 들어, `0.5 +. 0.6`과 같이 사용합니다. [Js.Float](api/js/float)에서 더 자세히 알아보세요.
+
+<!--
 As with integers, you may use underscores within literals to improve readability.
+-->
+
+정수와 마찬가지로 리터럴 내에서 밑줄을 사용하여 가독성을 높일 수 있습니다.
 
 ## Unit
 
+<!--
 The `unit` type has a single value, `()`. It compiles to JavaScript's `undefined`. It's a dummy type used as a placeholder in various places. You won't need it until you see it.
+-->
+
+`unit` 타입은 `()`라는 단일 값을 가지며, JavaScript의 `undefined`로 컴파일됩니다. 다양한 장소에서 자리 표시자(placeholder)로 사용되는 더미 타입입니다. 발견하기 전까지는 필요 없을 것입니다. 

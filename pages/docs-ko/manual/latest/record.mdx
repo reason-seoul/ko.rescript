@@ -1,19 +1,34 @@
 ---
-title: "Record"
-description: "Record types in ReScript"
+title: "레코드(Record)"
+description: "ReScript에서의 레코드 타입"
 canonical: "/docs/manual/latest/record"
 ---
 
+<!--
 # Record
+-->
+# 레코드(Record)
 
+<!--
 Records are like JavaScript objects but:
-
 - are immutable by default
 - have fixed fields (not extensible)
+-->
 
+ReScript에서의 레코드는 JavaScript의 객체(Object)와 유사합니다. 다만,
+- 기본적으로 불변입니다.
+- 고정된 필드를 가지고 있습니다. (확장 불가)
+
+<!--
 ## Type Declaration
+-->
+## 타입 선언
 
+<!--
 A record needs a mandatory type declaration:
+-->
+
+레코드는 반드시 타입 선언을 해야합니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -29,9 +44,16 @@ type person = {
 
 </CodeTab>
 
+<!--
 ## Creation
+-->
+## 생성
 
+<!--
 To create a `person` record (declared above):
+-->
+
+위에서 선언한 `person` 레코드는 다음과 같이 생성합니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -50,9 +72,17 @@ var me = {
 
 </CodeTab>
 
+<!--
 When you create a new record value, ReScript tries to find a record type declaration that conforms to the shape of the value. So the `me` value here is inferred as of type `person`.
+-->
 
+새로운 레코드 값을 생성하면 ReScrip는 값의 형태에 맞는 레코드 타입 선언을 찾으려고 합니다. 그리하여 위와 같이 `me`는 `person` 타입으로 추론됩니다. 
+
+<!--
 The type is found by looking above the `me` value. **Note**: if the type instead resides in another file or module, you need to explicitly indicate which file or module it is:
+-->
+
+**참고**: 타입 선언이 다른 파일 또는 모듈에 있는 경우, 해당 유형이 어떤 파일 또는 모듈인지 다음과 같이 명시적으로 기재해야 합니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -88,11 +118,22 @@ var me2 = {
 
 </CodeTab>
 
+<!--
 In both `me` and `me2` the record definition from `School` is found. The first one, `me` with the regular type annotation, is preferred.
+-->
 
+`me`와 `me2` 모두에서 레코드 타입 정의 `School`를 찾을 수 있습니다. 첫번째의 보통의 타입 어노테이션을 가진 `me`가 선호됩니다. 
+
+<!--
 ## Access
+-->
+## 접근
 
-Use the familiar dot notation:
+<!--
+ Use the familiar dot notation:
+-->
+
+익숙한 .(dot) 어노테이션을 사용합니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -105,9 +146,16 @@ var name = "Big ReScript";
 
 </CodeTab>
 
+<!--
 ## Immutable Update
+-->
+## 불변 갱신(Immutable Update)
 
+<!--
 New records can be created from old records with the `...` spread operator. The original record isn't mutated.
+-->
+
+`...` 스프레드(spread) 연산자를 사용하여 이전 레코드에서 새 레코드를 만들 수 있습니다. 원본 레코드는 변경되지 않습니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -123,11 +171,22 @@ var meNextYear = {
 
 </CodeTab>
 
+<!--
 **Note**: spread cannot add new fields to the record value, as a record's shape is fixed by its type.
+-->
 
+**참고**: 레코드의 형태는 레코드 타입에 따라 고정되므로, 스프레드(spread)는 레코드 값에 새 필드를 추가할 수 없습니다.
+
+<!--
 ## Mutable Update
+-->
+## 가변 갱신(Mutable Update)
 
+<!--
 Record fields can optionally be mutable. This allows you to efficiently update those fields in-place with the `=` operator.
+-->
+
+레코드 필드는 선택적으로 변경할 수 있습니다(이를 `mutable`이라 합니다). 이를 통해 `=` 연산자와 함께 해당 필드를 효율적으로 업데이트할 수 있습니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -138,7 +197,7 @@ type person = {
 }
 
 let baby = {name: "Baby ReScript", age: 5}
-baby.age = baby.age + 1 // `baby.age` is now 6. Happy birthday!
+baby.age = baby.age + 1 // `baby.age`은 이제 6 입니다. Happy birthday!
 ```
 ```js
 var baby = {
@@ -151,14 +210,33 @@ baby.age = baby.age + 1 | 0;
 
 </CodeTab>
 
+<!--
 Fields not marked with `mutable` in the type declaration cannot be mutated.
+-->
 
+타입 선언에서 `mutable`(가변)으로 표시되지 않은 필드는 변경할 수 없습니다.
+
+<!--
 ## JavaScript Output
+-->
+## JavaScript 결과물
 
+<!--
 ReScript records compile to straightforward JavaScript objects; see the various JS output tabs above.
+-->
 
+ReScript 레코드는 간단한 JavaScript 객체로 컴파일됩니다. 위의 예시들에서 JS Output 탭을 클릭해 다양한 JavaScript 결과물을 참조하세요.
+
+<!--
 ## Optional Record Fields
+-->
+## 선택적 레코드 필드
+
+<!--
 ReScript [`v10`](/blog/release-10-0-0#experimental-optional-record-fields) introduced optional record fields. This means that you can define fields that can be omitted when creating the record. It looks like this:
+-->
+
+ReScript [`v10`](/blog/release-10-0-0#experimental-optional-record-fields)부터 선택적 레코드 필드를 도입하여, 다음과 같이 레코드를 생성할 때 생략할 수 있는 필드를 정의할 수 있습니다. 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -174,10 +252,22 @@ type person = {
 
 </CodeTab>
 
+<!--
 Notice how `name` has a suffixed `?`. That means that the field itself is _optional_.
+-->
 
+`name`에 `?` 접미사가 붙어 있는 것에 주의하세요. 이것은 필드 자체가 _선택사항(optional)_이라는 의미입니다. 
+
+<!--
 ### Creation
+-->
+### 생성
+
+<!--
 You can omit any optional fields when creating a record. Not setting an optional field will default the field's value to `None`:
+-->
+
+레코드를 만들 때, 선택적 필드를 생략할 수 있습니다. 설정되지 않은 선택적 필드 값은 기본적으로 `None`입니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -209,10 +299,22 @@ var friend = {
 
 </CodeTab>
 
+<!--
 This has consequences for pattern matching, which we'll expand a bit on soon.
+-->
 
-## Immutable Update
+이것은 패턴 매칭에 영향을 미치므로, 이것에 대해 곧 논의할 예정입니다. 
+
+<!--
+### Immutable Update
+-->
+### 불변 갱신(Immutable Update)
+
+<!--
 Updating an optional field via an immutable update above lets you set that field value without needing to care whether it's optional or not.
+-->
+
+선택적 필드를 앞서 말한 불변 갱신으로 업데이트하면 선택 가능 여부에 상관없이 필드의 값을 설정할 수 있습니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -250,7 +352,11 @@ var withoutName = newrecord;
 </CodeTab>
 
 
+<!--
 However, if you want to set the field to an optional value, you prefix that value with `?`:
+-->
+
+그러나 필드를 `option` 값으로 설정하려면 값 앞에 `?`을 추가해야 합니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -291,12 +397,28 @@ var withoutName = newrecord;
 
 </CodeTab>
 
+<!--
 You can unset an optional field's value via that same mechanism by setting it to `?None`.
+-->
 
+동일한 메커니즘을 사용하여 선택적 필드의 값을 `?None`로 설정하면, 선택적 필드를 설정 취소할 수 있습니다.
+
+<!--
 ### Pattern Matching on Optional Fields
-[Pattern matching](pattern-matching-destructuring), one of ReScript's most important features, has two caveats when you deal with optional fields.
+-->
+### 선택적 필드에서의 패턴 매칭
 
+<!--
+[Pattern matching](pattern-matching-destructuring), one of ReScript's most important features, has two caveats when you deal with optional fields.
+-->
+
+ReScript의 가장 중요한 기능 중 하나인 [패턴 매칭](pattern-matching-destructuring)은 선택적 필드를 처리할 때 두 가지 주의 사항이 있습니다.
+
+<!--
 When matching on the value directly, it's an `option`. Example:
+-->
+
+값을 직접 매칭할 때는 `option`입니다. 다음은 그 예시입니다. 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -329,7 +451,11 @@ var me = {
 
 </CodeTab>
 
+<!--
 But, when matching on the field as part of the general record structure, it's treated as the underlying, non-optional value:
+-->
+
+그러나 필드를 일반 레코드 구조의 일부로 매칭시키면, 근본적이고 선택적이지 않은 값으로 간주됩니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -363,7 +489,11 @@ var me = {
 
 </CodeTab>
 
+<!--
 Sometimes you _do_ want to know whether the field was set or not. You can tell the pattern matching engine about that by prefixing your option match with `?`, like this:
+-->
+
+때때로 이 필드가 _확실히_ 설정되었는지 알고 싶을 경우가 있을 것입니다. 그럴 때는 다음과 같이 매칭 옵션 앞에 `?`를 추가하여 패턴 매칭 엔진에 전해주세요.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -384,7 +514,7 @@ let nameWasSet = switch me {
 }
 ```
 ```js
-var nameWasSet = true;
+var nameWasSet = false;
 
 var me = {
   age: 123,
@@ -394,10 +524,21 @@ var me = {
 
 </CodeTab>
 
+<!--
 ## Tips & Tricks
+-->
+## 사용 팁과 트릭
 
+<!--
 ### Record Types Are Found By Field Name
+-->
+### 필드 이름으로 레코드 타입 찾기
+
+<!--
 With records, you **cannot** say "I'd like this function to take any record type, as long as they have the field `age`". The following **won't work as intended**:
+-->
+
+레코드에서, "나는 이 함수가 `age`라는 필드가 있는 한 어떠한 레코드 타입도 받아들이도록 하고 싶다."라고 말할 수 **없습니다.** 레코드 타입은 필드 이름으로 찾기 때문입니다. 다음 방법은 의도한 대로 **작동하지 않습니다**:
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -415,7 +556,12 @@ function getAge(entity) {
 
 </CodeTab>
 
+<!--
 Instead, `getAge` will infer that the parameter `entity` must be of type `monster`, the closest record type with the field `age`. The following code's last line fails:
+-->
+
+반면, `getAge`는 매개변수 `entity`가 `monster` 타입이어야 하며, 이는 필드 `age`에 가장 가까운 레코드 타입이라고 추론될 것입니다. 그래서 다음 코드의 마지막 줄은 오류를 보고할 것입니다.
+
 
 ```res
 let kraken = {age: 9999, hasTentacles: true}
@@ -425,16 +571,45 @@ getAge(kraken)
 getAge(me) // type error!
 ```
 
+<!--
 The type system will complain that `me` is a `person`, and that `getAge` only works on `monster`. If you need such capability, use ReScript objects, described [here](object.md).
+-->
 
+타입 시스템은 `me`가 `person`이고, `getAge`는 `monster` 타입으로만 작동한다고 할 것입니다. 이러한 기능이 필요하다면 [ReScript 객체(object)](object.md)를 사용해보세요.
+
+<!--
 ### Optional Fields in Records Can Be Useful for Bindings
-Many JavaScript APIs tend to have large configuration objects that can be a bit annoying to model as records, since you previously always needed to specify all record fields when creating a record. 
+-->
+### 레코드의 선택적 필드가 바인딩에 유용할 수 있습니다
 
+<!--
+Many JavaScript APIs tend to have large configuration objects that can be a bit annoying to model as records, since you previously always needed to specify all record fields when creating a record.
+-->
+
+많은 JavaScript API는 방대한 구성 객체를 가지고 있는 경우가 많은데, 레코드로 모델링하면 항상 레코드를 만들 때 모든 레코드 필드를 지정해야 하므로 약간 성가실 수 있습니다.
+
+<!--
 Optional record fields, introduced in [`v10`](/blog/release-10-0-0#experimental-optional-record-fields), is intended to help with this. Optional fields will let you avoid having to specify all fields, and let you just specify the one's you care about. A significant improvement in ergonomics for bindings and other APIs with for example large configuration objects.
+-->
 
+[`v10`](/blog/release-10-0-0#experimental-optional-record-fields)에 도입된 선택적 레코드 필드는 이 문제를 해결하기 위한 것입니다. 선택적 필드를 사용하면 모든 필드를 지정할 필요가 없으며 원하는 필드만 지정할 수 있습니다. 이것은 바인딩과 대규모 구성 개체를 가진 다른 API에게는 의미있는 인체 공학적 개선입니다.
+
+<!--
 ## Design Decisions
+-->
+## 디자인 결정
 
+<!--
 After reading the constraints in the previous sections, and if you're coming from a dynamic language background, you might be wondering why one would bother with record in the first place instead of straight using object, since the former needs explicit typing and doesn't allow different records with the same field name to be passed to the same function, etc.
+-->
 
+동적 언어를 주로 다루셨던 분들이라면, 바로 객체를 쓰지 않고, 위에서 언급된 제약을 왜 신경 써야 하는지 의아할 수도 있습니다. 레코드를 객체보다 먼저 고려하라고 해놓고, 레코드는 명시적으로 타입도 써줘야 하고 모든 필드가 정확히 일치해야 함수에 전달할 수 있는 등 다루기가 더 불편하니까요. 
+
+<!--
 1. The truth is that most of the times in your app, your data's shape is actually fixed, and if it's not, it can potentially be better represented as a combination of variant (introduced next) + record instead.
 2. Since a record type is resolved through finding that single explicit type declaration (we call this "nominal typing"), the type error messages end up better than the counterpart ("structural typing", like for tuples). This makes refactoring easier; changing a record type's fields naturally allows the compiler to know that it's still the same record, just misused in some places. Otherwise, under structural typing, it might get hard to tell whether the definition site or the usage site is wrong.
+-->
+
+1. 사실은 대부분의 앱에서 데이터의 형태는 실제로 고정되어 있고, 그렇지 않은 경우 잠재적으로 배리언트(다음 장 소개) + 레코드의 조합으로 더 잘 표현될 수 있습니다.
+2. 레코드 타입은 단일 명시적 타입 선언(우리는 이것을 "명목적 타이핑(nominal typing)"이라 부릅니다)을 통해 해결되기 때문에, 타입 오류 메시지는 상대편(튜플과 같은 "구조 타이핑(structural typing)")의 오류메시지보다 더 낫게 됩니다. 이것은 리팩토링을 유용하게 하는데, 레코드 타입의 필드를 변경하면 컴파일러가 일부분의 동일한 레코드가 오용되어 있음을 자연스럽게 알 수 있습니다. 반면, 구조적 타이핑에서는 어떤 필드를 바꿨을 때, 선언이 잘못된 것인지 아님 사용처가 잘못된 것인지 컴파일러가 추론할 방법이 없습니다.
+

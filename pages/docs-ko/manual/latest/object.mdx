@@ -1,25 +1,50 @@
 ---
-title: "Object"
-description: "Interoping with JS objects in ReScript"
+title: "객체"
+description: "ReScript에서의 JS 객체와의 인터롭"
 canonical: "/docs/manual/latest/object"
 ---
 
+<!--
 # Object
+-->
+# 객체(Object)
 
+<!--
 ReScript objects are like [records](record.md), but:
+-->
 
+ReScript의 객체는 [레코드](record.md)와 비슷합니다. 하지만, 
+
+<!--
 - No type declaration needed.
 - Structural and more polymorphic, [unlike records](record.md#record-types-are-found-by-field-name).
 - Doesn't support updates unless the object comes from the JS side.
 - Doesn't support [pattern matching](pattern-matching-destructuring).
+-->
+
+- 타입 선언이 필요 없습니다.
+- [레코드와 달리](record.md#record-types-are-found-by-field-name) 구조적(structural)이고 다형성적(polymorphic)입니다.
+- 객체가 JS로부터 전달된 것이 아니면 업데이트할 수 없습니다.
+- [패턴 매칭](pattern-matching-destructuring)을 지원하지 않습니다.
 
 <!-- TODO: support update man -->
 
+<!--
 Although ReScript records compile to clean JavaScript objects, ReScript objects are a better candidate for emulating/binding to JS objects, as you'll see.
+-->
 
+ReScript 레코드는 깔끔한 JavaScript 객체로 컴파일될 수 있지만, 보시다시피 JS 객체를 모방하거나 바인딩할 때는 ReScript의 객체가 더 나은 후보입니다.
+
+<!--
 ## Type Declaration
+-->
+## 타입 선언
 
+<!--
 **Optional**, unlike for records. The type of an object is inferred from the value, so you never really need to write down its type definition. Nevertheless, here's its type declaration syntax:
+-->
+
+레코드와 달리 **선택적**입니다. 객체의 타입은 값에서 유추되므로 객체의 타입 선언을 굳이 작성할 필요가 없습니다. 그럼에도 불구하고, 타입 선언 문법을 보여드리자면 이러합니다. 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -35,13 +60,24 @@ type person = {
 
 </CodeTab>
 
+<!--
 Visually similar to record type's syntax, with the field names quoted.
+-->
+
+레코드 타입의 문법처럼 보이지만 필드 이름이 따옴표로 감싸져 있습니다.
 
 <!-- TODO: document {.} and {..} -->
 
+<!--
 ## Creation
+-->
+## 생성
 
+<!--
 To create a new object:
+-->
+
+다음과 같이 새로운 객체를 만들 수 있습니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -60,7 +96,11 @@ var me = {
 
 </CodeTab>
 
+<!--
 **Note**: as said above, unlike for record, this `me` value does **not** try to find a conforming type declaration with the field `"age"` and `"name"`; rather, the type of `me` is inferred as `{"age": int, "name": string}`. This is convenient, but also means this code passes type checking without errors:
+-->
+
+**참고**: 위에서 언급한 바와 같이, 여기서 `me`는 레코드와 달리, `"age"`와 `"name"`의 필드를 사용해 적합한 타입 선언을 찾으려고 하지 **않습니다.** 대신에 `me` 타입은 `{"age": int, "name": string}`로 추론됩니다. 이점은 편리하지만, 다음과 같이 의도치 않은 코드가 오류 없이 타입 검사를 통과한다는 것을 의미합니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -70,7 +110,7 @@ type person = {
 };
 
 let me = {
-  "age": "hello!" // age is a string. No error.
+  "age": "hello!" // age는 문자열(string)임에도 에러가 나지 않음
 }
 ```
 ```js
@@ -81,7 +121,11 @@ var me = {
 
 </CodeTab>
 
+<!--
 Since the type checker doesn't try to match `me` with the type `person`. If you ever want to force an object value to be of a predeclared object type, just annotate the value:
+-->
+
+이는 타입 검사기가 `me`와 `person` 타입을 일치시키려 하지 않기 때문입니다. 객체의 값을 미리 선언된 객체 타입으로 강제 지정하려면 다음과 같이 값에 어노테이션을 주면 됩니다.
 
 ```res
 let me: person = {
@@ -89,9 +133,16 @@ let me: person = {
 }
 ```
 
+<!--
 Now the type system will error properly.
+-->
 
+이제 타입 시스템은 정상적으로 오류를 보고할 것입니다.
+
+<!--
 ## Access
+-->
+## 접근
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -104,9 +155,16 @@ var age = me["age"];
 
 </CodeTab>
 
+<!--
 ## Update
+-->
+## 변경 
 
+<!--
 Disallowed unless the object is a binding that comes from the JavaScript side. In that case, use `=`
+-->
+
+객체가 JavaScript 측에서 가져온 바인딩이 아니면 수정이 허용되지 않습니다. JS 측에서 가져온 바인딩의 경우, 다음과 같이 `=`를 사용합니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -126,9 +184,16 @@ MyJSFile.student1.name = "Mary";
 
 </CodeTab>
 
+<!--
 ## Combine Types
+-->
+## 병합 타입
 
+<!--
 You can spread one object type definition into another using `...`:
+-->
+
+하나의 객체 타입 정의를 다른 객체로 확장하고 싶다면 다음과 같이 `...`을 사용하세요.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -158,11 +223,23 @@ var myPoint = {
 
 </CodeTab>
 
+<!--
 This only works with object types, not object values!
+-->
 
+이것은 객체 값이 아닌 객체 타입에서만 작동합니다!
+
+<!--
 ## Tips & Tricks
+-->
+## 사용 팁과 트릭
 
+<!--
 Since objects don't require type declarations, and since ReScript infers all the types for you, you get to very quickly and easily (and dangerously) bind to any JavaScript API. Check the JS output tab:
+-->
+
+객체가 타입 선언이 필요하지 않는 데다 ReScript가 모든 타입을 알아서 추론해주기 때문에, 모든 JavaScript API에 매우 빠르고 쉽게 바인딩할 수 있습니다. 그러나 안전하지는 않습니다. 
+다음에서 JS 출력 탭을 확인하세요. 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -192,4 +269,8 @@ document.location.href = "rescript-lang.org";
 
 </CodeTab>
 
+<!--
 The `external` feature and the usage of this trick are also documented in the [external](external#tips--tricks) section later. It's an excellent way to start writing some ReScript code without worrying about whether bindings to a particular library exists.
+-->
+
+이곳에 사용된 [`external`](external#tips--tricks) 기법은 뒤에서 더 자세히 다룰 예정입니다. 이것은 특정 라이브러리에 대한 바인딩이 존재하는지에 대한 걱정 없이 일부 ReScript 코드를 작성하기 시작할 수 있는 훌륭한 방법입니다.

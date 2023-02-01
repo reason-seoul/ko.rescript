@@ -1,14 +1,25 @@
 ---
-title: "Variant"
-description: "Variant data structures in ReScript"
+title: "배리언트"
+description: "ReScript에서의 배리언트 자료 구조"
 canonical: "/docs/manual/latest/variant"
 ---
 
+<!--
 # Variant
+-->
+# 배리언트(Variant)
 
+<!--
 So far, most of ReScript's data structures might look familiar to you. This section introduces an extremely important, and perhaps unfamiliar, data structure: variant.
+-->
 
+지금까지 대부분의 ReScript의 자료 구조는 여러분에게 친숙하게 보일 수 있습니다. 이 섹션에서는 매우 중요하지만 아마도 생소한 자료 구조인 배리언트를 소개합니다.
+
+<!--
 Most data structures in most languages are about "this **and** that". A variant allows us to express "this **or** that".
+-->
+
+대부분의 언어에서 자료 구조는 "이것 **그리고** 저것"에 관한 것입니다. 배리언트는 우리가 "이것 **또는** 저것"을 표현할 수 있게 해줍니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -26,13 +37,28 @@ var areYouCrushingIt = /* Yes */0;
 
 </CodeTab>
 
+<!--
 `myResponse` is a variant type with the cases `Yes`, `No` and `PrettyMuch`, which are called "variant constructors" (or "variant tag"). The `|` bar separates each constructor.
+-->
 
+위에서 `myResponse`의 배리언트 타입은 `Yes`, `No`, `PrettyMuch`를 포함하고 있고, 이를 "배리언트 생성자"(또는 "배리언트 태그")라고 합니다. `|`(바)를 이용해 각 생성자를 구분합니다.
+
+<!--
 **Note**: a variant's constructors need to be capitalized.
+-->
 
+**참고**: 배리언트 생성자의 첫 글자는 대문자로 시작해야 합니다.
+
+<!--
 ## Variant Needs an Explicit Definition
+-->
+## 배리언트는 명시적으로 정의해야 합니다
 
+<!--
 If the variant you're using is in a different file, bring it into scope like you'd do [for a record](record.md#record-needs-an-explicit-definition):
+-->
+
+사용 중인 배리언트가 다른 파일에 있는 경우, 다음과 같이 [레코드처럼](record.md#record-needs-an-explicit-definition) 명시적으로 정의해야 합니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -50,7 +76,7 @@ type animal = Dog | Cat | Bird
 
 ```res
 // Example.res
-let pet: Zoo.animal = Dog // preferred
+let pet: Zoo.animal = Dog // 선호됨
 // or
 let pet2 = Zoo.Dog
 ```
@@ -61,9 +87,16 @@ var pet2 = /* Dog */0;
 
 </CodeTab>
 
+<!--
 ## Constructor Arguments
+-->
+## 생성자 인자(Constructor Arguments)
 
+<!--
 A variant's constructors can hold extra data separated by comma.
+-->
+
+배리언트 생성자는 쉼표로 구분된 추가 값을 가질 수 있습니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -79,7 +112,12 @@ type account =
 
 </CodeTab>
 
+<!--
 Here, `Instagram` holds a `string`, and `Facebook` holds a `string` and an `int`. Usage:
+-->
+
+위에서 `Instagram`은 `string`을, `Facebook`은 `string`과 `int`를 가집니다. 다음은 그 예입니다. 
+
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -101,9 +139,16 @@ var friendAccount = {
 
 </CodeTab>
 
+<!--
 ### Labeled Variant Payloads (Inline Record)
+-->
+### 이름이 있는 배리언트 페이로드(인라인 레코드)
 
+<!--
 If a variant payload has multiple fields, you can use a record-like syntax to label them for better readability:
+-->
+
+배리언트 페이로드(배리언트 생성자가 보유한 추가 데이터를 지칭)에 여러 개의 필드가 있는 경우, 다음과 같은 레코드와 유사한 구문을 사용하여 가독성을 향상시키는 이름을 지정할 수 있습니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -124,9 +169,17 @@ var me = {
 
 </CodeTab>
 
+<!--
 This is technically called an "inline record", and only allowed within a variant constructor. You cannot inline a record type declaration anywhere else in ReScript.
+-->
 
+이를 기술적 명칭으로 "인라인 레코드"라고 하며 배리언트 생성자 내에서만 사용할 수 있습니다. ReScript의 다른 곳에서는 인라인으로 레코드 타입 선언을 할 수 없습니다.
+
+<!--
 Of course, you can just put a regular record type in a variant too:
+-->
+
+물론 다음과 같이 일반적인 레코드 타입을 배리언트에 직접 넣을 수도 있습니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -150,22 +203,51 @@ var me = {
 
 </CodeTab>
 
+<!--
 The output is slightly uglier and less performant than the former.
+-->
 
+다만 결과물은 인라인 레코드보다 조금 더 보기 흉하고 성능도 좋지 않습니다. (밑의 JS 결과물에서 확인하세요.)
+
+<!--
 ### Pattern Matching On Variant
+-->
+### 배리언트 패턴 매칭
 
+<!--
 See the [Pattern Matching/Destructuring](pattern-matching-destructuring) section later.
+-->
 
+[패턴 매칭/구조 분해](pattern-matching-destructuring) 섹션을 확인하세요.
+
+<!--
 ## JavaScript Output
+-->
+## JavaScript 결과물
 
+<!--
 A variant value compiles to 3 possible JavaScript outputs depending on its type declaration:
+-->
 
+배리언트 값은 타입 선언에 따라 세 가지 JavaScript 결과물로 컴파일될 수 있습니다.
+
+<!--
 - If the variant value is a constructor with no payload, it compiles to a number.
 - If it's a constructor with a payload, it compiles to an object with the field `TAG` and the field `_0` for the first payload, `_1` for the second payload, etc.
 - An exception to the above is a variant whose type declaration contains only a single constructor with payload. In that case, the constructor compiles to an object without the `TAG` field.
 - Labeled variant payloads (the inline record trick earlier) compile to an object with the label names instead of `_0`, `_1`, etc. The object might or might not have the `TAG` field as per previous rule.
+-->
 
+- 배리언트 값이 페이로드가 없는 생성자이면 숫자로 컴파일됩니다.
+- 배리언트 값이 페이로드가 있는 생성자인 경우, `TAG` 필드가 있는 객체로 컴파일됩니다. 첫 번째 페이로드는 `_0` 필드, 두 번째 페이로드는 `_1` 등과 같이 순서가 적용된 객체로 컴파일됩니다.
+- 위의 경우를 제외하고 배리언트 타입 선언에 페이로드가 있는 생성자가 하나만 있을 때, 생성자는 `TAG` 필드가 없는 객체로 컴파일됩니다.
+- 이름이 있는  배리언트 페이로드(=인라인 레코드)는 `_0`, `_1` 등 대신에 필드 이름을 사용한 객체로 컴파일됩니다. 객체에 이전 규칙에 따라 `TAG` 필드가 있거나 없을 수 있습니다.
+
+<!--
 Check the output in these examples:
+-->
+
+다음 예제에서 출력을 확인하세요.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -231,17 +313,24 @@ var a2 = {
 
 </CodeTab>
 
+<!--
 ## Tips & Tricks
+-->
+## 사용 팁과 트릭
 
+<!--
 **Be careful** not to confuse a constructor carrying 2 arguments with a constructor carrying a single tuple argument:
+-->
+
+**주의하세요**: 두 개의 인자를 전달하는 생성자와, 단일 튜플 인자를 전달하는 생성자를 혼동하지 마십시오.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
 ```res example
 type account =
-  | Facebook(string, int) // 2 arguments
+  | Facebook(string, int) // 인자 2개
 type account2 =
-  | Instagram((string, int)) // 1 argument - happens to be a 2-tuple
+  | Instagram((string, int)) // 인자 1개 - 요소가 2개인 튜플
 ```
 ```js
 // Empty output
@@ -249,15 +338,33 @@ type account2 =
 
 </CodeTab>
 
+<!--
 ### Variants Must Have Constructors
+-->
+### 배리언트는 반드시 생성자가 있어야 한다
 
+<!--
 If you come from an untyped language, you might be tempted to try `type myType = int | string`. This isn't possible in ReScript; you'd have to give each branch a constructor: `type myType = Int(int) | String(string)`. The former looks nice, but causes lots of trouble down the line.
+ -->
 
+타입이 지정되지 않은 언어를 사용했었다면, `type myType = int | string` 와 같이 정의하고 싶을 수 있습니다. 이는 ReScript에서는 불가능하며, 각각에 `type myType = Int(int) | String(string)`와 같은 생성자를 부여해야 합니다. 전자의 방식이 괜찮아 보일 수도 있지만, 후속 작업에 많은 문제를 일으킬 것입니다.
+
+<!--
 ### Interop with JavaScript
+-->
+### JavaScript 인터롭
 
+<!--
 _This section assumes knowledge about our JavaScript interop. Skip this if you haven't felt the itch to use variants for wrapping JS functions yet_.
+-->
 
+_이 섹션에서는 JavaScript 인터롭에 대한 지식을 가정합니다. 아직 JS 기능을 래핑하기 위해 배리언트를 사용할 필요성을 느끼지 않았다면 이 부분을 건너뛰세요._
+
+<!--
 Quite a few JS libraries use functions that can accept many types of arguments. In these cases, it's very tempting to model them as variants. For example, suppose there's a `myLibrary.draw` JS function that takes in either a `number` or a `string`. You might be tempted to bind it like so:
+-->
+
+상당수의 JS 라이브러리는 여러 타입의 인자를 수용할 수 있는 함수를 사용합니다. 이 경우 배리언트로 모델링하는 게 매우 적합해 보일 수 있습니다. 예를 들어, `number` 또는 `string`을 수용할 수 있는 `myLibrary.draw` JS 함수가 있다고 가정하면 다음과 같이 바인딩하고 싶을 수 있습니다.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -292,7 +399,11 @@ betterDraw({
 
 </CodeTab>
 
+<!--
 **Try not to do that**, as this generates extra noisy output. Alternatively, define two `external`s that both compile to the same JS call:
+-->
+
+**절대 시도하지 마시길 바랍니다.** 이로 인해 추가적으로 난잡한 결과물이 생성됩니다. 대신 다음과 같이 동일한 JS를 호출하는 `external` 두 개를 정의하세요.
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -306,19 +417,45 @@ betterDraw({
 
 </CodeTab>
 
+<!--
 ReScript also provides [a few other ways](bind-to-js-function.md#modeling-polymorphic-function) to do this.
+-->
 
+ReScript는 이를 위해 [다른 방법](bind-to-js-function.md#modeling-polymorphic-function)을 제공합니다.
+
+<!--
 ### Variant Types Are Found By Field Name
+-->
+### 필드 이름으로 배리언트 타입 찾기
 
+<!--
 Please refer to this [record section](record#tips--tricks). Variants are the same: a function can't accept an arbitrary constructor shared by two different variants. Again, such feature exists; it's called a polymorphic variant. We'll talk about this in the future =).
+-->
 
+이 [레코드 섹션](record#tips--tricks)을 참고하세요. 배리언트도 동일합니다. 함수는 두 개의 다른 배리언트를 공유하는 임의 생성자를 허용할 수 없습니다. 그러나.. 이를 가능케 하는 것이 있습니다. 그것은 폴리모픽 배리언트（polymorphic variant）라고 불립니다. 이에 대해서는 나중에 알아보겠습니다. =)
+
+<!--
 ## Design Decisions
+-->
+## 디자인 결정
 
+<!--
 Variants, in their many forms (polymorphic variant, open variant, GADT, etc.), are likely _the_ feature of a type system such as ReScript's. The aforementioned `option` variant, for example, obliterates the need for nullable types, a major source of bugs in other languages. Philosophically speaking, a problem is composed of many possible branches/conditions. Mishandling these conditions is the majority of what we call bugs. **A type system doesn't magically eliminate bugs; it points out the unhandled conditions and asks you to cover them**\*. The ability to model "this or that" correctly is crucial.
+-->
 
+다양한 형태 (폴리모픽 배리언트, 오픈 배리언트, GADT 등)의 배리언트는 ReScript 같은 타입 시스템의 기능일 가능성이 높습니다. 예를 들어, 앞서 언급한 `option` 배리언트는 다른 언어의 주요 버그 원인인 nullable 타입의 필요성을 없앱니다. 철학적으로 말하자면, 각 문제는 여러 분기/조건으로 구성되는데, 이 조건을 잘못 처리할 때 우리가 "버그"라고 부르는 것이 발생합니다. **타입 시스템은 마술처럼 버그를 제거하지 않습니다. 처리되지 않은 상태를 지적하고 이를 보완하도록 요청합니다.** "이것 또는 저것"을 올바르게 모델링하는 능력이 중요합니다.
+
+<!--
 For example, some folks wonder how the type system can safely eliminate badly formatted JSON data from propagating into their program. They don't, not by themselves! But if the parser returns the `option` type `None | Some(actualData)`, then you'd have to handle the `None` case explicitly in later call sites. That's all there is.
+-->
 
+예를 들어, 어떤 사람들은 타입 시스템이 잘못된 형식의 JSON 데이터를 안전하게 제거하고 프로그램에 전파되지 않도록 하는 방법을 알고 싶어 합니다. 하지만 타입 시스템이 스스로 하는 게 아닙니다! 그러나 파서(parser)가 반환하는 `option` 타입이 `None | Some(actual Data)`이면, 호출 지점에서 명시적으로 `None`의 케이스를 처리해야 합니다. 이것이 바로 타입 시스템이 할 수 있는 것입니다.
+
+<!--
 Performance-wise, a variant can potentially tremendously speed up your program's logic. Here's a piece of JavaScript:
+-->
+
+성능 측면에서 배리언트는 잠재적으로 프로그램 로직 속도를 엄청나게 가속화할 수 있습니다. 다음의 JavaScript 코드 조각이 있습니다:
 
 ```js
 let data = 'dog'
@@ -331,7 +468,11 @@ if (data === 'dog') {
 }
 ```
 
+<!--
 There's a linear amount of branch checking here (`O(n)`). Compare this to using a ReScript variant:
+-->
+
+이 코드 조각은 선형적으로 분기를 검사하고 있습니다 - (`O(n)'). 이를 ReScript 배리언트를 사용한 예와 비교하면 다음과 같습니다. 
 
 <CodeTab labels={["ReScript", "JS Output"]}>
 
@@ -352,7 +493,12 @@ var data = /* Dog */0;
 
 </CodeTab>
 
+<!--
 The compiler sees the variant, then
-
 1. conceptually turns them into `type animal = 0 | 1 | 2`
 2. compiles `switch` to a constant-time jump table (`O(1)`).
+-->
+
+컴파일러는 배리언트를 본 다음,
+1. 개념적으로 `type animal = 0 | 1 | 2`로 변환하고
+2. `switch`를 상수 시간 점프 테이블로 컴파일합니다.（`O(1)`）
